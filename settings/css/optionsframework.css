@@ -1,0 +1,328 @@
+/* Options Framework Admin Styles */
+#optionsframework-wrap{
+	display: block;
+	position: relative;
+	width: auto;
+	height: auto;
+	margin: 20px 0 0;
+	border: 0;
+	padding: 0 30px 0 0;
+	background: none;
+}
+#optionsframework-wrap h2{
+	z-index: 999;
+	display: block;
+	position: relative;
+	width: auto;
+	height: 40px;
+	margin: 0;
+	border: 0;
+	padding: 10px 15px;
+	line-height: 40px;
+	color: #fff;
+	background: #24a0f0;
+	background: -webkit-gradient(linear,left top,right top,from(#24a0f0),to(#ae46ef)) no-repeat;
+	background: -webkit-linear-gradient(left,#24a0f0,#ae46ef) no-repeat;
+	background: linear-gradient(90deg,#24a0f0,#ae46ef) no-repeat;
+}
+/* 侧栏样式 */
+#optionsframework-wrap .optionsframework-sidebar{
+	float: left;
+	display: block;
+	position: relative;
+	width: 160px;
+	height: auto;
+	margin: 0 -160px 0 0;
+	border: 0;
+	padding: 10px 0;
+	background: #fff;
+	box-shadow: none;
+	overflow: hidden;
+}
+#optionsframework-wrap .optionsframework-sidebar .nav-tab-wrapper{
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+#optionsframework-wrap .optionsframework-sidebar .nav-tab-wrapper a{
+	display: block;
+	width: 100%;
+	height: 40px;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	font-size: 15px;
+	font-weight: normal;
+	line-height: 40px;
+	text-align: center;
+	background: none;
+	overflow: hidden;
+}
+#optionsframework-wrap .optionsframework-sidebar .nav-tab-wrapper a.nav-tab-active{
+	background: #eee;
+}
+#optionsframework-wrap .optionsframework-sidebar .ads{
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 10px 0;
+	border: 0;
+	padding: 0;
+	background: none;
+}
+#optionsframework-wrap .optionsframework-sidebar .ads img{
+	display: block;
+	width: 100%;
+	height: auto;
+}
+/* 提交按钮 */
+#optionsframework-submit{
+	z-index: 999999;
+	display: block;
+	position: fixed;
+	top: 200px;
+	right: 180px;
+}
+#optionsframework-submit .button-primary{
+	display: inline-block;
+	width: auto;
+	height: auto;
+	margin: 0;
+	border: 0;
+	padding: 9px 15px;
+	line-height: 1;
+	text-shadow: none;
+	color: #fff;
+	background: #24a0f0;
+	background: -webkit-gradient(linear,left top,right top,from(#24a0f0),to(#24b4ff)) no-repeat;
+	background: -webkit-linear-gradient(left,#24a0f0,#24b4ff) no-repeat;
+	background: linear-gradient(90deg,#24a0f0,#24b4ff) no-repeat;
+	-webkit-box-shadow: 0 3px 5px rgba(32,160,240,0.5);
+	box-shadow: 0 3px 5px rgba(32,160,240,0.5);
+}
+#optionsframework-submit .button-primary:hover{
+	opacity: 0.8;
+}
+#optionsframework-submit .button-primary:focus{
+	outline: none;
+}
+#optionsframework-submit .reset-button{
+	display: inline-block;
+	width: auto;
+	height: auto;
+	margin: 0;
+	border: 0;
+	padding: 9px 15px;
+	line-height: 1;
+	text-shadow: none;
+	color: #fff;
+	background: #ff0000;
+	background: -webkit-gradient(linear,left top,right top,from(#ff0000),to(#ff7600)) no-repeat;
+	background: -webkit-linear-gradient(left, #ff0000, #ff7600) no-repeat;
+	background: linear-gradient(90deg,#ff0000,#ff7600) no-repeat;
+	-webkit-box-shadow: 0 3px 5px rgba(255,80,0,0.5);
+	box-shadow: 0 3px 5px rgba(255,80,0,0.5);
+}
+#optionsframework-submit .reset-button:hover{
+	opacity: 0.8;
+}
+#optionsframework-submit .reset-button:focus{
+	outline: none;
+}
+/* 主体样式 */
+#optionsframework-metabox{
+	display: block;
+	position: relative;
+	width: auto;
+	height: auto;
+	min-height: 600px;
+	margin: 0 0 0 180px;
+	border: 0;
+	padding: 15px 20px;
+	background: #fff;
+	overflow: hidden;
+}
+#optionsframework-metabox .postbox{
+	display: block;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	box-shadow: none;
+}
+#optionsframework-metabox .postbox .group{
+	display: block;
+	position: relative;
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+#optionsframework-metabox .postbox .group h3{
+	z-index: 999;
+	display: inline-block;
+	position: absolute;
+	transform: rotate(36deg);
+	right: -50px;
+	top: 5px;
+	width: 160px;
+	height: auto;
+	margin: 0;
+	border: 0;
+	padding: 9px 15px;
+	text-align: center;
+	font-weight: normal;
+	color: #fff;
+	background: #24a0f0;
+}
+#optionsframework-metabox .postbox .group .section{
+	display: block;
+	position: relative;
+	width: auto;
+	height: auto;
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+#optionsframework-metabox .postbox .group .section h4.heading{
+	display: block;
+	position: relative;
+	width: auto;
+	height: auto;
+	margin: 10px -20px 10px -20px;
+	border: 0;
+	padding: 5px 10px;
+	border-left: 5px solid #24a0f0;
+	line-height: 20px;
+	background: #fafafa;
+	box-shadow: none;
+	overflow: hidden;
+}
+#optionsframework-metabox .postbox .group .section .option{
+	display: block;
+	position: relative;
+	width: auto;
+	height: auto;
+	margin: 0;
+	border: 0;
+	padding: 0 10px;
+	background: #fff;
+}
+#optionsframework-metabox .postbox .group .section .option .controls{
+	display: inline-block;
+	width: auto;
+	height: auto;
+	margin: 0;
+	border: 0;
+	padding: 5px;
+	line-height: 30px;
+}
+#optionsframework-metabox .postbox .group .section .option .explain{
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	width: auto;
+	height: auto;
+	margin: 0 0 0 15px;
+	border: 0;
+	padding: 0;
+	line-height: 40px;
+	color: #999;
+}
+#optionsframework-metabox .postbox .group .section .option .explain b{
+	font-weight: bold;
+	color: #777;
+}
+#optionsframework-metabox .postbox .group .section .option .explain i{
+	margin: 0 5px;
+	font-weight: bold;
+	color: #f00;
+}
+#optionsframework-metabox .postbox .group .section .option .controls select{
+	min-width: 100px;
+}
+#optionsframework-metabox .postbox .group .section .option .controls input[type=text]{
+	width: 200px;
+}
+#optionsframework-metabox .postbox .group .section .option .controls input[type=text].upload{
+	width: 400px;
+}
+/* 多选按钮 */
+#optionsframework-metabox .postbox .group .section-multicheck .option .controls input[type=checkbox]{
+	float: left;
+	margin: 0 10px 5px 0;
+	clear: both;
+}
+#optionsframework-metabox .postbox .group .section-multicheck .option .controls label{
+	float: left;
+	width: auto;
+	line-height: 16px;
+	margin-bottom: 5px;
+}
+/* 单选按钮 */
+#optionsframework-metabox .postbox .group .section-radio .option .controls input[type=radio]{
+	float: left;
+	margin: 0 10px 5px 0;
+	clear: both;
+}
+#optionsframework-metabox .postbox .group .section-radio .option .controls label{
+	float: left;
+	width: auto;
+	line-height: 16px;
+	margin-bottom: 5px;
+}
+#optionsframework-metabox .postbox .group .section .option .controls div.of-radio-img-label{
+	display: none;
+}
+#optionsframework-metabox .postbox .group .section .option .controls input.of-radio-img-radio{
+	display: block;
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+#optionsframework-metabox .postbox .group .section .option .controls a.of-radio-color{
+	display: inline-block;
+	position: relative;
+	top: 8px;
+	width: 20px;
+	height: 20px;
+	margin: auto 5px auto 0;
+	border: 3px solid #eee;
+	cursor:pointer;
+}
+#optionsframework-metabox .postbox .group .section .option .controls a.of-radio-color:hover{
+	opacity: 0.8
+}
+#optionsframework-metabox .postbox .group .section .option .controls .of-radio-img-selected{
+	border: 3px solid #ccc
+}
+#optionsframework-metabox .postbox .group .section .option .controls textarea{
+	width: 600px;
+	min-height: 30px;
+	height: auto;
+}
+#optionsframework-metabox .postbox .group .section .option .controls .screenshot{
+	display: block;
+	width: auto;
+	height: auto;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	overflow: hidden;
+}
+#optionsframework-metabox .postbox .group .section .option .controls .screenshot img{
+	display: block;
+	min-width: 100px;
+	width: auto;
+	max-width: 400px;
+	height: auto;
+	max-height: 100px;
+	margin: 10px 0;
+	border: 1px solid #eee;
+	padding: 5px;
+	background: #fafafa;
+}
+#optionsframework-metabox .postbox .group .section .option .controls .screenshot a.remove-image{
+	display: none;
+}
