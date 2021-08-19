@@ -28,7 +28,7 @@ class Wechat_Official_Reply {
 		if ($errCode == 0) {
 			$requestContent = $decryptMsg;	
 		} else {
-			error_log("解密失败：".$errCode, 3, WECHAT_OFFICIAL_DIR."/wechat_log.txt");
+			// error_log("解密失败：".$errCode, 3, WECHAT_OFFICIAL_DIR."/wechat_log.txt");
 		}
 		
 		// 如果没有POST数据，则返回

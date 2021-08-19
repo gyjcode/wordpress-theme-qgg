@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 function _edit_user_avatar_profile($user){
 	$avatar	= get_user_meta($user->ID, 'avatar', true);
 	$user_cap = current_user_can( 'upload_files' ) ? 'YES' : 'NO';

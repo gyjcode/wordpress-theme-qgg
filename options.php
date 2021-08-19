@@ -104,18 +104,18 @@ function optionsframework_options() {
 	);
 	
 	$wechat_encoding_mode = array(
-		'plaintext' => __( '明文模式', 'QGG' ),
+		'plaintext'  => __( '明文模式', 'QGG' ),
 		'compatible' => __( '兼容模式', 'QGG' ),
 		'encryption' => __( '安全模式', 'QGG' )
 	);
 	
 	// If using image radio buttons, define a directory path
-	$image_path =  get_template_directory_uri() . '/img/';
+	$img_uri =  get_template_directory_uri() . '/assets/img/';
 	$ads_desc   =  __('可添加任意广告联盟代码或自定义代码', 'QGG');
-	$ads_std_01 =  __('<a href="https://blog.quietguoguo.com/" target="_blank">
+	$ads_01     =  __('<a href="https://zibuyu.life/" target="_blank">
 						<img src="'.get_template_directory_uri().'/img/ads-reset-01.png">
 					</a>', 'QGG');
-	$ads_std_02 =  __('<a href="https://blog.quietguoguo.com/" target="_blank">
+	$ads_02     =  __('<a href="https://zibuyu.life/" target="_blank">
 						<img src="'.get_template_directory_uri().'/img/ads-reset-02.png">
 					</a>', 'QGG');
 
@@ -361,7 +361,7 @@ function optionsframework_options() {
 		'desc'     => __('评论框背景图——显示在评论输入框内部的背景图片', 'QGG'),
 		'id'       => 'comment_background_img',
 		'type'     => 'upload',
-		'std'      => $image_path . 'comment-bgimg.png'
+		'std'      => $img_uri.'comment-bgimg.png'
 	);
 	
 	$options[] = array(
@@ -414,7 +414,7 @@ function optionsframework_options() {
 		'desc'     => __('站点Logo——显示在导航左侧的Logo图标，建议尺寸：140*32px 格式：PNG', 'QGG'),
 		'id'       => 'logo_colorful_src',
 		'type'     => 'upload',
-		'std'      => $image_path . 'logo-colorful.png'
+		'std'      => $img_uri.'logo-colorful.png'
 	);
 	
 	$options[] = array(
@@ -431,7 +431,7 @@ function optionsframework_options() {
 		'desc'     => __('彩色条带——导航底部的装饰性图片文件', 'QGG'),
 		'id'       => 'color_bar',
 		'type'     => 'upload',
-		'std'      => $image_path . 'colorful-bar.gif'
+		'std'      => $img_uri.'colorful-bar.gif'
 	);
 	
 	$options[] = array(
@@ -488,7 +488,7 @@ function optionsframework_options() {
 		'desc'     => __('推广图标——建议尺寸180x42px，默认使用纯色Logo', 'QGG'),
 		'id'       => 'footer_brand_lmr_logo',
 		'type'     => 'upload',
-		'std'      => $image_path . 'logo-pure.png'
+		'std'      => $img_uri.'logo-pure.png'
 	);
 	
 	$options[] = array(
@@ -522,7 +522,7 @@ function optionsframework_options() {
 		'desc'     => __('<b><i>'.$i.'</i>二维码图片</b>——请上传您的二维码图片', 'QGG'),
 		'id'       => 'footer_brand_lmr_qr_'.$i,
 		'type'     => 'upload',
-		'std'      => $image_path . 'qrcode.png'
+		'std'      => $img_uri.'qrcode.png'
 	);
 	
 	}
@@ -643,14 +643,14 @@ function optionsframework_options() {
 		'desc'     => __('<b>开启，<i>'.$i.'</i>背景图片</b>——建议尺寸：1920*420px', 'QGG'),
 		'id'       => 'full_screen_banner_bg-'.$i,
 		'type'     => 'upload',
-		'std'      => $image_path . 'banner-bg-'.$j.'.png'
+		'std'      => $img_uri.'banner-bg-'.$j.'.png'
 	);
 	
 	$options[] = array(
 		'desc'     => __('<b>开启，<i>'.$i.'</i>悬浮图片</b>——建议尺寸：', 'QGG').'240*340px',
 		'id'       => 'full_screen_banner_float-'.$i,
 		'type'     => 'upload',
-		'std'      => $image_path . 'banner-float-'.$j.'.png'
+		'std'      => $img_uri.'banner-float-'.$j.'.png'
 	);
 	
 	$options[] = array(
@@ -745,7 +745,7 @@ function optionsframework_options() {
 		'desc'     => __('<b><i>'.$i.'</i>背景图片</b>——建议尺寸：480pxx160px', 'QGG'),
 		'id'       => 'topic_card_box_img-'.$i,
 		'type'     => 'upload',
-		'std'      => $image_path . 'topic.png'
+		'std'      => $img_uri.'topic.png'
 	);
 
 	$options[] = array(
@@ -938,14 +938,14 @@ function optionsframework_options() {
 		'desc'     => __('顶部Logo——上传一张图片作为海报顶部的Logo图片', 'QGG'),
 		'id'       => 'post_poster_logo',
 		'type'     => 'upload',
-		'std'      => $image_path . 'logo-pure.png'
+		'std'      => $img_uri.'logo-pure.png'
 	);
 	
 	$options[] = array(
 		'desc'     => __('底部Icon——上传一张图片作为海报底部的ICON图片', 'QGG'),
 		'id'       => 'post_poster_siteicon',
 		'type'     => 'upload',
-		'std'      => $image_path . 'favicon.ico'
+		'std'      => $img_uri.'favicon.ico'
 	);
 	
 	$options[] = array(
@@ -981,14 +981,14 @@ function optionsframework_options() {
 		'desc'     => __('支付宝二维码——显示在弹出窗体中的支付宝二维码', 'QGG'),
 		'id'       => 'post_rewards_alipay',
 		'type'     => 'upload',
-		'std'      => $image_path . 'qrcode.png'
+		'std'      => $img_uri.'qrcode.png'
 	);
 	
 	$options[] = array(
 		'desc'     => __('微信二维码——显示在弹出窗体中的微信二维码', 'QGG'),
 		'id'       => 'post_rewards_wechat',
 		'type'     => 'upload',
-		'std'      => $image_path . 'qrcode.png'
+		'std'      => $img_uri.'qrcode.png'
 	);
 	
 	
@@ -1274,7 +1274,7 @@ function optionsframework_options() {
 		'desc'     => __('微信二维码——建议图片尺寸：200x200', 'QGG'),
 		'id'       => 'kefu_wechat_qr',
 		'type'     => 'upload',
-		'std'      => $image_path . 'qrcode.png'
+		'std'      => $img_uri.'qrcode.png'
 	);
 	
 	// 自定义
@@ -1515,7 +1515,7 @@ function optionsframework_options() {
 		'desc'     => __('最新文章列表上——广告代码：', 'QGG').$ads_desc,
 		'id'       => 'ads_post_list_01',
 		'type'     => 'textarea',
-		'std'      => $ads_std_01,
+		'std'      => $ads_01,
 		'settings' => array(
 			'rows' => 5
 		)
@@ -1532,7 +1532,7 @@ function optionsframework_options() {
 		'desc'     => __('最新文章列表下——广告代码：', 'QGG').$ads_desc,
 		'id'       => 'ads_post_list_02',
 		'type'     => 'textarea',
-		'std'      => $ads_std_01,
+		'std'      => $ads_01,
 		'settings' => array(
 			'rows' => 5
 		)
@@ -1549,7 +1549,7 @@ function optionsframework_options() {
 		'desc'     => __('整站评论模块上——广告代码', 'QGG').' '.$ads_desc,
 		'id'       => 'ads_post_cmnt_01',
 		'type'     => 'textarea',
-		'std'      => $ads_std_01,
+		'std'      => $ads_01,
 		'settings' => array(
 			'rows' => 5
 		)
@@ -1568,7 +1568,7 @@ function optionsframework_options() {
 		'desc'     => __('默认文章正文上——广告代码：', 'QGG').' '.$ads_desc,
 		'id'       => 'ads_default_post_01',
 		'type'     => 'textarea',
-		'std'      => $ads_std_01,
+		'std'      => $ads_01,
 		'settings' => array(
 			'rows' => 5
 		)
@@ -1585,7 +1585,7 @@ function optionsframework_options() {
 		'desc'     => __('默认文章正文下——广告代码：', 'QGG').' '.$ads_desc,
 		'id'       => 'ads_default_post_02',
 		'type'     => 'textarea',
-		'std'      => $ads_std_01,
+		'std'      => $ads_01,
 		'settings' => array(
 			'rows' => 5
 		)
@@ -1604,7 +1604,7 @@ function optionsframework_options() {
 		'desc'     => __('视频文章分享模块右——广告代码：', 'QGG').' '.$ads_desc,
 		'id'       => 'ads_video_post_01',
 		'type'     => 'textarea',
-		'std'      => $ads_std_02,
+		'std'      => $ads_02,
 		'settings' => array(
 			'rows' => 5
 		)
@@ -1728,7 +1728,7 @@ function optionsframework_options() {
 		'desc'     => __('微信二维码——正方形，建议图片尺寸：200x200px', 'QGG'),
 		'id'       => 'wechat_official_qrcode',
 		'type'     => 'upload',
-		'std'      => $image_path . 'qrcode.png'
+		'std'      => $img_uri.'qrcode.png'
 	);
 	
 	$options[] = array(

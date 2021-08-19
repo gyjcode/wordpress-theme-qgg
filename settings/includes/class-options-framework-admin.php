@@ -188,7 +188,7 @@ class Options_Framework_Admin {
 				<?php echo Options_Framework_Interface::optionsframework_tabs(); ?>
 			</nav>
 			<div class="ads">
-				<a href="https://blog.quietguoguo.com" target="_blank"><img src="<?php echo get_template_directory_uri() ?>/screenshot.png" alt="蝈蝈要安静"></a>
+				<a href="https://zibuyu.life" target="_blank"><img src="<?php echo get_template_directory_uri() ?>/screenshot.png" alt="zibuyu | 一个不学无术的伪程序员"></a>
 			</div>
 		</div>
 		
@@ -201,7 +201,7 @@ class Options_Framework_Admin {
 					<?php Options_Framework_Interface::optionsframework_fields(); /* Settings */ ?>
 					<div id="optionsframework-submit">
 						<input type="submit" class="button-primary" name="update" value="<?php echo __( '保存设置', 'QGG' ); ?>" />
-						<input type="submit" class="reset-button button-secondary" name="reset" value="<?php echo __( '警告！此操作将初始化全部设置', 'QGG' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'textdomain' ) ); ?>' );" />
+						<input type="submit" class="reset-button button-secondary" name="reset" value="<?php echo __( '警告！点击初始化主题', 'QGG' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'textdomain' ) ); ?>' );" />
 						<div class="clear"></div>
 					</div>
 				</form>

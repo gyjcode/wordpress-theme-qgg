@@ -3,18 +3,21 @@
   * WordPress 源代码修改
   */
  
+// 隐藏顶部工具条
+add_filter('show_admin_bar', '__return_false');
+
 // 后台加载 CSS 文件
 function my_backstage_css() {
-	wp_enqueue_style( "backstage_css", get_template_directory_uri() . "/css/backstage.css" );
+	wp_enqueue_style( "backstage_css", THEME_URI.'/assets/css/backstage.css' );
 }
 add_action('admin_init', 'my_backstage_css');
 
 // 后台编辑器 CSS 文件
-add_editor_style( get_locale_stylesheet_uri() . '/css/editor-style.css' );
+add_editor_style( THEME_URI.'/assets/css/editor-style.css' );
 
 // 后台加载 JS 文件
 function my_backstage_js() {
-	wp_register_script( 'backstage_js', get_template_directory_uri() . '/js/backstage.js' );  
+	wp_register_script( 'backstage_js', THEME_URI.'/assets/js/backstage.js' );  
 	wp_enqueue_script( 'backstage_js' ); 
 }
 add_action( 'admin_enqueue_scripts', 'my_backstage_js' );
@@ -48,7 +51,7 @@ add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'status', 'v
 add_theme_support('post-thumbnails');
 add_theme_support('title-tag');
 
-//取消自己PING自己
+//取消自己 PING 自己
 add_action( 'pre_ping', 'no_self_ping' );
 function no_self_ping(&$links) {
 	$home = get_option('home');

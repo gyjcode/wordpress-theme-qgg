@@ -72,7 +72,7 @@ function wp_get_post_custom_templates() {
 				//continue;
 				
 				// 排除当前文件
-				if ( false !== strpos($basename, 'fn_custom_post_template') )
+				if ( false !== strpos($basename, 'func_post_template') )
 				continue;
 				
 				$template_data = implode( '', file( $template ));
