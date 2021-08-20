@@ -1,5 +1,100 @@
 /**==================== 文章相关样式，对应于 singles 文件夹下的相关文件 ====================*/
 
+/**==================== 代码高亮样式 ====================*/
+pre.prettyprint {
+	max-height: 360px;
+	margin: 10px auto;
+	border: 0;
+	padding: 15px;
+	border-radius: 5px;
+	background: #333;
+	overflow: auto;
+}
+pre.prettyprint.linenums{
+	box-shadow: none;
+}
+pre.prettyprint.linenums ol{
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	border: 0;
+	padding: 0;
+}
+pre.prettyprint.linenums ol li{
+	margin: 0 auto;
+	border: 0;
+	padding: 0;
+	line-height: 1.2em;
+	font-size: 14px;
+	font-weight: lighter;
+	text-indent: 0;
+	list-style: none;
+	color: #eee;
+}
+pre.prettyprint.linenums::-webkit-scrollbar{
+	width: 7px;
+	height: 7px;
+}
+pre.prettyprint.linenums::-webkit-scrollbar-thumb{
+	border-radius: 15px;
+	-webkit-box-shadow: inset 0 0 5px #999;
+	background: #fff;
+}
+pre.prettyprint.linenums::-webkit-scrollbar-thumb:hover{
+	background: #eee;
+}
+pre.prettyprint.linenums::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 5px #16152f;
+	border-radius: 15px;
+	background: #16152f;
+}
+.prettyprint .com{
+	color: #93a1a1; 
+}
+.prettyprint .lit{
+	color: #AE81FF;
+}
+.prettyprint .pun{
+	color: #F8F8F2;
+}
+.prettyprint .opn{
+	color: #F8F8F2;
+}
+.prettyprint .clo{
+	color: #F8F8F2;
+}
+.prettyprint .fun{
+	color: #dc322f;
+}
+.prettyprint .str{
+	color: #ffef56;
+}
+.prettyprint .atv{
+	color: #ffef56;
+}
+.prettyprint .kwd{
+	color: #ff003e;
+}
+.prettyprint .tag{
+	color: #ff003e;
+}
+.prettyprint .typ{
+	color: #00d42a;
+}
+.prettyprint .atn{
+	color: #A6E22E;
+}
+.prettyprint .dec{
+	color: #A6E22E;
+}
+.prettyprint .var{
+	color: #A6E22E;
+}
+.prettyprint .pln{
+	color: #21ceef;
+}
+
 /* 网站添加公众号涨粉功能样式代码 */
 #wechat-official-captcha{
 	clear:both;

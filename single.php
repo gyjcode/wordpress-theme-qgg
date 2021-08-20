@@ -4,14 +4,14 @@
 	$borderRadius = 'border-radius: '. QGG_options('site_style_border-radius').'px;';
 ?>
 <section class="container">
-	<div class="content">
-		<div class="main" style="<?php echo $borderRadius; ?>">
+	<div class="content-wrap">
+		<div class="content" style="<?php echo $borderRadius; ?>">
 			
 			<?php while (have_posts()) : the_post(); ?>
 			<!-- 文章头部Meta -->
-			<header class="article-header">
-				<h1 class="article-title"><a href="<?php the_permalink() ?>"><?php the_title(); ?><?php echo _get_the_subtitle() ?></a></h1>
-				<div class="article-meta">
+			<header class="post-header">
+				<h1 class="post-title"><a href="<?php the_permalink() ?>"><?php the_title(); ?><?php echo _get_the_subtitle() ?></a></h1>
+				<div class="post-meta">
 					<?php 
 						echo '<span class="cat">分类：';
 						echo the_category('/'). '</span>';

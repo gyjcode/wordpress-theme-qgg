@@ -9,8 +9,8 @@ $borderRadius = 'border-radius: '. QGG_options('site_style_border-radius').'px;'
 	<!-- 页面菜单 -->
 	<?php the_module_loader('module_page_menu', false) ?>
 	<!-- 页面内容 -->
-	<div class="page-content">
-		<div class="page-main" style="<?php echo $borderRadius; ?>">
+	<div class="content-wrap">
+		<div class="content" style="<?php echo $borderRadius; ?>">
 			<?php while (have_posts()) : the_post(); ?>
 			<header class="page-header">
 				<h1 class="page-title"><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h1>

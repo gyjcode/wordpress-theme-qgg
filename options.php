@@ -113,10 +113,10 @@ function optionsframework_options() {
 	$img_uri =  get_template_directory_uri() . '/assets/img/';
 	$ads_desc   =  __('可添加任意广告联盟代码或自定义代码', 'QGG');
 	$ads_01     =  __('<a href="https://zibuyu.life/" target="_blank">
-						<img src="'.get_template_directory_uri().'/img/ads-reset-01.png">
+						<img src="'.get_template_directory_uri().'/assets/img/ads-reset-01.png">
 					</a>', 'QGG');
 	$ads_02     =  __('<a href="https://zibuyu.life/" target="_blank">
-						<img src="'.get_template_directory_uri().'/img/ads-reset-02.png">
+						<img src="'.get_template_directory_uri().'/assets/img/ads-reset-02.png">
 					</a>', 'QGG');
 
 	/**==================== 正式配置代码开始 ====================*/
@@ -398,14 +398,14 @@ function optionsframework_options() {
 	
 	$options[] = array(
 		'desc'     => __('开启，滚动公告——顶部显示滚动公告', 'QGG'),
-		'id'       => 'scroll_announcement_open',
+		'id'       => 'announcement_on',
 		'type'     => 'checkbox',
 		'std'      => true
 	);
 	
 	$options[] = array(
 		'desc'     => __('滚动公告内容——每行一条，回车换行即可。不明白？<a href="http://blog.quietguoguo.com">点击这里</a> 进行留言。', 'QGG'),
-		'id'       => 'scroll_announcement',
+		'id'       => 'announcement_list',
 		'type'     => 'textarea',
 		'std'      => '<a href="https://blog.quietguoguo.com">蝈蝈要安静 | 一个不学无术的伪程序员</a>'
 	);
@@ -437,7 +437,7 @@ function optionsframework_options() {
 	$options[] = array(
 		'name'     => __('首页 SEO 设置',' QGG'),
 		'desc'     => __('站点标题——自定义有利于SEO的标题，为空则采用后台-设置-常规中的“站点标题+副标题”的形式',' QGG'),
-		'id'       => 'home_title',
+		'id'       => 'site_title',
 		'std'      => '蝈蝈要安静 | 一个不学无术的伪程序员',
 		'type'     => 'textarea',
 		'settings' => array(

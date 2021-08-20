@@ -201,7 +201,7 @@ class Options_Framework_Admin {
 					<?php Options_Framework_Interface::optionsframework_fields(); /* Settings */ ?>
 					<div id="optionsframework-submit">
 						<input type="submit" class="button-primary" name="update" value="<?php echo __( '保存设置', 'QGG' ); ?>" />
-						<input type="submit" class="reset-button button-secondary" name="reset" value="<?php echo __( '警告！点击初始化主题', 'QGG' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'textdomain' ) ); ?>' );" />
+						<input type="submit" class="reset-button button-secondary" name="reset" value="<?php echo __( '警告！点击初始化主题', 'QGG' ); ?>" onclick="return confirm( '<?php print esc_js( __( '点击确定按钮重置主题，该操作将会使您之前设置的所有内容失效!', 'textdomain' ) ); ?>' );" />
 						<div class="clear"></div>
 					</div>
 				</form>

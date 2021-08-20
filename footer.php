@@ -48,7 +48,7 @@
 		window.jsui={
 			www             : '<?php echo home_url(); ?>',
 			uri             : '<?php echo get_template_directory_uri(); ?>',
-			ver             : '<?php echo THEME_VERSION; ?>',
+			ver             : '<?php echo THEME_VER; ?>',
 			reset_pwd       : '<?php echo module_get_page_user_reset_pwd(); ?>',
 			ajax_url        : '<?php echo admin_url( "admin-ajax.php" ); ?>',
 			logo_pure       : '<?php echo QGG_Options("logo_pure_src"); ?>',

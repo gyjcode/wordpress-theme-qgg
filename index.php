@@ -7,7 +7,6 @@
 		include get_template_directory() . '/modules/module_full_screen_banner.php';
 	}
 	?>
-	
 	<section class="container">
 		<?php
 		// 专题推荐模块
@@ -16,8 +15,8 @@
 		}
 		?>
 		<!-- 网站主体 -->
-		<div class="content">
-			<div class="main">
+		<div class="content-wrap">
+			<div class="content">
 				<?php
 				// 图像盒子文章列表
 				if( QGG_options('img_box_posts_open') ){

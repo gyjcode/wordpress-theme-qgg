@@ -57,8 +57,8 @@ add_filter( 'optionsframework_menu', 'prefix_options_menu_filter' );
  * Needed because options are saved as serialized strings.
  * Not in a class to support backwards compatibility in themes.
  */
-if ( !function_exists( 'QGG_Options' ) ) :
-function QGG_Options( $name, $default = false ) {
+if ( !function_exists( 'QGG_options' ) ) :
+function QGG_options( $name, $default = false ) {
 
 	$option_name = 'QGG';
 

@@ -53,12 +53,12 @@ function _get_post_thumbnail($size = 'thumbnail', $class = 'thumb') {
 
 	if( $r_src ){
 		if( QGG_Options('thumbnail_async_open') ){
-    		return sprintf('<img data-src="%s" alt="%s" src="%s" class="thumb">', $r_src, $post->post_title .'-'. get_bloginfo('name'), get_template_directory_uri().'/img/thumbnail.png');
+    		return sprintf('<img data-src="%s" alt="%s" src="%s" class="thumb">', $r_src, $post->post_title .'-'. get_bloginfo('name'), get_template_directory_uri().'/assets/img/thumbnail.png');
 		}else{
     		return sprintf('<img src="%s" alt="%s" class="thumb">', $r_src, $post->post_title .'-'. get_bloginfo('name'));
 		}
     }else{
-    	return sprintf('<img data-thumb="default" src="%s" class="thumb">', get_template_directory_uri().'/img/thumbnail.png');
+    	return sprintf('<img data-thumb="default" src="%s" class="thumb">', get_template_directory_uri().'/assets/img/thumbnail.png');
     }
 }
 

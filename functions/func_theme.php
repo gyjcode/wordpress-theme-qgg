@@ -261,74 +261,71 @@ function _bodyclass() {
 }
 
 /**==================== 加载主题 JS 与 CSS 文件 ====================*/
-add_action('wp_enqueue_scripts', 'the_scripts_loader');
-function the_scripts_loader() {
+add_action('wp_enqueue_scripts', '_scripts_loader', '',THEME_VER);
+function _scripts_loader() {
 	if (!is_admin()) {
 		// delete jquery.js
 		wp_deregister_script('jquery');
 		// delete l10n.js
 		wp_deregister_script('l10n');
 
-		$purl = get_template_directory_uri().'/assets';
-		
-		// 用户中心加载 user-center.css
-		if (is_page_template('pages/page_user_center.php')) {
-			the_css_loader(array('user-center' => 'user-center'));
-		}
-		// 分类页面加载 category.css
-		if (is_category()) {
-			the_css_loader(array('category' => 'category'));
-		}
-		// 普通页面加载 page.css
-		if (is_page()) {
-			the_css_loader(array(
-				'page' => 'page',
-				'video-js'   => $purl.'/css/libs/video-js.min.css',
-			));
-		}
-		// 文章页面加载 single.css
-		if (is_single()) {
-			the_css_loader(array(
-				'single' => 'single',
-				'video-js'   => $purl.'/css/libs/video-js.min.css',
-			));
-		}
 		// 公共 CSS 文件
-		the_css_loader(array(
-			'bootstrap' => $purl.'/css/libs/bootstrap.min.css', 
-			'animate'   => $purl.'/css/libs/animate.min.css',
-			'swiper'    => $purl.'/css/libs/swiper.min.css',
-			'iconfont'  => $purl.'/css/libs/iconfont.css',
-			'main'      => 'main',
-			'widget'    => 'widget',
-			'comment'   => 'comment',
+		_css_loader(array(
+			'bootstrap' => 'libs/bootstrap.min.css', 
+			'animate'   => 'libs/animate.min.css',
+			'swiper'    => 'libs/swiper.min.css',
+			'iconfont'  => 'libs/fontawsome.min.css',
+			'main'      => 'main.css',
+			'widget'    => 'widget.css',
+			'comment'   => 'comment.css',
 		));
-		// 公共 JS 文件,其他 JS 文件通过 require.js 按需加载
-		the_js_loader(array(
-			//'jquery'  => $purl.'/js/libs/jquery.min.js',
-			'require' => $purl.'/js/libs/require.min.js',
-			'main'    => $purl.'/js/main.js',
+		// 公共 JS 文件
+		_js_loader(array(
+			'main'    => 'main.js',
 		));
+		
+		// 文章页面
+		if (is_single()) {
+			_css_loader(array(
+				'single'   => 'single.css',
+				'video-js' => 'libs/video-js.min.css',
+			));
+		}
+		// 普通页面
+		if (is_page()) {
+			_css_loader(array(
+				'page'     => 'page.css',
+				'video-js' => 'libs/video-js.min.css',
+			));
+		}
+		// 用户中心
+		if (is_page_template('pages/page_user_center.php')) {
+			_css_loader(array('user-center' => 'user-center'));
+		}
+		// 分类页面
+		if (is_category()) {
+			_css_loader(array('category' => 'category'));
+		}
 	}
 }
 // 加载 CSS 文件函数
-function the_css_loader($arr) {
+function _css_loader($arr) {
 	foreach ($arr as $key => $item) {
 		$href = $item;
 		if (strstr($href, '//') === false) {
-			$href = get_template_directory_uri() . '/assets/css/' . $item . '.css';
+			$href = THEME_URI.'/assets/css/' . $item;
 		}
-		wp_enqueue_style('_' . $key, $href, array(), THEME_VERSION, 'all');
+		wp_enqueue_style('_'.$key, $href, array(), THEME_VER, 'all');
 	}
 }
 // 加载 JS 文件函数
-function the_js_loader($arr) {
+function _js_loader($arr) {
 	foreach ($arr as $key => $item) {
 		$href = $item;
 		if (strstr($href, '//') === false) {
-			$href = get_template_directory_uri() . '/assets/js/' . $item . '.js';
+			$href = THEME_URI.'/assets/js/' . $item;
 		}
-		wp_enqueue_script('_' . $item, $href, array(), THEME_VERSION, true);
+		wp_enqueue_script('_'.$item, $href, array(), THEME_VER, true);
 	}
 }
 
@@ -406,15 +403,19 @@ function the_module_loader($name = '', $apply = true) {
 	}
 }
 
-/**==================== 加载主题 LOGO 文件 ====================*/
-function the_site_logo() {
+/**==================== 通用文件加载 ====================*/
+// Logo
+function _site_logo() {
 	$tag = is_home() ? 'h1' : 'div';
-	$title = QGG_Options('home_title')?QGG_Options('home_title') : get_bloginfo('name') .(get_bloginfo('description')? '-'.get_bloginfo('description') : '');
-	echo '<' . $tag . ' class="logo">
-			<a href="' . get_bloginfo('url') . '" title="' . $title . '">
-			<img src="'.QGG_Options('logo_colorful_src').'" alt="'.$title.'">
-			</a>
-		</' . $tag . '>';
+	$title_default =  get_bloginfo('name').(get_bloginfo('description') ? '-'.get_bloginfo('description') : '');
+	$title = QGG_Options('site_title') ?: $title_default;
+
+	echo '
+	<'.$tag.' class="logo">
+		<a href=" '.get_bloginfo('url').' " title=" '.$title.' ">
+			<img src=" '.QGG_Options('logo_colorful_src').' " alt=" '.$title.' ">
+		</a>
+	</'.$tag.'>';
 }
 
 /**==================== 主题导航已出 DIV 与 UL 标签 ====================*/
@@ -454,7 +455,7 @@ function _get_time_ago($post_time) {
 /**==================== 主题获取用户头像 ====================*/
 // 获取默认头像
 function _get_default_avatar(){
-	return get_template_directory_uri() . '/img/avatar-default.png';
+	return get_template_directory_uri() . '/assets/img/avatar-default.png';
 }
 // 过滤后台默认 Avatar 头像并添加主题默认头像
 add_filter( 'avatar_defaults', '_the_new_avatar' );  

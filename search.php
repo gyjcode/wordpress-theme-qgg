@@ -15,8 +15,8 @@ if( !have_posts() ){
 ?>
 
 <section class="container">
-	<div class="content">
-		<div class="main">
+	<div class="content-wrap">
+		<div class="content">
 			<div class="search-title">
 				<h1><i class="iconfont qgg-search" aria-hidden="true"></i><span><?php echo htmlspecialchars($s); ?></span>的搜索结果</h1>
 			</div>

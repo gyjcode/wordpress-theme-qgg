@@ -1,6 +1,6 @@
 /**==================== require.js 文件配置代码 ====================**/
 require.config({
-	baseUrl: jsui.uri + '/js',
+	baseUrl: jsui.uri + '/assets/js',
 	urlArgs: 'ver=' + jsui.ver,
 	waitSeconds: 0,
 	paths: {
@@ -182,25 +182,27 @@ jQuery(document).ready(function(){
 	// 首页滚动公告JS代码
 	window.scrollAnnouncement = function(){
 		var timer;
-		var speed = speed ? speed : 10;         // 自定义滚动速度，数值越大滚动越快
+		var speed = 10;         // 自定义滚动速度，数值越大滚动越快
 		var pause=false;
-		var objDiv=$("#scroll-announcement-list");
-		var heightLi = $("#scroll-announcement-list li").height();
-		var increment = heightLi/(heightLi-speed);
-		if (objDiv == null){ return; } 
-		
-		objDiv.append(objDiv.html());
-		objDiv.scrollTop(0);
-		objDiv.hover(function(){ pause=true },function(){ pause=false });
+		var domList=$("#announcement-list");
+		var heightLi = $("#announcement-list li").height();
+		var increment = heightLi / (heightLi - speed);
+		if (domList == null){ return; } 
+		// 复制添加一份滚动列表内容以无缝滚动
+		domList.append( domList.html() );
+		domList.scrollTop(0);
+		// 鼠标悬浮暂停滚动
+		domList.hover(function(){ pause=true }, function(){ pause=false });
 		
 		function startMove(){
-			timer=setInterval(scrolling,30);
-			if(!pause){ objDiv.scrollTop(objDiv.scrollTop()+increment); }         //控制滚动速度
+			timer = setInterval(scrolling, 30);
+			if(!pause){ domList.scrollTop(domList.scrollTop() + increment); }         //控制滚动速度
 		} 
+		// 滚动函数
 		function scrolling(){
-			if( objDiv.scrollTop() % heightLi != 0 ){
-				objDiv.scrollTop(objDiv.scrollTop()+increment);         //控制滚动速度
-				if( objDiv.scrollTop() >= objDiv[0].scrollHeight/2 ){ objDiv.scrollTop(0); }         // 判断是否一圈滚动完成
+			if( domList.scrollTop() % heightLi != 0 ){
+				domList.scrollTop(domList.scrollTop()+increment);         //控制滚动速度
+				if( domList.scrollTop() >= domList[0].scrollHeight/2 ){ domList.scrollTop(0); }         // 判断是否一圈滚动完成
 			}else{
 				clearInterval(timer); 
 				setTimeout(startMove,3000);        //设置滚动时间 

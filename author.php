@@ -7,8 +7,8 @@ $curauth = $wp_query->get_queried_object();
 ?>
 
 <section class="container">
-	<div class="content">
-		<div class="main">
+	<div class="content-wrap">
+		<div class="content">
 			<?php 
 			$pagedtext = '';
 			if( $paged && $paged > 1 ){

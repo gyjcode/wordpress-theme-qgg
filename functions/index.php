@@ -1,6 +1,6 @@
 <?php 
 // 定义主题版本
-define( 'THEME_VERSION' , '1.0' );
+define( 'THEME_VER' , '2.0' );
 define( 'THEME_URI' , get_template_directory_uri() );
 define( 'THEME_DIR' , get_template_directory() );
 
