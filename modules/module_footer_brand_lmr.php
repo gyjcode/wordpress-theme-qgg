@@ -1,57 +1,59 @@
 <?php 
 /** 
- * @name 三栏推广模块 （Description，QRCode，Hyperlink）
- * @description 在引用位置处加载一个三栏推广模块，可自主设置网站描述（包含网站 Logo ）、社交信息（包含二维码）、超链接等
- * @author 蝈蝈要安静——一个不学无术的伪程序员
- * @url https://blog.quietguoguo.com
+ * 三栏推广模块
  */
 ?>
 
-<footer class="footer-brand-lmr-wrap">
-	<div class="footer-brand-lmr-main container">
-		<div>
-			<div class="footer-brand-lmr-left">
-			<?php
-			echo '<a href="#">
-					<img src="'.QGG_options('footer_brand_lmr_logo').'" alt="">
-				</a>
-				<p>'.QGG_options('footer_brand_lmr_text').'</p>'
-			?>
-			</div>
-		</div>
-		
-		<div>
-			<div class="footer-brand-lmr-middle">
-			<?php
-			for ($i=1; $i <= 3; $i++) {
-				echo 
-				'<div>
-					<img src="'.QGG_options('footer_brand_lmr_qr_'.$i).'" alt="">
-					<p>'.QGG_options('footer_brand_lmr_qr_id_'.$i).'</p>
-					<p>'.QGG_options('footer_brand_lmr_qr_desc_'.$i).'</p>
-				</div>';
-			}
-			?>
-			</div>
-		</div>
-		
-		<div>
-			<div class="footer-brand-lmr-right">
-				<?php
-				echo '
-				<h4>'.QGG_options('footer_brand_lmr_caption').'</h4>
-				<div>'
-				?>
-				<?php
-				for ($j=1; $j <= 12; $j++) {
-					if (QGG_options('footer_brand_lmr_qr_title_'.$j)){
-						echo '<a href="'.QGG_options('footer_brand_lmr_href_'.$j).'" target="_black"><i class="iconfont qgg-link"></i>'.QGG_options('footer_brand_lmr_qr_title_'.$j).'</a>';
-					}
-				}
-				?>
-				</div>
-			</div>
-		</div>
-		
-	</div>
+<footer class="module footer-brand-lmr">
+    <div class="container">
+        <!-- 左侧 -->
+        <div class="left">
+            <?php
+            // 获取配置
+            $logo_src  = QGG_options('footer_brand_lmr_logo') ?: '';
+            $brand_txt = QGG_options('footer_brand_lmr_text') ?: '';
+
+            echo '
+            <img src="'.$logo_src.'" alt="">
+            <p>'.$brand_txt.'</p>';
+            ?>
+        </div>
+        <!-- 中间 -->
+        <div class="middle">
+            <?php
+            for ($i=1; $i <= 3; $i++) {
+                // 获取配置
+                $qr_img  = QGG_options('footer_brand_lmr_qr_img_'.$i) ?: '';
+                $qr_id   = QGG_options('footer_brand_lmr_qr_id_'.$i) ?: '';
+                $qr_desc = QGG_options('footer_brand_lmr_qr_desc_'.$i) ?: '';
+
+                echo '
+                <div class="qrcode">
+                    <img src="'.$qr_img.'" alt="">
+                    <span>'.$qr_id.'</span>
+                    <span>'.$qr_desc.'</span>
+                </div>';
+            }
+            ?>
+        </div>
+        <!-- 右侧 -->
+        <div class="right">
+            <?php
+                // 获取配置
+                $title = QGG_options('footer_brand_lmr_title') ?: '';
+                echo '<h4>'.$title.'</h4>';
+            ?>
+            <div class="links">
+            <?php
+            for ($j=1; $j <= 9; $j++) {
+                // 获取配置
+                $link_name = QGG_options('footer_brand_lmr_link_name_'.$j) ?: '';
+                $link_href = QGG_options('footer_brand_lmr_link_href_'.$j) ?: '';
+
+                echo '<a href="'.$link_href.'" target="_black">'.$link_name.'</a>';
+            }
+            ?>
+            </div>
+        </div>
+    </div>
 </footer>

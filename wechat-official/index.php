@@ -28,16 +28,16 @@ $captchaTime      = QGG_options("wechat_official_captcha_time") ? QGG_options("w
 
 // 非微信公众号请求直接返回
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' && strpos($_SERVER['REQUEST_URI'], $requestSign) == 0 ) {    // 非微信请求处理
-	
-	$replyDefault = "抱歉，系统检测到非微信公众号发送的请求，已停止继续访问！";
-	if ( $_SERVER['HTTP_REFERER'] != '' && strpos($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_HOST']) != 0 ) {    // 本站请求处理
-		if ( $_SERVER['HTTP_REFERER'] != '' && strpos($_SERVER['HTTP_REFERER'], 'wp-admin/edit.php') != 0 ) {    // 文章编辑页面错误问题处理
-		    return;
-	    }
-	}
-	
+    
+    $replyDefault = "抱歉，系统检测到非微信公众号发送的请求，已停止继续访问！";
+    if ( $_SERVER['HTTP_REFERER'] != '' && strpos($_SERVER['HTTP_REFERER'], $_SERVER['HTTP_HOST']) != 0 ) {    // 本站请求处理
+        if ( $_SERVER['HTTP_REFERER'] != '' && strpos($_SERVER['HTTP_REFERER'], 'wp-admin/edit.php') != 0 ) {    // 文章编辑页面错误问题处理
+            return;
+        }
+    }
+    
 }else{
-	$replyDefault = $replyDefault;
+    $replyDefault = $replyDefault;
 }
 
 // 常量定义
@@ -55,17 +55,17 @@ define('WECHAT_OFFICIAL_REPLY_DEFAULT', $replyDefault);
 include( WECHAT_OFFICIAL_DIR.'/token.php' );
 //如果是验证请求,则执行签名验证并退出
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET["echostr"])) {
-	ob_clean();
-	$wechatObj = new wechatTokenVerify();
-	$wechatObj ->valid();
-	return;
+    ob_clean();
+    $wechatObj = new wechatTokenVerify();
+    $wechatObj ->valid();
+    return;
 };
 
 
 // 非 POST 请求直接返回空值
 /*if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-	echo '';
-	return;
+    echo '';
+    return;
 }*/
 
 /** 以上内容为链接微信公众号基础信息 **/

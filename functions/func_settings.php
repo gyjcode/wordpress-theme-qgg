@@ -24,13 +24,13 @@ function optionsframework_custom_scripts() { ?>
 <script type="text/javascript">
 jQuery(document).ready(function() {
 
-	jQuery('#example_showhidden').click(function() {
-  		jQuery('#section-example_text_hidden').fadeToggle(400);
-	});
+    jQuery('#example_showhidden').click(function() {
+          jQuery('#section-example_text_hidden').fadeToggle(400);
+    });
 
-	if (jQuery('#example_showhidden:checked').val() !== undefined) {
-		jQuery('#section-example_text_hidden').show();
-	}
+    if (jQuery('#example_showhidden:checked').val() !== undefined) {
+        jQuery('#section-example_text_hidden').show();
+    }
 
 });
 </script>
@@ -42,11 +42,11 @@ jQuery(document).ready(function() {
  * This is an example of filtering menu parameters
  */
 function prefix_options_menu_filter( $menu ) {
-	$menu['mode'] = 'menu';
-	$menu['page_title'] = __( '主题选项', 'QGG');
-	$menu['menu_title'] = __( '主题选项', 'QGG');
-	$menu['menu_slug'] = 'qgg-options';
-	return $menu;
+    $menu['mode'] = 'menu';
+    $menu['page_title'] = __( '主题选项', 'QGG');
+    $menu['menu_title'] = __( '主题选项', 'QGG');
+    $menu['menu_slug'] = 'qgg-options';
+    return $menu;
 }
 
 add_filter( 'optionsframework_menu', 'prefix_options_menu_filter' );
@@ -60,28 +60,28 @@ add_filter( 'optionsframework_menu', 'prefix_options_menu_filter' );
 if ( !function_exists( 'QGG_options' ) ) :
 function QGG_options( $name, $default = false ) {
 
-	$option_name = 'QGG';
+    $option_name = 'QGG';
 
-	// Gets option name as defined in the theme
-	if ( function_exists( 'optionsframework_option_name' ) ) {
-		$option_name = optionsframework_option_name();
-	}
+    // Gets option name as defined in the theme
+    if ( function_exists( 'optionsframework_option_name' ) ) {
+        $option_name = optionsframework_option_name();
+    }
 
-	// Fallback option name
-	if ( '' == $option_name ) {
-		$option_name = get_option( 'stylesheet' );
-		$option_name = preg_replace( "/\W/", "_", strtolower( $option_name ) );
-	}
+    // Fallback option name
+    if ( '' == $option_name ) {
+        $option_name = get_option( 'stylesheet' );
+        $option_name = preg_replace( "/\W/", "_", strtolower( $option_name ) );
+    }
 
-	// Get option settings from database
-	$options = get_option( $option_name );
+    // Get option settings from database
+    $options = get_option( $option_name );
 
-	// Return specific option
-	if ( isset( $options[$name] ) ) {
-		return $options[$name];
-	}
+    // Return specific option
+    if ( isset( $options[$name] ) ) {
+        return $options[$name];
+    }
 
-	return $default;
+    return $default;
 }
 endif;
 
@@ -95,20 +95,20 @@ function optionscheck_change_santiziation() {
     add_filter( 'of_sanitize_textarea', 'custom_sanitize_textarea' );
 }
 function custom_sanitize_textarea($input) {
-	global $allowedposttags;
-	$custom_allowedtags["embed"] = array(
-		"src" => array(),
-		"type" => array(),
-		"allowfullscreen" => array(),
-		"allowscriptaccess" => array(),
-		"height" => array(),
-		"width" => array()
-	);
-	$custom_allowedtags["script"] = array( 
-		"type" => array(),
-		"src" => array()
-	);
-	$custom_allowedtags = array_merge($custom_allowedtags, $allowedposttags);
-	$output = wp_kses( $input, $custom_allowedtags);
-	return $output;
+    global $allowedposttags;
+    $custom_allowedtags["embed"] = array(
+        "src" => array(),
+        "type" => array(),
+        "allowfullscreen" => array(),
+        "allowscriptaccess" => array(),
+        "height" => array(),
+        "width" => array()
+    );
+    $custom_allowedtags["script"] = array( 
+        "type" => array(),
+        "src" => array()
+    );
+    $custom_allowedtags = array_merge($custom_allowedtags, $allowedposttags);
+    $output = wp_kses( $input, $custom_allowedtags);
+    return $output;
 }

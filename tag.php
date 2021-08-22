@@ -1,23 +1,32 @@
-<?php get_header(); ?>
+<?php
+/**
+ * 搜索页面模板
+ */
+get_header();
+if( !have_posts() ){
+    get_template_part( '404' ); 
+    get_footer();
+    exit;
+}
+?>
 
 <section class="container">
-	<div class="content">
-		<div class="main">
-			<?php 
-			$pagedtext = '';
-			if( $paged && $paged > 1 ){
-				$pagedtext = ' <small>第'.$paged.'页</small>';
-			}
-			
-			echo '<div class="tag-title"><h1>标签：<span>', single_tag_title(), '</span></h1>'.$pagedtext.'</div>';
-			
-			the_module_loader('module_new_posts_excerpt');
-			
-			wp_reset_query();
-			?>
-		</div>
-	</div>
-	<?php get_sidebar(); ?>
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="module tag-title">
+                <h1>
+                    <i class="fa fa-tag"></i>
+                    标签：<span class="site-style-color"><?php single_tag_title() ?></span>
+                    <?php echo ($paged && $paged > 1) ? '<small>第'.$paged.'页</small>' : '' ?>
+                </h1>
+            </div>
+            <?php
+                _module_loader('module_posts_excerpt_new');
+                wp_reset_query();
+            ?>
+        </div>
+    </div>
+    <?php get_sidebar(); ?>
 </section>
 
 <?php get_footer(); ?>

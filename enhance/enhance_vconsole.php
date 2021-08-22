@@ -6,12 +6,12 @@
 ?>
 
 <?php
-if( QGG_Options('enhance_vconsole_open') ){
-	if( current_user_can('manage_options') ){
-	?>
-		<script src="https://cdn.bootcss.com/vConsole/3.3.0/vconsole.min.js"></script>
-		<script>new VConsole()</script>
-	<?php
-	}
+if( QGG_Options('enhance_vconsole_on') ){
+    if( current_user_can('manage_options') ){
+    ?>
+        <script src="https://cdn.bootcss.com/vConsole/3.3.0/vconsole.min.js"></script>
+        <script>new VConsole()</script>
+    <?php
+    }
 }
 ?>

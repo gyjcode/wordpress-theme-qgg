@@ -13,19 +13,19 @@ $description = trim(strip_tags(category_description()));    // 获取分类页�
 $meta_style = _get_tax_meta($cat_root_id, 'style');
 $category_style = 'default';
 $category_array = array(
-	'default', 
-	'video',
-	'product'
+    'default', 
+    'video',
+    'product'
 );
 
 if( !empty($meta_style) && in_array($meta_style, $category_array) ){
-	$category_style = $meta_style;
+    $category_style = $meta_style;
 }
 
 // paging
 $pagedtext = '';
 if( $paged && $paged > 1 ){
-	$pagedtext = ' <small>第'.$paged.'页</small>';
+    $pagedtext = ' <small>第'.$paged.'页</small>';
 }
 
 include get_template_directory() . '/categories/category_'.$category_style.'.php';

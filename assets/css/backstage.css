@@ -2,236 +2,236 @@
 
 /* 单栏样式*/
 .post-meta-box-s1{
-	display: inline-block;
-	position: relative;
-	width: 100%;
-	height: auto;
-	margin: 0 auto;
-	border: 0;
-	padding: 0;
-	overflow: hidden;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border: 0;
+    padding: 0;
+    overflow: hidden;
 }
 .post-meta-box-s1 p{
-	display: flex;
-	flex-direction: row;
-	position: relative;
-	width: 100%;
-	height: 30px;
-	margin: 0 auto;
-	border: 0;
-	padding: 0;
-	line-height: 30px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    height: 30px;
+    margin: 0 auto;
+    border: 0;
+    padding: 0;
+    line-height: 30px;
 }
 .post-meta-box-s1 p lable{
-	order: -1;
-	flex-basis: 60px;
-	margin: 0 auto;
-	border: 0;
-	padding: 0;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	word-wrap: break-word;
-	word-break: break-word;
-	text-align: justify;
-	text-align-last: justify;
+    order: -1;
+    flex-basis: 60px;
+    margin: 0 auto;
+    border: 0;
+    padding: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    word-break: break-word;
+    text-align: justify;
+    text-align-last: justify;
 }
 .post-meta-box-s1 p input{
-	flex-grow: 1;
+    flex-grow: 1;
 }
 @media (max-width: 1366px) {
-	
+    
 }
 @media (max-width: 1024px) {
-	
+    
 }
 @media (max-width: 768px) {
-	
+    
 }
 @media (max-width: 480px) {
-	
+    
 }
 /* 双栏样式 */
 .post-meta-box-s2{
-	display: inline-block;
-	position: relative;
-	width: 49%;
-	height: auto;
-	margin: 0 1% 0 0;
-	border: 0;
-	padding: 0;
-	overflow: hidden;
+    display: inline-block;
+    position: relative;
+    width: 49%;
+    height: auto;
+    margin: 0 1% 0 0;
+    border: 0;
+    padding: 0;
+    overflow: hidden;
 }
 .post-meta-box-s2:nth-child(even){
-	margin: 0 0 0 1%;
+    margin: 0 0 0 1%;
 }
 .post-meta-box-s2 p{
-	display: flex;
-	flex-direction: row;
-	position: relative;
-	width: 100%;
-	height: 30px;
-	margin: 0 auto;
-	border: 0;
-	padding: 0;
-	line-height: 30px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    height: 30px;
+    margin: 0 auto;
+    border: 0;
+    padding: 0;
+    line-height: 30px;
 }
 .post-meta-box-s2 p lable{
-	order: -1;
-	flex-basis: 60px;
-	margin: 0 auto;
-	border: 0;
-	padding: 0;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	word-wrap: break-word;
-	word-break: break-word;
-	text-align: justify;
-	text-align-last: justify;
+    order: -1;
+    flex-basis: 60px;
+    margin: 0 auto;
+    border: 0;
+    padding: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    word-break: break-word;
+    text-align: justify;
+    text-align-last: justify;
 }
 .post-meta-box-s2 p input{
-	flex-grow: 1;
+    flex-grow: 1;
 }
 @media (max-width: 1366px) {
-	
+    
 }
 @media (max-width: 1024px) {
-	
+    
 }
 @media (max-width: 768px) {
-	
+    
 }
 @media (max-width: 480px) {
-	.post-meta-box-s2{
-		width: 100%;
-		margin: 0;
-	}
-	.post-meta-box-s2:nth-child(even){
-		margin: 0;
-	}
+    .post-meta-box-s2{
+        width: 100%;
+        margin: 0;
+    }
+    .post-meta-box-s2:nth-child(even){
+        margin: 0;
+    }
 }
 /* 列表样式 */
 .meta-list-field{
-	display: block;
-	width: 100%;
-	height: auto;
-	margin: 0 auto;
-	padding: 0;
-	border: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
 }
 .meta-list-field .meta-list-sum{
-	display: block;
-	width: 100%;
-	height: 30px;
-	margin: 10px 0;
-	padding: 0;
-	border: 0;
-	line-height: 30px;
-	font-size: 14px;
-	font-weight: bold;
+    display: block;
+    width: 100%;
+    height: 30px;
+    margin: 10px 0;
+    padding: 0;
+    border: 0;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: bold;
 }
 .meta-list-field .meta-list-sum .field-label{
-	display: inline-block;
-	width: auto;
-	height: 100%;
-	margin: 0 15px 0 0;
-	border: 0;
-	padding: 0;
-	vertical-align: baseline;
+    display: inline-block;
+    width: auto;
+    height: 100%;
+    margin: 0 15px 0 0;
+    border: 0;
+    padding: 0;
+    vertical-align: baseline;
 }
 .meta-list-field .meta-list-sum .field-input{
-	display: inline-block;
-	width: 60px;
-	height: 100%;
-	margin: 0 30px 0 0;
-	padding: 0 10px 0 0;
-	text-align: right;
+    display: inline-block;
+    width: 60px;
+    height: 100%;
+    margin: 0 30px 0 0;
+    padding: 0 10px 0 0;
+    text-align: right;
 }
 .meta-list-field .meta-lists{
-	display: block;
-	width: 100%;
-	height: auto;
-	margin: 0 auto;
-	border: 0;
-	padding: 0;
-	overflow: hidden;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border: 0;
+    padding: 0;
+    overflow: hidden;
 }
 .meta-list-field .meta-list-item{
-	display: block;
-	width: 100%;
-	height: auto;
-	margin: 5px 0;
-	padding: 0;
-	border: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 5px 0;
+    padding: 0;
+    border: 0;
 }
 .meta-list-field .meta-list-item .meta-list-item-group{
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-	height: auto;
-	margin: 0 auto;
-	border: 0;
-	padding: 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border: 0;
+    padding: 0;
 }
 .meta-list-field .meta-list-item .meta-item{
-	display: inline-block;
-	width: auto;
-	height: auto;
-	margin: 0 10px 0 0;
-	border: 0;
-	padding: 0;
-	overflow: hidden;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin: 0 10px 0 0;
+    border: 0;
+    padding: 0;
+    overflow: hidden;
 }
 .meta-list-field .meta-list-item a{
-	display: block;
-	flex-basis: 60px;
-	margin: 0 auto;
-	padding: 0;
-	text-align: center;
+    display: block;
+    flex-basis: 60px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
 }
 .meta-list-field .meta-list-item.first-item a{
-	visibility: hidden;
+    visibility: hidden;
 }
 .meta-list-field .meta-list-item .sort{
-	flex-grow: 1;
-	width: 5%;
+    flex-grow: 1;
+    width: 5%;
 }
 .meta-list-field .meta-list-item .title{
-	flex-grow: 1;
-	width: 15%;
+    flex-grow: 1;
+    width: 15%;
 }
 .meta-list-field .meta-list-item .link{
-	flex-grow: 1;
-	width: 40%;
+    flex-grow: 1;
+    width: 40%;
 }
 .meta-list-field .meta-list-item .poster{
-	flex-grow: 1;
-	width: 40%;
+    flex-grow: 1;
+    width: 40%;
 }
 .meta-list-field .meta-list-item .meta-item label{
-	display: none;
-	float: left;
-	width: 100%;
-	margin: 0 auto 5px;
-	padding: 0;
-	text-overflow: ellipsis;
-	text-align: center;
-	white-space: nowrap;
-	word-wrap: break-word;
-	word-break: break-word;
-	overflow: hidden;
+    display: none;
+    float: left;
+    width: 100%;
+    margin: 0 auto 5px;
+    padding: 0;
+    text-overflow: ellipsis;
+    text-align: center;
+    white-space: nowrap;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow: hidden;
 }
 .meta-list-field .first-item .meta-item label{
-	display: block;
+    display: block;
 }
 .meta-list-field .meta-list-item .meta-item input{
-	display: block;
-	width: 100%;
-	height: 30px;
-	margin: 0 auto;
-	padding: 3px 5px;
-	line-height: 30px;
+    display: block;
+    width: 100%;
+    height: 30px;
+    margin: 0 auto;
+    padding: 3px 5px;
+    line-height: 30px;
 }
 .meta-list-field .meta-list-item .sort input{
-	text-align: center;
-	font-weight: bold;
+    text-align: center;
+    font-weight: bold;
 }

@@ -1,32 +1,34 @@
 <?php
 /**
- * @name 搜索页面模板
- * @description 展示用户搜索结果，目前可设置两个广告
+ * 搜索页面模板
  */
 get_header();
-?>
 
-<?php 
 if( !have_posts() ){
-	get_template_part( '404' ); 
-	get_footer();
-	exit;
+    get_template_part( '404' ); 
+    get_footer();
+    exit;
 }
 ?>
 
 <section class="container">
-	<div class="content-wrap">
-		<div class="content">
-			<div class="search-title">
-				<h1><i class="iconfont qgg-search" aria-hidden="true"></i><span><?php echo htmlspecialchars($s); ?></span>的搜索结果</h1>
-			</div>
-			<?php 
-				the_module_loader('module_new_posts_excerpt');
-				wp_reset_query();
-			?>
-		</div>
-	</div>
-	<?php get_sidebar(); ?>
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="module search-title">
+                <h1>
+                    <i class="fa fa-search"></i>
+                    <span class="site-style-color"><?php echo htmlspecialchars($s); ?></span>的搜索结果
+                    <?php echo ($paged && $paged > 1) ? '<small>第'.$paged.'页</small>' : '' ?>
+                </h1>
+            </div>
+            <?php 
+                _module_loader('module_posts_excerpt_new');
+                wp_reset_query();
+            ?>
+        </div>
+    </div>
+    <?php get_sidebar(); ?>
 </section>
 
-<?php get_footer(); ?>
+<?php
+get_footer();

@@ -6,109 +6,182 @@
 
 global $current_user;
 get_currentuserinfo();
+// 配置项
+$user_center_on    = QGG_Options('user_center_on') ?: false;
+$kefu_user_m_on    = QGG_Options('rollbar_kefu_user_m_on') ?: false;
+$kefu_user_m_tip   = QGG_Options('rollbar_kefu_user_m_tip') ?: '会员中心';
+
+$kefu_m_on         = QGG_Options('rollbar_kefu_m_on') ?: false;
+$kefu_sort         = QGG_Options('rollbar_kefu_sort') ?: '';
+$kefu_m_sort       = QGG_Options('rollbar_kefu_m_sort') ?: '';
+$kefu_top_tip      = QGG_Options('rollbar_kefu_top_tip') ?: '回顶部';
+$kefu_top_m_tip    = QGG_Options('rollbar_kefu_top_m_tip') ?: '回顶';
+$kefu_comt_tip     = QGG_Options('rollbar_kefu_comment_tip') ?: '去评论';
+$kefu_comt_m_tip   = QGG_Options('rollbar_kefu_comment_m_tip') ?: '评论';
+$kefu_tel_tip      = QGG_Options('rollbar_kefu_tel_tip') ?: '电话咨询';
+$kefu_tel_m_tip    = QGG_Options('rollbar_kefu_tel_m_tip') ?: '电话';
+$kefu_tel_num      = QGG_Options('rollbar_kefu_tel_num') ?: '';
+$kefu_qq_tip       = QGG_Options('rollbar_kefu_qq_tip') ?: 'QQ 咨询';
+$kefu_qq_m_tip     = QGG_Options('rollbar_kefu_qq_m_tip') ?: 'QQ';
+$kefu_qq_num       = QGG_Options('rollbar_kefu_qq_num') ?: '';
+$kefu_wechat_tip   = QGG_Options('rollbar_kefu_wechat_tip') ?: '关注微信';
+$kefu_wechat_m_tip = QGG_Options('rollbar_kefu_wechat_m_tip') ?: '微信';
+$kefu_wechat_qr    = QGG_Options('rollbar_kefu_wechat_qr') ?: '';
+$kefu_diy_tip      = QGG_Options('rollbar_kefu_diy_tip') ?: '在线客服';
+$kefu_diy_m_tip    = QGG_Options('rollbar_kefu_diy_m_tip') ?: '在线';
+$kefu_diy_link     = QGG_Options('rollbar_kefu_diy_link') ?: '';
+
+// 排序 # 去空格
+$class = '';
+$kefu_sort = trim( $kefu_sort );
+// 手机端变更配置
+if( $kefu_m_on && wp_is_mobile() ){
+    $class           = 'is-mobile';
+    $kefu_sort       = trim($kefu_m_sort);
+    $kefu_top_tip    = $kefu_top_m_tip;
+    $kefu_comt_tip   = $kefu_comt_m_tip;
+    $kefu_tel_tip    = $kefu_tel_m_tip;
+    $kefu_qq_tip     = $kefu_qq_m_tip;
+    $kefu_wechat_tip = $kefu_wechat_m_tip;
+    $kefu_diy_tip    = $kefu_diy_m_tip;
+}
 ?>
 
 <?php 
-$kefuhtml = '';
+$kefu_html = '';
 // 会员中心
-if (QGG_Options('user_center_open') && QGG_Options('rollbar_user_center_m_open') && wp_is_mobile() ){
-	the_module_loader('module_get_page_user_center');
-	$user_center = module_get_page_user_center();
-	$user_avatar = _get_the_avatar($user_id=$current_user->ID, $user_email=$current_user->user_email, true);
-	if( !is_user_logged_in()) {
-		$kefuhtml = '<li class="rollbar-login"><a rel="nofollow" href="javascript:;" class="signin-loader"><i class="iconfont qgg-user_filled"></i><span>请登录</span></a></li>';
-	}elseif( is_user_logged_in()){
-		$tag_i = $user_avatar ? '<i class="rollbar-avatar">'.$user_avatar.'</i>' : '<i class="iconfont qgg-user_filled"></i>';
-		$kefuhtml = '<li class="rollbar-login"><a href="'.$user_center.'" class="register">'.$tag_i.'<span>'.QGG_Options('kefu_user_center_m_tip').'</span></a></li>';
-	}
-}
+//if ( $user_center_on && $kefu_user_m_on && wp_is_mobile() ){
 
-// 排序
-if( QGG_Options('rollbar_kefu_m_open') && wp_is_mobile() ){
-	$kefu_order = trim(QGG_Options('kefu_m_sort'));
-}else{
-	$kefu_order = trim(QGG_Options('kefu_sort'));
-}
+    $user_center_link = _get_page_user_center_link();
+    $user_avatar = _get_avatar($user_id=$current_user->ID, $user_email=$current_user->user_email, true);
 
-if( $kefu_order ){
-	$kefu_order = explode(' ', $kefu_order);
-	foreach ($kefu_order as $key => $value) {
-		switch ($value) {
-			// 回顶部
-			case '1':
-				$kefuhtml .= '
-				<li class="rollbar-totop">
-					<a href="javascript:(jsui.scrollTo());">
-						<i class="iconfont qgg-to_top"></i>
-						<span>'.QGG_Options('kefu_top_m_tip').'</span>
-					</a>'.(QGG_Options('kefu_top_tip') ? '<h6>'. QGG_Options('kefu_top_tip') .'<i></i></h6>':'').'
-				</li>';
-				break;
-			// 去评论
-			case '2':
-				if( (is_single()||is_page()) && comments_open() ){
-					$kefuhtml .= '
-					<li class="rollbar-comment">
-						<a href="javascript:(jsui.scrollTo(\'#comments-form\',-300));">
-							<i class="iconfont  qgg-message"></i>
-							<span>'.QGG_Options('kefu_comment_m_tip').'</span>
-						</a>'.(QGG_Options('kefu_comment_tip') ? '<h6>'. QGG_Options('kefu_comment_tip') .'<i></i></h6>':'').'
-					</li>';
-				}
-				break;
-			// 电话
-			case '3':
-				if( QGG_Options('kefu_tel_num') ){
-					$kefuhtml .= '
-					<li  class="rollbar-tel">
-						<a href="tel:'. QGG_Options('kefu_tel_num') .'">
-						<i class="iconfont qgg-telephone_filled"></i>
-						<span>'.QGG_Options('kefu_tel_m_tip').'</span>
-						</a>'.(QGG_Options('kefu_tel_tip')?'<h6>'. QGG_Options('kefu_tel_tip') .'<i></i></h6>':'').'
-					</li>';
-				}
-				break;
-			// 企鹅
-			case '4':
-				if( QGG_Options('kefu_qq_num') ){
-					$kefuhtml .= '
-					<li class="rollbar-qq">
-						<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin='. QGG_Options('kefu_qq_id') .'&site=qq&menu=yes">
-							<i class="iconfont qgg-qq_filled"></i>
-							<span>'.QGG_Options('kefu_qq_m_tip').'</span>
-						</a>'.(QGG_Options('kefu_qq_tip') ? '<h6>'. QGG_Options('kefu_qq_tip') .'<i></i></h6>':'').'
-					</li>';
-				}
-				break;
-			// 微信
-			case '5':
-				if( QGG_Options('kefu_wechat_qr') ){
-					$kefuhtml .= '
-					<li class="rollbar-wechat">
-						<a href="javascript:;">
-							<i class="iconfont qgg-wechat_filled"></i>
-							<span>'.QGG_Options('kefu_wechat_m_tip').'</span>
-						</a>'.(QGG_Options('kefu_wechat_tip') ? '<h6>'. QGG_Options('kefu_wechat_tip') .(QGG_Options('kefu_wechat_qr')?'<img src="'.QGG_Options('kefu_wechat_qr').'">':'').'<i></i></h6>':'').'
-					</li>';
-				}
-				break;
-			// 自定义
-			case '6':
-				if( QGG_Options('kefu_diy_link') ){
-					$kefuhtml .= '
-					<li class="rollbar-diy">
-						<a target="_blank" href="'. QGG_Options('kefu_diy_link') .'">
-							<i class="iconfont qgg-earth"></i>
-							<span>'.QGG_Options('kefu_diy_m_tip').'</span>
-						</a>'.(QGG_Options('kefu_diy_tip')?'<h6>'. QGG_Options('kefu_diy_tip') .'<i></i></h6>':'').'
-					</li>';
-				}
-				break;
-			default:
-				break;
-		}
-	}
+    if( !is_user_logged_in()) {
+        $kefu_html = '
+        <li class="item user site-style-border-color site-style-border-radius"">
+            <a rel="nofollow" href="javascript:;" class="signin-loader">
+                <div class="icon site-style-color">
+                    <i class="fa fa-user"></i>
+                    <span>请登录</span>
+                </div>
+            </a>
+        </li>';
+    }elseif( is_user_logged_in()){
+        $tag_i = $user_avatar ? '<i class="fa avatar">'.$user_avatar.'</i>' : '<i class="fa fa-user"></i>';
+        $kefu_html = '
+        <li class="item user site-style-border-color site-style-border-radius"">
+            <a rel="nofollow" href="'.$user_center_link.'" class="signup-loader">
+                <div class="icon site-style-color">
+                    '.$tag_i.'
+                    <span>'.$kefu_user_m_tip.'</span>
+                </div>
+            </a>
+        </li>';
+    }
+//}
 
-	echo '<div class="rollbar-kefu"><ul>'.$kefuhtml.'</ul></div>';
+if( $kefu_sort ){
+    $kefu_sort = explode(' ', $kefu_sort);
+    foreach ($kefu_sort as $key => $value) {
+        switch ($value) {
+            // 回顶部
+            case '1':
+                $kefu_html .= '
+                <li class="item top site-style-border-color site-style-border-radius">
+                    <a href="javascript:($GSM.scrollTo());">
+                        <div class="icon site-style-color">
+                            <i class="fa fa-arrow-up"></i>
+                            <span>'.$kefu_top_tip.'</span>
+                        </div>
+                    </a>
+                </li>';
+                break;
+            // 去评论
+            case '2':
+                if( (is_single()||is_page()) && comments_open() ){
+                    $kefu_html .= '
+                    <li class="item comment site-style-border-color site-style-border-radius">
+                        <a href="javascript:($GSM.scrollTo(\'#comments-form\',-300));">
+                            <div class="icon site-style-color">
+                                <i class="fa fa-comment"></i>
+                                <span>'.$kefu_comt_tip.'</span>
+                            </div>
+                        </a>
+                    </li>';
+                }
+                break;
+            // 电话
+            case '3':
+                if( $kefu_tel_num ){
+                    $kefu_html .= '
+                    <li  class="item tel site-style-border-color site-style-border-radius">
+                        <a href="tel:'. $kefu_tel_num .'">
+                            <div class="icon site-style-color">
+                                <i class="fa fa-phone"></i>
+                                <span>'.$kefu_tel_tip.'</span>
+                            </div>
+                            <div class="popup site-style-color site-style-border-color site-style-border-radius">
+                                <span>'.$kefu_tel_num.'</span>
+                            </div>
+                        </a>
+                    </li>';
+                }
+                break;
+            // 企鹅
+            case '4':
+                if( $kefu_qq_num ){
+                    $kefu_html .= '
+                    <li class="item qq site-style-border-color site-style-border-radius">
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin='.$kefu_qq_num.'&site=qq&menu=yes">
+                            <div class="icon site-style-color">
+                                <i class="fab fa-qq"></i>
+                                <span>'.$kefu_qq_tip.'</span>
+                            </div>
+                            <div class="popup site-style-color site-style-border-color site-style-border-radius">
+                                <span>'.$kefu_qq_num.'</span>
+                            </div>
+                        </a>
+                    </li>';
+                }
+                break;
+            // 微信
+            case '5':
+                if( $kefu_wechat_qr ){
+                    $kefu_html .= '
+                    <li class="item wechat site-style-border-color site-style-border-radius">
+                        <a href="javascript:;">
+                            <div class="icon site-style-color">
+                                <i class="fab fa-weixin"></i>
+                                <span>'.$kefu_wechat_tip.'</span>
+                            </div>
+                            <div class="popup site-style-color site-style-border-color site-style-border-radius">
+                                <img src="'.$kefu_wechat_qr.'">
+                            </div>
+                        </a>
+                    </li>';
+                }
+                break;
+            // 自定义
+            case '6':
+                if( $kefu_diy_link ){
+                    $kefu_html .= '
+                    <li class="item link site-style-border-color site-style-border-radius">
+                        <a target="_blank" href="'.$kefu_diy_link.'">
+                            <div class="icon site-style-color">
+                                <i class="fa fa-globe"></i>
+                                <span>'.$kefu_diy_tip.'</span>
+                            </div>
+                        </a>
+                    </li>';
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    echo '
+    <div class="rollbar-kefu '.$class.'">
+        <ul class="items">'.$kefu_html.'</ul>
+    </div>';
 }
 ?>
