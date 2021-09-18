@@ -27,8 +27,8 @@ class CreateMyMetaBox{
         $this -> meta_conf   = $meta_conf;
         $this -> my_meta     = $my_meta;
         
-        add_action('admin_menu', array(&$this, 'my_meta_box_create'));
-        add_action('save_post', array(&$this, 'my_meta_box_save'));
+        add_action('admin_menu', array($this, 'my_meta_box_create'));
+        add_action('save_post', array($this, 'my_meta_box_save'));
     }
     
     public function my_meta_box_create(){

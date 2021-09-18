@@ -1,34 +1,3 @@
-/**==================== require.js 文件配置代码 ====================**/
-require.config({
-    baseUrl: $GSM.uri + '/assets/js',
-    urlArgs: 'ver=' + $GSM.ver,
-    waitSeconds: 0,
-    paths: {
-        'lazyload'      : 'libs/jquery.lazyload.min',
-        'qrcode'        : 'libs/jquery.qrcode.min',
-        'cookie'        : 'libs/jquery.cookie.min',
-        'highlight'     : 'libs/highlight.min',
-        'jsrender'      : 'libs/jsrender.min',
-        'swiper'        : 'libs/swiper.min',
-        'animate'       : 'libs/swiper.animate.min',
-        'videojs'       : 'libs/video.min',
-        'router'        : 'libs/router.min',
-        'layer'         : 'libs/layer.min',
-        'user-center'   : 'tpl-user-center',
-        'user-sign'     : 'tpl-user-sign',
-        'comment'       : 'comment-ajax',
-        'poster'        : 'poster'
-    },
-    shim: {
-        'poster': { 
-            exports: 'poster',
-        },
-        'videojs': {
-            exports: 'videojs',
-        },
-    }
-});
-
 /** 基于 JQuery 的脚本  */
 jQuery(document).ready(function(){
 
@@ -214,8 +183,7 @@ jQuery(document).ready(function(){
     showSiteRuntime();
     
     // 首页全屏轮播图加载 swiper.min.js
-    require(['swiper', 'animate'],function(Swiper, Animate){
-        
+    require(['swiper', 'animate'], function(){
         var mySwiper = new Swiper ('#carousel-full-screen',{
             
             //history: true,
@@ -271,10 +239,10 @@ jQuery(document).ready(function(){
 
 /**================== 侧栏小工具 # 开始 ====================*/
     // 聚合文章小工具 Tab 切换功能
-    $('.widget-polymer-posts .title').on('mousemove', 'h3', function(){
+    $('.widget-posts-polymer .title').on('mousemove', 'h3', function(){
         
-        taTitle   = $('.widget-polymer-posts .title h3');
-        taContent = $('.widget-polymer-posts .content ul');
+        taTitle   = $('.widget-posts-polymer .title h3');
+        taContent = $('.widget-posts-polymer .content-wrapper ul');
         index     = $(this).index();
         
         taTitle.siblings().removeClass('actived');
@@ -548,7 +516,7 @@ jQuery(document).ready(function(){
         
     // 产品分类页面加载 jquery.qrcode.min.js
     require(['qrcode'],function(qrcode){
-        $('.cat-qrcode').each(function(index, el) {
+        $('.cat-product-qrcode').each(function(index, el) {
             $(this).data('url') && $(this).qrcode({
                 text:     encodeURI($(this).data('url')), 
                 width:    120, 
@@ -558,11 +526,11 @@ jQuery(document).ready(function(){
     });
     
     // 视频文章页面加载 video.min.js
-    define('global/window', [], () => {
+    jsdefine('global/window', [], () => {
         return window;
     });
     
-    define('global/document', ['global/window'], (window) => {
+    jsdefine('global/document', ['global/window'], (window) => {
         return window.document;
     });
     

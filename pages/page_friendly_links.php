@@ -4,6 +4,8 @@
   * Description:   显示你网站某个链接分类下的所有链接，一般为友情链接，需要在主题后台设置中心选择链接分类
   */
 get_header();
+// 配置项
+$friendly_link_cats = QGG_Options( 'page_friendly_link_cats' );
 ?>
 
 <section class="container">
@@ -11,30 +13,32 @@ get_header();
     <?php _module_loader('module_page_menu', false) ?>
     <!-- 页面内容 -->
     <div class="content-wrap">
-        <div class="content site-style-border-radius">
+        <div class="module content site-style-border-radius">
+            <!-- 页面内容 -->
             <?php while (have_posts()) : the_post(); ?>
             <header class="page-header">
-                <h1 class="page-title"><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h1>
+                <h1 class="title"><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h1>
             </header>
             <article class="page-content">
                 <?php the_content(); ?>
             </article>
             <?php endwhile;  ?>
-            
+            <!-- 友情链接 -->
             <ul class="page-friendly-links">
                 <?php
-                $links_cat = QGG_options( 'page_friendly_links' );
-                $links = array();
-                
-                if( is_array($links_cat) && $links_cat ){
-                    foreach ($links_cat as $key => $value) {
-                        if( $value ) $links[] = $key;
+                // 获取选中的分类 ID 并以逗号分割
+                $arrCats = array();
+                if( is_array($friendly_link_cats) && $friendly_link_cats ){
+                    // $key：分类的 ID，$value：是否选中
+                    foreach ($friendly_link_cats as $key => $value) {
+                        if( $value ) $arrCats[] = $key;
                     }
                 }
-                $links = implode(',', $links);
-                if( !empty($links) ){
+                $strCats = implode(',', $arrCats);
+
+                if( !empty($strCats) ){
                     wp_list_bookmarks(array(
-                        'category'         => $links,
+                        'category'         => $strCats,
                         'category_orderby' => 'SLUG',
                         'category_order'   => 'ASC',
                         'orderby'          => 'RATING',

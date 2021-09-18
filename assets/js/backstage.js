@@ -1,7 +1,7 @@
 // 视频列表后台增加分集
 jQuery(document).ready(function($){
     
-    $('.meta-list-field').on('click','a.add-item',function(){
+    $('.meta-list-field').on('click', 'a.add-item', function(){
         
         $(".meta-list-item .delete-item").css("visibility","hidden")
         
@@ -17,7 +17,7 @@ jQuery(document).ready(function($){
         
     });
         
-    $('.meta-list-field').on('click','a.delete-item',function(){
+    $('.meta-list-field').on('click', 'a.delete-item', function(){
         
         item_num = $(".meta-list-item").length
         
@@ -30,7 +30,8 @@ jQuery(document).ready(function($){
         if($(".meta-list-item").length >1){
             $(".meta-list-item .delete-item:last").css("visibility","visible");
         }
-    });    
+    });
+    
     
 });
 

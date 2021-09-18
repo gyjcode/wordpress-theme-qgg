@@ -1,7 +1,7 @@
 /*! @overbool/poster v1.0.1 | (c) 2019 Overbool | https://github.com/overbool/poster */
 
 
-define(function (){
+jsdefine('poster', function (){
     "use strict";
     // post class
     var poster = function (){

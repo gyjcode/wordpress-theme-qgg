@@ -24,15 +24,15 @@ function unregister_default_widget(){
 
 // 新增自定义小工具
 $widgets = array(
-    'ads_img',
-    'ads_text',
-    'pic_text_box',
-    'hot_tags',
     'about_site',
-    'new_comments',
-    'categories_posts',
-    'polymer_posts',
-    'author_info'
+    'ads_code',
+    'ads_text',
+    'ads_text_pic',
+    'tags_hot',
+    'comments_new',
+    'post_author',
+    'posts_categories',
+    'posts_polymer',
 );
 foreach ($widgets as $widget) {
     include 'widget_'.$widget.'.php';

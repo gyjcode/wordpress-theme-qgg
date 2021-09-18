@@ -260,7 +260,7 @@ pre.highlight code.hljs {
 }
 .module{
     position: relative;
-    margin: 1.2rem auto 0;
+    margin-top: 1.2rem;
 }
 .thumbnail {
     display: block;
@@ -286,7 +286,7 @@ pre.highlight code.hljs {
         margin: 0 0 0 -320px;
     }
     .module{
-        margin: 1rem auto 0;
+        margin-top: 1rem;
     }
 }
 @media (max-width: 1024px) {
@@ -298,7 +298,7 @@ pre.highlight code.hljs {
         margin: 0;
     }
     .module{
-        margin: 0.8rem auto 0;
+        margin-top: 0.8rem;
     }
 }
 .btn{
@@ -309,13 +309,12 @@ pre.highlight code.hljs {
     border-radius: 5px;
     color: #fff;
 }
-.btn:hover, .btn:active, .btn:focus{
+.btn:active, .btn:focus, .btn:hover{
+    outline: none;
+    outline-offset: 0;
     cursor: pointer;
     color: #fff;
     opacity: 0.8;
-}
-.btn:visited{
-    color: #fff;
 }
 .btn-default{
     background: #24a0f0;
@@ -325,6 +324,13 @@ pre.highlight code.hljs {
     -webkit-box-shadow: 0 3px 5px rgba(32,160,240,0.5);
     box-shadow: 0 3px 5px rgba(32,160,240,0.5);
 }
+.btn-default:hover, .btn-default:active, .btn-default:active:hover, .btn-default:active:focus {
+    outline: none;
+    color: #fff;
+    background-color: #24a0f0;
+    border-color: #24a0f0;
+    opacity: 0.8;
+}
 .btn-primary{
     background: #ff0000;
     background: -webkit-gradient(linear,left top,right top,from(#ff0000),to(#ff7600)) no-repeat;
@@ -333,6 +339,9 @@ pre.highlight code.hljs {
     -webkit-box-shadow: 0 3px 5px rgba(255,80,0,0.5);
     box-shadow: 0 3px 5px rgba(255,80,0,0.5);
 }
+.btn-primary:hover{
+    color: #fff;
+}
 .btn-green{
     background: #00b424;
     background: -webkit-gradient(linear,left top,right top,from(#00b424),to(#00f03c)) no-repeat;
@@ -340,6 +349,9 @@ pre.highlight code.hljs {
     background: linear-gradient(90deg,#00b424,#00f03c) no-repeat;
     -webkit-box-shadow: 0 3px 5px rgba(0,180,36,0.5);
     box-shadow: 0 3px 5px rgba(0,180,36,0.5);
+}
+.btn-green:hover{
+    color: #fff;
 }
 /* ==================== 通用全局样式结束 ==================== */
 
@@ -666,6 +678,9 @@ pre.highlight code.hljs {
     .site-nav .nav-list.actived{
         display: block;
     }
+    .site-nav .nav-list .menu>li{
+        display: block;
+    }
     .site-nav .nav-list .mobile-nav-mask{
         position: absolute;
         top: 0;
@@ -843,6 +858,7 @@ pre.highlight code.hljs {
 
 /* 页脚三栏推广模块 */
 .footer-brand-lmr{
+    cursor: default;
     position: relative;
     width: 100%;
     font-size: 0.8rem;
@@ -926,6 +942,7 @@ pre.highlight code.hljs {
 }
 .footer-brand-lmr .right .links a{
     padding: 5px;
+    font-size: 1rem;
     word-break: break-all;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -1273,16 +1290,18 @@ pre.highlight code.hljs {
     width: 100%;
     height: auto;
     max-height: 100px;
-    background-color: #fafafa;
+    /* background-color: #fafafa; */
     overflow: hidden;
 }
 .adc a{
     display: block;
+    width: 100%;
+    height: 100%;
 }
 .adc img{
     display: block;
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 /* 分页 */
@@ -2007,6 +2026,7 @@ body.sign-show{
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    width: 100%;
     margin: 0 auto;
 }
 .topic-card-box .item{

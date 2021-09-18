@@ -10,6 +10,46 @@
     background-color: #fff;
     overflow: hidden;
 }
+.widget .title{
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    overflow: hidden;
+}
+.widget .title:after{
+    content: " ";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #ccc;
+}
+.widget .title h3{
+    display: block;
+    width: 100px;
+    height: 35px;
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: normal;
+    text-align: center;
+    color: #fff;
+    background: #ccc;
+    overflow: hidden;
+}
+.widget .title h3:hover{
+    background: #bbb;
+}
+.widget .title .more{
+    text-decoration: none;
+    float: right;
+    height: 35px;
+    line-height: 35px;
+    margin-right: 15px;
+    font-size: 0.8rem;
+    color: #999;
+}
+.widget .title .more:hover{
+    color: #24A0F0;
+}
 @media (max-width: 1366px) {
     .widget{
         margin: 1rem auto 0;
@@ -20,7 +60,7 @@
         margin: 0.8rem auto 0;
     }
 }
-/**==================== 关于站点侧栏样式 ====================**/
+/**==================== 关于站点 ====================**/
 .widget-about-site .content-wrapper{
     margin: 0;
     border: 0;
@@ -109,19 +149,20 @@
     color: #24A0F0;
 }
 
-/**====================广告图片侧栏样式====================**/
-.widget-ads-img{
+
+/**==================== 自定义代码广告 ====================**/
+.widget-ads-code{
     width: 100%;
     height: auto;
     border-radius: 5px;
     overflow: hidden; 
 }
-.widget-ads-img a{
+.widget-ads-code a{
     display: block;
     width: 100%;
     height: 100%;
 }
-.widget-ads-img a img{
+.widget-ads-code a img{
     object-fit: cover;
     transition-duration: 0.5s;
     display: block;
@@ -129,11 +170,11 @@
     height: 100%;
     overflow: hidden;
 }
-.widget-ads-img a:hover img{
+.widget-ads-code a:hover img{
     transform: scale(1.2);
 }
 
-/**====================吐血推荐侧栏样式====================**/
+/**==================== 文字广告 ====================**/
 .widget-ads-text a{
     text-decoration: none;
     display: block;
@@ -233,22 +274,218 @@
     
 }
 
-/**====================作者信息侧栏样式====================**/
-.widget-author-info{
+
+/**==================== 图文广告 ====================**/
+.widget-ads-text-pic{
+    width: 100%;
+    height: 200px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.widget-ads-text-pic img{
+    transition-duration: 0.5s;
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.widget-ads-text-pic .content-wrapper{
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    border: 0;
+    padding: 1.2rem;
+    color: #fff;
+    background: #00000060;
+    overflow: hidden;
+}
+.widget-ads-text-pic:hover .content-wrapper{
+    display: block;
+}
+.widget-ads-text-pic:hover img{
+    transform: scale(1.2);
+}
+.widget-ads-text-pic .content-wrapper .content{
+    position: relative;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+}
+.widget-ads-text-pic .content h3{
+    width: 100%;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    margin: 0 0 1rem;
+    border: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.widget-ads-text-pic .content h3.title::after{
+    display: none;
+}
+.widget-ads-text-pic .content p{
+    display: block;
+    width: 100%;
+    max-height: 3.6rem;
+    line-height: 1.2rem;
+    margin: 1rem 0;
+    font-size: 1rem;
+    text-align: justify;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.widget-ads-text-pic .content a{
+    display: inline-block;
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+    padding: 5px 15px;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+
+/**====================最新评论侧栏样式====================**/
+.widget-comments-new{
+    width: 100%;
     border-radius: 5px;
 }
-.widget-author-info .banner{
+.widget-comments-new ul{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border: 0;
+    padding: 5px 15px;
+}
+.widget-comments-new ul li{
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin: 10px 0;
+    border: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.widget-comments-new ul a{
+    display: block;
+    position: relative;
+    height: 100%;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.widget-comments-new .avatar-wrapper{
+    z-index: 999;
+    position: absolute;
+    float: left;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.widget-comments-new .avatar-wrapper img{
+    transition-duration: 0.5s;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.widget-comments-new .avatar-wrapper:hover img{
+    transform: scale(1.2);
+}
+.widget-comments-new .content-wrapper{
+    float: left;
+    position: relative;
+    transform: translateY(-50%);
+    top: 50%;
+    max-height: 50px;
+    width: 100%;
+    margin: 0;
+    border: 0;
+    padding: 0 0 0 60px;
+    overflow: hidden;
+}
+.widget-comments-new .content-wrapper span{
+    display: block;
+    height: 15px;
+    line-height: 15px;
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+    color: #24a0f0;
+    overflow: hidden;
+    word-break: break-all;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.widget-comments-new .content-wrapper b{
+    margin: 0 5px;
+    color: #999;
+}
+.widget-comments-new .content-wrapper p{
+    width: auto;
+    margin: 0;
+    max-height: 30px;
+    line-height: 15px;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: justify;
+    vertical-align: middle;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.widget-comments-new .content-wrapper img.wp-smiley{
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    max-width: 16px!important;
+    max-height: 16px!important;
+    height: 16px!important;
+    margin: auto;
+}
+
+
+/**====================作者信息侧栏样式====================**/
+.widget-post-author{
+    border-radius: 5px;
+}
+.widget-post-author .banner{
     width: 100%;
     height: 120px;
 }
-.widget-author-info .author-info{
+.widget-post-author .author-info{
     display: block;
     width: 100%;
     height: auto;
     padding: 1rem;
     text-align: justify;
 }
-.widget-author-info .author-info .avatar-wrapper{
+.widget-post-author .author-info .avatar-wrapper{
     position: relative;
     top: -50px;
     left: 10px;
@@ -257,12 +494,23 @@
     padding: 5px;
     border-radius: 3px;
     background: #eee;
+    overflow: hidden;
 }
-.widget-author-info .author-info .avatar-wrapper .avatar{
+.widget-post-author .author-info .avatar-wrapper a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.widget-post-author .author-info .avatar-wrapper .avatar{
+    transition-duration: 0.5s;
     width: 100%;
     height: 100%;
 }
-.widget-author-info .author-info .role{
+.widget-post-author .author-info .avatar-wrapper:hover .avatar{
+    transform: scale(1.2);
+}
+.widget-post-author .author-info .role{
     display: block;
     position: absolute;
     top: 90px;
@@ -271,14 +519,14 @@
     max-width: 200px;
     height: 30px;
 }
-.widget-author-info .author-info .role a{
+.widget-post-author .author-info .role a{
     display: inline-block;
     max-width: 100px;
     font-size: 20px;
     color: #fff;
     text-decoration: none;
 }
-.widget-author-info .author-info .role span{
+.widget-post-author .author-info .role span{
     display: inline-block;
     position: relative;
     bottom: 2px;
@@ -295,7 +543,7 @@
     -webkit-box-shadow: 0 3px 5px rgba(255,80,0,0.5);
     box-shadow: 0 3px 5px rgba(255,80,0,0.5);
 }
-.widget-author-info .author-info .sns{
+.widget-post-author .author-info .sns{
     float: none;
     display: block;
     position: absolute;
@@ -309,7 +557,7 @@
     padding: 0;
     font-size: 0.8rem;
 }
-.widget-author-info .author-info .sns .sns-item{
+.widget-post-author .author-info .sns .sns-item{
     float: left;
     display: block;
     position: relative;
@@ -321,17 +569,17 @@
     font-weight: normal;
     overflow: hidden;
 }
-.widget-author-info .author-info .sns .sns-item a{
+.widget-post-author .author-info .sns .sns-item a{
     display: block;
     text-decoration: none;
     color: #999;
 }
-.widget-author-info .author-info .sns .sns-item i{
+.widget-post-author .author-info .sns .sns-item i{
     display: block;
     width: 100%;
     height: 24px;
 }
-.widget-author-info .author-info .sns .sns-item i:before{
+.widget-post-author .author-info .sns .sns-item i:before{
     display: inline-block;
     position: absolute;
     top: 0;
@@ -343,14 +591,14 @@
     line-height: 24px;
     font-size: 18px;
 }
-.widget-author-info .author-info .sns .sns-item b{
+.widget-post-author .author-info .sns .sns-item b{
     display: block;
     width: 100%;
     height: 12px;
     line-height: 12px;
     font-size: 0.8rem;
 }
-.widget-author-info .author-info .clear{
+.widget-post-author .author-info .clear{
     clear: both;
     display: block;
     position: relative;
@@ -358,7 +606,7 @@
     border: 0;
     padding: 0;
 }
-.widget-author-info .author-info .tongji{
+.widget-post-author .author-info .tongji{
     display: block;
     position: relative;
     width: auto;
@@ -367,7 +615,7 @@
     border: 0;
     padding: 0;
 }
-.widget-author-info .author-info .tongji .card{
+.widget-post-author .author-info .tongji .card{
     float: left;
     display: block;
     position: relative;
@@ -379,10 +627,10 @@
     text-align: center;
     background: #fafafa;
 }
-.widget-author-info .author-info .tongji .card:hover{
+.widget-post-author .author-info .tongji .card:hover{
     background: #eee;
 }
-.widget-author-info .author-info .tongji .card:before{
+.widget-post-author .author-info .tongji .card:before{
     position: absolute;
     content: '';
     top: 5px;
@@ -391,10 +639,10 @@
     height: 40px;
     background: #eee;
 }
-.widget-author-info .author-info .tongji .card:last-child:before{
+.widget-post-author .author-info .tongji .card:last-child:before{
     background: #fafafa;
 }
-.widget-author-info .author-info .tongji .card span{
+.widget-post-author .author-info .tongji .card span{
     display: block;
     width: 100%;
     height: 20px;
@@ -403,7 +651,7 @@
     font-style: normal;
     color: #999;
 }
-.widget-author-info .author-info .tongji .card b{
+.widget-post-author .author-info .tongji .card b{
     display: block;
     width: 100%;
     height: 20px;
@@ -412,7 +660,7 @@
     font-style: normal;
     color: #24a0f0;
 }
-.widget-author-info .author-info .desc{
+.widget-post-author .author-info .desc{
     display: block;
     position: relative;
     width: 100%;
@@ -430,14 +678,14 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
 }
-.widget-author-info .author-info .posts{
+.widget-post-author .author-info .posts{
     display: block;
     position: relative;
     width: 100%;
     height: auto;
     margin: 10px 0 0;
 }
-.widget-author-info .author-info .posts .title{
+.widget-post-author .author-info .posts .title{
     display: block;
     width: auto;
     height: 30px;
@@ -445,14 +693,13 @@
     line-height: 30px;
     background: #fafafa;
 }
-.widget-author-info .author-info .posts .title h3{
-    margin: 0 15px;
-    font-size: 16px;
+.widget-post-author .author-info .posts .title h3{
+    font-size: 1.05rem;
     font-weight: bold;
     color: #24a0f0;
     background: none;
 }
-.widget-author-info .author-info .posts .title .more{
+.widget-post-author .author-info .posts .title .more{
     float: right;
     display: block;
     width: auto;
@@ -461,23 +708,23 @@
     font-size: 0.8rem;
     color: #999;
 }
-.widget-author-info .author-info .posts .title .more i{
+.widget-post-author .author-info .posts .title .more i{
     font-size: 0.8rem;
 }
-.widget-author-info .author-info .posts .title .more a{
+.widget-post-author .author-info .posts .title .more a{
     text-decoration: none;
     color: #999;
 }
-.widget-author-info .author-info .posts .title .more a:hover{
+.widget-post-author .author-info .posts .title .more a:hover{
     text-decoration: none;
     color: #24a0f0;
 }
-.widget-author-info .author-info .posts ul{
+.widget-post-author .author-info .posts ul{
     display: block;
     position: relative;
     margin: 10px 0 0;
 }
-.widget-author-info .author-info .posts ul li{
+.widget-post-author .author-info .posts ul li{
     display: inline-block;
     position: relative;
     width: 100%;
@@ -493,15 +740,15 @@
     word-break: break-all;
     white-space: nowrap;
 }
-.widget-author-info .author-info .posts ul li a{
+.widget-post-author .author-info .posts ul li a{
     text-decoration: none;
     color: #555;
 }
-.widget-author-info .author-info .posts ul li a:hover{
+.widget-post-author .author-info .posts ul li a:hover{
     text-decoration: none;
     color: #24a0f0;
 }
-.widget-author-info .author-info .posts ul li span.tag{
+.widget-post-author .author-info .posts ul li span.tag{
     float: left;
     display: block;
     position: relative;
@@ -517,214 +764,287 @@
     color: #fff;
     background: #ccc;
 }
-.widget-author-info .author-info .posts ul li span.tag-1{
+.widget-post-author .author-info .posts ul li span.tag-1{
     background: #ff7878;
 }
-.widget-author-info .author-info .posts ul li span.tag-2{
+.widget-post-author .author-info .posts ul li span.tag-2{
     background: #f9c909;
 }
-.widget-author-info .author-info .posts ul li span.tag-3{
+.widget-post-author .author-info .posts ul li span.tag-3{
     background: #24f00c;
 }
-@media (max-width: 768px) {
-    
+
+
+/**====================分类文章侧栏样式====================**/
+.widget-posts-categories{
+    border-radius: 5px;
 }
-
-
-/**====================图文盒子侧栏样式====================**/
-.widget-pic-text-box{
+.widget-posts-categories ul{
     display: block;
     position: relative;
     width: 100%;
     height: auto;
-    min-height: 180px;
-    margin: 20px 0 0;
+    margin: 5px 0 10px;
+    border: 0;
     padding: 0;
-    border: 0;
-    border-radius: 0;
-    background: #fff;
-    overflow: hidden;
 }
-.widget-pic-text-box img{
+.widget-posts-categories ul li{
     display: block;
-    width: 100%;
-    height: 100%;
-    min-height: 180px;
-}
-.widget-pic-text-box .content{
-    display: none;
-    justify-content: center;    /*实现水平居中*/
-    align-items:center;     /*实现垂直居中*/
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: auto;
-    min-height: 180px;
-    margin: auto;
-    border: 0;
-    padding: 20px;
-    color: #fff;
-    background: #00000060;
-}
-.widget-pic-text-box:hover .content{
-    display: flex;
-}
-.widget-pic-text-box .content div{
+    position: relative;
     width: 100%;
     height: auto;
     margin: 0;
-    padding: 0;
     border: 0;
-}
-.widget-pic-text-box .content div h3{
-    width: 100%;
-    height: 20px;
-    margin: 0 0 20px;
-    border: 0;
-    padding: 0 30px;
-    line-height: 20px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: normal;
-    background: none;
-    white-space: nowrap;
+    padding: 7px  15px;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
-.widget-pic-text-box .content div p{
+.widget-posts-categories ul li a{
     display: block;
+    color: #555;
+    text-decoration: none;
+}
+.widget-posts-categories ul li a:hover{
+    color: #24a0f0;
+}
+.widget-posts-categories ul li .thumb{
+    z-index: 999;
+    float: left;
+    position: relative;
+    width: 90px;
+    height: 60px;
+    margin: 0 5px 0 0;
+    border: 0;
+    padding: 0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.widget-posts-categories ul li .thumb img{
+    transition-duration: 0.5s;
     width: 100%;
-    min-height: 18px;
-    max-height: 54px;
-    margin: 10px 0;
-    font-size: 14px;
-    line-height: 18px;
-    text-indent: 2em;
+    height: 100%;
+}
+.widget-posts-categories ul li .thumb:hover img{
+    transform: scale(1.2);
+}
+.widget-posts-categories ul li .desc{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 60px;
+    padding: 5px 0 5px 100px;
+}
+.widget-posts-categories ul li h4{
+    width: 100%;
+    max-height: 30px;
+    line-height: 15px;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-size: 0.9rem;
+    font-weight: normal;
     text-align: justify;
+    background: none;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-all;
     word-wrap: break-word;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
 }
-.widget-pic-text-box .content div a{
-    display: block;
-    width: 100px;
-    height: 30px;
-    margin: 0 auto;
-    border: 1px solid #fff;
-    padding: 0;
-    border-radius: 3px;
-    line-height: 28px;
-    text-decoration: none;
-    font-size: 14px;
-    text-align: center;
-    color: #fff;
-    background: transparent;
+.widget-posts-categories ul li .meta{
+    position: absolute;
+    bottom: 5px;
+    height: 15px;
+    line-height: 15px;
+    font-size: 0.8rem;
+    color: #999;
+    overflow: hidden;
 }
-.widget-pic-text-box .content div a:hover{
-    color: #000;
-    background: #fff;
-}
-@media (max-width: 768px) {
-    .widget-pic-text-box{
-        display: block;
-        margin: 10px 0 0;
-    }
-    .widget-pic-text-box .content div h3{
-        margin: 0 0 15px;
-        padding: 0 20px;
-        font-size: 16px;
-    }
-    .widget-pic-text-box .content div p{
-        min-height: 16px;
-        max-height: 48px;
-        margin: 10px 0;
-        font-size: 12px;
-        line-height: 16px;
-        text-indent: 2em;
-    }
-    .widget-pic-text-box .content div a{
-        width: 80px;
-        height: 24px;
-        border: 1px solid #fff;
-        border-radius: 3px;
-        line-height: 22px;
-        font-size: 12px;
-    }
+.widget-posts-categories ul li .meta span{
+    display: inline-block;
+    margin-right: 5px;
 }
 
-/**====================热门标签样式====================**/
-.widget-hot-tags{
+
+/**====================聚合文章侧栏样式====================**/
+.widget-posts-polymer{
+    border-radius: 5px;
+}
+.widget-posts-polymer .title h3{
+    float: left;
+    width: 25%;
+}
+.widget-posts-polymer .title h3.actived{
+    background: #bbb;
+}
+.widget-posts-polymer .content-wrapper{
+    min-height: 100px;
+    overflow: hidden;
+}
+.widget-posts-polymer ul{
+    display: none;
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 5px 0 10px;
+    border: 0;
+    padding: 0;
+}
+.widget-posts-polymer ul.actived{
+    display: block;
+}
+.widget-posts-polymer ul li{
     display: block;
     position: relative;
     width: 100%;
     height: auto;
-    margin: 20px 0 0;
+    margin: 0;
     border: 0;
-    padding: 0;
-    border-radius: 0;
-    background: #fff;
+    padding: 7px  15px;
     overflow: hidden;
 }
-.widget-hot-tags .title{
-    display: inline-block;
-    width: 100%;
-    height: 40px;
-}
-.widget-hot-tags .title:after{
+.widget-posts-polymer ul li a{
     display: block;
-    content: " ";
-    margin: 0;
-    height: 1px;
-    background: #ccc;
+    color: #555;
+    text-decoration: none;
 }
-.widget-hot-tags .title h3{
-    height: 40px;
-    width: 100px;
+.widget-posts-polymer ul li a:hover{
+    color: #24a0f0;
+}
+.widget-posts-polymer ul li .thumb{
+    z-index: 999;
+    float: left;
+    position: relative;
+    width: 90px;
+    height: 60px;
+    margin: 0 5px 0 0;
+    border: 0;
+    padding: 0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.widget-posts-polymer ul li .thumb img{
+    transition-duration: 0.5s;
+    width: 100%;
+    height: 100%;
+}
+.widget-posts-polymer ul li .thumb:hover img{
+    transform: scale(1.2);
+}
+.widget-posts-polymer ul li .desc{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 60px;
+    padding: 5px 0 5px 100px;
+}
+.widget-posts-polymer ul li h4{
+    width: 100%;
+    max-height: 30px;
+    line-height: 15px;
     margin: 0;
     border: 0;
     padding: 0;
-    line-height: 40px;
-    text-align: center;
-    font-size: 18px;
+    font-size: 0.9rem;
     font-weight: normal;
+    text-align: justify;
+    background: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-all;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.widget-posts-polymer ul li .meta{
+    position: absolute;
+    bottom: 5px;
+    height: 15px;
+    line-height: 15px;
+    font-size: 0.8rem;
+    color: #999;
+    overflow: hidden;
+}
+.widget-posts-polymer ul li .meta span{
+    display: inline-block;
+    margin-right: 5px;
+}
+.widget-posts-polymer ul li .label{
+    float: left;
+    display: block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    margin: 0 5px 0 0;
+    border: 0;
+    padding: 0;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: normal;
+    text-align: center;
     color: #fff;
     background: #ccc;
 }
-.widget-hot-tags h3:hover{
-    background: #bbb;
+.widget-posts-polymer ul li .label-1{
+    background: #fd3131;
 }
-.widget-hot-tags .title a{
-    float: right;
+.widget-posts-polymer ul li .label-2{
+    background: #24affb;
+}
+.widget-posts-polymer ul li .label-3{
+    background: #14d843;
+}
+.widget-posts-polymer ul li .desc{
     display: block;
-    margin: 0 15px;
-    font-size: 12px;
-    text-decoration: none;
+    position: relative;
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    padding: 0 0 0 100px;
 }
-.widget-hot-tags .title a span{
-    float: right;
-    font-size: 12px;
-    color: #999;
-    height: 40px;
-    line-height: 40px;
+.widget-posts-polymer .content-wrapper.nopic ul li{
+    padding: 3px 15px;
 }
-.widget-hot-tags .title a span:hover{
-    color: #24A0F0;
+.widget-posts-polymer .content-wrapper.nopic ul li .desc{
+    position: relative;
+    width: 100%;
+    height: 35px;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    padding-left: 30px;
 }
-.widget-hot-tags .title a span i{
-    font-size: 12px;
+.widget-posts-polymer .content-wrapper.nopic ul li .desc h4{
+    display: block;
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 20px;
+    line-height: 14px;
+    padding: 3px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-.widget-hot-tags .tags{
+.widget-posts-polymer .content-wrapper.nopic ul li .meta {
+    bottom: auto;
+}
+
+
+/**====================热门标签样式====================**/
+.widget-tags-hot{
+    border-radius: 5px;
+}
+.widget-tags-hot .tags{
     margin: 0;
     border: 0;
     padding: 15px;
 }
-.widget-hot-tags .tags a{
+.widget-tags-hot .tags a{
     display: inline-block;
     height: 26px;
     margin: 5px;
@@ -737,853 +1057,8 @@
     background: #eee;
     text-decoration: none;
 }
-.widget-hot-tags .tags a:hover{
+.widget-tags-hot .tags a:hover{
     color: #fff;
     background: #24A0F0;
     opacity: 0.6;
 }
-@media (max-width: 1024px) {
-    .widget-hot-tags .title h3{
-        font-size: 16px;
-    }
-    .widget-hot-tags .title a{
-        margin: 0 10px;
-    }
-    .widget-hot-tags .tags{
-        margin: 0;
-        border: 0;
-        padding: 15px;
-    }
-}
-@media (max-width: 768px) {
-    .widget-hot-tags .title{
-        height: 35px;
-    }
-    .widget-hot-tags .title h3{
-        height: 35px;
-        line-height: 35px;
-        font-size: 16px;
-    }
-    .widget-hot-tags .title a{
-        margin: 0 10px;
-        font-size: 10px;
-    }
-    .widget-hot-tags .title a span{
-        font-size: 10px;
-        height: 35px;
-        line-height: 35px;
-    }
-    .widget-hot-tags .title a span i{
-        font-size: 10px;
-    }
-    .widget-hot-tags .tags{
-        margin: 0;
-        border: 0;
-        padding: 15px;
-    }
-}
-@media (max-width: 480px) {
-    .widget-hot-tags .title{
-        height: 30px;
-    }
-    .widget-hot-tags .title h3{
-        height: 30px;
-        line-height: 30px;
-        font-size: 14px;
-    }
-    .widget-hot-tags .title a span{
-        height: 30px;
-        line-height: 30px;
-    }
-}
-
-
-/**====================最新评论侧栏样式====================**/
-.widget-new-comments{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
-    margin: 20px 0 0;
-    border: 0;
-    padding: 0;
-    border-radius: 0;
-    background: #fff;
-    overflow: hidden;
-}
-.widget-new-comments .title{
-    display: inline-block;
-    width: 100%;
-    height: 40px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
-.widget-new-comments .title:after{
-    display: block;
-    content: " ";
-    width: 100%;
-    height: 1px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    background: #ccc;
-}
-.widget-new-comments .title h3{
-    width: 120px;
-    height: 40px;
-    margin: 0;
-    border: 0;
-    padding: 0 15px;
-    line-height: 40px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: normal;
-    color: #fff;
-    background: #ccc;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-all;
-    white-space: nowrap;
-}
-.widget-new-comments h3:hover{
-    background: #bbb;
-}
-.widget-new-comments .title a{
-    float: right;
-    display: block;
-    margin: 0 15px;
-    border: 0;
-    padding: 0;
-    font-size: 12px;
-    text-decoration: none;
-}
-.widget-new-comments .title a span{
-    float: right;
-    font-size: 12px;
-    color: #999;
-    height: 40px;
-    line-height: 40px;
-}
-.widget-new-comments .title a span:hover{
-    color: #24A0F0;
-}
-.widget-new-comments .title a span i{
-    font-size: 12px;
-}
-.widget-new-comments ul{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
-    margin: 0;
-    border: 0;
-    padding: 15px;
-}
-.widget-new-comments ul li{
-    display: block;
-    width: 100%;
-    height: 60px;
-    margin: 10px 0;
-    border: 0;
-    padding: 0;
-    list-style-type: none;
-}
-.widget-new-comments ul a{
-    display: block;
-    position: relative;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    line-height: 20px;
-    overflow: hidden;
-}
-.widget-new-comments .avatar{
-    position: absolute;
-    float: left;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-}
-.widget-new-comments .avatar img{
-    width: 100%;
-    height: 100%;
-}
-.widget-new-comments .content{
-    float: left;
-    height: 60px;
-    width: 100%;
-    margin: 0;
-    border: 0;
-    padding: 0 0 0 80px;
-    line-height: 20px;
-    overflow: hidden;
-}
-.widget-new-comments .content span{
-    display: inline-block;
-    max-width: 240px;
-    font-size: 14px;
-    color: #24a0f0;
-    overflow: hidden;
-    word-break: break-all;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-.widget-new-comments .content b{
-    display: inline-block;
-    margin: 0 5px;
-    font-size: 12px;
-    color: #999;
-}
-.widget-new-comments .content p{
-    width: auto;
-    margin: 0;
-    line-height: 1.2em;
-    font-size: 12px;
-    color: #555;
-    text-align: justify;
-    vertical-align: middle;
-    word-wrap: break-word;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-}
-.widget-new-comments .content img.wp-smiley{
-    display: inline-block;
-    position: relative;
-    top: 3px;
-    max-width: 16px!important;
-    max-height: 16px!important;
-    height: 16px!important;
-    margin: auto;
-}
-@media (max-width: 768px) {
-    .widget-new-comments .title{
-        height: 35px;
-    }
-    .widget-new-comments .title h3{
-        height: 35px;
-        padding: 0 10px;
-        line-height: 35px;
-    }
-    .widget-new-comments .title a{
-        font-size: 10px;
-    }
-    .widget-new-comments .title a span{
-        font-size: 10px;
-        height: 35px;
-        line-height: 35px;
-    }
-    .widget-new-comments .title a span i{
-        font-size: 10px;
-    }
-    .widget-new-comments ul{
-        padding: 10px;
-    }
-    .widget-new-comments ul li{
-        height: 50px;
-        margin: 10px 0;
-    }
-    .widget-new-comments ul a{
-        line-height: 16px;
-    }
-    .widget-new-comments .avatar{
-        width: 50px;
-        height: 50px;
-    }
-    .widget-new-comments .content{
-        height: 50px;
-        padding: 0 0 0 60px;
-        line-height: 16px;
-    }
-    .widget-new-comments .content span{
-        max-width: 200px;
-    }
-    .widget-new-comments .content b{
-        font-size: 10px;
-    }
-    .widget-new-comments .content p{
-        line-height: 15px;
-        font-size: 12px;
-    }
-}
-@media (max-width: 480px) {
-    .widget-new-comments{
-        margin: 5px 0 0;
-    }
-    .widget-new-comments .title{
-        height: 30px;
-    }
-    .widget-new-comments .title h3{
-        height: 30px;
-        padding: 0 10px;
-        line-height: 30px;
-        font-size: 14px;
-    }
-    .widget-new-comments .title a{
-        font-size: 10px;
-    }
-    .widget-new-comments .title a span{
-        font-size: 10px;
-        height: 30px;
-        line-height: 30px;
-    }
-}
-
-
-/**====================分类文章侧栏样式====================**/
-.widget-categories-posts{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
-    min-height: 60px;
-    margin: 20px 0 0;
-    border: 0;
-    padding: 0;
-    background: #fff;
-    overflow: hidden;
-}
-.widget-categories-posts .title{
-    width: 100%;
-    height: 40px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
-.widget-categories-posts .title:after{
-    display: block;
-    content: " ";
-    height: 1px;
-    width: 100%;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    background: #ccc;
-}
-.widget-categories-posts .title a{
-    float: right;
-    display: block;
-    margin: 0 15px;
-    border: 0;
-    padding: 0;
-    text-decoration: none;
-}
-.widget-categories-posts .title a span{
-    float: right;
-    font-size: 12px;
-    color: #999;
-    height: 40px;
-    line-height: 40px;
-}
-.widget-categories-posts .title a span i{
-    font-size: 12px;
-}
-.widget-categories-posts .title a span:hover{
-    color: #24A0F0;
-}
-.widget-categories-posts .title h3{
-    height: 40px;
-    width: 120px;
-    margin: 0;
-    border: 0;
-    padding: 0 15px;
-    line-height: 40px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: normal;
-    color: #fff;
-    background: #ccc;
-}
-.widget-categories-posts .title h3:hover{
-    background: #bbb;
-}
-.widget-categories-posts ul{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
-    margin: 5px 0 10px;
-    border: 0;
-    padding: 0;
-}
-.widget-categories-posts ul li{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
-    margin: 0;
-    border: 0;
-    padding: 5px  10px;
-    overflow: hidden;
-}
-.widget-categories-posts ul li a{
-    display: block;
-    color: #555;
-    text-decoration: none;
-}
-.widget-categories-posts ul li a:hover{
-    color: #24a0f0;
-}
-.widget-categories-posts ul li .thumb{
-    float: left;
-    display: block;
-    width: 90px;
-    height: 60px;
-    margin: 0 5px 0 0;
-    border: 0;
-    padding: 0;
-    border-radius: 3px;
-    background: none;
-}
-.widget-categories-posts ul li .desc{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 60px;
-    margin: 0;
-    border: 0;
-    padding: 0 0 0 100px;
-}
-.widget-categories-posts ul.nopic li .desc{
-    display: block;
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
-.widget-categories-posts ul li h4{
-    width: 100%;
-    height: auto;
-    min-height: 20px;
-    max-height: 40px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    font-size: 14px;
-    font-weight: normal;
-    text-align: justify;
-    line-height: 20px;
-    background: none;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-    word-break: break-all;
-    word-wrap: break-word;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-}
-.widget-categories-posts ul li .muted{
-    display: block;
-    position: absolute;
-    bottom: 0;
-    width: auto;
-    height: 20px;
-    line-height: 20px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    font-size: 12px;
-    color: #999;
-    overflow: hidden;
-}
-.widget-categories-posts ul li .muted span{
-    display: inline-block;
-    margin: 0 5px 0 0;
-    border: 0;
-    padding: 0;
-}
-@media (max-width: 1024px) {
-    .widget-categories-posts ul{
-        margin: 10px 0 15px;
-    }
-    .widget-categories-posts ul li{
-        padding: 10px  15px;
-    }
-    .widget-categories-posts ul li .thumb{
-        width: 120px;
-        height: 80px;
-        margin: 0 5px 0 0;
-        border-radius: 5px;
-    }
-    .widget-categories-posts ul li .desc{
-        height: 80px;
-        padding: 0 0 0 130px;
-    }
-}
-@media (max-width: 768px) {
-    .widget-categories-posts .title{
-        height: 35px;
-    }
-    .widget-categories-posts .title a{
-        margin: 0 10px;
-    }
-    .widget-categories-posts .title a span{
-        font-size: 10px;
-        height: 35px;
-        line-height: 35px;
-    }
-    .widget-categories-posts .title a span i{
-        font-size: 10px;
-    }
-    .widget-categories-posts .title h3{
-        height: 35px;
-        padding: 0 10px;
-        line-height: 35px;
-        font-size: 14px;
-    }
-    .widget-categories-posts ul{
-        margin: 5px 0 10px;
-    }
-    .widget-categories-posts ul li{
-        padding: 5px  10px;
-    }
-}
-@media (max-width: 480px) {
-    .widget-categories-posts .title{
-        height: 30px;
-    }
-    .widget-categories-posts .title a{
-        margin: 0 10px;
-    }
-    .widget-categories-posts .title a span{
-        font-size: 10px;
-        height: 30px;
-        line-height: 30px;
-    }
-    .widget-categories-posts .title a span i{
-        font-size: 10px;
-    }
-    .widget-categories-posts .title h3{
-        height: 30px;
-        padding: 0 10px;
-        line-height: 30px;
-        font-size: 14px;
-    }
-    .widget-categories-posts ul{
-        margin: 5px 0 10px;
-    }
-    .widget-categories-posts ul li{
-        padding: 5px  10px;
-    }
-    .widget-categories-posts ul li a{
-        display: block;
-        color: #555;
-        text-decoration: none;
-    }
-    .widget-categories-posts ul li a:hover{
-        color: #24a0f0;
-    }
-    .widget-categories-posts ul li .thumb{
-        width: 90px;
-        height: 60px;
-        margin: 0 5px 0 0;
-        border-radius: 3px;
-    }
-    .widget-categories-posts ul li .desc{
-        height: 60px;
-        padding: 0 0 0 100px;
-    }
-    .widget-categories-posts ul li h4{
-        max-height: 20px;
-        -webkit-line-clamp: 1;
-    }
-    .widget-categories-posts ul li .muted{
-        font-size: 10px;
-    }
-    .widget-categories-posts ul li .muted .time{
-        display: none;
-    }
-}
-
-
-/**====================聚合文章侧栏样式====================**/
-.widget-polymer-posts{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
-    min-height: 60px;
-    margin: 20px 0 0;
-    border: 0;
-    padding: 0;
-    background: #fff;
-    overflow: hidden;
-}
-.widget-polymer-posts .title{
-    width: 100%;
-    height: 40px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
-.widget-polymer-posts .title:after{
-    display: block;
-    content: " ";
-    height: 1px;
-    width: 100%;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    background: #ccc;
-}
-.widget-polymer-posts .title h3{
-    float: left;
-    display: block;
-    position: relative;
-    height: 40px;
-    width: 25%;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    font-size: 16px;
-    font-weight: normal;
-    line-height: 40px;
-    text-align: center;
-    color: #fff;
-    background: #ccc;
-}
-.widget-polymer-posts .title h3:hover{
-    background: #bbb;
-}
-.widget-polymer-posts .title h3.actived{
-    background: #bbb;
-}
-.widget-polymer-posts .content{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
-    min-height: 100px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
-}
-.widget-polymer-posts .content ul{
-    display: none;
-    position: relative;
-    width: 100%;
-    height: auto;
-    margin: 5px 0 10px;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
-}
-.widget-polymer-posts .content ul.actived{
-    display: block;
-}
-.widget-polymer-posts .content ul li{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
-    margin: 0;
-    border: 0;
-    padding: 5px  10px;
-    overflow: hidden;
-}
-.widget-polymer-posts .content ul li a{
-    display: block;
-    color: #555;
-    text-decoration: none;
-}
-.widget-polymer-posts .content ul li a:hover{
-    color: #24a0f0;
-}
-.widget-polymer-posts .content ul li .thumb{
-    float: left;
-    display: block;
-    width: 90px;
-    height: 60px;
-    margin: 0 5px 0 0;
-    border: 0;
-    padding: 0;
-    border-radius: 5px;
-    background: none;
-}
-.widget-polymer-posts .content ul li .label{
-    float: left;
-    display: block;
-    width: 20px;
-    height: 20px;
-    margin: 0 5px 0 0;
-    border: 0;
-    padding: 0;
-    border-radius: 3px;
-    font-size: 12px;
-    font-weight: normal;
-    line-height: 20px;
-    text-align: center;
-    color: #fff;
-    background: #ccc;
-}
-.widget-polymer-posts .content ul li .label-1{
-    background: #fd3131;
-}
-.widget-polymer-posts .content ul li .label-2{
-    background: #24affb;
-}
-.widget-polymer-posts .content ul li .label-3{
-    background: #14d843;
-}
-.widget-polymer-posts .content ul li .desc{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 60px;
-    margin: 0;
-    padding: 0 0 0 100px;
-}
-.widget-polymer-posts .content.nopic ul li .desc{
-    display: block;
-    width: 100%;
-    height: 42px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
-.widget-polymer-posts .content ul li h4{
-    /* display: block; */
-    min-height: 20px;
-    max-height: 40px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 20px;
-    background: none;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-all;
-    word-wrap: break-word;
-    white-space: normal;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-}
-.widget-polymer-posts .content.nopic ul li .desc h4{
-    -webkit-line-clamp: 1;
-}
-.widget-polymer-posts .content ul li .muted{
-    display: block;
-    position: absolute;
-    bottom: 0;
-    width: auto;
-    height: 20px;
-    font-size: 12px;
-    line-height: 20px;
-    color: #999;
-    overflow: hidden;
-}
-.widget-polymer-posts .content ul li .muted span{
-    display: inline-block;
-    margin: 0 5px 0 0;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
-}
-@media (max-width: 1024px) {
-    .widget-polymer-posts .content ul{
-        margin: 10px 0 15px;
-    }
-    .widget-polymer-posts .content ul li{
-        padding: 10px  15px;
-    }
-    .widget-polymer-posts .content ul li .thumb{
-        width: 120px;
-        height: 80px;
-        margin: 0 10px 0 0;
-    }
-    .widget-polymer-posts .content ul li .label{
-        margin: 0 10px 0 0;
-        border-radius: 5px;
-    }
-    .widget-polymer-posts .content ul li .desc{
-        height: 80px;
-        padding: 0 0 0 130px;
-    }
-    .widget-polymer-posts .content.nopic ul li .desc h4{
-        -webkit-line-clamp: 1;
-    }
-    .widget-polymer-posts .content ul li .muted span{
-        margin: 0 10px 0 0;
-    }
-}
-@media (max-width: 768px) {
-    .widget-polymer-posts .title{
-        height: 35px;
-    }
-    .widget-polymer-posts .title h3{
-        height: 35px;
-        line-height: 35px;
-        font-size: 16px;
-    }
-    .widget-polymer-posts .content ul{
-        margin: 5px 0 10px;
-    }
-    .widget-polymer-posts .content ul li{
-        padding: 5px  10px;
-    }
-}
-@media (max-width: 480px) {
-    .widget-polymer-posts .title{
-        height: 30px;
-    }
-    .widget-polymer-posts .title h3{
-        height: 30px;
-        font-size: 14px;
-        line-height: 30px;
-    }
-    .widget-polymer-posts .content ul li{
-        max-height: 70px;
-    }
-    .widget-polymer-posts .content ul li .thumb{
-        width: 90px;
-        height: 60px;
-        border-radius: 3px;
-    }
-    .widget-polymer-posts .content ul li .label{
-        border-radius: 3px;
-        font-size: 10px;
-    }
-    .widget-polymer-posts .content ul li .desc{
-        height: 60px;
-        padding: 5px 0 5px 100px;
-    }
-    .widget-polymer-posts .content.nopic ul li .desc{
-        display: block;
-        width: 100%;
-        height: 42px;
-        margin: 0;
-        border: 0;
-        padding: 0;
-    }
-    .widget-polymer-posts .content ul li h4{
-        font-size: 14px;
-        -webkit-line-clamp: 1;
-    }
-    .widget-polymer-posts .content.nopic ul li .desc h4{
-        -webkit-line-clamp: 1;
-    }
-    .widget-polymer-posts .content ul li .muted{
-        display: block;
-        position: absolute;
-        bottom: 0;
-        width: auto;
-        height: 20px;
-        font-size: 12px;
-        line-height: 20px;
-    }
-    .widget-polymer-posts .content ul li .muted span{
-        display: inline-block;
-        margin: 0 5px 0 0;
-        border: 0;
-        padding: 0;
-    }
-}
-

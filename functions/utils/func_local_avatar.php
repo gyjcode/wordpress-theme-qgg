@@ -152,7 +152,7 @@ add_action('admin_footer', function(){
     }
     </style>
     
-    <script>
+    <script type="text/javascript">
     (function($){
         // 有 upload_files 权限媒体库选择图片文件
         $('body').on('click', '.media-library-upload', function(e) {

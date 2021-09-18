@@ -6,7 +6,7 @@
  * $GSM.uri       ：统一资源定位地址
  * 
  */
-define(function (){
+jsdefine('user-sign', function (){
 
 return {
     init: function (){

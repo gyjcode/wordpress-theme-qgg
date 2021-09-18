@@ -19,9 +19,6 @@ $search_baidu_code = QGG_Options('search_baidu_code') ?: '';
     <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="shortcut icon" href="<?php echo home_url() . '/favicon.ico' ?>">
-    <!-- 主题多处使用 jquery ，很多插件功能也依赖 jquery ，还是统一放在头部加载吧-->
-    <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/assets/js/libs/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/assets/js/libs/require.min.js"></script>
     <?php wp_head();?>
 </head>
 <body <?php body_class(_body_class()); ?>>

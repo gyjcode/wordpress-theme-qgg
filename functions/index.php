@@ -15,17 +15,20 @@ require THEME_DIR.'/functions/utils/func_post_template.php';
 // 上传头像
 require THEME_DIR.'/functions/utils/func_local_avatar.php';
 // SMTP 发邮件
-if (QGG_Options('smtp_mail_on')){
-    require THEME_DIR.'/functions/utils/func_smtp_mailer.php';
-    SMTP_Mailer(
-        $smtpHost          = QGG_Options('smtp_mail_host'),            // SMTP服务器地址
-        $smtpSecure        = QGG_Options('smtp_mail_secure'),          // 是否验证 SSL
-        $smtpPort          = QGG_Options('smtp_mail_port'),            // SMTP邮件发送端口
-        $smtpUser          = QGG_Options('smtp_mail_user'),            // 你的邮箱地址
-        $smtpPass          = QGG_Options('smtp_mail_pass'),            // 你的邮箱登录密码
-        $smtpMailFromName  = QGG_Options('smtp_mail_from_name'),       // 发送邮件名称
-        $smtpReplyToMail   = QGG_Options('smtp_mail_reply_to')        // 回复邮件地址
-    );
+if (QGG_Options('smtp_mailer_on')){
+    if ( !function_exists('SMTP_Mailer')) {
+        require THEME_DIR.'/functions/utils/class_smtp_mailer.php';
+        new _SMTP_Mailer(
+            $host       = QGG_Options('smtp_mailer_host') ?: '',         // SMTP服务器地址
+            $secure     = QGG_Options('smtp_mailer_secure') ?: '',       // 是否验证 SSL
+            $port       = QGG_Options('smtp_mailer_port') ?: '',         // SMTP邮件发送端口
+            $username   = QGG_Options('smtp_mailer_user') ?: '',         // 你的邮箱地址
+            $password   = QGG_Options('smtp_mailer_pass') ?: '',         // 你的邮箱登录密码
+            $from_name  = QGG_Options('smtp_mailer_from_name') ?: '',    // 发送邮件名称
+            $reply_to   = QGG_Options('smtp_mailer_reply_to') ?: '',     // 回复邮件地址
+            $test_to    = QGG_Options('smtp_mailer_test_to') ?: ''      // 测试邮件接收人
+        );
+    };
 }
 
 // 自定义工具函数

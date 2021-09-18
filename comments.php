@@ -11,10 +11,9 @@ $background_img   = QGG_Options('comment_background_img') ?: '';
 $emoji_on         = QGG_Options('comment_emoji_on') ?: false;
 $getqqinfo_on     = QGG_Options('comment_getqqinfo_on') ?: false;
 
-// $my_email     = get_bloginfo ( 'admin_email' );
-// $sql_comments = "SELECT COUNT(*) FROM $wpdb->comments WHERE comment_post_ID = $post->ID AND comment_approved = '1' AND comment_type = '' AND comment_author_email";
+// 计算文章发布时间
 date_default_timezone_set('PRC');
-$close_timer  = ( strtotime(date('Y-m-d G:i:s')) - strtotime(get_the_time('Y-m-d G:i:s')) )/86400;
+$post_time  = ( strtotime(date('Y-m-d G:i:s')) - strtotime(get_the_time('Y-m-d G:i:s')) )/86400;
 ?>
 <!-- 广告代码 -->
 <?php _ads_loader($name='ads_post_cmnt_01', $class='ads-post-cmnt-01') ?>
@@ -31,14 +30,14 @@ $close_timer  = ( strtotime(date('Y-m-d G:i:s')) - strtotime(get_the_time('Y-m-d
     
     <!-- 加载评论回复框 -->
     <div class="comments-box" id="comments-box">
-        <?php if ( $off || get_option('default_comment_status') == 'closed' ) { ?>
+        <?php if ( $off || get_default_comment_status() == 'closed' ) { ?>
             <!-- 整站评论关闭 -->
             <div class="closed">
                 <h3 class="site-comments-closed">
                     <strong>抱歉，整站评论功能已关闭！</strong>
                 </h3>
             </div>
-        <?php }elseif( get_option('close_comments_for_old_posts') && $close_timer > get_option('close_comments_days_old') ) { ?>
+        <?php }elseif( !comments_open() || (get_option('close_comments_for_old_posts') && $post_time > get_option('close_comments_days_old')) ) { ?>
             <!-- 文章评论关闭 -->
             <div class="closed">
                 <h3 class="post-comments-closed">

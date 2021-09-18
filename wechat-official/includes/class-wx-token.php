@@ -4,14 +4,14 @@
  */
 
 class wechatTokenVerify{
-    
+    // 验证并返回结果
     private function checkSignature()
     {
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce     = $_GET["nonce"];
         
-        $token = WECHAT_OFFICIAL_TOKEN;
+        $token = WX_TOKEN;
         $tmpArr = array ($token, $timestamp, $nonce);
         sort ($tmpArr, SORT_STRING);
         $tmpStr = implode ( $tmpArr );
@@ -23,7 +23,7 @@ class wechatTokenVerify{
             return false;
         }
     }
-    
+    // 判断结果输出消息
     public function valid()
     {
         $echoStr = $_GET["echostr"];

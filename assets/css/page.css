@@ -1,998 +1,413 @@
-/**==================== 页面相关样式，对应于 pages 文件夹下的相关文件 ====================*/
-
-
-
-
-/**==================== 首行缩进 ====================**/
-.post-indent .content .main .page-content{
-    text-indent: 2em;
-}
-/**==================== 默认页面样式 ====================**/
-/** 页面菜单 */
-.page .page-sidebar{
-    float: left;
-    z-index: 9;
-    display: block;
+/**==================== 页面公共模块样式开始 ====================*/
+.page{
     position: relative;
-    width: 120px;
-    height: auto;
-    margin: 0;
-    border: 0;
-    padding: 0;
 }
-.page .page-menus{
-    display: block;
+/** 侧栏菜单 */
+.page .page-sidebar{
+    cursor: default;
+    z-index: 999999999;
+    position: fixed;
+    top: 110px;
+    width: 180px;
+}
+.page .page-sidebar .menus-wrapper{
     position: relative;
     width: 100%;
     height: auto;
-    margin: 20px 0 0;
-    border: 0;
-    padding: 15px;
-    list-style: none;
+    padding: 15px 20px;
     background: #fff;
 }
-.page .page-menus-list{
-    display: block;
+.page .page-sidebar .menus{
     margin: 0;
-    border: 0;
-    padding: 0;
 }
-.page .page-menus-list li{
+.page .page-sidebar .menus li{
+    list-style-type: none;
     width: auto;
-    height: 40px;
+    height: 2.5rem;
+    line-height: 2.5rem;
     margin: 0 -20px;
-    border: 0;
     padding: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: break-all;
     white-space: nowrap;
-    line-height: 40px;
-    list-style-type: none;
 }
-.page .page-menus-list li a{
+.page .page-sidebar .menus li a{
+    text-decoration: none;
     display: block;
-    margin: 0;
-    border: 0;
-    padding: 0 15px;
-    font-size: 15px;
+    height: 100%;
+    padding: 0 20px;
+    font-size: 1rem;
+    color: inherit;
 }
-.page .page-menus-list li.current_page_item > a{
+.page .page-sidebar .menus li.current_page_item > a{
     color: #24a0f0;
-    background: #e3eef6;
+    background: #f5f5f5;
 }
 /** 页面内容 */
-.page .page-content{
-    display: block;
+.page .content{
     position: relative;
-    width: auto;
-    height: auto;
-    margin: 0;
-    border: 0;
-    padding: 0;
+    margin-right: 0;
+    margin-left: 200px;
+    padding: 1rem 1.5rem;
+    background-color: #fff;
+    overflow: hidden;
 }
-.page .page-content .page-main{
-    zoom: 1;
-    display: block;
-    position: relative;
-    width: auto;
-    height: auto;
-    margin: 20px 0 0 135px;
-    border: 0;
-    padding: 15px 20px;
-    background: #fff;
-}
-.page .page-content .page-main .page-header{
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 10px auto 0;
-    border: 0;
+.page .page-header{
+    margin: 0 auto;
     padding: 0;
     border-bottom: 1px solid #eee;
 }
-.page .page-content .page-main .page-header .page-title{
-    display: block;
-    width: 100%;
-    height: auto;
+.page .page-header a{
+    text-decoration: none;
+    color: inherit;
+}
+.page .page-header .title{
+    line-height: 2.5rem;
     margin: 0 auto;
-    border: 0;
-    padding: 0 0 10px 0;
-    font-size: 24px;
-    line-height: 40px;
+    padding-bottom: 0.8rem;
+    font-size: 1.5rem;
     text-align: center;
 }
-.page .page-content .page-main p{
-    margin: 10px;
-    padding: 0;
-    border: 0;
-    font-size: 15px;
-    line-height: 20px;
-    color: #555;
-}
-.page .page-content .page-main img{
-    display: block;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-}
-@media (max-width: 1366px){
-    /** 页面菜单 */
+@media (max-width: 768px){
+    /** 侧栏菜单 */
     .page .page-sidebar{
-        width: 120px;
+        position: relative;
+        top: auto;
+        width: 100%;
     }
-    .page .page-menus{
-        margin: 20px 0 0;
-        padding: 20px;
-    }
-    .page .page-menus-list li{
-        height: 40px;
-        margin: 0 -20px;
-        line-height: 40px;
-    }
-    .page .page-menus-list li a{
-        padding: 0 15px;
-        font-size: 15px;
-    }
-    /** 页面内容 */
-    .page .page-content .page-main{
-        margin: 20px 0 0 135px;
-        padding: 15px 20px;
-    }
-}
-@media (max-width: 1024px){
-    /** 页面菜单 */
-    .page .page-sidebar{
-        float: none;
-        width: auto;
-        margin: 0 10px;
-    }
-    .page .page-menus{
-        margin: 10px auto 0;
+    .page .page-sidebar .menus-wrapper{
         padding: 0;
     }
-    .page .page-menus-list{
-        display: inline-flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-around;
-        align-content: flex-start;
-        align-items: center;
+    .page .page-sidebar .menus{
         width: 100%;
-        height: 100%;
-    }
-    .page .page-menus-list li{
-        display: inline-block;
-        width: 100%;
-        height: 40px;
-        margin: 0;
-        border: 0;
-        padding: 0;
-        text-align: center;
-        line-height: 40px;
-        list-style-type: none;
         overflow: hidden;
     }
-    .page .page-menus-list li a{
-        padding: 0 10px;
-        font-size: 14px;
-    }
-    /** 页面内容 */
-    .page .page-content{
-        width: auto;
-        margin: 0 10px;
-    }
-    .page .page-content .page-main{
-        margin: 15px auto 0;
-        padding: 15px 15px;
-    }
-    .page .page-content .page-main .page-header{
-        margin: 5px auto 0;
-    }
-    .page .page-content .page-main .page-header .page-title{
-        padding: 0 0 10px 0;
-        font-size: 20px;
-        line-height: 35px;
-    }
-    .page .page-content .page-main p{
-        margin: 10px;
-        padding: 0;
-        border: 0;
-        font-size: 14px;
-        line-height: 20px;
-        color: #555;
-    }
-}
-@media (max-width: 768px){
-    /** 页面菜单 */
-    .page .page-sidebar{
-        margin: 0 5px;
-    }
-    .page .page-menus{
-        margin: 10px auto 0;
-    }
-    .page .page-menus-list li{
-        height: 35px;
-        line-height: 35px;
-    }
-    .page .page-menus-list li a{
-        padding: 0 5px;
-        font-size: 12px;
-    }
-    /** 页面内容 */
-    .page .page-content{
-        margin: 0 5px;
-    }
-    .page .page-content .page-main{
-        margin: 5px auto 0;
-        padding: 5px 15px;
-    }
-    .page .page-content .page-main .page-header{
-        margin: 5px auto 0;
-    }
-    .page .page-content .page-main .page-header .page-title{
-        padding: 0 0 5px 0;
-        font-size: 18px;
-        line-height: 30px;
-    }
-}
-@media (max-width: 480px){
-    /** 页面菜单 */
-    .page .page-sidebar{
-        margin: 0;
-    }
-    .page .page-menus{
-        margin: 5px auto 0;
-    }
-    .page .page-menus-list li{
+    .page .page-sidebar .menus li{
+        float: left;
+        width: 25%;
         height: 30px;
         line-height: 30px;
-    }
-    .page .page-menus-list li a{
-        padding: 0;
-        font-size: 10px;
-    }
-    /** 页面内容 */
-    .page .page-content{
         margin: 0;
+        padding: 0;
+        text-align: center;
     }
-    .page .page-content .page-main{
-        margin: 5px auto 0;
-        padding: 5px 10px;
+    .page .page-sidebar .menus li a{
+        padding: 0;
     }
-    .page .page-content .page-main .page-header{
-        margin: 0 auto;
-    }
-    .page .page-content .page-main .page-header .page-title{
-        padding: 0 0 5px 0;
-        font-size: 16px;
-        line-height: 30px;
+    .page .content{
+        position: relative;
+        margin-left: 0;
     }
 }
 
-/**==================== 友链页面样式 ====================**/
-.page-content .page-friendly-links{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
-    margin: 15px auto 0;
-    border: 0;
-    padding: 0 15px;
-    overflow: hidden;
+/**==================== 友情链接 ====================**/
+.page .page-friendly-links{
+    cursor: default;
 }
-.page-content .page-friendly-links li{
-    display: block;
-    margin: 10px auto 0;
+.page .page-friendly-links li{
+    list-style-type: none;
+    margin: 0;
     border: 0;
     padding: 0;
 }
-.page-content .page-friendly-links li h2{
+.page .page-friendly-links li h2{
     display: block;
     width: 100%;
-    height: 30px;
+    height: 2rem;
+    line-height: 2rem;
     margin: 0 auto;
-    border: 0;
-    padding: 0 10px;
-    line-height: 30px;
-    font-size: 16px;
+    padding: 0 0.8rem;
+    border-left: 3px solid #24a0f0;
+    font-size: 1.05rem;
     font-weight: bold;
     color: #555;
-    background: #fafafa;
+    background: #f9f9f9;
 }
-.page-content .page-friendly-links li ul{
-    clear: both;
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 10px auto;
-    border: 0;
-    padding: 0;
+.page .page-friendly-links li ul{
+    margin: 0.8rem auto;
     overflow: hidden;
 }
-.page-content .page-friendly-links li ul li{
+.page .page-friendly-links li ul li{
     float: left;
     display: block;
     width: 18%;
-    height: 36px;
     margin: 5px 1%;
-    border: 0;
-    padding: 0;
 }
-.page-content .page-friendly-links li ul li a{
+.page .page-friendly-links li ul li a{
+    text-decoration: none;
     display: inline-block;
-    height: 100%;
     width: 100%;
-    margin: 0;
+    height: 32px;
+    line-height: 24px;
+    padding: 3px 7px;
     border: 1px solid #eee;
-    padding: 3px 9px;
-    line-height: 28px;
-    border-radius: 3px;
-    font-size: 15px;
     color: #888;
     overflow: hidden;
     text-overflow: ellipsis; 
     white-space: nowrap;
     word-break: break-all;
 }
-.page-content .page-friendly-links li ul li a:hover{
-    border: 1px solid #24a0f0;
+.page .page-friendly-links li ul li a:hover{
+    border-color: #24a0f0;
     color: #fff;
-    background: #00A0F0;
+    background: #24a0f0;
 }
-.page-content>.page-main>.page-friendly-links>li>ul>li>a>img{
+.page .page-friendly-links img{
     float: left;
-    width: 28px;
-    height: 28px;
-    margin: 0 5px 0 0;
-    border: 1px solid #eee;
+    width: 24px;
+    height: 24px;
+    margin: 0 7px 0 0;
     padding: 0;
+    border: 1px solid #eee;
     border-radius: 50%;
-}
-@media (max-width: 1366px){
-    .page-content .page-friendly-links{
-        margin: 15px auto 0;
-        padding: 0 15px;
-    }
-}
-@media (max-width: 1024px){
-    .page-content .page-friendly-links{
-        margin: 15px auto 0;
-        padding: 0 15px;
-    }
+    background-color: #fff;
 }
 @media (max-width: 768px){
-    .page-content .page-friendly-links{
-        margin: 10px auto 0;
-        padding: 0 10px;
-    }
-    .page-content .page-friendly-links li{
-        margin: 5px auto 0;
-    }
-    .page-content .page-friendly-links li h2{
-        height: 24px;
-        padding: 0 5px;
-        line-height: 24px;
-        font-size: 14px;
-    }
-    .page-content .page-friendly-links li ul{
-        margin: 5px auto;
-    }
-    .page-content .page-friendly-links li ul li{
-        width: 23%;
-        height: 32px;
-        margin: 5px 1%;
-    }
-    .page-content .page-friendly-links li ul li a{
-        border: 1px solid #eee;
-        padding: 3px 9px;
-        line-height: 24px;
-        border-radius: 0;
-        font-size: 14px;
-    }
-    .page-content>.page-main>.page-friendly-links>li>ul>li>a>img{
-        width: 24px;
-        height: 24px;
-        margin: 0 3px 0 0;
-        border: 1px solid #eee;
+    .page .page-friendly-links li ul li{
+        width: 31.33%;
     }
 }
 @media (max-width: 480px){
-    .page-content .page-friendly-links{
-        margin: 10px auto 0;
-        padding: 0 10px;
-    }
-    .page-content .page-friendly-links li{
-        margin: 5px auto 0;
-    }
-    .page-content .page-friendly-links li h2{
-        height: 30px;
-        padding: 0 10px;
-        line-height: 30px;
-        font-size: 16px;
-    }
-    .page-content .page-friendly-links li ul{
-        margin: 5px auto;
-    }
-    .page-content .page-friendly-links li ul li{
+    .page .page-friendly-links li ul li{
         width: 48%;
-        height: 36px;
-        margin: 3px 1%;
-    }
-    .page-content .page-friendly-links li ul li a{
-        padding: 3px 9px;
-        line-height: 28px;
-        font-size: 14px;
-    }
-    .page-content>.page-main>.page-friendly-links>li>ul>li>a>img{
-        width: 28px;
-        height: 28px;
-        margin: 0 5px 0 0;
     }
 }
 
 
-/**==================== 归档页面样式 ====================**/
-.page-content .archives{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
-    border: 0;
-    padding: 0 15px;
+/**==================== 文章归档 ====================**/
+.page .archives{
+    cursor: default;
 }
-.page-content .archives .item{
-    display: block;
-    margin: 15px 0;
-    border-bottom: 1px solid #eee;
+.page .archives a{
+    color: #777;
+}
+.page .archives a:hover{
+    color: #24a0f0;
+}
+.page .archives .item{
+    margin: 1rem 0;
     padding: 0;
+    border-bottom: 1px solid #eee;
     overflow: hidden;
 }
-.page-content .archives .item h3{
+.page .archives .item h3{
     float: left;
-    display: inline-block;
-    width: auto;
-    margin: 0;
+    height: 20px;
+    line-height: 20px;
+    margin: 0 10px;
     padding: 0;
     border: 0;
-    font-size: 18px;
+    font-size: 1.2rem;
     font-weight: normal;
     color: #F15A23;
-    background: none;
 }
-.page-content .archives .item .archives-list{
-    display: block;
-    margin: 0 0 15px 100px;
-    border: 0;
+.page .archives .item .archives-list{
+    margin: 0 0 15px 80px;
     padding: 0 0 0 10px;
 }
-.page-content .archives .item .archives-list li{
-    display: block;
-    margin: 0 0 5px 15px;
-    border: 0;
-    padding: 0;
+.page .archives .item .archives-list li{
+    list-style-type: none;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 0.8rem;
     color: #555;
-    font-size: 15px;
-    list-style-type: disc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
 }
-.page-content .archives .item .archives-list li time{
-    display: inline-block;
-    width: 40px;
-    height: auto;
-    margin: 0;
-    border: 0;
-    padding: 0;
+.page .archives .item .archives-list li time{
+    margin-right: 5px;
 }
-.page-content .archives .item .archives-list li span{
-    display: inline-block;
-    margin: 0 0 0 10px;
-    border: 0;
-    padding: 0;
-    font-size: 12px;
+.page .archives .item .archives-list li span{
+    font-size: 0.8rem;
     font-style: italic;
     color: #3cc83c;
 }
-.page-content .archives .item .archives-list li a:hover{
-    color: #24a0f0;
-}
-@media (max-width: 1366px){
-    
-}
-@media (max-width: 1024px){
-    
-}
-@media (max-width: 768px){
-    .page-content .archives{
-        padding: 0 10px;
-    }
-    .page-content .archives .item{
-        margin: 10px 0;
-    }
-    .page-content .archives .item h3{
-        font-size: 16px;
-    }
-    .page-content .archives .item .archives-list{
-        margin: 0 0 10px 80px;
-        padding: 0 0 0 5px;
-    }
-    .page-content .archives .item .archives-list li{
-        margin: 0 0 5px 10px;
-        font-size: 14px;
-    }
-    .page-content .archives .item .archives-list li time{
-        width: 40px;    }
-    .page-content .page-content .archives .item .archives-list li span{
-        margin: 0 0 0 5px;
-        font-size: 10px;
-    }
-}
 @media (max-width: 480px){
-    .page-content .archives{
-        padding: 0 10px;
-    }
-    .page-content .archives .item{
-        margin: 10px 0;
-    }
-    .page-content .archives .item h3{
+    .page .archives .item h3{
         float: none;
-        display: block;
-        width: 100%;
-        height: 20px;
-        font-size: 16px;
-        line-height: 20px;
+        margin-bottom: 5px;
     }
-    .page-content .archives .item .archives-list{
-        display: block;
-        margin: 10px 0;
+    .page .archives .item .archives-list{
+        margin-left: 0;
         padding: 0;
-    }
-    .page-content .archives .item .archives-list li{
-        margin: 0 0 5px 10px;
-        font-size: 14px;
-        line-height: 16px;
-    }
-    .page-content .archives .item .archives-list li time{
-        width: 40px;    }
-    .page-content .archives .item .archives-list li span{
-        margin: 0 0 0 5px;
-        font-size: 10px;
     }
 }
 
-/**==================== 读者墙页面样式 ====================**/
-.page-content .readers-wall{
-    display: block;
+/**==================== 读者墙 ====================**/
+.page .readers-wall{
+    cursor: default;
     position: relative;
-    width: 100%;
-    height: auto;
-    margin: 20px auto 0;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
 }
-.page-content .readers-wall a{
+.page .readers-wall .item{
     float: left;
+    text-decoration: none;
     display: block;
     width: 72px;
     height: 60px;
     margin: 0 5px 15px 5px;
     text-align: center;
     color: #999;
-    font-size: 12px;
+    font-size: 0.8rem;
     overflow: hidden;
-    text-decoration: none;
 }
-.page-content .readers-wall a:hover{
-    color: #FF5E52;
+.page .readers-wall .item:hover{
+    color: #f44336;
 }
-.page-content .readers-wall a span{
-    display: block;
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
-.page-content .readers-wall a span strong{
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    word-break: break-all;
-}
-.page-content .readers-wall img.avatar{
+.page .readers-wall .avatar{
     display: block;
     width: 36px;
     height: 36px;
     margin: 0 auto 5px;
     border: 1px solid #eee;
-    padding: 0;
     border-radius: 5px;
 }
-.page-content .readers-wall a.item-top{
-    zoom: 1;
-    width: 31.333333%;
+.page .readers-wall .item-top{
+    width: 31.33%;
     height: auto;
-    margin: 0 1% 20px;
-    padding: 10px 1%;
+    margin: 0 1% 1.5rem;
+    padding: 0.8rem 1%;
     border-radius: 5px;
     text-align: left;
-    color: #fff;
-    background: none;
+    color: #777;
+    background: #f3f3f3;
 }
-.page-content .readers-wall a.item-top .avatar{
+.page .readers-wall .item-top .avatar{
     float: left;
     height: 36px;
     width: 36px;
-    margin: 10px 10px 0;
+    margin: 8px 10px 0 0;
 }
-.page-content .readers-wall a.item-top h4{
-    display: block;
+.page .readers-wall .item-top h4{
     margin: 0;
-    border: 0;
-    padding: 0;
-    line-height: 30px;
-    font-size: 18px;
-    background: none;
+    line-height: 2rem;
+    font-size: 1.1rem;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: break-word;
     white-space: nowrap;
 }
-.page-content .readers-wall a.item-top h4 small{
-    font-size: 12px;
-    font-style: italic;
-    font-weight: normal;
-    color: #fcfcfc;
+.page .readers-wall .item-1 h4{
+    color: #f44336;
 }
-.page-content .readers-wall a.item-top span{
+.page .readers-wall .item-2 h4{
+    color: #4caf50;
+}
+.page .readers-wall .item-3 h4{
+    color: #2196f3;
+}
+.page .readers-wall .item-top small{
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #999;
+    opacity: 0.8;
+}
+.page .readers-wall .item-top .desc{
     display: block;
     height: 36px;
     width: auto;
     margin: 10px 0 0 50px;
 }
-.page-content .readers-wall a.item-top span strong{
+.page .readers-wall .item-top .desc span{
     display: block;
-    height: 20px;
-    width: auto;
-    font-size: 14px;
-    line-height: 20px;
+    height: 1rem;
+    line-height: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: break-word;
     white-space: nowrap;
 }
-.page-content .readers-wall a.item-top span b{
+.page .readers-wall .item-top .desc b{
     display: block;
-    width: auto;
-    height: 20px;
-    font-size: 14px;
-    line-height: 20px;
+    height: 15px;
+    line-height: 15px;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: break-word;
     white-space: nowrap;
-}
-.page-content .readers-wall a.item-top:hover{
-    background-color: #f1f1f1;
-}
-.page-content .readers-wall a.item-1{
-    color: #fff;
-    background: #ffc800;
-    background: -webkit-gradient( linear, left top, right bottom, from(#ffc800), to(#fff001) ) no-repeat;
-    background: -webkit-linear-gradient(left, #ffc800, #fff001) no-repeat;
-    background: linear-gradient(90deg,#ffc800, #fff001) no-repeat;
-    -webkit-box-shadow: 0 3px 5px rgba(240,160,0,0.5);
-    box-shadow: 0 3px 5px rgba(240,160,0,0.5);
-}
-.page-content .readers-wall a.item-2{
-    color: #fff;
-    background: #ccc;
-    background: -webkit-gradient( linear, left top, right bottom, from(#ccc), to(#eee) ) no-repeat;
-    background: -webkit-linear-gradient(left, #ccc, #eee) no-repeat;
-    background: linear-gradient(120deg, #ccc, #eee) no-repeat;
-    -webkit-box-shadow: 0 3px 5px rgba(180,180,180,0.5);
-    box-shadow: 0 3px 5px rgba(180,180,180,0.5);
-}
-.page-content .readers-wall a.item-3{
-    color: #fff;
-    background: #e88b00;
-    background: -webkit-gradient( linear,left top, right bottom, from(#e88b00), to(#ffc800) ) no-repeat;
-    background: -webkit-linear-gradient(left, #e88b00, #ffc800) no-repeat;
-    background: linear-gradient(90deg, #e88b00, #ffc800) no-repeat;
-    -webkit-box-shadow: 0 3px 5px rgba(240,160,0,0.5);
-    box-shadow: 0 3px 5px rgba(240,160,0,0.5);
-}
-@media (max-width: 1366px){
-    .page-content .readers-wall{
-        margin: 20px auto 0;
-    }
-}
-@media (max-width: 1024px){
-    .page-content .readers-wall{
-        margin: 15px auto 0;
-    }
 }
 @media (max-width: 768px){
-    .page-content .readers-wall{
-        margin: 10px auto 0;
-    }
-    .page-content .readers-wall a{
-        width: 72px;
-        height: 60px;
-        margin: 0 5px 15px 5px;
-        font-size: 12px;
-    }
-    .page-content .readers-wall img.avatar{
-        margin: 5px auto;
-        width: 30px;
-        height: 30px;
-        border-radius: 3px;
-    }
-    .page-content .readers-wall a.item-top{
-        margin: 0 1% 15px;
-        padding: 10px 1%;
-        border-radius: 3px;    
-    }
-    .page-content .readers-wall a.item-top .avatar{
-        float: left;
-        height: 30px;
-        width: 30px;
-        margin: 5px 5px 0;
-    }
-    .page-content .readers-wall a.item-top h4{
-        line-height: 24px;
-        font-size: 14px;
-    }
-    .page-content .readers-wall a.item-top h4 small{
-        font-size: 10px;
-    }
-    .page-content .readers-wall a.item-top span{
-        height: 30px;
-        margin: 5px 0 0 40px;
-    }
-    .page-content .readers-wall a.item-top span strong{
-        height: 16px;
-        font-size: 12px;
-        line-height: 16px;
-    }
-    .page-content .readers-wall a.item-top span b{
-        height: 14px;
-        font-size: 10px;
-        line-height: 14px;
-    }
-}
-@media (max-width: 480px){
-    .page-content .readers-wall{
-        margin: 10px auto 0;
-    }
-    .page-content .readers-wall a{
-        float: none;
-        display: inline-block;
-        width: 60px;
-        height: 60px;
-        margin: 0 5px 15px 5px;
-        text-align: center;
-        font-size: 12px;
-        overflow: hidden;
-        text-decoration: none;
-    }
-    .page-content .readers-wall img.avatar{
-        width: 42px;
-        height: 42px;
-        margin: 0 auto 5px;
-    }
-    .page-content .readers-wall a.item-top{
-        width: 48%;
-        height: auto;
-        margin: 0 1% 10px;
-        padding: 10px 1%;
-        border-radius: 5px;
-    }
-    .page-content .readers-wall a.item-top.item-1{
-        width: 98%;    
-    }
-    .page-content .readers-wall a.item-top .avatar{
-        height: 42px;
-        width: 42px;
-        margin: 10px 10px 0;
-    }
-    .page-content .readers-wall a.item-top h4{
+    .page .readers-wall .item-top{
         width: 100%;
-        line-height: 30px;
-        font-size: 16px;
-        text-align: center;
-    }
-    .page-content .readers-wall a.item-top.item-1 h4{
-        font-size: 20px;
-    }
-    .page-content .readers-wall a.item-top h4 small i{
-        display: none;
-    }
-    .page-content .readers-wall a.item-top span{
-        display: block;
-        height: 36px;
-        width: auto;
-        margin: 10px 0 0 60px;
-    }
-    .page-content .readers-wall a.item-top span strong{
-        height: 20px;
-        font-size: 14px;
-        line-height: 20px;
-    }
-    .page-content .readers-wall a.item-top span b{
-        height: 20px;
-        font-size: 14px;
-        line-height: 20px;
+        margin: 0 0 1.5rem;
+        padding: 0.8rem 3%;
     }
 }
 
-/** 找回密码页面 */
-.page .content .page-resetpassword{
-    display: block;
-    position: relative;
+/**==================== 找回密码 ====================**/
+.page .page-reset-password{
+    cursor: default;
     min-height: 520px;
     width: 100%;
-    margin: 20px 0;
-    border: 0;
-    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
     border-radius: 5px;
     text-align: center;
 }
-.page .content .page-resetpassword h1{
-    font-size: 24px;
+.page .page-reset-password .title{
+    font-size: 1.5rem;
     font-weight: normal;
 }
-.page .content .page-resetpassword .steps{
-    margin-bottom: 100px;
+.page .page-reset-password .steps{
+    display: flex;
+    justify-content: space-between;
     overflow: hidden;
 }
-.page .content .page-resetpassword .steps li{
-    float: left;
-    position: relative;
-    width: 33.33333%;
+.page .page-reset-password .steps li{
+    list-style-type: none;
+    width: 100%;
     height: 36px;
     line-height: 36px;
-    list-style-type: none;
-    font-size: 16px;
+    margin: 0;
+    font-size: 1.2rem;
     color: #555;
-    background: #fff;
+    background-color: #f5f5f5;
 }
-.page .content .page-resetpassword .steps li.active{
+.page .page-reset-password .steps li.active{
     color: #fff;
-    background: #45B6F7;
+    background: #24a0f0;
 }
-.page .content .page-resetpassword form{
-    min-height: 360px;
-    width: 360px;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-}
-.page .content .page-resetpassword form h3{
+.page .page-reset-password .form-wrapper{
     position: relative;
-    height: 24px;
-    margin: 15px auto;
-    padding: 0;
-    border: 0;
-    font-size: 18px;
-    line-height: 24px;
+    min-height: 360px;
+}
+.page .page-reset-password form{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 360px;
+}
+.page .page-reset-password form h3{
+    position: relative;
+    margin: 1rem auto;
+    font-size: 1.2rem;
+    font-weight: normal;
     text-align: left;
     color: #777;
-    background: none;
 }
-.page .content .page-resetpassword form p{
-    position: relative;
-    display: block;
+.page .page-reset-password form p{
     max-width: 360px;
-    margin: 15px auto;
-    text-align: center;
+    margin: 1rem auto;
 }
-.page .content .page-resetpassword form .btn{
+.page .page-reset-password form .btn{
     width: 100%;
+    padding: 5px 15px;
 }
-.page .content .page-resetpassword form .err-tip{
+.page .page-reset-password form .error-tip{
     color: #F00;
 }
-.page .content .page-resetpassword form .success-tip{
+.page .page-reset-password form .success-tip{
     color: #00B424;
 }
-@media (max-width: 1366px){
-    .page .content .page-resetpassword{
-        margin: 20px auto 0;
-    }
-}
-@media (max-width: 1024px){
-    .page .content .page-resetpassword{
-        min-height: 420px;
-        margin: 15px auto 0;
-        border-radius: 3px;
-    }
-    .page .content .page-resetpassword h1{
-        font-size: 20px;
-    }
-    .page .content .page-resetpassword .steps{
-        margin-bottom: 100px;
-    }
-    .page .content .page-resetpassword .steps li{
-        height: 36px;
-        line-height: 36px;
-        font-size: 16px;
-    }
-    .page .content .page-resetpassword form{
-        min-height: 300px;
-        width: 300px;
-    }
-    .page .content .page-resetpassword form h3{
-        height: 24px;
-        margin: 15px auto;
-        font-size: 16px;
-        line-height: 24px;
-    }
-    .page .content .page-resetpassword form p{
-        max-width: 300px;
-        margin: 15px auto;
-    }
-}
 @media (max-width: 768px){
-    .page .content .page-resetpassword{
-        min-height: 420px;
-        margin: 10px auto 0;
-        border-radius: 3px;
-    }
-    .page .content .page-resetpassword h1{
-        font-size: 18px;
-    }
-    .page .content .page-resetpassword .steps{
-        margin-bottom: 80px;
-    }
-    .page .content .page-resetpassword .steps li{
-        height: 35px;
-        line-height: 35px;
-        font-size: 15px;
-    }
-    .page .content .page-resetpassword form{
-        min-height: 300px;
-        width: 300px;
-    }
-    .page .content .page-resetpassword form h3{
-        margin: 10px auto;
-        font-size: 15px;
-    }
-    .page .content .page-resetpassword form p{
-        max-width: 300px;
-        margin: 10px auto;
-    }
-}
-@media (max-width: 480px){
-    .page .content .page-resetpassword{
-        min-height: 360px;
-        margin: 10px auto 0;
-        border-radius: 3px;
-    }
-    .page .content .page-resetpassword h1{
-        font-size: 16px;
-    }
-    .page .content .page-resetpassword .steps{
-        margin-bottom: 80px;
-    }
-    .page .content .page-resetpassword .steps li{
+    .page .page-reset-password .steps li {
         height: 30px;
         line-height: 30px;
-        font-size: 14px;
     }
-    .page .content .page-resetpassword .steps li b{
-        display: none;
-    }
-    .page .content .page-resetpassword form{
-        min-height: 260px;
-        width: 260px;
-    }
-    .page .content .page-resetpassword form h3{
-        margin: 5px auto;
-        font-size: 14px;
-    }
-    .page .content .page-resetpassword form p{
-        max-width: 260px;
-        margin: 10px auto;
+    .page .page-reset-password form {
+        width: 320px;
     }
 }

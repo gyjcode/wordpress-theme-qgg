@@ -14,8 +14,10 @@
 .comments-wrapper .title{
     width: 100%;
     line-height: 2rem;
+    margin-bottom: 1rem;
 }
 .comments-wrapper .title h3{
+    margin: 0 auto;
     font-size: 1.2rem;
     font-weight: normal;
 }

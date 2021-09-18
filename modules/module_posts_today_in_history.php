@@ -14,12 +14,16 @@ function module_posts_today_in_history(){
     $post_year  = get_the_time('Y');
     $post_month = get_the_time('m');
     $post_day   = get_the_time('j');
-    $sql = "SELECT ID, YEAR(post_date_gmt) as post_year, post_title, comment_count FROM 
-            $wpdb->posts WHERE post_password = '' AND post_type = 'post' AND post_status = 'publish'
-            AND YEAR(post_date_gmt) != '$post_year' AND MONTH(post_date_gmt) = '$post_month' AND DAY(post_date_gmt) = '$post_day'
-            order by post_date_gmt DESC limit $limit";
+    
+    // 数据库查询
+    $sql = "SELECT ID, YEAR(post_date_gmt) as post_year, post_title, comment_count
+            FROM $wpdb->posts
+            WHERE post_password = '' AND post_type = 'post' AND post_status = 'publish' AND YEAR(post_date_gmt) != '$post_year' AND MONTH(post_date_gmt) = '$post_month' AND DAY(post_date_gmt) = '$post_day'
+            ORDER BY post_date_gmt
+            DESC LIMIT $limit";
             
     $query_result = $wpdb->get_results($sql);
+
     if( $query_result ){
         foreach( $query_result as $post ){
             $post_link     = get_permalink( $post->ID );

@@ -74,7 +74,7 @@
 
             <!-- 客服系统 -->
             <?php QGG_options('rollbar_kefu_on') ? _module_loader('module_rollbar_kefu') : '';?>
-            <!-- 常量 -->
+            <!-- 全局变量 -->
             <?php include get_template_directory() . '/assets/js/GSM.php';?>
             <!-- 功能增强 -->
             <?php include get_template_directory() . '/enhance/index.php';?>

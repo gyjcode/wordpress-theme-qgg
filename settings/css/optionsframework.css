@@ -144,7 +144,6 @@
 }
 #optionsframework-metabox .postbox .group .section .option .explain{
 	display: inline-block;
-	margin-left: 15px;
 	padding: 3px;
 	color: #999;
 	line-height: 1.25;
@@ -344,3 +343,15 @@
 		max-height: 80px;
 	}
 }
+
+/* #section-smtp_mailer_test_to a:last-child{
+	text-decoration: none;
+	margin-right: 5px;
+	padding: 5px 9px;
+	border-radius: 5px;
+	color: #fff;
+	background-color: #24a0f0;
+}
+#section-smtp_mailer_test_to a:last-child:hover{
+	opacity: 0.8;
+} */

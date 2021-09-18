@@ -1,74 +1,81 @@
 <?php
 /**
-  * @name           产品展示分类页面模板
-  * @description    用于网站展示相应产品，目前包含图片、标题、原价、特价、产品目录等信息
+  * 产品展示分类页面模板
   */
- $root = get_category($cat_root_id);
- $args = array(
-     'cat'                 => $cat_root_id,
-     'orderby'             => 'date',
-     'showposts'           => 60,
-     'order'               => 'desc',
-     'ignore_sticky_posts' => 1
- );
+
+//  获取配置
+$count_show   = QGG_Options('cat_product_count_show') ?: false;
+$qrcode_on    = QGG_Options('cat_product_qrcode_on') ?: false;
+$qrcode_title = QGG_Options('cat_product_qrcode_title') ?: '';
 ?>
 
-<section class="container cat-product">
-    <div class="cat-product-content">
-        <!-- 产品展示分类模板侧栏 -->
-        <div class="cat-product-side  site-style-border-radius">
-            <div class="cat-product-filters">
-                
-                <h3><i class="iconfont qgg-balance"></i><?php echo $root->cat_name ?></h3>
-                <ul>
+<section class="container">
+    <!-- 侧栏 -->
+    <div class="module sidebar cat-product-sidebar">
+        <div class="filters-wrapper site-style-border-radius">
+            <h3><i class="fa fa-list"></i><?php echo get_category($cat_rid)->cat_name ?></h3>
+            <ul>
                 <?php 
-                    $args_lists = 'child_of='. $cat_root_id .'&depth=0&hide_empty=0&title_li=&orderby=id&order=DESC&echo=0';
-                    if( QGG_Options('cat_product_show_count') ){
-                        $args_lists .= '&show_count=1';
-                    }
-                    $cat_lists = wp_list_categories( $args_lists );
-                    echo $cat_lists;
-                ?>
-                </ul>
-            </div>
-            <?php if( QGG_Options('cat_product_qrcode_on') ){ ?>
-            <div class="cat-product-qrcode">
-                <?php if( QGG_Options('cat_product_qrcode_title') ){ ?><h4><?php echo QGG_Options('cat_product_qrcode_title') ?></h4><?php } ?>
-                <div class="cat-qrcode" data-url="<?php echo get_category_link($cat_id) ?>"></div>
-            </div>
-            <?php } ?>
-        </div>
-        <!-- 产品展示分类模板主体 -->
-        <?php 
-        if ( have_posts() ){
-            
-            query_posts( $args );
-            
-            echo '<div class="cat-product-main">';
-                while ( have_posts() ) : the_post();
-                    echo '<article class="cat-product-item  site-style-border-radius">';
-                        echo '<a'. _post_target_blank() .' class="thumbnail" href="'.get_permalink().'">'._get_the_post_thumbnail().'</a>';
-                        echo '<a'. _post_target_blank() .' href="'.get_permalink().'"><h2>'.get_the_title().'</h2></a>';
-                        echo '<footer>';
-                            $line_through =_get_product_meta("bargain_price") ? "line-through" : "none";
-                            if( _get_product_meta("original_price") ){
-                                echo '<span class="original-price" style="text-decoration: '.$line_through.';">'._get_product_meta("original_price", _get_price_pre().' ').'</span>';
-                                if( _get_product_meta("bargain_price")){
-                                    echo '<span class="bargain-price">'._get_product_meta("bargain_price", _get_price_pre().' ').'</span>';
-                                }
-                            }else{
-                                echo '<span>该商品暂无定价！</span>';
-                            }
-                            
-                        echo '</footer>';
-                    echo '</article>';
-                endwhile; 
-                wp_reset_query();
-            echo '</div>';
+                $args_lists = 'child_of='. $cat_rid .'&depth=0&hide_empty=0&title_li=&orderby=id&order=DESC&echo=0';
+                if( $count_show ){
+                    $args_lists .= '&show_count=1';
+                }
+                $cat_lists = wp_list_categories( $args_lists );
 
-        }else{
+                echo $cat_lists;
+                ?>
+            </ul>
+        </div>
+        <?php if( $qrcode_on ){ ?>
+            <div class="qrcode-wrapper site-style-border-radius">
+                <?php echo  $qrcode_title ? '<h4>'.$qrcode_title.'</h4>' : ''; ?>
+                <div class="cat-product-qrcode" data-url="<?php echo get_category_link($cat_id) ?>"></div>
+            </div>
+        <?php } ?>
+    </div>
+    <!-- 主体 -->
+    <div class="content-wrapper">
+        <?php 
+        if ( !have_posts() ){
             get_template_part( '404' );
+            return;
         }
+        // 查询相关文章
+        $args = array(
+            'cat'                 => $cat_rid,
+            'orderby'             => 'date',
+            'showposts'           => 60,
+            'order'               => 'desc',
+            'ignore_sticky_posts' => 1
+        );
+        query_posts( $args );
+        echo '<div class="module content cat-product-content site-style-border-radius">';
+            while ( have_posts() ) : the_post();
+                echo '
+                <article class="product  site-style-border-radius">
+                    <div class="thumb-wrapper">
+                        <a class="thumb" href="'.get_permalink().'" '._post_target_blank().'>'._get_the_post_thumbnail().'</a>
+                        <a class="title" href="'.get_permalink().'" '. _post_target_blank() .'><h2>'.get_the_title().'</h2></a>
+                    </div>
+                    <div class="details-wrapper">';
+
+                        $line_through =_get_product_meta("bargain_price") ? "line-through" : "none";
+                        if( _get_product_meta("original_price") ){
+                            echo '<span class="original-price" style="text-decoration: '.$line_through.';">'._get_product_meta("original_price", _get_price_pre().' ').'</span>';
+                            if( _get_product_meta("bargain_price")){
+                                echo '<span class="bargain-price">'._get_product_meta("bargain_price", _get_price_pre().' ').'</span>';
+                            }
+                        }else{
+                            echo '<span>该商品暂无定价！</span>';
+                        }
+                        
+                    echo '
+                    </div>
+                </article>';
+            endwhile;
+        echo '</div>';
+        wp_reset_query();
+        _module_loader('module_pagination');
         ?>
     </div>
 </section>

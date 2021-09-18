@@ -165,7 +165,7 @@ switch ($user_input['action']) {
         break;
     
     // 获取资料
-    case 'info':
+    case 'userinfo':
         // 获取用户信息并打印
         $user_data = get_userdata( $user_id );
         $printr['user'] = array(

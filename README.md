@@ -1,2 +1,2 @@
-# wordpress-site-stytle-qgg
-蝈蝈要安静(https://blog.quietguoguo.com/)博客自用主题
+# wordpress-theme-qgg
+子不语(https://zibuyu.life/)博客自用主题

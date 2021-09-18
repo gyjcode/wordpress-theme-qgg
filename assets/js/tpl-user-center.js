@@ -1,4 +1,4 @@
-define(['router', 'jsrender'], function (){
+jsdefine('user-center', ['router', 'jsrender'], function (){
     // JSONP
     (function($) {
         $.ajaxTransport('jsonpi', function (opts, originalOptions, jqXHR){
@@ -84,60 +84,61 @@ define(['router', 'jsrender'], function (){
                 return rp_comment.test(location.hash) ? true : false
             }
             
+            // 路由
             var routes = {
                 // 全部
                 'posts/all': function(){
                     get_post_data('all', 1)
-                    $('.user-post-menu a:eq(0)').addClass('active')
+                    $('.user-postsmenu a:eq(0)').addClass('active')
                 },
                 'posts/all/:paged': function(paged){
                     get_post_data('all', paged)
-                    $('.user-post-menu a:eq(0)').addClass('active')
+                    $('.user-postsmenu a:eq(0)').addClass('active')
                 },
                 //已发布
                 'posts/publish': function(){
                     get_post_data('publish', 1)
-                    $('.user-post-menu a:eq(1)').addClass('active')
+                    $('.user-postsmenu a:eq(1)').addClass('active')
                 },
                 'posts/publish/:paged': function(paged){
                     get_post_data('publish', paged)
-                    $('.user-post-menu a:eq(1)').addClass('active')
+                    $('.user-postsmenu a:eq(1)').addClass('active')
                 },
                 // 定时
                 'posts/future': function(){
                     get_post_data('future', 1)
-                    $('.user-post-menu a:eq(2)').addClass('active')
+                    $('.user-postsmenu a:eq(2)').addClass('active')
                 },
                 'posts/future/:paged': function(paged){
                     get_post_data('future', paged)
-                    $('.user-post-menu a:eq(2)').addClass('active')
+                    $('.user-postsmenu a:eq(2)').addClass('active')
                 },
                 // 待审
                 'posts/pending': function(){
                     get_post_data('pending', 1)
-                    $('.user-post-menu a:eq(3)').addClass('active')
+                    $('.user-postsmenu a:eq(3)').addClass('active')
                 },
                 'posts/pending/:paged': function(paged){
                     get_post_data('pending', paged)
-                    $('.user-post-menu a:eq(3)').addClass('active')
+                    $('.user-postsmenu a:eq(3)').addClass('active')
                 },
                 // 草稿
                 'posts/draft': function(){
                     get_post_data('draft', 1)
-                    $('.user-post-menu a:eq(4)').addClass('active')
+                    $('.user-postsmenu a:eq(4)').addClass('active')
                 },
                 'posts/draft/:paged': function(paged){
                     get_post_data('draft', paged)
-                    $('.user-post-menu a:eq(4)').addClass('active')
+                    $('.user-postsmenu a:eq(4)').addClass('active')
                 },
                 // 回收站
                 'posts/trash': function(){
                     get_post_data('trash', 1)
-                    $('.user-post-menu a:eq(5)').addClass('active')
+                    $('.user-postsmenu a:eq(5)').addClass('active')
                 },
                 'posts/trash/:paged': function(paged){
                     get_post_data('trash', paged)
-                    $('.user-post-menu a:eq(5)').addClass('active')
+                    $('.user-postsmenu a:eq(5)').addClass('active')
                 },
                 // 评论
                 'comments': function(){
@@ -147,8 +148,8 @@ define(['router', 'jsrender'], function (){
                     get_comment_data(paged)
                 },
                 // 修改用户资料相关代码
-                'info': function(){
-                    menuActive('info')
+                'userinfo': function(){
+                    menuActive('userinfo')
                     loading( _main )
                     
                     if( !cache_userdata ){
@@ -157,13 +158,14 @@ define(['router', 'jsrender'], function (){
                             type: 'POST',
                             dataType: 'json',
                             data: {
-                                action: 'info'
+                                action: 'userinfo'
                             },
                             success: function(data, textStatus, xhr) {
+                                console.log(data)
                                 if( data.user ){
                                     cache_userdata = data.user
                                     _main.html(
-                                        $('#temp-info').render( data.user )
+                                        $('#tpl-userinfo').render( data.user )
                                     )
                                 }else{
                                     loading(_main, _msg['1101'])
@@ -175,7 +177,7 @@ define(['router', 'jsrender'], function (){
                         });
                     }else{
                         _main.html(
-                            $('#temp-info').render( cache_userdata )
+                            $('#tpl-userinfo').render( cache_userdata )
                         )
                     }
                 },
@@ -183,7 +185,7 @@ define(['router', 'jsrender'], function (){
                 'password': function(){
                     menuActive('password')
                     _main.html(
-                        $('#temp-password').render()
+                        $('#tpl-password').render()
                     )
                 },
                 
@@ -191,7 +193,7 @@ define(['router', 'jsrender'], function (){
                 'publish': function(){
                     menuActive('publish')
                     _main.html(
-                        $('#temp-publish').render()
+                        $('#tpl-publish').render()
                     )
                     $('.user-main').hide()
                     $('.user-main-publish').show()
@@ -201,7 +203,7 @@ define(['router', 'jsrender'], function (){
                 'property': function(){
                     menuActive('property')
                     _main.html(
-                        $('#temp-property').render()
+                        $('#tpl-property').render()
                     )
                     $('.user-main').hide()
                     $('.user-main-property').show()                
@@ -210,21 +212,21 @@ define(['router', 'jsrender'], function (){
                 'application': function(){
                     menuActive('application')
                     _main.html(
-                        $('#temp-application').render()
+                        $('#tpl-application').render()
                     )
                 },
                 // 我的推广
                 'tuiguang': function(){
                     menuActive('tuiguang')
                     _main.html(
-                        $('#temp-tuiguang').render()
+                        $('#tpl-tuiguang').render()
                     )
                 },
                 // 会员服务
                 'vipservice': function(){
                     menuActive('vipservice')
                     _main.html(
-                        $('#temp-vipservice').render()
+                        $('#tpl-vipservice').render()
                     )
                 },
                 /** 集成 Erphpdown 结束 */
@@ -234,7 +236,7 @@ define(['router', 'jsrender'], function (){
             router.configure({
                 on: function(){
                     if( location.hash.indexOf('posts/')<=0 ){
-                        $('.user-post-menu').remove()
+                        $('.user-postsmenu').remove()
                     }
                 },
                 before: function(){
@@ -256,7 +258,7 @@ define(['router', 'jsrender'], function (){
             function get_post_data(status, paged, callback){
                 
                 menuActive('posts')
-                $('.user-post-menu a').removeClass()
+                $('.user-postsmenu a').removeClass()
                 loading( _main )
                 
                 var datas = {
@@ -278,17 +280,17 @@ define(['router', 'jsrender'], function (){
                             cache_postmenu = data.menus
                         }
                         
-                        if( (cache_postmenu || (!cache_postmenu && data.menus)) && !$('.user-post-menu').length ){
-                            _main.before( '<div class="user-post-menu"></div>' )
-                            $('.user-post-menu').html(
-                                $('#temp-post-menu').render( cache_postmenu || data.menus )
+                        if( (cache_postmenu || (!cache_postmenu && data.menus)) && !$('.user-postsmenu').length ){
+                            _main.before( '<div class="user-postsmenu"></div>' )
+                            $('.user-postsmenu').html(
+                                $('#tpl-postsmenu').render( cache_postmenu || data.menus )
                             )
                         }
                         
                         if( data.items ){
-                            _main.html('<ul class="user-post-list"></ul>')
-                            $('.user-post-list').html(
-                                $('#temp-post-item').render( data.items )
+                            _main.html('<ul class="user-posts"></ul>')
+                            $('.user-posts').html(
+                                $('#tpl-posts').render( data.items )
                             ).after( paging(data.max, paged, '#posts/'+status+'/') )
                             
                             thumb_lazyload()
@@ -318,9 +320,9 @@ define(['router', 'jsrender'], function (){
                     },
                     success: function(data, textStatus, xhr) {
                         if( data.items ){
-                            _main.html( '<ul class="user-comment-list"></ul>' )
-                            $('.user-comment-list').html(
-                                $('#temp-comment-item').render( data.items )
+                            _main.html( '<ul class="user-comments"></ul>' )
+                            $('.user-comments').html(
+                                $('#tpl-comments').render( data.items )
                             ).after( paging(data.max, paged, '#comments/') )
                         }else{
                             loading(_main, _msg['1301'])
@@ -340,7 +342,7 @@ define(['router', 'jsrender'], function (){
             // 加载中函数
             function loading(el, msg){
                 if( !msg ){
-                    msg = '<i class="iconfont qgg-loading" style="position:relative;top:1px;margin-right:5px;"></i> 数据加载中'
+                    msg = '<i class="fa fa-spinner" style="position:relative;top:1px;margin-right:5px;"></i> 数据加载中'
                 }
                 el.html('<div class="user-loading">'+msg+'</div>')
             }
@@ -491,7 +493,7 @@ define(['router', 'jsrender'], function (){
                         break;
                         
                     // 信息修改
-                    case 'info.submit':
+                    case 'userinfo.submit':
                         
                         var form = _ta.parent().parent().parent();
                         var inputs = form.serializeObject();

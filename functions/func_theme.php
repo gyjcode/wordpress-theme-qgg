@@ -46,51 +46,45 @@ function _js_loader($arr) {
 /**==================== 按需加载 JS 与 CSS 文件 ====================*/
 add_action('wp_enqueue_scripts', '_enqueue_scripts_loader', '',THEME_VER);
 function _enqueue_scripts_loader() {
-    if (!is_admin()) {
-        // delete jquery.js
-        wp_deregister_script('jquery');
-        // delete l10n.js
-        wp_deregister_script('l10n');
-
-        // 公共 CSS 文件
+    // 公共 CSS 文件
+    _css_loader(array(
+        'bootstrap' => 'libs/bootstrap.min', 
+        'animate'   => 'libs/animate.min',
+        'swiper'    => 'libs/swiper.min',
+        'iconfont'  => 'libs/fontawsome.min',
+        'main'      => 'main',
+        'widget'    => 'widget',
+        'comment'   => 'comment',
+    ));
+    // 公共 JS 文件
+    _js_loader(array(
+        'jquery'  => 'libs/jquery.min',
+        'require' => 'require',
+    ));
+    
+    $hl_style = 'monokai-sublime';
+    // 文章页面
+    if (is_single()) {
         _css_loader(array(
-            'bootstrap' => 'libs/bootstrap.min', 
-            'animate'   => 'libs/animate.min',
-            'swiper'    => 'libs/swiper.min',
-            'iconfont'  => 'libs/fontawsome.min',
-            'main'      => 'main',
-            'widget'    => 'widget',
-            'comment'   => 'comment',
+            'single'    => 'single',
+            'highlight' => 'highlight/'.$hl_style,
+            'video-js'  => 'libs/video-js.min',
         ));
-        // 公共 JS 文件
-        _js_loader(array(
-            'main'    => 'main',
+    }
+    // 普通页面
+    if (is_page()) {
+        _css_loader(array(
+            'page'     => 'page',
+            'video-js' => 'libs/video-js.min',
         ));
-        
-        $hl_style = 'monokai-sublime';
-        // 文章页面
-        if (is_single()) {
-            _css_loader(array(
-                'single'    => 'single',
-                'highlight' => 'highlight/'.$hl_style,
-                'video-js'  => 'libs/video-js.min',
-            ));
-        }
-        // 普通页面
-        if (is_page()) {
-            _css_loader(array(
-                'page'     => 'page',
-                'video-js' => 'libs/video-js.min',
-            ));
-        }
-        // 用户中心
-        if (is_page_template('pages/page_user_center.php')) {
-            _css_loader(array('user-center' => 'user-center'));
-        }
-        // 分类页面
-        if (is_category()) {
-            _css_loader(array('category' => 'category'));
-        }
+    }
+    // 用户中心
+    if (is_page_template('pages/page_user_center.php')) {
+        _css_loader(array('user-center' => 'user-center'));
+    }
+    // 分类页面
+    if (is_category()) {
+        _css_loader(array('category' => 'category'));
     }
 }
 
@@ -264,6 +258,9 @@ function _head_class() {
         }
         .site-style-childA-hover-color a:hover{
             color: #'.$color.' !important;
+        }
+        .site-style-childA-hover-background-color a:hover{
+            background-color: #'.$color.' !important;
         }';
     }
 
@@ -314,7 +311,7 @@ function _body_class() {
         $class .= ' post-indent';
     }
     
-    if ((is_single() || is_page()) && comments_open()) {
+    if ((is_single() || is_page()) && comments_open() && !QGG_Options('comment_off')) {
         $class .= ' comment-on';
     }
     if (is_super_admin()) {

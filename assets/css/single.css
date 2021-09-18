@@ -214,7 +214,6 @@
 .posts-related.has-img ul{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 .posts-related.has-img li{
     display: inline-block;

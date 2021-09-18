@@ -3,7 +3,7 @@
  * wordpress\wp-includes\js\comment-reply.js
  */
 
-define(function (){
+jsdefine('comment', function (){
 
 return {
     init: function (){
@@ -99,8 +99,12 @@ return {
                             newComtHtml = '<ul class="children" id="'+newComtId+'"></ul>';
                         }
                         // 将生成的评论盒子插入到指定位置
-                        if (domInputComtParent.val() == '0' && domComtList.children('.comments-list-ol').length) {
-                            domComtList.children('.comments-list-ol').before(newComtHtml);
+                        if (domInputComtParent.val() == '0') {
+                            if ( domComtList.children('ol').length){
+                                domComtList.children('ol').before(newComtHtml);
+                            } else {
+                                domComtList.html(newComtHtml);
+                            }
                         } else {   // 子评论插入到输入框后
                             domRespondFormDiv.parent().after(newComtHtml);
                         }

@@ -1336,7 +1336,7 @@ function optionsframework_options() {
     $options[] = array(
         'name'     => __('友情链接页面', 'QGG'),
         'desc'     => __('多选友链——选择一个或多个链接分类作为你网站的友情链接，此处无分类时表示没有将链接放在链接分类下', 'QGG'),
-        'id'       => 'page_friendly_links',
+        'id'       => 'page_friendly_link_cats',
         'type'     => 'multicheck',
         'std'      => '',
         'options'  => $options_linkcats
@@ -1345,15 +1345,15 @@ function optionsframework_options() {
     $options[] = array(
         'name'     => __('读者墙页面', 'QGG'),
         'desc'     => __('限制时间——限制在多少月内评论的才显示出来，单位：月', 'QGG'),
-        'id'       => 'readwall_limit_time',
+        'id'       => 'readers_wall_limit_time',
         'type'     => 'text',
-        'std'      => 200,
+        'std'      => 36,
         'class'    => 'mini'
     );
 
     $options[] = array(
         'desc'     => __('限制个数——限制读者墙页面最多显示的用户数量', 'QGG'),
-        'id'       => 'readwall_limit_number',
+        'id'       => 'readers_wall_limit_num',
         'type'     => 'text',
         'std'      => 200,
         'class'    => 'mini'
@@ -1444,63 +1444,69 @@ function optionsframework_options() {
     );
     
     $options[] = array(
-        'name'     => __( '邮件配置', 'QGG' ),
-        'desc'     => __( '开启，邮件配置——启用SMTP邮件服务器发送邮件', 'QGG' ),
-        'id'       => 'smtp_mail_on',
+        'name'     => __( 'SMTP 发信', 'QGG' ),
+        'desc'     => __( '开启，SMTP 邮件服务器发信', 'QGG' ),
+        'id'       => 'smtp_mailer_on',
         'type'     => 'checkbox',
         'std'      => true
     );
     
     $options[] = array(
-        'desc'     => __('SMTP服务器地址——配置 SMTP 的邮件发送服务器地址：smtp.qq.com', 'QGG'),
-        'id'       => 'smtp_mail_host',
+        'desc'     => __('服务器地址：smtp.qq.com', 'QGG'),
+        'id'       => 'smtp_mailer_host',
         'type'     => 'text',
         'std'      => '',
     );
     
     $options[] = array(
-        'desc'     => __('SMTP发送协议——建议选择SSL模式更安全', 'QGG'),
-        'id'       => 'smtp_mail_secure',
+        'desc'     => __('发信协议：建议选择SSL模式更安全', 'QGG'),
+        'id'       => 'smtp_mailer_secure',
         'type'     => 'select',
         'std'      => '',
         'options'  => array(
             'ssl'   => __('SSL', 'QGG'),
             'tsl'   => __('TSL', 'QGG'),
-            ''   => __('无加密', 'QGG')
+            ''      => __('无加密', 'QGG')
         )
     );
     
     $options[] = array(
-        'desc'     => __('SMTP端口号——配置 SMTP 的邮件发送服务器的端口号，SSL：465或587，TSL：25', 'QGG'),
-        'id'       => 'smtp_mail_port',
+        'desc'     => __('发信端口，SSL：465或587，TSL：25', 'QGG'),
+        'id'       => 'smtp_mailer_port',
         'type'     => 'text',
         'std'      => 465,
     );
     
     $options[] = array(
-        'desc'     => __('SMTP邮箱地址——配置 SMTP 的邮件发送地址：2220375475@qq.com', 'QGG'),
-        'id'       => 'smtp_mail_user',
+        'desc'     => __('邮箱账号：xxx@xxx.xxx', 'QGG'),
+        'id'       => 'smtp_mailer_user',
         'type'     => 'text',
         'std'      => '',
     );
     
     $options[] = array(
-        'desc'     => __('SMTP邮箱密码——注意不是邮箱的登录密码', 'QGG'),
-        'id'       => 'smtp_mail_pass',
+        'desc'     => __('邮箱密码，注意是授权码', 'QGG'),
+        'id'       => 'smtp_mailer_pass',
         'type'     => 'text',
         'std'      => '',
     );
     
     $options[] = array(
-        'desc'     => __('SMTP发件名称——选填，发送邮件上显示的名称，默认为 WordPress', 'QGG'),
-        'id'       => 'smtp_mail_from_name',
+        'desc'     => __('发送邮件名称，用户收到邮件时显示的谁发来的邮件。默认为 WordPress', 'QGG'),
+        'id'       => 'smtp_mailer_from_name',
         'type'     => 'text',
-        'std'      => '子不语',
+        'std'      => '',
     );
     
     $options[] = array(
-        'desc'     => __('SMTP收件地址——选填，用户回复内容时接收邮件的地址，默认为发件地址', 'QGG'),
-        'id'       => 'smtp_mail_reply_to',
+        'desc'     => __('回复邮件地址，用户回复邮件时回复给谁，默认为发件地址', 'QGG'),
+        'id'       => 'smtp_mailer_reply_to',
+        'type'     => 'text',
+        'std'      => '',
+    );
+    $options[] = array(
+        'desc'     => __('发信测试#收信人地址，xxx@xxx.xxx', 'QGG'),
+        'id'       => 'smtp_mailer_test_to',
         'type'     => 'text',
         'std'      => '',
     );

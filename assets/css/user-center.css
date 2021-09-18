@@ -1,31 +1,38 @@
 .user-center-on .user-signin{display: none;}
 .user-center-on .logged-in .user-signin{display: block;}
 
-#user-center{
-    zoom: 1;
-    display: block;
-    position: relative;
+.page .user-center{
     width: 100%;
     height: auto;
     margin : 20px 0 0;
     border: 0;
-    padding: 0 0 0 145px;
+    padding: 0 0 0 150px;
 }
-#user-center:after{
+.page .user-center:after{
     display: block;
     content: "";
     clear: both;
     border: red;
 }
-#user-center a{
+.user-center-off{
+    height: 360px;
+    line-height: 300px;
+    padding: 30px;
+    border-radius: 5px;
+    font-size: 2rem;
+    text-align: center;
+    color: #777;
+    background-color: #fff;
+}
+.page .user-center a{
     color: #333;
     text-decoration: none;
 }
-#user-center a:hover{
+.page .user-center a:hover{
     color: #24a0f0;
 }
 /** 弹出信息效果样式 */
-#user-center .user-loading{
+.page .user-center .user-loading{
     display: block;
     margin: 0;
     border: 0;
@@ -34,10 +41,10 @@
     font-size: 16px;
     color: #999;
 }
-#user-center .user-loading i{
+.page .user-center .user-loading i{
     font-size: 20px;
 }
-#user-center .user-tips{
+.page .user-center .user-tips{
     z-index: 999999;
     position: fixed;
     top: -32px;
@@ -54,7 +61,7 @@
 }
 
 /** 用户中心内容区 */
-#user-center .content{
+.page .user-center .content{
     display: block;
     margin: 0;
     border: 0;
@@ -62,7 +69,7 @@
     background: #fff;
     overflow: hidden;
 }
-#user-center .content #content-frame{
+.page .user-center .content #content-frame{
     display: block;
     width: 100%;
     height: 100%;
@@ -71,7 +78,7 @@
     padding: 0;
 }
 /** 用户中心侧边栏 */
-#user-center .sidebar{
+.page .user-center .sidebar{
     z-index: 0;
     float: left;
     display: block;
@@ -81,20 +88,20 @@
     padding: 15px;
     background: #fff;
 }
-#user-center .sidebar .user-title{
+.page .user-center .sidebar .user-title{
     margin: 0 0 15px;
     padding: 0;
     border-bottom: 1px solid #eaeaea;
     overflow: hidden;
     text-align: center;
 }
-#user-center .sidebar .user-title img{
+.page .user-center .sidebar .user-title img{
     border-radius: 50%;
     border: 1px solid #e6e6e6;
     width: 70px;
     height: 70px;
 }
-#user-center .sidebar .user-title h2{
+.page .user-center .sidebar .user-title h2{
     width: 100%;
     height: 20px;
     margin: 10px 0;
@@ -111,7 +118,7 @@
     word-break: break-all;
     white-space: nowrap;
 }
-#user-center .sidebar .user-menus{
+.page .user-center .sidebar .user-menus{
     display: block;
     width: auto;
     height: auto;
@@ -120,7 +127,7 @@
     padding: 0; 
     overflow: hidden;
 }
-#user-center .sidebar .user-menu{
+.page .user-center .sidebar .user-menu{
     display: block;
     position: relative;
     margin: 0;
@@ -129,7 +136,7 @@
     list-style: none;
     overflow: hidden;
 }
-#user-center .sidebar .user-menu li{
+.page .user-center .sidebar .user-menu li{
     display: block;
     height: 30px;
     margin: 5px 0;
@@ -139,34 +146,34 @@
     list-style-type: none;
     overflow: hidden;
 }
-#user-center .sidebar .user-menu li.active{
+.page .user-center .sidebar .user-menu li.active{
     color: #24a0f0;
-    background: #e3eef6;
+    background: #f5f5f5;
 }
-#user-center .sidebar .user-menu li.active a{
+.page .user-center .sidebar .user-menu li.active a{
     color: #24a0f0;
 }
-#user-center .sidebar .user-menu li a{
+.page .user-center .sidebar .user-menu li a{
     display: block;
     padding: 0;
     font-size: 15px;
     color: #999;
 }
-#user-center .sidebar .user-menu li a i{
+.page .user-center .sidebar .user-menu li a i{
     display: inline-block;
     width: 16px;
     margin: 0 5px 0 0;
     font-size: 15px;
     text-align: center;
 }
-#user-center .sidebar .user-menu li a span{
+.page .user-center .sidebar .user-menu li a span{
     display: inline-block;
     margin: 0;
     border: 0;
     padding: 0;
     font-size: 15px;
 }
-#user-center .sidebar .user-menu li a b{
+.page .user-center .sidebar .user-menu li a b{
     display: inline-block;
     margin: 0;
     border: 0;
@@ -174,22 +181,22 @@
     font-size: 15px;
 }
 @media (max-width: 1366px) {
-    #user-center{
+    .page .user-center{
         margin: 20px 0 0;
     }
 } 
 @media (max-width: 1024px) {
-    #user-center{
+    .page .user-center{
         margin: 15px 0 0;
         padding: 0 10px;
     }
-    #user-center .content{
+    .page .user-center .content{
         display: block;
         margin: 15px 0;
         border: 0;
         padding: 10px;
     }
-    #user-center .sidebar {
+    .page .user-center .sidebar {
         float: none;
         width: 100%;
         height: 40px;
@@ -198,16 +205,16 @@
         padding: 0;
         background: #fafafa;
     }
-    #user-center .sidebar .user-title{
+    .page .user-center .sidebar .user-title{
         display: none;
     }
-    #user-center .sidebar .user-menus{
+    .page .user-center .sidebar .user-menus{
         width: 100%;
         height: 40px;
         margin: 0;
         padding: 0;
     }
-    #user-center .sidebar .user-menu{
+    .page .user-center .sidebar .user-menu{
         display: inline-flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -217,7 +224,7 @@
         width: 100%;
         height: 100%;
     }
-    #user-center .sidebar .user-menu li{
+    .page .user-center .sidebar .user-menu li{
         display: inline-block;
         width: 100%;
         height: 40px;
@@ -229,94 +236,94 @@
         list-style-type: none;
         overflow: hidden;
     }
-    #user-center .sidebar .user-menu li a{
+    .page .user-center .sidebar .user-menu li a{
         font-size: 14px;
     }
-    #user-center .sidebar .user-menu li a i{
+    .page .user-center .sidebar .user-menu li a i{
         width: 14px;
         margin: 0 3px 0 0;
         font-size: 14px;
     }
-    #user-center .sidebar .user-menu li a span{
+    .page .user-center .sidebar .user-menu li a span{
         display: none;
         font-size: 14px;
     }
-    #user-center .sidebar .user-menu li a b{
+    .page .user-center .sidebar .user-menu li a b{
         display: inline-block;
         font-size: 14px;
     }
 } 
 @media (max-width: 768px) {
-    #user-center{
+    .page .user-center{
         margin: 10px 0 0;
         padding: 0;
     }
-    #user-center .content{
+    .page .user-center .content{
         margin: 10px 0;
         padding: 0;
     }
-    #user-center .content #content-frame{
+    .page .user-center .content #content-frame{
         padding: 10px 15px;
     }
-    #user-center .sidebar {
+    .page .user-center .sidebar {
         height: 36px;
     }
-    #user-center .sidebar .user-menus{
+    .page .user-center .sidebar .user-menus{
         height: 36px;
     }
-    #user-center .sidebar .user-menu li{
+    .page .user-center .sidebar .user-menu li{
         height: 36px;
         line-height: 36px;
     }
-    #user-center .sidebar .user-menu li a{
+    .page .user-center .sidebar .user-menu li a{
         font-size: 14px;
     }
-    #user-center .sidebar .user-menu li a i{
+    .page .user-center .sidebar .user-menu li a i{
         display: none;
         width: 14px;
         margin: 0 3px 0 0;
         font-size: 14px;
     }
-    #user-center .sidebar .user-menu li a span{
+    .page .user-center .sidebar .user-menu li a span{
         display: none;
         font-size: 14px;
     }
-    #user-center .sidebar .user-menu li a b{
+    .page .user-center .sidebar .user-menu li a b{
         display: block;
         font-size: 14px;
     }
 }
 @media (max-width: 480px) {
-    #user-center{
+    .page .user-center{
         margin: 5px 0 0;
     }
-    #user-center .content{
+    .page .user-center .content{
         margin: 5px 0;
     }
-    #user-center .sidebar {
+    .page .user-center .sidebar {
         height: 36px;
     }
-    #user-center .sidebar .user-menus{
+    .page .user-center .sidebar .user-menus{
         height: 36px;
     }
-    #user-center .sidebar .user-menu li{
+    .page .user-center .sidebar .user-menu li{
         height: 36px;
         line-height: 36px;
     }
-    #user-center .sidebar .user-menu li a{
+    .page .user-center .sidebar .user-menu li a{
         font-size: 14px;
     }
-    #user-center .sidebar .user-menu li a i{
+    .page .user-center .sidebar .user-menu li a i{
         display: block;
         width: 100%;
         margin: 0;
         font-size: 16px;
     }
-    #user-center .sidebar .user-menu li a span{
+    .page .user-center .sidebar .user-menu li a span{
         display: none;
         font-size: 14px;
     }
-    #user-center .sidebar .user-menu li a b{
+    .page .user-center .sidebar .user-menu li a b{
         display: none;
         font-size: 14px;
     }
@@ -325,7 +332,7 @@
 
 
 /** 我要投稿 */
-#user-center .user-main-publish{
+.page .user-center .user-main-publish{
     display: block;
     width: 100%;
     height: auto;
@@ -333,12 +340,12 @@
     border: 0;
     padding: 0;
 }
-#user-center .user-main-publish .user-publish-form{
+.page .user-center .user-main-publish .user-publish-form{
     margin: 0;
     border: 0;
     padding: 0;
 }
-#user-center .user-main-publish .user-publish-meta{
+.page .user-center .user-main-publish .user-publish-meta{
     margin: 0;
     border: 0;
     padding: 0;
@@ -346,13 +353,13 @@
     line-height: 28px;
     color: #999;
 }
-#user-center .user-main-publish .user-publish-meta li{
+.page .user-center .user-main-publish .user-publish-meta li{
     margin: 10px 0;
     padding: 0 0 0 100px;
     border: 0;
     list-style-type: none;
 }
-#user-center .user-main-publish .user-publish-meta li label{
+.page .user-center .user-main-publish .user-publish-meta li label{
     float: left;
     margin-left: -100px;
     width: 80px;
@@ -360,28 +367,28 @@
     line-height: 28px;
     color: #666;
 }
-#user-center .user-main-publish .user-publish-meta li .form-control{
+.page .user-center .user-main-publish .user-publish-meta li .form-control{
     height: 28px;
     width: 100%;
     border-radius: 5px;
 }
-#user-center .user-main-publish .user-publish-meta li .wp-editor-wrap{
+.page .user-center .user-main-publish .user-publish-meta li .wp-editor-wrap{
     display: inline-block;
     width: 100%;
 }
-#user-center .user-main-publish .user-publish-meta li .mce-top-part{
+.page .user-center .user-main-publish .user-publish-meta li .mce-top-part{
     height: auto;
     overflow: hidden;
 }
 
 
-#user-center .content .user-main{
+.page .user-center .content .user-main{
     position: relative;
     min-height: 100px;
 }
 
 /** 我的文章—菜单样式 */
-#user-center .user-post-menu{
+.page .user-center .user-postsmenu{
     height: 36px;
     margin: -15px -15px 0;
     border-bottom: 1px solid #f2f2f2;
@@ -389,7 +396,7 @@
     background: #fafafa;
     overflow: hidden;
 }
-#user-center .user-post-menu a{
+.page .user-center .user-postsmenu a{
     display: block;
     float: left;
     height: 100%;
@@ -398,27 +405,27 @@
     border-right: 1px solid #e6e6e6;
     color: #999;
 }
-#user-center .user-post-menu a small{
+.page .user-center .user-postsmenu a small{
     font-size: 12px;
     margin-left: 3px;
     color: #bbb;
 }
-#user-center .user-post-menu a:hover{
+.page .user-center .user-postsmenu a:hover{
     opacity: 0.8;
 }
-#user-center .user-post-menu a:hover small{
+.page .user-center .user-postsmenu a:hover small{
     opacity: 0.8;
 }
-#user-center .user-post-menu .active{
+.page .user-center .user-postsmenu .active{
     color: #fff;
     background: #6ac5f3;
 }
-#user-center .user-post-menu .active small{
+.page .user-center .user-postsmenu .active small{
     color: #fff;
 }
 
 /** 我的文章-列表样式 */
-#user-center .user-post-list{
+.page .user-center .user-posts{
     display: block;
     width: 100%;
     height: auto;
@@ -427,7 +434,7 @@
     padding: 0;
     list-style-type: none;
 }
-#user-center .user-post-list li{
+.page .user-center .user-posts li{
     display: block;
     margin: 0;
     border: 0;
@@ -436,7 +443,7 @@
     list-style-type: none;
     overflow: hidden
 }
-#user-center .user-post-list li .thumb{
+.page .user-center .user-posts li .thumb{
     float: left;
     width: 150px;
     height: 100px;
@@ -445,7 +452,7 @@
     padding: 0;
     border-radius: 5px;
 }
-#user-center .user-post-list li div{
+.page .user-center .user-posts li div{
     display: block;
     position: relative;
     width: auto;
@@ -455,7 +462,7 @@
     padding: 0 5px;
     overflow: hidden;
 }
-#user-center .user-post-list li div h2{
+.page .user-center .user-posts li div h2{
     display: inline-block;
     height: 20px;
     width: 100%;
@@ -470,10 +477,10 @@
     background: none;
     overflow: hidden;
 }
-#user-center .user-post-list li div h2 a{
+.page .user-center .user-posts li div h2 a{
     color: #555;
 }
-#user-center .user-post-list li div .desc{
+.page .user-center .user-posts li div .desc{
     height: 54px;
     overflow: hidden;
     margin: 6px 0 0;
@@ -487,7 +494,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
 }
-#user-center .user-post-list li div .muted{
+.page .user-center .user-posts li div .muted{
     display: block;
     width: 100%;
     height: 20px;
@@ -500,7 +507,7 @@
 }
 
 /** 我的文章-页码导航 */
-#user-center .user-pagination{
+.page .user-center .user-pagination{
     display: block;
     width: 100%;
     height: auto;
@@ -508,7 +515,7 @@
     border: 0;
     padding: 0;
 }
-#user-center .user-pagination ul{
+.page .user-center .user-pagination ul{
     zoom: 1;
     display: block;
     margin: auto;
@@ -516,7 +523,7 @@
     padding: 0;
     text-align: center;
 }
-#user-center .user-pagination ul > li{
+.page .user-center .user-pagination ul > li{
     display: inline-block;
     height: 24px;
     width: auto;
@@ -528,7 +535,7 @@
     background: #eee;
     overflow: hidden;
 }
-#user-center .user-pagination ul > li > a{
+.page .user-center .user-pagination ul > li > a{
     display: inline;
     width: 100%;
     height: 100%;
@@ -537,7 +544,7 @@
     padding: 5px 10px;
     color: #999;
 }
-#user-center .user-pagination ul > li > span{
+.page .user-center .user-pagination ul > li > span{
     display: inline;
     width: 100%;
     height: 100%;
@@ -546,13 +553,13 @@
     padding: 5px 10px;
     color: #999;
 }
-#user-center .user-pagination ul .active span{
+.page .user-center .user-pagination ul .active span{
     color: #fff;
     background: #68ccff;
 }
 
 /** 我的评论 */
-#user-center .user-comment-list{
+.page .user-center .user-comments{
     display: block;
     width: 100%;
     height: auto;
@@ -562,7 +569,7 @@
     font-size: 14px;
     list-style: none;
 }
-#user-center .user-comment-list time{
+.page .user-center .user-comments time{
     float: left;
     margin: 0 0 0 -140px;
     border: 0;
@@ -571,7 +578,7 @@
     font-size: 12px;
     color: #999;
 }
-#user-center .user-comment-list li{
+.page .user-center .user-comments li{
     display: block;
     margin: 0;
     border: 0;
@@ -580,7 +587,7 @@
     list-style-type: none;
     overflow: hidden;
 }
-#user-center .user-comment-list .desc{
+.page .user-center .user-comments .desc{
     display: block;
     margin: 0 0 5px;
     border: 0;
@@ -589,7 +596,7 @@
     line-height: 18px;
     color: #666;
 }
-#user-center .user-comment-list p{
+.page .user-center .user-comments p{
     display: block;
     margin: 0;
     border: 0;
@@ -599,13 +606,13 @@
     color: #999;
     text-align: justify;
 }
-#user-center .user-comment-list p a{
+.page .user-center .user-comments p a{
     font-size: 12px;
     color: #888;
 }
 
 /** 修改资料 */
-#user-center .user-meta{
+.page .user-center .user-meta{
     display: block;
     position: relative;
     width: auto;
@@ -614,7 +621,7 @@
     padding: 0;
     border: 0;
 }
-#user-center .user-meta li{
+.page .user-center .user-meta li{
     display: block;
     position: relative;
     width: auto;
@@ -625,7 +632,7 @@
     list-style-type: none;
     overflow: hidden;
 }
-#user-center .user-meta li label{
+.page .user-center .user-meta li label{
     float: left;
     display: inline-block;
     width: 80px;
@@ -636,7 +643,7 @@
     line-height: 28px;
     color: #555;
 }
-#user-center .user-meta li input{
+.page .user-center .user-meta li input{
     display: inline-block;
     float: left;
     width: 100%;
@@ -648,7 +655,7 @@
     border-radius: 3px;
     background: #fff;
 }
-#user-center .user-meta li input[type=button]{
+.page .user-center .user-meta li input[type=button]{
     height: auto;
     width: auto;
     border-radius: 5px;
@@ -659,11 +666,11 @@
     -webkit-box-shadow: 0 3px 5px rgba(32,160,240,0.5);
     box-shadow: 0 3px 5px rgba(32,160,240,0.5);
 }
-#user-center .user-meta li .btn{
+.page .user-center .user-meta li .btn{
     margin: 30px 0 10px;
     min-width: 100px;
 }
-#user-center .user-meta  li.user-avatar{
+.page .user-center .user-meta  li.user-avatar{
     float: right;
     position: relative;
     width: 160px;
@@ -673,7 +680,7 @@
     border: 0;
     text-align: center;
 }
-#user-center .user-meta  li.user-avatar .user-avatar-img{
+.page .user-center .user-meta  li.user-avatar .user-avatar-img{
     display: block;
     top: 0;
     left: 0;
@@ -687,35 +694,35 @@
     border-radius: 3px;
     overflow: hidden;
 }
-#user-center .user-meta  li.user-avatar .user-avatar-img img{
+.page .user-center .user-meta  li.user-avatar .user-avatar-img img{
     width: 100%;
     height: 100%;
 }
-#user-center .user-meta  li.user-avatar .local-avatar-upload{
+.page .user-center .user-meta  li.user-avatar .local-avatar-upload{
     display: none;
 }
 @media (max-width: 1366px) {
     
 }
 @media (max-width: 1024px) {
-    #user-center .user-post-menu {
+    .page .user-center .user-postsmenu {
         margin: -10px -10px 0;
     }
 }
 @media (max-width: 768px) {
     /** 我要投稿 */
-    #user-center .user-main-publish{
+    .page .user-center .user-main-publish{
         margin: 15px 0;
     }
-    #user-center .user-main-publish .user-publish-meta{
+    .page .user-center .user-main-publish .user-publish-meta{
         line-height: 28px;
     }
-    #user-center .user-main-publish .user-publish-meta li{
+    .page .user-center .user-main-publish .user-publish-meta li{
         margin: 0;
         border: 0;
         padding: 0;
     }
-    #user-center .user-main-publish .user-publish-meta li label{
+    .page .user-center .user-main-publish .user-publish-meta li label{
         float: none;
         display: block;
         margin: 5px 0;
@@ -724,66 +731,66 @@
         text-align: center;
         line-height: 20px;
     }
-    #user-center .user-main-publish .user-publish-meta li input{
+    .page .user-center .user-main-publish .user-publish-meta li input{
         display: block;
         margin: 0 auto;
     }
-    #user-center .user-main-publish .user-publish-meta li .form-control{
+    .page .user-center .user-main-publish .user-publish-meta li .form-control{
         height: 28px;
         width: 100%;
         border-radius: 3px;
     }
-    #user-center .user-main-publish .user-publish-meta li .wp-editor-wrap{
+    .page .user-center .user-main-publish .user-publish-meta li .wp-editor-wrap{
         display: inline-block;
         width: 100%;
     }
-    #user-center .user-main-publish .user-publish-meta li .mce-top-part{
+    .page .user-center .user-main-publish .user-publish-meta li .mce-top-part{
         height: auto;
         overflow: hidden;
     }
-    #user-center .user-main-publish .user-publish-meta li .mce-top-part .mce-container-body .mce-stack-layout{
+    .page .user-center .user-main-publish .user-publish-meta li .mce-top-part .mce-container-body .mce-stack-layout{
         padding: 0;
     }
-    #user-center .user-main-publish .user-publish-meta li .mce-top-part .mce-toolbar .mce-btn button{
+    .page .user-center .user-main-publish .user-publish-meta li .mce-top-part .mce-toolbar .mce-btn button{
         padding: 3px;
     }
     
     /** 我的文章—菜单样式 */
-    #user-center .user-post-menu{
+    .page .user-center .user-postsmenu{
         height: 30px;
         margin: -10px -15px 0;
         font-size: 14px;
     }
-    #user-center .user-post-menu a{
+    .page .user-center .user-postsmenu a{
         padding:0 10px;
         line-height: 30px;
     }
-    #user-center .user-post-menu a small{
+    .page .user-center .user-postsmenu a small{
         font-size: 10px;
         margin: 0 0 0 1px;
     }
     
     /** 我的文章-列表样式 */
-    #user-center .user-post-list li{
+    .page .user-center .user-posts li{
         border-bottom: 1px solid #f2f2f2;
         padding: 10px 0;
     }
-    #user-center .user-post-list li .thumb{
+    .page .user-center .user-posts li .thumb{
         width: 120px;
         height: 80px;
         border-radius: 3px;
     }
-    #user-center .user-post-list li div{
+    .page .user-center .user-posts li div{
         height: 80px;
         margin: 0 0 0 130px;
         padding: 5px;
     }
-    #user-center .user-post-list li div h2{
+    .page .user-center .user-posts li div h2{
         height: 20px;
         line-height: 20px;
         font-size: 16px;
     }
-    #user-center .user-post-list li div .desc{
+    .page .user-center .user-posts li div .desc{
         height: 32px;
         overflow: hidden;
         margin: 3px 0 0;
@@ -791,32 +798,32 @@
         line-height: 16px;
         -webkit-line-clamp: 2;
     }
-    #user-center .user-post-list li div .muted{
+    .page .user-center .user-posts li div .muted{
         height: 15px;
         font-size: 10px;
         line-height: 15px;
     }
     
     /** 我的文章-页码导航 */
-    #user-center .user-pagination{
+    .page .user-center .user-pagination{
         margin: 10px 0 0;
     }
-    #user-center .user-pagination ul > li{
+    .page .user-center .user-pagination ul > li{
         height: 20px;
         margin: 0 3px;
         font-size: 10px;
         line-height: 20px;
         border-radius: 3px;
     }
-    #user-center .user-pagination ul > li > a{
+    .page .user-center .user-pagination ul > li > a{
         padding: 3px 7px;
     }
-    #user-center .user-pagination ul > li > span{
+    .page .user-center .user-pagination ul > li > span{
         padding: 3px 7px;
     }
     
     /** 我的评论 */
-    #user-center .user-comment-list time{
+    .page .user-center .user-comments time{
         float: none;
         width: 100%;
         height: 30px;
@@ -824,47 +831,47 @@
         line-height: 30px;
         font-size: 12px;
     }
-    #user-center .user-comment-list li{
+    .page .user-center .user-comments li{
         padding: 5px;
     }
-    #user-center .user-comment-list .desc{
+    .page .user-center .user-comments .desc{
         margin: 0 0 5px;
         font-size: 12px;
         line-height: 16px;
     }
-    #user-center .user-comment-list p{
+    .page .user-center .user-comments p{
         line-height: 16px;
         font-size: 12px;
     }
-    #user-center .user-comment-list p a{
+    .page .user-center .user-comments p a{
         font-size: 10px;
         color: #888;
     }
     
     /** 修改资料 */
-    #user-center .user-meta{
+    .page .user-center .user-meta{
         margin: 20px;
     }
-    #user-center .user-meta li{
+    .page .user-center .user-meta li{
         margin: 5px 0;
         padding: 0 0 0 90px;
     }
-    #user-center .user-meta li label{
+    .page .user-center .user-meta li label{
         width: 80px;
         margin: 0 0 0 -90px;
         font-size: 14px;
         line-height: 24px;
     }
-    #user-center .user-meta li input{
+    .page .user-center .user-meta li input{
         height: 24px;
         padding: 1px 5px;
         font-size: 14px;
     }
-    #user-center .user-meta li .btn{
+    .page .user-center .user-meta li .btn{
         margin: 10px 0 0;
         min-width: 100px;
     }
-    #user-center .user-meta  li.user-avatar{
+    .page .user-center .user-meta  li.user-avatar{
         width: 100px;
         height: 100px;
         margin: 0 0 15px 15px;
@@ -872,18 +879,18 @@
 }
 @media (max-width: 480px) {
     /** 我要投稿 */
-    #user-center .user-main-publish{
+    .page .user-center .user-main-publish{
         margin: 15px 0;
     }
-    #user-center .user-main-publish .user-publish-meta{
+    .page .user-center .user-main-publish .user-publish-meta{
         line-height: 28px;
     }
-    #user-center .user-main-publish .user-publish-meta li{
+    .page .user-center .user-main-publish .user-publish-meta li{
         margin: 0;
         border: 0;
         padding: 0;
     }
-    #user-center .user-main-publish .user-publish-meta li label{
+    .page .user-center .user-main-publish .user-publish-meta li label{
         float: none;
         display: block;
         margin: 5px 0;
@@ -892,64 +899,64 @@
         text-align: center;
         line-height: 20px;
     }
-    #user-center .user-main-publish .user-publish-meta li input{
+    .page .user-center .user-main-publish .user-publish-meta li input{
         display: block;
         margin: 0 auto;
     }
-    #user-center .user-main-publish .user-publish-meta li .form-control{
+    .page .user-center .user-main-publish .user-publish-meta li .form-control{
         height: 28px;
         width: 100%;
         border-radius: 3px;
     }
-    #user-center .user-main-publish .user-publish-meta li .wp-editor-wrap{
+    .page .user-center .user-main-publish .user-publish-meta li .wp-editor-wrap{
         display: inline-block;
         width: 100%;
     }
-    #user-center .user-main-publish .user-publish-meta li .mce-top-part{
+    .page .user-center .user-main-publish .user-publish-meta li .mce-top-part{
         height: auto;
         overflow: hidden;
     }
-    #user-center .user-main-publish .user-publish-meta li .mce-top-part .mce-container-body .mce-stack-layout{
+    .page .user-center .user-main-publish .user-publish-meta li .mce-top-part .mce-container-body .mce-stack-layout{
         padding: 0;
     }
-    #user-center .user-main-publish .user-publish-meta li .mce-top-part .mce-toolbar .mce-btn button{
+    .page .user-center .user-main-publish .user-publish-meta li .mce-top-part .mce-toolbar .mce-btn button{
         padding: 3px;
     }
     /** 我的文章—菜单样式 */
-    #user-center .user-post-menu{
+    .page .user-center .user-postsmenu{
         height: 30px;
         margin: -10px -15px 0;
         font-size: 14px;
     }
-    #user-center .user-post-menu a{
+    .page .user-center .user-postsmenu a{
         padding:0 10px;
         line-height: 30px;
     }
     
     /** 我的文章-列表样式 */
-    #user-center .user-post-list li{
+    .page .user-center .user-posts li{
         border-bottom: 1px solid #f2f2f2;
         padding: 5px 0;
     }
-    #user-center .user-post-list li .thumb{
+    .page .user-center .user-posts li .thumb{
         width: 90px;
         height: 60px;
         border-radius: 5px;
     }
-    #user-center .user-post-list li div{
+    .page .user-center .user-posts li div{
         height: 60px;
         margin: 0 0 0 100px;
         padding: 0 5px;
     }
-    #user-center .user-post-list li div h2{
+    .page .user-center .user-posts li div h2{
         height: 18px;
         line-height: 18px;
         font-size: 15px;
     }
-    #user-center .user-post-list li div .desc{
+    .page .user-center .user-posts li div .desc{
         display: none;
     }
-    #user-center .user-post-list li div .muted{
+    .page .user-center .user-posts li div .muted{
         position: absolute;
         bottom: 0;
         height: 20px;
@@ -958,25 +965,25 @@
     }
     
     /** 我的文章-页码导航 */
-    #user-center .user-pagination{
+    .page .user-center .user-pagination{
         margin: 10px 0 0;
     }
-    #user-center .user-pagination ul > li{
+    .page .user-center .user-pagination ul > li{
         height: 20px;
         margin: 0 3px;
         font-size: 12px;
         line-height: 20px;
         border-radius: 3px;
     }
-    #user-center .user-pagination ul > li > a{
+    .page .user-center .user-pagination ul > li > a{
         padding: 5px 10px;
     }
-    #user-center .user-pagination ul > li > span{
+    .page .user-center .user-pagination ul > li > span{
         padding: 5px 10px;
     }
     
     /** 我的评论 */
-    #user-center .user-comment-list time{
+    .page .user-center .user-comments time{
         float: none;
         width: 100%;
         height: 24px;
@@ -985,19 +992,19 @@
         font-size: 10px;
         color: #24a0f0;
     }
-    #user-center .user-comment-list li{
+    .page .user-center .user-comments li{
         padding: 3px;
     }
-    #user-center .user-comment-list .desc{
+    .page .user-center .user-comments .desc{
         margin: 0;
         font-size: 10px;
         line-height: 16px;
     }
-    #user-center .user-comment-list p{
+    .page .user-center .user-comments p{
         line-height: 16px;
         font-size: 10px;
     }
-    #user-center .user-comment-list p a{
+    .page .user-center .user-comments p a{
         height: 24px;
         line-height: 24px;
         font-size: 10px;
@@ -1005,32 +1012,32 @@
     }
     
     /** 修改资料 */
-    #user-center .user-meta{
+    .page .user-center .user-meta{
         margin: 5px 5px 0 -5px;
     }
-    #user-center .user-meta li{
+    .page .user-center .user-meta li{
         margin: 5px 0;
         padding: 0 0 0 60px;
     }
-    #user-center .user-meta li label{
+    .page .user-center .user-meta li label{
         width: 55px;
         margin: 0 0 0 -60px;
         font-size: 12px;
         line-height: 20px;
     }
-    #user-center .user-meta li label b{
+    .page .user-center .user-meta li label b{
         display: none;
     }
-    #user-center .user-meta li input{
+    .page .user-center .user-meta li input{
         height: 20px;
         padding: 3px 9px;
         font-size: 12px;
     }
-    #user-center .user-meta li .btn{
+    .page .user-center .user-meta li .btn{
         margin: 5px 0 0;
         min-width: 80px;
     }
-    #user-center .user-meta  li.user-avatar{
+    .page .user-center .user-meta  li.user-avatar{
         width: 60px;
         height: 60px;
         margin: 0 0 10px 10px;
