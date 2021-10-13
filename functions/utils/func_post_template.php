@@ -7,34 +7,25 @@
   * Version: 1.0
   * Author URI: www.dotsquares.com
 */
-add_action('add_meta_boxes','wp_add_post_custom_template');
-add_action('save_post','wp_save_custom_post_template',10,2);
-add_filter('single_template','wp_get_custom_post_template_for_template_loader');
-add_action('add_meta_boxes', 'wp_add_post_custom_template');
+// 后台 # 注册一个 Meta 输入框
+add_action('add_meta_boxes', '_add_post_template_meta_box');
 
-function wp_add_post_custom_template($postType) {
-    
-    if(get_option('wp_custom_post_template') == ''){ //get option value
-        $postType_title = 'post';
-        $postType_arr[] = $postType_title;
-    }else{
-        $postType_title = get_option('wp_custom_post_template');
-        $postType_arr = explode(',',$postType_title);
-    }
-    if(in_array($postType, $postType_arr)){
-        add_meta_box(
-            'postparentdiv',
-            __('文章模板选择'),
-            'wp_custom_post_template_meta_box',
-            $postType,
-            'side', 
-            'core'
-        );
-    }
+// 后台 # 添加文章模板选择功能
+function _add_post_template_meta_box () {
+    add_meta_box(
+        '_post_template_meta',
+        __('文章模板选择'),
+        '_post_template_selector',
+        'post',
+        'side', 
+        'core'
+    );
 }
-function wp_custom_post_template_meta_box($post) {
-    if ( $post->post_type != 'page' && 0 != count( wp_get_post_custom_templates() ) ) {
-        $template = get_post_meta($post->ID,'_post_template',true);
+
+// 后台 # 文章模板选择器
+function _post_template_selector($post) {
+    if ( $post->post_type != 'page' && 0 != count( _get_custom_post_templates() ) ) {
+        $template = get_post_meta($post->ID,'_post_template', true);
     ?>
         <label class="screen-reader-text" for="post_template"><?php _e('文章模板') ?></label>
         <p>
@@ -43,20 +34,21 @@ function wp_custom_post_template_meta_box($post) {
         </p>
         <select name="post_template" id="post_template">
             <option value='default'><?php _e('默认模板'); ?></option>
-            <?php wp_custom_post_template_dropdown($template); ?>
+            <?php _get_custom_post_templates_item($template); ?>
         </select>
     <?php
     }
-}?>
+}
 
-<?php 
-function wp_get_post_custom_templates() {
+// 后台 # 获取用户自定义模板
+function _get_custom_post_templates() {
+    // 获取用户安装的主题
     if(function_exists('wp_get_themes')){
         $themes = wp_get_themes();
     }else{
         $themes = get_themes();
     }
-                
+    // 获取当前主题信息
     $theme = get_option( 'template' );
     $templates = $themes[$theme]['Template Files'];
     $post_templates = array();
@@ -92,9 +84,9 @@ function wp_get_post_custom_templates() {
     }
     return $post_templates;
 }
-
-function wp_custom_post_template_dropdown( $default = '' ) {
-    $templates = wp_get_post_custom_templates();
+// 后台 # 获取自定义下拉项目
+function _get_custom_post_templates_item( $default = '' ) {
+    $templates = _get_custom_post_templates();
     ksort( $templates );
     foreach (array_keys( $templates ) as $template ): 
         if ( $default == $templates[$template] ){
@@ -106,19 +98,27 @@ function wp_custom_post_template_dropdown( $default = '' ) {
     endforeach;
 }
 
-function wp_save_custom_post_template($post_id,$post) {
+
+
+// 保存文章时保存 _post_template
+add_action('save_post','_save_post_template_meta', 10, 2);
+function _save_post_template_meta($post_id, $post) {
     if ($post->post_type !='page' && !empty($_POST['post_template']))
         update_post_meta($post->ID,'_post_template',$_POST['post_template']);
 }
 
-function wp_get_custom_post_template_for_template_loader($template) {
+// 过滤替换默认模板
+add_filter('single_template','_get_post_template_meta');
+function _get_post_template_meta( $template ) {
     global $wp_query;
     $post = $wp_query->get_queried_object();
     if ($post) {
         $post_template = get_post_meta($post->ID,'_post_template',true);
-        if (!empty($post_template) && $post_template!='default')
-            $template = get_stylesheet_directory() . "/{$post_template}";
+        $template_uri = get_stylesheet_directory() . "/{$post_template}";
+        if (!empty($post_template) && $post_template!='default' && file_exists($template_uri)){
+            $template = $template_uri;
+        }
     }
+
     return $template;
 }
-?>

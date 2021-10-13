@@ -463,21 +463,21 @@ jQuery(document).ready(function(){
                 return image;
             }
             // 海报顶部特色图像
-            banner_link     = $GSM.att_img ? $GSM.att_img : document.images[0].src;
+            banner_link   = $GSM.att_img ? $GSM.att_img : document.images[0].src;
             // 海报顶部 logo 图标
-            poster_logo     = $GSM.logo_pure ? $GSM.logo_pure : $GSM.uri + '/assets/img/logo-pure.png';
+            poster_logo   = $GSM.poster_logo ? $GSM.poster_logo : $GSM.uri + '/assets/img/site-logo-pure.png';
             // 海报中部文章标题
-            poster_title    = document.title;
+            poster_title  = document.title;
             // 海报中部文章摘要
-            poster_desc     = $GSM.excerpt ? $GSM.excerpt : '暂时没有描述信息！';
+            poster_desc   = $GSM.excerpt ? $GSM.excerpt : '暂时没有描述信息！';
             // 海报中部文章Meta
-            poster_meta     = '本文由『'+$GSM.author+'』于〔'+$GSM.update+'〕更新至《'+$GSM.cat_name+'》分类下'
+            poster_meta   = '本文由『'+$GSM.author+'』于〔'+$GSM.update+'〕更新至《'+$GSM.cat_name+'》分类下'
             // 海报底部站点 favicon 图标
-            poster_siteicon = $GSM.site_icon ? $GSM.site_icon : $GSM.uri + '/assets/img/favicon.ico';
+            poster_icon   = $GSM.poster_icon ? $GSM.poster_icon : $GSM.uri + '/assets/img/favicon.ico';
             // 海报底部站点名称
-            poster_sitename = $GSM.site_name ? $GSM.site_name : '蝈蝈要安静';
+            poster_name   = $GSM.poster_name ? $GSM.poster_name : '子不语';
             // 海报底部站点标语
-            poster_slogan   = $GSM.poster_slogan ? $GSM.poster_slogan : '扫码查阅文章详情';
+            poster_slogan = $GSM.poster_slogan ? $GSM.poster_slogan : '扫码查阅文章详情';
             // 海报底部文章二维码
             poster_qrcode   = qrcode_img['src'] ? qrcode_img['src'] : $GSM.uri + '/assets/img/qrcode.png';
             
@@ -494,9 +494,9 @@ jQuery(document).ready(function(){
                 // 文章Meta
                 postmeta : poster_meta,
                 // Icon图标
-                siteicon : poster_siteicon,
+                siteicon : poster_icon,
                 // 站点名称
-                sitename : poster_sitename,
+                sitename : poster_name,
                 // 站点标语
                 slogan : poster_slogan,
                 // 文章二维码
@@ -524,41 +524,15 @@ jQuery(document).ready(function(){
             });
         });
     });
-    
-    // 视频文章页面加载 video.min.js
-    jsdefine('global/window', [], () => {
-        return window;
-    });
-    
-    jsdefine('global/document', ['global/window'], (window) => {
-        return window.document;
-    });
-    
-    require(['videojs'],function( videojs ){
-        if( $("#player").length ){
-            window.videojs = videojs;
-            // any other initialization you want here
-            const player = videojs( "player", {
-                autoplay : false,                   // 自动播放
-                controls : true,                    // 是否显示控制条
-                loop     : false,                   // 循环播放
-                muted    : false,                   // 静音
-                preload  : "auto",                  // 预加载
-                fluid    : true,                    // 播放器可变大小
-                language : "zh-CN",                 // 设置语言
-                notSupportedMessage : "抱歉,当前媒体类型暂不允许播放!",    // 媒体类型错误提示
-                controlBar : {
-                    volumePanel : {
-                        inline : false
-                    }
-                }
-                
-            });
-            // 点击切换视频
-            $('.video-lists-diversity').on('click','a.video-lists-item',function(){
-                player.src( $(this).attr('data_src') )
-            });
-        }
+
+    // 加载 jquery.qrcode.min.js 生成文章二维码
+    require(['qrcode'], function(qrcode) {
+        $('.product-qrcode').qrcode({
+            render:  "canvas",
+            width:   200,
+            height:  200,
+            text:    window.location.href
+        });
     });
 
 });

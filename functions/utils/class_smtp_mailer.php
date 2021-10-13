@@ -59,7 +59,7 @@ class _SMTP_Mailer {
     // 发信测试
     public function _php_smtp_mailer_test ($test_to) {
         // 非测试不显示消息
-        if( $_GET['page'] != "qgg-options" || $test_to == "") return;
+        if( (isset( $_GET['page']) && ($_GET['page'] != "qgg-options") ) || $test_to == "") return false;
         
         $test_result = wp_mail($test_to, '测试发信', '恭喜您，测试发信成功');
         // 发送失败返回错误

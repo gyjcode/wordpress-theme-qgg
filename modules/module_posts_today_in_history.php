@@ -23,7 +23,8 @@ function module_posts_today_in_history(){
             DESC LIMIT $limit";
             
     $query_result = $wpdb->get_results($sql);
-
+    
+    $history_post = "";
     if( $query_result ){
         foreach( $query_result as $post ){
             $post_link     = get_permalink( $post->ID );

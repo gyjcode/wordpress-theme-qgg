@@ -169,7 +169,7 @@ function optionsframework_options() {
         'desc'     => __('内容宽度：.container 类的 max-width 属性', 'QGG'),
         'id'       => 'site_style_width',
         'type'     => 'text',
-        'std'      => 1200
+        'std'      => 1366
     );
     
     $options[] = array(
@@ -228,6 +228,20 @@ function optionsframework_options() {
         'id'       => 'target_blank',
         'type'     => "checkbox",
         'std'      => true
+    );
+    
+    $options[] = array(
+        'name'     => __('面包屑导航', 'QGG'),
+        'desc'     => __('开启，在内容页上显示一个面包屑导航', 'QGG'),
+        'id'       => 'breadcrumbs_on',
+        'type'     => "checkbox",
+        'std'      => true
+    );
+    $options[] = array(
+        'desc'     => __('显示文章标题而不是【正文】字样', 'QGG'),
+        'id'       => 'breadcrumbs_title_on',
+        'type'     => "checkbox",
+        'std'      => false
     );
     
     $options[] = array(
@@ -442,9 +456,9 @@ function optionsframework_options() {
     
     $options[] = array(
         'desc'     => __('站点Logo——显示在导航左侧的Logo图标，建议尺寸：140*32px 格式：PNG', 'QGG'),
-        'id'       => 'logo_colorful_src',
+        'id'       => 'site_logo_src',
         'type'     => 'upload',
-        'std'      => $img_uri.'logo-colorful.png'
+        'std'      => $img_uri.'site-logo.png'
     );
     
     $options[] = array(
@@ -740,7 +754,7 @@ function optionsframework_options() {
         'desc'     => __('推广图标——建议尺寸180x42px，默认使用纯色Logo', 'QGG'),
         'id'       => 'footer_brand_lmr_logo',
         'type'     => 'upload',
-        'std'      => $img_uri.'logo-pure.png'
+        'std'      => $img_uri.'site-logo-pure.png'
     );
     
     $options[] = array(
@@ -1019,12 +1033,12 @@ function optionsframework_options() {
         'desc'     => __('顶部Logo——上传一张图片作为海报顶部的Logo图片', 'QGG'),
         'id'       => 'post_poster_logo',
         'type'     => 'upload',
-        'std'      => $img_uri.'logo-pure.png'
+        'std'      => $img_uri.'site-logo-pure.png'
     );
     
     $options[] = array(
         'desc'     => __('底部Icon——上传一张图片作为海报底部的ICON图片', 'QGG'),
-        'id'       => 'post_poster_siteicon',
+        'id'       => 'post_poster_icon',
         'type'     => 'upload',
         'std'      => $img_uri.'favicon.ico'
     );
@@ -1593,33 +1607,16 @@ function optionsframework_options() {
     
     // 整站广告代码
     $options[] = array(
-        'name'     => __('最新文章列表广告', 'QGG'),
+        'name'     => __('文章列表内嵌广告', 'QGG'),
         'desc'     => __('开启，最新文章列表上广告', 'QGG'),
-        'id'       => 'ads_post_list_01_on',
+        'id'       => 'ads_post_list_on',
         'type'     => 'checkbox',
         'std'      => true
     );
     
     $options[] = array(
-        'desc'     => __('最新文章列表上——广告代码：', 'QGG').$ads_desc,
-        'id'       => 'ads_post_list_01',
-        'type'     => 'textarea',
-        'std'      => $ads_01,
-        'settings' => array(
-            'rows' => 3
-        )
-    );
-    
-    $options[] = array(
-        'desc'     => __('开启，最新文章列表下广告', 'QGG'),
-        'id'       => 'ads_post_list_02_on',
-        'type'     => 'checkbox',
-        'std'      => true
-    );
-    
-    $options[] = array(
-        'desc'     => __('最新文章列表下——广告代码：', 'QGG').$ads_desc,
-        'id'       => 'ads_post_list_02',
+        'desc'     => __('文章列表内嵌广告 # 代码', 'QGG').$ads_desc,
+        'id'       => 'ads_post_list_code',
         'type'     => 'textarea',
         'std'      => $ads_01,
         'settings' => array(
@@ -1630,13 +1627,13 @@ function optionsframework_options() {
     $options[] = array(
         'name'     => __('整站评论模块广告', 'QGG'),
         'desc'     => __('开启，整站评论模块上广告', 'QGG'),
-        'id'       => 'ads_post_cmnt_01_on',
+        'id'       => 'ads_post_comt_on',
         'type'     => 'checkbox',
         'std'      => true
     );
     $options[] = array(
         'desc'     => __('整站评论模块上——广告代码', 'QGG').' '.$ads_desc,
-        'id'       => 'ads_post_cmnt_01',
+        'id'       => 'ads_post_comt_code',
         'type'     => 'textarea',
         'std'      => $ads_01,
         'settings' => array(
@@ -1648,31 +1645,14 @@ function optionsframework_options() {
     $options[] = array(
         'name'     => __('默认文章页广告', 'QGG'),
         'desc'     => __('开启，默认文章正文上广告', 'QGG'),
-        'id'       => 'ads_post_default_01_on',
+        'id'       => 'ads_post_default_on',
         'type'     => 'checkbox',
         'std'      => true
     );
     
     $options[] = array(
         'desc'     => __('默认文章正文上——广告代码：', 'QGG').' '.$ads_desc,
-        'id'       => 'ads_post_default_01',
-        'type'     => 'textarea',
-        'std'      => $ads_01,
-        'settings' => array(
-            'rows' => 3
-        )
-    );
-    
-    $options[] = array(
-        'desc'     => __('开启，默认文章正文下广告', 'QGG'),
-        'id'       => 'ads_post_default_02_on',
-        'type'     => 'checkbox',
-        'std'      => true
-    );
-    
-    $options[] = array(
-        'desc'     => __('默认文章正文下——广告代码：', 'QGG').' '.$ads_desc,
-        'id'       => 'ads_post_default_02',
+        'id'       => 'ads_post_default_code',
         'type'     => 'textarea',
         'std'      => $ads_01,
         'settings' => array(
@@ -1684,16 +1664,16 @@ function optionsframework_options() {
     $options[] = array(
         'name'     => __('视频文章页广告', 'QGG'),
         'desc'     => __('开启，视频文章分享模块右广告', 'QGG'),
-        'id'       => 'ads_post_video_01_on',
+        'id'       => 'ads_post_video_on',
         'type'     => 'checkbox',
         'std'      => true
     );
     
     $options[] = array(
         'desc'     => __('视频文章分享模块右——广告代码：', 'QGG').' '.$ads_desc,
-        'id'       => 'ads_post_video_01',
+        'id'       => 'ads_post_video_code',
         'type'     => 'textarea',
-        'std'      => $ads_02,
+        'std'      => $ads_01,
         'settings' => array(
             'rows' => 3
         )

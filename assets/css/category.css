@@ -47,6 +47,7 @@
     margin-right: 0;
     margin-left: 200px;
 }
+/* 侧栏 */
 .category .cat-product-sidebar{
     z-index: 999;
     position: absolute;
@@ -148,6 +149,7 @@
     border: 1px solid #eee;
     padding: 10px;
 }
+/* 主体 */
 .category .cat-product-content{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -156,7 +158,6 @@
 }
 .category .cat-product-content .product{
     position: relative;
-    padding: 15px;
     background: #fff;
     overflow: hidden;
 }
@@ -179,69 +180,76 @@
 }
 .category .cat-product-content .product img{
     transition-duration: 0.5s;
-    max-width: 100%;
+    width: 100%;
 }
 .category .cat-product-content .product .thumb:hover img{
     transform: scale(1.2);
 }
+.category .cat-product-content .product .details-wrapper{
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 0 1rem;
+}
 .category .cat-product-content .product .title{
-    text-decoration: none;
-    position: absolute;
     width: 100%;
-    height: auto;
-    max-height: 40px;
-    padding: 5px 15px;
-    color: #fff;
-    background-color: #0006;
+    height: 3rem;
+    line-height: 1.5rem;
     overflow: hidden;
 }
-.category .cat-product-content .product .title:hover{
+.category .cat-product-content a{
+    text-decoration: none;
+    display: block;
+    color: #333;
+}
+.category .cat-product-content a:hover{
+    color: #ff0024;
+}
+.category .cat-product-content .product .title h2{
+    margin: 0 auto;
+    font-size: 1rem;
+    font-weight: normal;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.category .cat-product-content .product .price{
+    width: 100%;
+    margin-top: 10px;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 1.5rem;
     color: #24a0f0;
 }
-.category .cat-product-content .product h2{
-    z-index: 999;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    line-height: 15px;
-    margin: 0 auto;
+.category .cat-product-content .product .price .sale{
+    float: right;
+    margin-left: 1rem;
+    color: #ff0024;
+}
+.category .cat-product-content .product .price small{
+    position: relative;
+    bottom: 3px;
+    margin-right: 5px;
+    padding: 1px 7px;
+    border-radius: 5px;
     font-size: 0.8rem;
-    font-weight: normal;
-    text-align: justify;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
-    word-break: break-all;
-    word-wrap: break-word;
-    overflow:hidden;
-}
-.category .cat-product-content .product .details-wrapper{
-    display: flex;
-    margin-top: 1rem;
-    color: #e33;
-}
-.category .cat-product-content .product span{
-    display: inline-block;
-    width: 100%;
-    height: 22px;
-    line-height: 22px;
-    margin: 0 auto;
-    border: 1px solid #e33;
-    padding: 0;
-    text-align: center;
-}
-.category .cat-product-content .product .original-price{
-    background: #fff;
-    color: #e33;
-}
-.category .cat-product-content .product .bargain-price{
-    background: #e33;
     color: #fff;
+    background: #ff0024;
 }
-@media (max-width:1024px){
+.category .cat-product-content .product .no-price{
+    font-size: 1rem;
+    font-weight: normal;
+    color: #ff5722;
+}
+@media (max-width: 1366px){
+    .category .cat-product-content .product .price{
+        font-size: 1.2rem;
+    }
+}
+@media (max-width: 1024px){
     .category .cat-product-content{
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -399,14 +407,18 @@
 .category .cat-video-content .video .details-wrapper .meta i{
     margin-right: 3px;
 }
-@media (max-width:1024px){
+@media (max-width: 1024px){
     .category .cat-video-content{
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
-@media (max-width:480px){
+@media (max-width: 768px){
     .category .cat-video-content{
         grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width:480px){
+    .category .cat-video-content{
         gap: 10px;
     }
     .category .cat-video-content .video{

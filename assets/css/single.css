@@ -339,15 +339,13 @@
     color: inherit;
 }
 .single .post-header .meta{
+    margin: auto;
     margin-top: 1rem;
 }
 .single .post-header .meta span{
-    margin-left: 1rem;
+    margin: 0 5px;
     font-size: 0.8rem;
     color: #999;
-}
-.single .post-header .meta span:first-child{
-    margin-left: 0;
 }
 .single .post-content{
     margin: 15px 0 0;
@@ -381,12 +379,21 @@
     }
 }
 @media (max-width: 768px) {
+    .single .content{
+        padding: 1rem;
+    }
     .single .post-header{
         padding: 0 0 5px;
     }
     .single .post-header .post-title{
         margin: 0 0 5px;
         font-size: 20px;
+    }
+    .single .post-header .meta .category{
+        display: none;
+    }
+    .single .post-header .meta .time{
+        display: none;
     }
 }
 @media (max-width: 480px) {
@@ -420,882 +427,106 @@
 
 
 /**====================视频文章页面样式====================*/
-.video-banner{
-    display: block;
+.single .video-container{
+    text-indent: 0;
+}
+.single .video-container .post-header{
     position: relative;
-    width: 100%;
-    height: 420px;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    background-repeat: no-repeat;
-    background-position: top;
-    background-size: 100% 100%;
-    overflow: hidden;
+    height: 70px;
 }
-.video-banner .bg-img{
-    float: left;
-    display: block;
+.single .video-container .post-header .metas{
+    display: flex;
+    justify-content: space-between;
     position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    background: #000;
-}
-.video-banner .cover{
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    background: #000;
-    opacity: 0.36;
-}
-.video-banner .banner-wraper{
-    float: none;
-    position: relative;
-    height: 100%;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
-}
-.video-banner .content{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto; 
-    border: 0;
-    padding: 0 0 0 300px;
-    overflow: hidden;
-}
-.video-banner .content .img-box{
-    float: left;
-    display: block;
-    position: absolute;
+    top: 0;
+    right: 0;
     width: 240px;
     height: 100%;
-    margin: 0 30px 0 -270px;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
+    color: #777;
 }
-.video-banner .content .img-box .poster{
-    float: left;
-    display: block;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 240px;
-    height: 360px;
+.single .video-container .post-header .meta{
+    width: 100%;
+    height: 100%;
     margin: auto;
-    border: 1px solid #eee;
-    padding: 0;
-    border-radius: 9px;
+    padding: 5px 0;
     overflow: hidden;
 }
-.video-banner .content .img-box .poster .stage-photo{
-    width: 100%;
+.single .video-container .post-header .meta i{
+    display: block;
+    font-size: 2rem;
+}
+.single .video-container .post-header .meta b{
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8rem;
+}
+.single .video-container .post-header .left{
     height: 100%;
+    margin-right: 240px;
+    text-align: left;
 }
-.video-banner .content .img-box .poster span{
-    position: absolute;
-    left: -18px;
-    top: 66px;
-    display: block;
-    width: 120px;
-    height: 24px;
-    line-height: 24px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 500;
-    text-align: center;
-    transform: rotate(-45deg);
-    transform-origin: 0% 0%;
-    background: #24a0f0;
-    background: -webkit-gradient(linear,left top,right top,from(#24a0f0),to(#24b4ff)) no-repeat;
-    background: -webkit-linear-gradient(left,#24a0f0,#24b4ff) no-repeat;
-    background: linear-gradient(90deg,#24a0f0,#24b4ff) no-repeat;
-}
-.video-banner .content .text-box{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
-}
-.video-banner .content .text-box .info{
-    float: left;
-    display: block;
-    position: relative;
-    top: 50%;
-    transform: translate(0,-50%);
-    width: 90%;
-    height: auto;
-    margin: 0 auto;
-    padding: 10px 0;
-    font-size: 14px;
-    line-height: 20px;
-    color: #fff;
-    overflow: hidden;
-}
-.video-banner .content .text-box .info h1{
-    height: 30px;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    font-size: 24px;
-    line-height: 30px;
-    font-weight: bold;
-    white-space: nowrap;
-    word-break: break-all;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-.video-banner .content .info h1 a{
-    color: #fff;
-    text-decoration: none;
-}
-.video-banner .content .info ul{
-    display: block;
-    width: 240px;
-    height: auto;
-    margin: 10px 0 0;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
-}
-.video-banner .content .info ul li{
-    float: left;
-    display: block;
-    position: relative;
-    width: 33.333%;
+.single .video-container .post-header .title{
     height: 40px;
-    margin: 5px 0;
-    text-align: center;
-    vertical-align: middle;
-    list-style-type: none;
+    line-height: 40px;
+    font-size: 1.5rem;
 }
-.video-banner .content .info ul li:nth-child(2){
-    border-left: 1px solid #fff;
-    border-right: 1px solid #fff;
-}
-.video-banner .content .info ul li span{
-    display: block;
-    width: 100%;
+.single .video-container .post-header .infos{
     height: 20px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    font-size: 16px;
-    color: #fb9311;
-}
-.video-banner .content .info ul li b{
-    display: block;
-    width: 100%;
-    height: 20px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    font-size: 14px;
-}
-.video-banner .content .info p{
-    display: block;
-    width: 100%;
-    height: 20px;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
     line-height: 20px;
-    font-size: 15px;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-    word-break: break-word;
-    white-space: nowrap;
-    overflow: hidden;
+    font-size: 0.8rem;
+    color: #777;
 }
-.video-banner .content .info p label{
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-    margin: 0 10px 0 0;
-    border: 0;
-    padding: 0;
-    font-size: 14px;
-    text-align: justify;
-    text-align-last: justify;
-}
-.video-banner .content .info p i:before{
-    content: ":";
+.single .video-container .post-header .infos span{
     margin-right: 10px;
 }
-.video-banner .content .info p.desc{
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 5px auto 0;
-    max-height: 60px;
-    line-height: 16px;
-    font-size: 14px;
-    color: #ccc;
-    text-align: justify;
-    text-overflow: ellipsis;
-    white-space: normal;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    overflow: hidden;
-}
-.video-banner .content .rating{
-    float: right;
-    display: block;
-    position: absolute;
-    top: 60px;
-    right: 30px;
-    width: 100%;
-    margin: auto;
-    font-size: 48px;
-    text-align: right;
-    color: #ef9d02;
-}
-.video-banner .content .rating i{
-    display: block;
-    width: 100%;
-    height: 20px;
-    line-height: 20px;
-    font-size: 15px;
-    text-align: right;
-    white-space: nowrap;
-    color: #eee;
-}
-@media (max-width: 1366px) {
-    .video-banner{
-        height: 360px;
-    }
-    .video-banner .content{
-        padding: 0 0 0 260px;
-    }
-    .video-banner .content .img-box{
-        width: 200px;
-        height: 100%;
-        margin: 0 20px 0 -240px;
-    }
-    .video-banner .content .img-box .poster{
-        width: 200px;
-        height: 320px;
-        border-radius: 9px;
-    }
-    .video-banner .content .img-box .poster span{
-        left: -18px;
-        top: 66px;
-        display: block;
-        width: 120px;
-        height: 20px;
-        line-height: 20px;
-        font-size: 14px;
-    }
-    .video-banner .content .text-box .info{
-        width: 85%;
-        padding: 10px 0;
-        font-size: 14px;
-        line-height: 20px;
-    }
-    .video-banner .content .text-box .info h1{
-        height: 28px;
-        font-size: 20px;
-        line-height: 28px;
-    }
-    .video-banner .content .info ul{
-        width: 240px;
-        margin: 10px 0 5px;
-    }
-    .video-banner .content .info ul li{
-        height: 35px;
-        margin: 5px 0;
-    }
-    .video-banner .content .info ul li span{
-        height: 18px;
-        font-size: 15px;
-    }
-    .video-banner .content .info ul li b{
-        height: 17px;
-        font-size: 13px;
-    }
-    .video-banner .content .info p{
-        height: 20px;
-        line-height: 20px;
-        font-size: 15px;
-    }
-    .video-banner .content .info p label{
-        width: 40px;
-        height: 20px;
-        margin: 0 10px 0 0;
-        font-size: 14px;
-    }
-    .video-banner .content .info p i:before{
-        margin-right: 10px;
-    }
-    .video-banner .content .info p.desc{
-        margin: 5px auto 0;
-        max-height: 60px;
-        line-height: 16px;
-        font-size: 14px;
-    }
-    .video-banner .content .rating{
-        float: right;
-        display: block;
-        position: absolute;
-        top: 50px;
-        right: 25px;
-        width: 100%;
-        margin: auto;
-        font-size: 42px;
-        text-align: right;
-    }
-    .video-banner .content .rating i{
-        display: block;
-        width: 100%;
-        height: 20px;
-        line-height: 20px;
-        font-size: 14px;
-        text-align: right;
-        white-space: nowrap;
-    }
-}
-@media (max-width: 1024px) {
-    .video-banner{
-        height: 300px;
-    }
-    .video-banner .content{
-        padding: 0 0 0 210px;
-    }
-    .video-banner .content .img-box{
-        width: 180px;
-        height: 100%;
-        margin: 0 15px 0 -195px;
-    }
-    .video-banner .content .img-box .poster{
-        width: 180px;
-        height: 270px;
-        border-radius: 9px;
-    }
-    .video-banner .content .img-box .poster span{
-        left: -18px;
-        top: 66px;
-        width: 120px;
-        height: 20px;
-        line-height: 20px;
-        font-size: 14px;
-    }
-    .video-banner .content .text-box .info{
-        width: 95%;
-        padding: 10px 0;
-        font-size: 12px;
-        line-height: 18px;
-    }
-    .video-banner .content .text-box .info h1{
-        height: 24px;
-        font-size: 18px;
-        line-height: 24px;
-    }
-    .video-banner .content .info ul{
-        width: 200px;
-        margin: 5px 0;
-    }
-    .video-banner .content .info ul li{
-        height: 35px;
-        margin: 0;
-    }
-    .video-banner .content .info ul li span{
-        height: 18px;
-        font-size: 14px;
-        line-height: 18px;
-    }
-    .video-banner .content .info ul li b{
-        height: 17px;
-        font-size: 12px;
-        line-height: 17px;
-    }
-    .video-banner .content .info p{
-        height: 18px;
-        line-height: 18px;
-        font-size: 14px;
-    }
-    .video-banner .content .info p label{
-        width: 36px;
-        height: 18px;
-        margin: 0 5px 0 0;
-        font-size: 13px;
-    }
-    .video-banner .content .info p i:before{
-        margin-right: 5px;
-    }
-    .video-banner .content .info p.desc{
-        margin: 5px auto 0;
-        max-height: 60px;
-        line-height: 14px;
-        font-size: 12px;
-    }
-    .video-banner .content .rating{
-        top: 40px;
-        right: 20px;
-        margin: auto;
-        font-size: 30px;
-    }
-    .video-banner .content .rating i{
-        height: 20px;
-        line-height: 20px;
-        font-size: 15px;
-    }
-}
-@media (max-width: 787px) {
-    .video-banner{
-        height: 240px;
-    }
-    .video-banner .content{
-        padding: 0 0 0 155px;
-    }
-    .video-banner .content .img-box{
-        width: 135px;
-        height: 100%;
-        margin: 0 10px 0 -145px;
-    }
-    .video-banner .content .img-box .poster{
-        width: 135px;
-        height: 220px;
-        border-radius: 5px;
-    }
-    .video-banner .content .img-box .poster span{
-        position: absolute;
-        left: -18px;
-        top: 66px;
-        display: block;
-        width: 120px;
-        height: 20px;
-        line-height: 20px;
-        font-size: 14px;
-    }
-    .video-banner .content .text-box .info{
-        padding: 10px 0;
-        font-size: 12px;
-        line-height: 18px;
-    }
-    .video-banner .content .text-box .info h1{
-        height: 20px;
-        font-size: 16px;
-        line-height: 20px;
-    }
-    .video-banner .content .info ul{
-        width: 200px;
-        margin: 5px 0;
-    }
-    .video-banner .content .info ul li{
-        height: 30px;
-        margin: 0;
-    }
-    .video-banner .content .info ul li span{
-        height: 16px;
-        font-size: 12px;
-        line-height: 18px;
-    }
-    .video-banner .content .info ul li b{
-        height: 14px;
-        font-size: 10px;
-        line-height: 14px;
-    }
-    .video-banner .content .info p{
-        height: 16px;
-        line-height: 16px;
-        font-size: 12px;
-    }
-    .video-banner .content .info p label{
-        width: 30px;
-        height: 16px;
-        margin: 0 5px 0 0;
-        font-size: 10px;
-    }
-    .video-banner .content .info p i:before{
-        margin-right: 5px;
-    }
-    .video-banner .content .info p.desc{
-        display: none;
-    }
-    .video-banner .content .rating{
-        float: right;
-        display: block;
-        position: absolute;
-        top: 30px;
-        right: 20px;
-        width: 100%;
-        margin: auto;
-        font-size: 30px;
-        text-align: right;
-    }
-    .video-banner .content .rating i{
-        display: block;
-        width: 100%;
-        height: 16px;
-        line-height: 16px;
-        font-size: 10px;
-        text-align: right;
-        white-space: nowrap;
-    }
-}
-@media (max-width: 480px) {
-    .video-banner{
-        height: 160px;
-    }
-    .video-banner .content{
-        padding: 0 0 0 110px;
-    }
-    .video-banner .content .img-box{
-        width: 100px;
-        margin: 0 5px 0 -105px;
-    }
-    .video-banner .content .img-box .poster{
-        width: 100px;
-        height: 150px;
-        border-radius: 3px;
-    }
-    .video-banner .content .img-box .poster span{
-        left: -12px;
-        top: 45px;
-        display: block;
-        width: 80px;
-        height: 16px;
-        line-height: 16px;
-        font-size: 10px;
-    }
-    .video-banner .content .text-box .info{
-        width: 100%;
-        padding: 5px;
-        font-size: 10px;
-        line-height: 16px;
-    }
-    .video-banner .content .text-box .info h1{
-        height: 20px;
-        margin: 0 0 5px;
-        font-size: 15px;
-        line-height: 20px;
-    }
-    .video-banner .content .info ul{
-        display: none;
-    }
-    .video-banner .content .info p{
-        height: 14px;
-        line-height: 14px;
-        font-size: 10px;
-    }
-    .video-banner .content .info p label{
-        width: 30px;
-        height: 14px;
-        margin: 0 5px 0 0;
-        font-size: 10px;
-    }
-    .video-banner .content .info p i:before{
-        margin-right: 5px;
-    }
-    .video-banner .content .info p.desc{
-        display: none;
-    }
-    .video-banner .content .rating{
-        display: block;
-        position: absolute;
-        top: 15px;
-        right: 10px;
-        width: 100%;
-        margin: 0 auto;
-        font-size: 24px;
-        text-align: right;
-    }
-    .video-banner .content .rating i{
-        display: block;
-        width: 100%;
-        height: 16px;
-        line-height: 16px;
-        font-size: 10px;
-        text-align: right;
-        white-space: nowrap;
-    }
-}
-/* ==================== 视频播放区域 ==================== */
-.video-wraper{
-    display: block;
-    position: relative;
-    margin: 20px auto 0;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
-}
-.video-wraper .video-player{
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    width: 100%;
-    height: 450px;
-    margin: 0 auto;
-    border: 0;
-    padding: 15px;
-    color: #fff;
-    background: #0f0f1e;
-    overflow: hidden;
-}
-.video-wraper .video-player .player-main{
-    flex-grow: 1;
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    object-fit:fill;
-    background: #fff;
-    overflow: hidden;
-}
-.video-wraper .video-player .player-main .video-js{
-    width: 100%;
-    height: 100%;
-}
-.video-wraper .video-player .player-main .vjs-poster{
-    background-size: 100% 100%;
-}
-.video-wraper .video-player .player-sidebar{
-    flex-basis: 360px;
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0 0 0 15px;
-    border: 0;
-    padding: 30px 0 0;
-    overflow: hidden;
-}
-.video-wraper .video-player .player-sidebar .title{
-    float: left;
-    display: block;
-    position: relative;
-    width: auto;
-    height: 30px;
-    margin: -30px auto 0;
-    padding: 0;
-    border: 0;
-    font-size: 16px;
+.single .video-container .post-header .infos em{
     font-weight: bold;
-    text-align: left;
-    line-height: 30px;
-    background: none;
-}
-.video-wraper .video-info{
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    width: 100%;
-    height: 110px;
-    margin: 0 auto;
-    border: 0;
-    padding: 15px;
-    background: #fff;
-    overflow: hidden;
-}
-.video-wraper .video-info .info-main{
-    flex-grow: 1;
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    object-fit:fill;
-    overflow: hidden;
-}
-.video-wraper .video-info .info-main .title{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 26px;
-    margin: 10px auto 0;
-    border: 0;
-    padding: 0;
-    line-height: 26px;
-    overflow: hidden;
-}
-.video-wraper .video-info .info-main .title h1{
-    display: block;
-    position: relative;
-    width: auto;
-    height: 100%;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    font-size: 24px;
-    color: #333;
-    word-wrap: break-word;
-    word-break: break-word;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-.video-wraper .video-info .info-main .title .rating{
-    float: right;
-}
-.video-wraper .video-info .info-main .title .rating b{
     color: #555;
 }
-.video-wraper .video-info .info-main .title .rating span{
-    display: inline-block;
-    width: 15px;
-    height: 100%;
-    margin: 0 -2px;
-    border: 0;
-    padding: 0;
-    color: #fb9311;
+.single .video-container .post-header .infos .language{
+    padding: 1px 5px;
+    color: #fff;
+    background: #24a0f0;
 }
-.video-wraper .video-info .info-main .title .rating span i{
-    font-size: 14px;    
+.single .video-container .post-header .infos .more:hover em{
+    cursor: pointer;
+    color: #24a0f0;
 }
-.video-wraper .video-info .info-main .share-like-reward{
+.single .video-container .post-header .infos .details-wrapper{
+    display: none;
+    z-index: 999;
+    position: absolute;
     width: 100%;
-    height: 24px;
-    margin: 15px auto 0;
+    height: 150px;
+    padding: 15px;
+    background-color: #fff;
 }
-.video-wraper .video-info .info-ads{
-    flex-basis: 360px;
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0 0 0 15px;
-    border: 0;
-    padding: 0;
+.single .video-container .post-header .details-wrapper .details{
+    margin-right: 120px;
+}
+.single .video-container .post-header .details-wrapper p{
+    margin: 5px auto;
+    font-size: 0.8rem;
+}
+.single .video-container .post-header .details-wrapper .poster{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 90px;
+    height: 120px;
     overflow: hidden;
 }
-@media (max-width: 1366px) {
-    .video-wraper{
-        margin: 20px auto 0;
-    }
-    .video-wraper .video-player{
-        height: 400px;
-    }
-    .video-wraper .video-player .player-sidebar{
-        flex-basis: 300px;
-    }
-    .video-wraper .video-info .info-ads{
-        flex-basis: 300px;
-    }
-} 
-@media (max-width: 1024px) {
-    .video-wraper{
-        margin: 15px auto 0;
-    }
-    .video-wraper .video-player{
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        padding: 10px;
-    }
-    .video-wraper .video-player .player-main{
-        flex-grow: 1;
-        display: block;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        border: 0;
-        padding: 0;
-        object-fit:fill;
-        background: #fff;
-        overflow: hidden;
-    }
-    .video-wraper .video-player .player-sidebar{
-        flex-basis: auto;
-        flex-grow: 1;
-        margin: 0;
-        padding: 0;
-    }
-    .video-wraper .video-player .player-sidebar .title{
-        float: none;
-        width: 100%;
-        height: 30px;
-        margin: 10px auto 5px;
-        font-size: 16px;
-        line-height: 30px;
-    }
-    .video-wraper .video-info{
-        height: 90px;
-        padding: 10px;
-    }
-    .video-wraper .video-info .info-main .title{
-        height: 30px;
-        margin: 5px auto 0;
-        line-height: 30px;
-    }
-    .video-wraper .video-info .info-main .title h1{
-        font-size: 20px;
-    }
-    .video-wraper .video-info .info-main .title .rating span i{
-        font-size: 14px;    
-    }
-    .video-wraper .video-info .info-main .share-like-reward{
-        height: 25px;
-        margin: 10px auto 0;
-    }
-    .video-wraper .video-info .info-ads{
-        display: none;
-    }
+.single .video-container .post-header .details-wrapper .poster img{
+    object-fit: cover;
+    transition-duration: 0.5s;
+    height: 120px;
 }
-@media (max-width: 787px) {
-    .video-wraper{
-        margin: 5px auto 0;
-    }
-    .video-wraper .video-player{
-        padding: 5px;
-    }
-    .video-wraper .video-info{
-        height: auto;
-        padding: 5px;
-    }
-    .video-wraper .video-info .info-main .title h1{
-        font-size: 18px;
-    }
-    .video-wraper .video-info .info-main .title .rating span i{
-        font-size: 12px;    
-    }
+.single .video-container .post-header .details-wrapper .poster img:hover{
+    object-fit: cover;
+    transform: scale(1.2);
+    height: 120px;
 }
-@media (max-width: 480px) {
-    .video-wraper{
-        margin: 10px auto 0;
-    }
-    .video-wraper .video-player{
-        padding: 5px;
-    }
-    .video-wraper .video-info{
-        padding: 5px;
-    }
-    .video-wraper .video-info .info-main .title h1{
-        font-size: 16px;
-    }
-    .video-wraper .video-info .info-main .title .rating span i{
-        font-size: 10px;
-    }
-    .video-wraper .video-info .info-main .title .rating b{
-        display: none;
-    }
-    .video-wraper .video-info .info-main .share-like-reward{
-        height: auto;
-        margin: 10px auto 0;
-    }
-}
+
 
 /* ==================== 分集视频 ==================== */
 .single .video-lists-diversity{
@@ -1435,9 +666,6 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-}
-@media (max-width: 1366px) {
-    
 }
 @media (max-width: 1024px) {
     .single .video-lists-diversity{
@@ -1743,216 +971,276 @@
         line-height: 18px;
     }
 }
-@media (max-width: 480px) {
-    
+@media (max-width: 540px) {
+    .single .video-container .post-header .details-wrapper p.except{
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+    .single .video-container .post-header .left {
+        margin-right: 0;
+    }
+    .single .video-container .post-header .metas {
+        display: none;
+    }
 }
 
 
 /**==================== 产品文章页面样式 ====================*/
-.single .product-info{
-    display: block;
+.single .product-container{
     position: relative;
     width: 100%;
-    height: 330px;
-    margin: 20px auto 0;
-    border: 0;
-    padding: 15px 15px 15px 395px;
+    height: auto;
+    overflow: hidden;
+}
+/* 头部详情 */
+.single .product-info-wrapper{
+    position: relative;
+    width: 100%;
+    padding: 1.5rem 1.5rem 1.5rem 420px;
     background: #fff;
     overflow: hidden;
 }
-.single .product-info .product-info-img{
+.single .product-info-wrapper a{
+    text-decoration: none;
+    color: inherit;
+}
+.single .product-info-wrapper .gallery{
     float: left;
     display: block;
     position: relative;
-    width: 360px;
-    height: 100%;
-    margin: 0 0 0 -380px;
+    width: 380px;
+    margin: 0 0 0 -400px;
     border: 0;
     padding: 0;
 }
-.single .product-info .product-info-img .img-main{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 240px;
+.single .product-info-wrapper .info{
     margin: 0 auto;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
 }
-.single .product-info .product-info-img .img-main img{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-}
-.single .product-info .product-info-img .img-list{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 60px;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
-}
-.single .product-info .product-info-img .img-list ul{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
-}
-.single .product-info .product-info-img .img-list ul li{
-    display: inline-block;
-    position: relative;
-    width: 19%;
-    height: 50px;
-    margin: 10px 1% 0 0;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
-}
-.single .product-info .product-info-img .img-list ul li img{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-}
-.single .product-info .product-info-content{
-    float: right;
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-}
-.single .product-info .product-info-content .title{
-    display: block;
-    position: relative;
-    width: 100%;
+.single .product-info-wrapper .info h1{
     height: 30px;
-    margin: 10px auto 0;
-    border: 0;
-    padding: 0;
     line-height: 30px;
-}
-.single .product-info .product-info-content .title h1{
-    display: block;
     margin: 0 auto;
-    border: 0;
-    padding: 0;
-    font-size: 20px;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
     font-weight: bold;
+    overflow: hidden;
+    word-break: break-all;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-.single .product-info .product-info-content .meta{
-    display: block;
-    width: auto;
-    height: 150px;
-    margin: 20px auto 0;
-    border: 0;
-    padding: 10px 15px;
-    font-weight: normal;
-    background: #fafafa;
+.single .product-info-wrapper .metas{
+    margin: 10px auto;
+    padding: 5px 20px;
     border-radius: 5px;
+    background: #f5f5f5;
 }
-.single .product-info .product-info-content .meta p{
-    display: block;
-    width: auto;
-    height: 25px;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    line-height: 25px;
+.single .product-info-wrapper .meta{
+    margin: 10px auto;
+    font-size: 1rem;
 }
-.single .product-info .product-info-content .meta p label{
-    display: inline-block;
-    width: 80px;
-    height: 100%;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    font-size: 15px;
+.single .product-info-wrapper .meta label{
+    width: 4rem;
+    margin-right: 10px;
     text-align: justify;
     text-align-last: justify;
-    color: #666;
-}
-.single .product-info .product-info-content .meta p span{
-    display: inline-block;
-    width: auto;
-    height: 100%;
-    margin: 0 10px;
-    border: 0;
-    padding: 0;
-    font-size: 18px;
-    font-weight: bold;
-    color: #888;
-}
-.single .product-info .product-info-content .meta p.msg{
-    height: 72px;
-    margin: 8px auto 0;
-    line-height: 18px;
-    font-size: 14px;
     color: #999;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
 }
-.single .product-info .product-info-content .meta p.bargain span{
-    color: #ff2233;
+.single .product-info-wrapper .meta span{
+    color: #555;
 }
-.single .product-info .product-info-content .tags{
-    display: block;
-    height: 30px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    line-height: 30px;
+.single .product-info-wrapper .meta.price span{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #24a0f0;
 }
-.single .product-info .product-info-content .tags a{
-    display: inline-block;
-    height: 20px;
-    margin: 0 5px 0 0;
-    border: 0;
-    padding: 0 5px;
-    font-size: 14px;
-    line-height: 20px;
+.single .product-info-wrapper .meta.sale-price span{
+    color: #ff0024;
+}
+.single .product-info-wrapper .meta.sale-price strong{
+    font-size: 1.8rem;
+    font-weight: bolder;
+}
+.single .product-info-wrapper .meta .sale-info{
+    position: relative;
+    bottom: 3px;
+    margin-left: 15px;
+    vertical-align: bottom;
+    font-size: 1rem;
+}
+.single .product-info-wrapper .sale-info b{
+    font-weight: bold;
+}
+.single .product-info-wrapper .sale-info big{
+    margin: 0 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff0024;
+}
+.single .product-info-wrapper .sale-info em{
+    margin: 0 3px;
+    padding: 1px 3px;
     border-radius: 3px;
+    vertical-align: bottom;
+    font-size: 1rem;
+    font-weight: normal;
     color: #fff;
-    background: #24b4ff;
+    background: #ff0024;
 }
-.single .product-info .product-info-content .btns{
-    display: block;
-    height: 60px;
-    width: 100%;
-    margin: 0;
-    border: 0;
-    padding: 0;
+.single .product-info-wrapper .desc{
+    line-height: 1.2rem;
+    margin: 1rem auto;
+    font-size: 1rem;
+    color: #999;
 }
-.single .product-info .product-info-content .btns button{
-    display: block;
-    width: auto;
+.single .product-info-wrapper .tags{
+    line-height: 1.2rem;
+    margin: 1rem auto;
+    font-size: 1rem;
+    color: #999;
+}
+.single .product-info-wrapper .tags a{
+    margin-right: 7px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    color: #fff;
+    background: #9ccc65;
+}
+.single .product-info-wrapper .tags a:hover{
+    background: #689f38;
+}
+.single .product-info-wrapper .buyer{
+    /* display: none; */
+    position: relative;
+    margin: 1rem auto;
+}
+.single .product-info-wrapper .buyer label{
+    width: 4rem;
+    margin-right: 10px;
+    text-align: justify;
+    text-align-last: justify;
+    color: #333;
+}
+.single .product-info-wrapper .buyer .amount{
+    outline: none;
+    display: inline-block;
+    width: 60px;
     height: 30px;
-    margin: 15px 20px 15px 0;
-    border: 0;
-    padding: 5px 15px;
-    border-radius: 5px;
-    color: #fff;
-    background: #e300ff;
-    box-shadow: 3px 3px 3px #f0b5f7;
+    line-height: 30px;
+    padding: 0 0 0 10px;
+    border: 1px solid #999;
 }
-.single .product-info .product-info-content .btns button:focus{
-    border: 0;
+.single .product-info-wrapper .buyer .unit{
+    margin: 0 5px;
+}
+.single .product-info-wrapper .sku{
+    margin-left: 10px;
+    font-size: 1rem;
+    color: 777;
+}
+.single .product-info-wrapper .sku strong{
+    margin: 0 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.single .product-info-wrapper .btns{
+    position: relative;
+    margin: 1rem auto;
+}
+.single .product-info-wrapper .btns .btn{
+    position: relative;
+    height: 2rem;
+    line-height: 2rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+    font-size: 1rem;
+    color: #fff;
+    background: #24a0f0;
+}
+/* 介绍评价 */
+.single .product-content-wrapper{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+.single .product-container .sidebar{
+    float: left;
+    position: absolute;
+    top: 0;
+    width: 300px;
+    margin: 0 auto;
+}
+.single .product-content-wrapper>.content-wrapper >.content{
+    margin-left: 320px;
+    margin-right: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.single .product-content-wrapper .tabs{
+    cursor: default;
+    list-style: none;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin: 0 auto;
+    padding: 0;
+    border-bottom: 1px solid #999;
+}
+.single .product-content-wrapper .mobile{
+    float: right;
+    position: relative;
+    height: 100%;
+    padding: 0 1rem;
+}
+.single .product-content-wrapper .mobile i{
+    margin: 0 5px;
+}
+.single .product-content-wrapper .mobile:hover .product-qrcode{
+    display: block;
+}
+.single .product-content-wrapper .mobile .product-qrcode{
+    z-index: 999;
+    display: none;
+    position: absolute;
+    top: 2.5rem;
+    right: 1rem;
+    width: 140px;
+    height: 140px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background: #fff;
+}
+.single .product-content-wrapper .mobile .product-qrcode canvas{
+    width: 100%;
+    height: 100%;
+}
+.single .product-content-wrapper .tab{
+    float: left;
+    display: block;
+    width: 100px;
+    height: 100%;
+    line-height: 2.5rem;
+    margin: 0 auto;
+    text-align: center;
+    color: #555;
+}
+.single .product-content-wrapper .tab.active{
+    color: #fff;
+    background: #999;
+}
+.single .product-content-wrapper .items{
+    min-height: 500px;
+    padding: 1.2rem 2rem;
+    padding-top: 0;
+}
+.single .product-content-wrapper .item{
+    display: none;
+}
+.single .product-content-wrapper .item.active{
+    display: block;
+}
+@media (max-width: 1024px) {
+
 }

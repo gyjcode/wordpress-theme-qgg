@@ -15,11 +15,11 @@ function _module_loader($name = '', $apply = true) {
     }
 }
 // 广告加载器
-function _ads_loader($name='', $class=''){
-    if( !QGG_Options($name.'_on') ){
+function _ads_loader($adsname='', $classname=''){
+    if( !QGG_Options($adsname.'_on') ){
         return;
     }else{
-        echo '<div class="adc module '.$class.'">'.QGG_Options($name).'</div>';
+        echo '<div class="adc '.$classname.'">'.QGG_Options($adsname.'_code').'</div>';
     }
 }
 // CSS 加载器
@@ -331,7 +331,7 @@ function _site_logo() {
     echo '
     <'.$tag.' class="logo">
         <a href=" '.get_bloginfo('url').' " title=" '.$title.' ">
-            <img src=" '.QGG_Options('logo_colorful_src').' " alt=" '.$title.' ">
+            <img src=" '.QGG_Options('site_logo_src').' " alt=" '.$title.' ">
         </a>
     </'.$tag.'>';
 }

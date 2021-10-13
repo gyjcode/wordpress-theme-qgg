@@ -3,11 +3,6 @@
  * 视频分类页面模板
  */
 ?>
-
-<?php 
-    
-?>
-
 <section class="container">
     <!-- 主体 -->
     <div class="content-wrapper">

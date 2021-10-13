@@ -30,6 +30,8 @@ if (QGG_Options('smtp_mailer_on')){
         );
     };
 }
+// 上传头像
+require THEME_DIR.'/functions/utils/class_video_player.php';
 
 // 自定义工具函数
 require THEME_DIR.'/functions/func_tool.php';

@@ -121,4 +121,6 @@ $search_baidu_code = QGG_Options('search_baidu_code') ?: '';
         </div>
         
     </header>
+    <!-- 面包屑导航 -->
+    <?php _module_loader('module_breadcrumbs'); ?>
     

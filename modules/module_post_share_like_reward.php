@@ -67,7 +67,7 @@ $rewards_wechat = QGG_Options('post_rewards_wechat') ? QGG_Options('post_rewards
         <!-- 海报 -->
         <div class="post-poster action action-poster">
             <!-- 显示 -->
-            <a href="javascript:;" class="item" data-event="poster-popover">
+            <a href="javascript:;" class="action action-poster" data-event="poster-popover">
                 <i class="fa fa-paper-plane"></i><span>&nbsp;<?php echo $poster_text ?></span>
             </a>
             <div class="poster-qrcode" style="display:none;"></div>

@@ -179,7 +179,7 @@
     text-decoration: none;
     display: block;
     width: 100%;
-    height: 100%;
+    height: auto;
     border: 1px solid transparent;
     padding: 0 1.2rem 1.2rem;
 }

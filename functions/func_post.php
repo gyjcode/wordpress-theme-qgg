@@ -21,7 +21,7 @@ function _get_the_post_subtitle($span=true){
     }
 }
 // 文章摘要 # 两个工具函数：tool_get_strlen 与 tool_str_cut
-function _get_the_excerpt($limit = 120, $after = '...') {
+function _get_the_post_excerpt($limit = 120, $after = '...') {
     $excerpt = strip_tags( get_the_excerpt() );
     if (tool_get_strlen($excerpt ) > $limit) {
         return tool_str_cut($excerpt , 0, $limit, $after);
@@ -87,6 +87,13 @@ function _is_my_like($post_id=''){
     return in_array($post_id, $likes) ? true : false;
 }
 
+// 获取文章产品信息
+function _get_the_product_meta( $meta='', $before='', $after='' ){
+    global $post;
+    $post_ID = $post->ID;
+    $product_meta = get_post_meta($post_ID, $meta, true);
+    return $before.$product_meta.$after;
+}
 
 // 文章页添加展开收缩效果
 if (!function_exists('custom_collapse')){
@@ -118,322 +125,148 @@ add_action('admin_print_footer_scripts', 'appthemes_add_collapse' );
 }
 
 
-
-
-// 获取产品价格前缀
-function _get_price_pre(){
-    return '&yen;';
-}
-// 获取文章产品信息
-function _get_product_meta( $meta='', $before='', $after='' ){
-    global $post;
-    $post_ID = $post->ID;
-    $product_meta = get_post_meta($post_ID, $meta, true);
-    return $before.$product_meta.$after;
-}
-
-
-
 // 文章通用 Meta
 $common_conf = array(
     'box_id'    => "common_meta_box",
-    'box_title' => "通用设置",
+    'box_title' => __('通用设置', 'QGG'),
     'ipt_id'    => "common_meta_ipt_id",
     'ipt_name'  => "common_meta_ipt_name",
     'div_class' => "post-meta-box-s1",
 );
 $common_meta = array(
     array(
+        'title' => __('副标题', 'QGG'),
         "name"  => "subtitle",
-        "std"   => "",
-        'title' => __('副标题', 'QGG')
+        "value" => "",
+        "placeholder" => "副标题"
     ),
     array(
+        "title" => __('来源名称', 'QGG'),
         "name"  => "from_name",
-        "std"   => "",
-        "title" => __('来源名称', 'QGG')
+        "value" => "",
+        "placeholder" => "来源名称"
     ),
     array(
+        'title' => __('来源链接', 'QGG'),
+        "type"  => "url",
         "name"  => "from_url",
-        "std"   => "",
-        'title' => __('来源链接', 'QGG')
+        "value" => "",
+        "placeholder" => "http(s)://"
     )
 );
 
-$common_meta_box = new CreateMyMetaBox($common_conf,$common_meta);
+$common_meta_box = new _CreatePostMeta($common_conf, $common_meta);
 
 
 // 文章新增产品相关 Meta
 $product_conf = array(
     'box_id'    => "product_meta_box",
-    'box_title' => "产品设置",
+    'box_title' => __('产品设置', 'QGG'),
     'ipt_id'    => "product_meta_ipt_id",
     'ipt_name'  => "product_meta_ipt_name",
-    'div_class' => "post-meta-box-s2",
+    'div_class' => "post-meta-box-s3",
 );
 $product_meta = array(
     array(
-        "name"  => "original_price",
-        "std"   => "", 
-        "title" => __('产品原价', 'QGG')
+        "title" => __('原价', 'QGG'),
+        "type"  => "number",
+        "name"  => "product_price",
+        "value" => "",
+        "placeholder" => "0.00",
+        "step"  => "0.01"
     ),
     array(
-        "name"  => "bargain_price",
-        "std"   => "",
-        "title" => __('产品特价', 'QGG')
+        "title" => __('库存(SKU)', 'QGG'),
+        "type"  => "number",
+        "name"  => "product_sku",
+        "value" => "",
+        "placeholder" => "0.00",
+        "step"  => "0.01"
     ),
     array(
-        "name"  => "product_info",
-        "std"   => "",
-        "title" => __('产品信息', 'QGG')
-    ),
-    array(
+        "title" => __('跳转链接', 'QGG'),
+        "type"  => "url",
         "name"  => "product_link",
-        "std"   => "",
-        "title" => __('产品链接', 'QGG')
+        "value" => "",
+        "placeholder" => "http(s)://"
+    ),
+    array(
+        "title" => __('特价', 'QGG'),
+        "type"  => "number",
+        "name"  => "product_sale_price",
+        "value" => "",
+        "placeholder" => "0.00",
+        "step"  => "0.01"
+    ),
+    array(
+        "title" => __('起日期', 'QGG'),
+        "type"  => "date",
+        "name"  => "product_sale_price_date_from",
+        "value" => "",
+        "placeholder" => "YYYY-MM-DD",
+        "pattern" => "[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"
+    ),
+    array(
+        "title" => __('止日期', 'QGG'),
+        "type"  => "date",
+        "name"  => "product_sale_price_date_to",
+        "value" => "",
+        "placeholder" => "YYYY-MM-DD",
+        "pattern" => "[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"
     )
 );
 
-$product_meta_box = new CreateMyMetaBox($product_conf,$product_meta);
+$product_meta_box = new _CreatePostMeta($product_conf, $product_meta);
 
+// 产品相册注册
+include_once  THEME_DIR.'/functions/utils/func_product_gallery.php';
 
 // 文章新增视频相关 Meta
 $video_conf = array(
-        'box_id'    => "video_meta_box",
-        'box_title' => "视频设置",
-        'ipt_id'    => "video_meta_ipt_id",
-        'ipt_name'  => "video_meta_ipt_name",
-        'div_class' => "post-meta-box-s2",
-    );
+    'box_id'    => "video_meta_box",
+    'box_title' => __('视频设置', 'QGG'),
+    'ipt_id'    => "video_meta_ipt_id",
+    'ipt_name'  => "video_meta_ipt_name",
+    'div_class' => "post-meta-box-s2",
+);
 $video_meta = array(
-
     array(
-        "name"   => "video_subname", 
-        "std"    => "", 
-        "title"  => '又名'
-    ),
-    array(
+        "title"  => __('导演', 'QGG'),
         "name"   => "video_director", 
-        "std"    => "", 
-        "title"  => '导演'
+        "value"  => "",
+        "placeholder" => "导演"
     ),
     array(
-        "name"   => "video_screenwriter", 
-        "std"    => "", 
-        "title"  => '编剧'
+        "title"  => __('编剧', 'QGG'),
+        "name"   => "video_scriptwriter", 
+        "value"  => "",
+        "placeholder" => "编剧"
     ),
     array(
-        "name"   => "video_author", 
-        "std"    => "", 
-        "title"  => '作者'
+        "title"  => __('主演', 'QGG'),
+        "name"   => "video_actor", 
+        "value"  => "",
+        "placeholder" => "主演"
     ),
     array(
-        "name"   => "video_starring", 
-        "std"    => "", 
-        "title"  => '主演'
-    ),
-    array(
-        "name"   => "video_type", 
-        "std"    => "", 
-        "title"  => '类型'
-    ),
-    array(
-        "name"   => "video_publisher", 
-        "std"    => "", 
-        "title"  => '发行'
-    ),
-    array(
-        "name"   => "video_released", 
-        "std"    => "", 
-        "title"  => '上映'
-    ),
-    array(
+        "title"  => __('语言', 'QGG'),
         "name"   => "video_language", 
-        "std"    => "", 
-        "title"  => '语言'
+        "value"  => "",
+        "placeholder" => "语言"
     ),
     array(
-        "name"   => "video_duration", 
-        "std"    => "", 
-        "title"  => '时长'
+        "title"  => __('发行公司', 'QGG'),
+        "name"   => "video_publisher", 
+        "value"  => "",
+        "placeholder" => "发行公司"
     ),
     array(
-        "name"   => "video_poster",
-        "std"    => "",
-        "title"  => '海报'
-    ),
-    array(
-        "name"   => "video_background", 
-        "std"    => "",
-        "title"  => '背景'
+        "title"  => __('上映时间', 'QGG'),
+        "type"   => 'date',
+        "name"   => "video_releasetime", 
+        "value"  => "",
+        "placeholder" => "YYYY-MM-DD"
     ),
 );
 
-$video_meta_box = new CreateMyMetaBox($video_conf,$video_meta);
-
-// 文章新增视频列表 Meta
-/**==================== 新增视频列表开始 ====================*/
-function video_list_meta(){
-    global $list_meta_box;
-    $list_meta_box = array(
-        'name' => 'video_list_info',
-        "std"   => "",
-        'title' => "",
-        'type' => 'group',
-        'submeta' => array(
-            array(
-                'title' => '序号',
-                'name'   => 'sort',
-                'std'  => '',
-                'type' => 'text'
-            ),
-            array(
-                'title' => '标题',
-                'name'   => 'title',
-                'std'  => '',
-                'type' => 'text'
-            ),
-            array(
-                'title' => '链接',
-                'name'   => 'link',
-                'std'  => '',
-                'type' => 'text'
-            ),
-            array(
-                'title' => '海报',
-                'name'   => 'poster',
-                'std'  => '',
-                'type' => 'text'
-            ),
-        ),
-    );
-    
-    add_action('admin_menu', 'my_list_meta_box_create');
-    add_action('save_post', 'my_list_meta_box_save');
-    
-    function my_list_meta_box_create() {
-        if ( function_exists('add_meta_box') ) {
-            add_meta_box( 'video_lists_id', '视频列表', 'my_list_meta_box_init', 'post', 'normal', 'high' );
-        }
-    }
-    // 初始化 Meta 信息
-    function my_list_meta_box_init( $post_id ) {
-        global $list_meta_box,$html_format;
-        global $post;
-        $post_id = $post -> ID;
-        $total_num = get_post_meta($post_id, 'video_total_num', true) ? get_post_meta($post_id, 'video_total_num', true) : 1 ;
-        $update_num = get_post_meta($post_id, 'video_update_num', true) ? get_post_meta($post_id, 'video_update_num', true) : 1;
-        echo '
-        <div class="meta-list-field">
-            <div class="meta-list-sum">
-                <label class="field-label" for="video-total-num-id" >总集数</label><input type="text" name="video_total_num" id="video-total-num-id" value="'.$total_num.'" class="field-input" />
-                <label class="field-label" for="video-update-num-id" >更新至</label><input type="text" name="video_update_num" id="video-update-num-id" value="'.$update_num.'" class="field-input" />
-            </div>
-            <div class="meta-lists">';
-                // 获取已有更新视频列表
-                for ($i=1; $i<=$update_num; $i++){
-                    if ($i == 1){
-                        $html_format_old .= '
-                        <div class="meta-list-item first-item">
-                            <div class="meta-list-item-group">';
-                    }else{
-                        $html_format_old .= '
-                        <div class="meta-list-item">
-                            <div class="meta-list-item-group">';
-                    }
-                    if(is_array($list_meta_box['submeta'])){
-                        foreach ( $list_meta_box['submeta'] as $sub_meta ){
-                            $meta_box_key = $list_meta_box['name'].'_'.$i.'_'.$sub_meta['name'];
-                            $item_value = get_post_meta($post_id, $meta_box_key, true);
-                            
-                            $format = '<div class="meta-item header %s"><label for="%s">%s</label><input type="text" name="%s" id="%s" value="%s"/></div>';
-                            $mixed_arg0 = $sub_meta['name'];
-                            $mixed_arg1 = $meta_box_key;
-                            $mixed_arg2 = $sub_meta['title'];
-                            $mixed_arg3 = $item_value ? $item_value : $sub_meta['std'];
-                            $html_format_old .= sprintf( $format, $mixed_arg0, $mixed_arg1, $mixed_arg2, $mixed_arg1, $mixed_arg1, $mixed_arg3 );
-                        }
-                    }else{
-                        echo 'Error：submeta 不是一个数组集合！！！';
-                    }
-                    if ($i < $update_num){
-                        $html_format_old .= '
-                                <a href="#" style="visibility: hidden;" class="delete-item button-secondary '.$i.'" id = "'.$post_id.'";>删除</a>
-                            </div>
-                        </div>';
-                    }else{
-                        $html_format_old .= '
-                                <a href="#" class="delete-item button-secondary '.$i.'" id = "'.$post_id.'";>删除</a>
-                            </div>
-                        </div>';
-                    }
-                } 
-                // 生成新增视频列表组
-                $html_format = '
-                <div class="meta-list-item">
-                    <div class="meta-list-item-group">';
-                    if(is_array($list_meta_box['submeta'])){
-                        foreach ( $list_meta_box['submeta'] as $sub_meta ){
-                            $format = '<div class="meta-item %s"><label for="%s">%s</label><input type="text" name="%s" id="%s" value="%s"/></div>';
-                            $mixed_arg0 = $sub_meta['name'];
-                            $mixed_arg1 = $list_meta_box['name'].'_{{i}}_'.$sub_meta['name'];
-                            $mixed_arg2 = $sub_meta['title'];
-                            $mixed_arg3 = $sub_meta['std'];
-                            $html_format .= sprintf( $format, $mixed_arg0, $mixed_arg1, $mixed_arg2, $mixed_arg1, $mixed_arg1, $mixed_arg3 );
-                        }
-                    }else{
-                        echo 'Error：submeta 不是一个数组集合！！！';
-                    }
-                $html_format .= '
-                        <a href="#" class="delete-item button-secondary '.$i.'" id = "'.$post_id.'";>删除</a>
-                    </div>
-                </div>';
-                    
-                echo '
-                <script type="text/html" id="framework-html-'.$list_meta_box['name'].'">'.$html_format.'</script>
-                '.$html_format_old.'
-                <a href="#" class="add-item button-secondary" data-name="framework-html-'.$list_meta_box['name'].'">添加</a>
-            </div>
-        </div>';
-        echo '<input type="hidden" name="list_meta_box_input" id="list-meta-box-input-id" value="'.wp_create_nonce( plugin_basename(__FILE__) ).'" />';
-    }
-    // 遍历剧集信息生成 Meta
-    function my_list_meta_box_save( $post_id ) {
-        global $list_meta_box;
-        global $post;
-        $post_id = $post -> ID;
-        
-        if ( !wp_verify_nonce( isset($_POST['list_meta_box_input']) ? $_POST['list_meta_box_input'] : '', plugin_basename(__FILE__) ))
-            return;
-        if ( !current_user_can( 'edit_posts', $post_id ))
-            return;    
-        // 总集数
-        creat_my_post_meta($post_id, 'video_total_num');
-        // 更新至
-        creat_my_post_meta($post_id, 'video_update_num');
-        //分集
-        $update_num_new = isset($_POST['video_update_num']) ? $_POST['video_update_num'] : '';
-        for ($i=1; $i<=$update_num_new; $i++) {
-            foreach( $list_meta_box['submeta'] as $sub_meta ) {
-                $meta_box_key = $list_meta_box['name'].'_'.$i.'_'.$sub_meta['name'];
-                creat_my_post_meta($post_id, $meta_box_key);
-            }
-        }
-    }
-    // 提交 Meta 到数据库
-    function creat_my_post_meta($post_id, $meta_box_key){
-        
-        $new_data = isset($_POST[ $meta_box_key ]) ? $_POST[ $meta_box_key ] : '';
-        
-        if( get_post_meta( $post_id, $meta_box_key ) == "" ){
-            add_post_meta( $post_id, $meta_box_key, $new_data, true );
-        }elseif( $new_data != get_post_meta( $post_id, $meta_box_key, true ) ){
-            update_post_meta( $post_id, $meta_box_key, $new_data );
-        }elseif($new_data == ""){
-            delete_post_meta( $post_id, $meta_box_key, get_post_meta( $post_id, $meta_box_key, true ) );
-        }
-    }
-
-}
-video_list_meta();
-/**==================== 新增视频列表结束 ====================*/
+$video_meta_box = new _CreatePostMeta($video_conf, $video_meta);

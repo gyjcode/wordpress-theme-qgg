@@ -55,21 +55,31 @@ $qrcode_title = QGG_Options('cat_product_qrcode_title') ?: '';
                 <article class="product  site-style-border-radius">
                     <div class="thumb-wrapper">
                         <a class="thumb" href="'.get_permalink().'" '._post_target_blank().'>'._get_the_post_thumbnail().'</a>
-                        <a class="title" href="'.get_permalink().'" '. _post_target_blank() .'><h2>'.get_the_title().'</h2></a>
                     </div>
-                    <div class="details-wrapper">';
-
-                        $line_through =_get_product_meta("bargain_price") ? "line-through" : "none";
-                        if( _get_product_meta("original_price") ){
-                            echo '<span class="original-price" style="text-decoration: '.$line_through.';">'._get_product_meta("original_price", _get_price_pre().' ').'</span>';
-                            if( _get_product_meta("bargain_price")){
-                                echo '<span class="bargain-price">'._get_product_meta("bargain_price", _get_price_pre().' ').'</span>';
+                    <div class="details-wrapper">
+                        <div class="price">';
+                            // 价格参数 
+                            $price           = _get_the_product_meta("product_price") ?: null;
+                            $sale_price      = _get_the_product_meta("product_sale_price") ?: null;
+                            $sale_date_from  = _get_the_product_meta("product_sale_price_date_from") ?: null;
+                            $sale_date_to    = _get_the_product_meta("product_sale_price_date_to") ?: null;
+                            $lost_days       = (strtotime(date("Y-m-d")) - strtotime($sale_date_from) )/(24*60*60);
+                            $sale_price_show = $sale_price && $sale_date_from && $sale_date_to && ($lost_days <= 7);
+                            $line_through    = $sale_price_show ? "line-through" : "none";
+                            if( $price ){
+                                echo '<span style="text-decoration: '.$line_through.';">&#165;'.number_format($price, 2).'</span>';
+                                if( $sale_price_show ){
+                                    echo '<span class="sale"><small>促销</small>&#165;'.number_format($sale_price, 2).'</span>';
+                                }
+                            }else{
+                                echo '<span class="no-price">该商品暂无定价！</span>';
                             }
-                        }else{
-                            echo '<span>该商品暂无定价！</span>';
-                        }
-                        
-                    echo '
+                            
+                        echo '
+                        </div>
+                        <div class="title">
+                            <a href="'.get_permalink().'" '. _post_target_blank() .'><h2>'.get_the_title().'</h2></a>
+                        </div>
                     </div>
                 </article>';
             endwhile;

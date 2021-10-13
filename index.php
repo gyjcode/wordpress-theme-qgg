@@ -18,7 +18,7 @@ if( QGG_Options('carousel_full_screen_on') ){
         _module_loader('module_topic_card_box');
     }
     ?>
-    <!-- 网站主体 -->
+    <!-- 主体 -->
     <div class="content-wrapper">
         <div class="content">
             <?php
@@ -27,16 +27,16 @@ if( QGG_Options('carousel_full_screen_on') ){
                 _module_loader('module_img_box_posts');
             }
             ?>
-            <?php 
-            // 最新文章列表样式
-            if( QGG_Options('new_posts_excerpt_on') ){
-                _module_loader('module_posts_excerpt_new');
-            }
-            ?>
             <?php
             // 双栏文章列表样式 1
             if( QGG_Options('posts_list_double_s1_on') ){
                 _module_loader('module_posts_2column_s1');
+            }
+            ?>
+            <?php 
+            // 最新文章列表样式
+            if( QGG_Options('new_posts_excerpt_on') ){
+                _module_loader('module_posts_excerpt_new');
             }
             ?>
             <?php
@@ -47,6 +47,7 @@ if( QGG_Options('carousel_full_screen_on') ){
             ?>
         </div>
     </div>
+    <!-- 侧栏 -->
     <?php get_sidebar(); ?>
 </section>
 

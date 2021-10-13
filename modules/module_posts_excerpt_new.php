@@ -18,16 +18,8 @@ $meta_view_on     = QGG_Options('post_meta_view_on') ?: false;
 $meta_like_on     = QGG_Options('post_meta_like_on') ?: false;
 $meta_comment_on  = QGG_Options('post_meta_comment_on') ?: false;
 
-$ads_01_on        = QGG_Options('ads_post_list_01') ?: false;
-$ads_02_on        = QGG_Options('ads_post_list_02') ?: false;
 ?>
-
-<?php
-// 广告
-if($ads_01_on ){
-    _ads_loader($name='ads_post_list_01', $class='ads-post-list-01 site-style-border-radius');
-}
-?>
+<!-- 文章列表 -->
 <section class="module new-posts-excerpt site-style-childA-hover-color site-style-border-radius">
     <?php
     if ( have_posts() ){
@@ -124,7 +116,7 @@ if($ads_01_on ){
                     echo '</p>';
 
                     // 文章摘要
-                    echo '<p class="desc">'._get_the_excerpt().'</p>';
+                    echo '<p class="desc">'._get_the_post_excerpt().'</p>';
                     // 文章标签
                     echo the_tags( '<p class="tags">', '', '</p>' ); 
                     // 更多按钮
@@ -133,6 +125,13 @@ if($ads_01_on ){
                 
             echo '</article>';
 
+            // 每 10 篇文章，在第三篇位置处插入一个广告
+            if ( $i == 3 ) {
+                echo '<article class="excerpt-ads">';
+                    _ads_loader($adsname='ads_post_list', $classname='ads-post-list site-style-border-radius');
+                echo '</article>';
+            }
+               
         endwhile; 
         // 分页
         _module_loader('module_pagination');
@@ -142,9 +141,4 @@ if($ads_01_on ){
     }
     ?>
 </section>
-<?php
-// 广告
-if($ads_02_on ){
-    _ads_loader($name='ads_post_list_02', $class='ads-post-list-02 site-style-border-radius');
-}
-?>
+

@@ -3,121 +3,69 @@
   * WP Post Template: 视频文章
   */
 get_header();
+
+$director     = get_post_meta( get_the_ID(), 'video_director', true );    // 导演
+$scriptwriter = get_post_meta( get_the_ID(), 'video_scriptwriter', true );    // 编剧
+$actor        = get_post_meta( get_the_ID(), 'video_actor', true );    // 主演
+$language     = get_post_meta( get_the_ID(), 'video_language', true );    // 语言
+$publisher    = get_post_meta( get_the_ID(), 'video_publisher', true );    // 发行公司
+$releasetime  = get_post_meta( get_the_ID(), 'video_releasetime', true );    // 上映时间
+$thumbnail    = _get_the_post_thumbnail();
 ?>
 
-<div id ="video-banner" class="video-banner clearfix">
-    <?php $background_img = get_post_meta( get_the_ID(), 'video_background', true ) ? get_post_meta( get_the_ID(), 'video_background', true ) : get_template_directory_uri() . '/img/banner-bg-1.png';?>
-    <img class="bg-img" src="<?php echo $background_img; ?>">
-    <div class="cover"></div>
-    <div class="banner-wraper container">
-        <div class="content">
-            <div class="img-box">
-                <div class="poster">
-                    <img src="<?php echo get_post_meta( get_the_ID(), 'video_poster', true ); ?>" alt="" class="stage-photo">
-                    <span>
-                        <?php echo get_post_meta( get_the_ID(), 'video_update_num', true ); ?> 集
-                    </span>
-                </div>
-            </div>
-            <div class="text-box">
-                <div class="info">
-                    <h1 class="title"><a href="<?php the_permalink() ?>"><?php the_title(); ?><?php echo _get_the_post_subtitle() ?></a></h1>
-                    <ul>
-                        <li><span>浏览数</span><b><?php echo _get_the_post_views(); ?></b></li>
-                        <li><span>评论数</span><b><?php echo get_comments_number('0', '1', '%'); ?></b></li>
-                        <li><span>点赞数</span><b><?php echo _get_the_post_likes(); ?></b></li>
-                    </ul>
+<div class="container video-container">
+    <!-- 主体 -->
+    <div class="content-wrapper">
+        <?php while (have_posts()) : the_post(); ?>   
+        <section class="content site-style-border-radius">
+            <div class="post-header">
+                <div class="left">
+                    <h1 class="title">
+                        <?php the_title(); ?><?php echo _get_the_post_subtitle() ?>
+                    </h1>
+                    <div class="infos">
                     <?php 
-                    $subname      = get_post_meta( get_the_ID(), 'video_subname', true );
-                    $director     = get_post_meta( get_the_ID(), 'video_director', true );
-                    $screenwriter = get_post_meta( get_the_ID(), 'video_screenwriter', true );
-                    $author       = get_post_meta( get_the_ID(), 'video_author', true );
-                    $starring     = get_post_meta( get_the_ID(), 'video_starring', true );
-                    $type         = get_post_meta( get_the_ID(), 'video_type', true );
-                    $publisher    = get_post_meta( get_the_ID(), 'video_publisher', true );
-                    $released     = get_post_meta( get_the_ID(), 'video_released', true );
-                    $language     = get_post_meta( get_the_ID(), 'video_language', true );
-                    $duration     = get_post_meta( get_the_ID(), 'video_duration', true );
-                    
-                    echo $subname ? '<p class="subname"><label>又名</label><i>'.$subname.'</i></p>' : '';
-                    echo $director ? '<p class="director"><label>导演</label><i>'.$director.'</i></p>' : '';
-                    echo $screenwriter ? '<p class="screenwriter"><label>编剧</label><i>'.$screenwriter.'</i></p>' : '';
-                    echo $author ? '<p class="author"><label>作者</label><i>'.$author.'</i></p>' : '';
-                    echo $starring ? '<p class="starring"><label>主演</label><i>'.$starring.'</i></p>' : '';
-                    echo $type ? '<p class="type"><label>类型</label><i>'.$type.'</i></p>' : '';
-                    echo $publisher ? '<p class="publisher"><label>发行</label><i>'.$publisher.'</i></p>' : '';
-                    echo $released ? '<p class="released"><label>上映</label><i>'.$released.'</i></p>' : '';
-                    echo $language ? '<p class="language"><label>语言</label><i>'.$language.'</i></p>' : '';
-                    echo $duration ? '<p class="duration"><label>时长</label><i>'.$duration.'</i></p>' : '';
+                        echo $language     ? '<span class="language">'.$language.'</span>' : '';
+                        echo $publisher    ? '<span class="publisher"><em>发行：</em>'.$publisher.'</span>' : '';
+                        echo $releasetime  ? '<span class="releasetime"><em>上映：</em>'.$releasetime.'</span>' : '';
+                        
+                        echo '<span class="info more"><em>更多<i class="fa fa-angle-down"></i></em></span>
+                            <div class="details-wrapper">
+                                <div class="details">';
+                                    echo $director     ? '<p><em>导演：</em>'.$director.'</p>': '';
+                                    echo $scriptwriter ? '<p><em>编剧：</em>'.$scriptwriter.'</p>' : '';
+                                    echo $actor        ? '<p><em>主演：</em>'.$actor.'</p>' : '';
+                                    echo '<p class="except">'._get_the_post_excerpt().'</p>';
+                                echo '
+                                </div>
+                                '.($thumbnail ? '<div class="poster">'.$thumbnail.'</div>' : '').'
+                        </div>';
                     ?>
-                    <p class="desc"> <?php echo has_excerpt() ? get_the_excerpt() : "该视频无摘要内容！！！" ; ?></p>
-                </div>
-                <div class="rating">
-                    <?php echo get_post_meta( get_the_ID(), 'video_update_num', true ); ?> 
-                    <i>分 / <?php echo _get_the_post_views(); ?> 人</i>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="content">
-        <?php while (have_posts()) : the_post(); ?>
-        <section id="video-wraper" class="video-wraper site-style-border-radius">
-            <div class="video-player">
-                <!-- 视频播放盒子-主体内容 -->
-                <div class="player-main">
-                    <?php
-                    $video_link   = get_post_meta( get_the_ID(), 'video_list_info_1_link', true );
-                    $video_poster = get_template_directory_uri()."/img/video-poster.png"; 
-                    ?>
-                    <video id="player" class="video-js vjs-big-play-centered" controls  preload="auto" poster="<?php echo $video_poster ?>"  data-setup="">
-                        <source src="<?php echo $video_link; ?>"></source>
-                    </video>
-                </div>
-                <!-- 视频播放盒子-侧栏列表 -->
-                <div class="player-sidebar">
-                    <?php
-                    $update_num =get_post_meta( get_the_ID(), 'video_update_num', true );
-                    if ($update_num>1){
-                        _module_loader('module_posts_section_video', true);
-                    }else{
-                        _module_loader('module_posts_related_video', true);
-                    }
-                    ?>
-                </div>    
-            </div>
-            <!-- 视频 Meta 内容 -->
-            <div class="video-info">
-                <div class="info-main">
-                    <div class="title">
-                        <a href="javascript:;"><span class="rating">
-                            <b>共 123 人评分：</b>
-                            <span id="star01" class="stars" title="1星"><i class="iconfont qgg-star_filled"></i></span>
-                            <span id="star02" class="stars" title="2星"><i class="iconfont qgg-star_filled"></i></span>
-                            <span id="star03" class="stars" title="3星"><i class="iconfont qgg-star_filled"></i></span>
-                            <span id="star04" class="stars" title="4星"><i class="iconfont qgg-star_filled"></i></span>
-                            <span id="star05" class="stars" title="5星"><i class="iconfont qgg-star"></i></span>
-                        </span></a>
-                        <a href="<?php the_permalink() ?>"><h1><?php the_title(); ?></h1><?php echo _get_the_post_subtitle() ?></a>
                     </div>
-                    <?php _module_loader('module_post_share_like_reward'); ?>
                 </div>
-                <div class="info-ads">
-                    <!-- 广告代码 -->
-                    <?php _ads_loader($name='ads_video_post_01', $class='ads-video-post-01') ?>
+                <div class="metas">
+                    <!-- 评分数 -->
+                    <span class="meta likes"><i class="fa fa-fire"></i><b><?php echo _get_the_post_likes() ?></b></span>
+                    <!-- 阅读数 -->
+                    <span class="meta views"><i class="fa fa-eye"></i><b><?php echo _get_the_post_views() ?></b></span>
+                    <!-- 喜欢数 -->
+                    <span class="meta likes"><i class="fa fa-heart"></i><b><?php echo _get_the_post_likes() ?></b></span>
+                    <!-- 分享数 -->
+                    <span class="meta likes"><i class="fa fa-share"></i><b><?php echo _get_the_post_views() ?></b></span>
                 </div>
             </div>
-        </section>
-    </div>    
-    <div class="content">
-        <section class="main site-style-border-radius">
+
+            <!-- 广告代码 -->
+            <?php _ads_loader($adsname='ads_post_video', $classname='ads-post-video') ?>
+
             <!-- 用户编辑内容 -->
-            <div class="article-content">
+            <div class="post-content">
                 <?php the_content(); ?>
             </div>
-            
+
+            <!-- 点赞分享 -->
+            <?php _module_loader('module_post_share_like_reward'); ?>
+
             <!-- 文章底部分页按钮 -->
             <?php wp_link_pages( array(
                 'before'            => '<div class="page-links">',
@@ -130,53 +78,26 @@ get_header();
                 'pagelink'          => '%',
                 ) );
             ?>
-            <!-- 文章底部作者信息 -->
-            <?php if( QGG_Options('post_author_on') ){ ?>
-            <div class="article-author">
-                <div class="touxiang">
-                    <?php echo _get_avatar(get_the_author_meta('ID'), get_the_author_meta('email')); ?>
-                </div>
-                <div class="desc">
-                    <div class="title">
-                        <span><a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">更多+</a></span>
-                        <h4>
-                            <i class="iconfont qgg-user"></i>
-                            <a title="查看更多文章" href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php echo get_the_author_meta('nickname'); ?></a>
-                        </h4>
-                    </div>
-                    <div class="content">
-                        <p><?php echo get_the_author_meta('description'); ?></p>
-                    </div>
-                </div>
-            </div>
-            <?php } ?>
-            <!-- 文章底部文字广告 -->
-            <?php if (QGG_Options('ads_text_post_footer_open')) {
-                echo '<div id="ads_text_post_footer"><b>AD：</b><strong>【' . QGG_Options('ads_text_post_footer_title') . '】</strong><a'.(QGG_Options('ads_text_post_footer_blank')?' target="_blank"':'').' href="' . QGG_Options('ads_text_post_footer_link') . '">' . QGG_Options('ads_text_post_footer_desc') . '</a></div>';
-            } ?>
-            <!-- 文章底部版权信息 -->
-            <?php if( QGG_Options('post_copyright_on') ){
-                echo '<div class="post-copyright">'; 
-                    echo '<div class="title"><span>'. QGG_Options('post_copyright_title') .'</span></div>';
-                    echo '<div class="content">
-                        <p><span>文章标题：</span><a href="'. get_permalink(). '">' .get_bloginfo('name'). '&nbsp;&raquo;&nbsp;' .get_the_title(). '</a></p>
-                        <p><span>原文链接：</span>' .get_permalink(). '</p>
-                        <p><span>发布信息：</span>文章由【<a href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'">'.get_the_author().'</a>】于<'.get_the_time('Y-m-d').'>发布于【';
-                        echo ''.the_category('/').'】分类下</p>
-                        <p><span>相关标签：</span>';
-                        echo ''. the_tags('','|','') .'</p>
-                        </div>';
-                echo '</div>';
-            } ?>
+
+            <!-- 作者信息 -->
+            <?php _module_loader('module_post_author_panel'); ?>
+
+            <!-- 版权信息 -->
+            <?php _module_loader('module_post_copyright'); ?>
             
             <!-- 文章底部读者评论 -->
             <?php comments_template('', true); ?>
             
         </section>
         <?php endwhile; ?>
-        
     </div>
+    <!-- 侧栏 -->
     <?php get_sidebar(); ?>
 </div>
 
-<?php get_footer();
+<?php get_footer(); ?>
+<script type="text/javascript">
+    $(".video-container .post-header").on("click", ".infos .more", function(){
+        $(".video-container .post-header .details-wrapper").toggle();
+    })
+</script>

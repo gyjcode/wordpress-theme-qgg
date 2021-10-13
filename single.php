@@ -9,17 +9,21 @@ $meta_view_on     = QGG_Options('post_meta_view_on') ?: false;
 $meta_like_on     = QGG_Options('post_meta_like_on') ?: false;
 $meta_comment_on  = QGG_Options('post_meta_comment_on') ?: false;
 // 获取配置 # 模块
-$ads_01_on     = QGG_Options('ads_post_default_01_on') ?: false;
-$ads_02_on     = QGG_Options('ads_post_default_02_on') ?: false;
 $ads_txt_on    = QGG_Options('ads_post_footer_text_on') ?: false;
 $ads_txt_title = QGG_Options('ads_post_footer_text_title') ?: '子不语';
 $ads_txt_desc  = QGG_Options('ads_post_footer_text_desc') ?: '一个不学无术的伪程序员';
 $ads_txt_blank = QGG_Options('ads_post_footer_text_blank') ?: false;
 $ads_txt_link  = QGG_Options('ads_post_footer_text_link') ?: 'https://zibuyu.life/';
+
+$related_on       = QGG_Options('posts_related_on') ?: false;
+$related_title    = QGG_Options('posts_related_title') ?: '相关文章';
+$related_num      = QGG_Options('posts_related_num') ?: 8;
+$related_thumb_on = QGG_Options('posts_related_thumb_on') ?: false;
 ?>
 
 <section class="container">
     <div class="content-wrapper">
+        <!-- 内容 -->
         <div class="content  site-style-border-radius">
             
             <?php while (have_posts()) : the_post(); ?>
@@ -65,15 +69,12 @@ $ads_txt_link  = QGG_Options('ads_post_footer_text_link') ?: 'https://zibuyu.lif
             </header>
 
             <!-- 广告代码 -->
-            <?php $ads_01_on ? _ads_loader($name='ads_post_default_01', $class='ads-post-default-01') : '' ?>
+            <?php  _ads_loader($adsname='ads_post_default', $classname='module ads-post-default'); ?>
 
             <!-- 文章内容 -->
             <article class="post-content">
                 <?php the_content(); ?>
             </article>
-
-            <!-- 广告代码 -->
-            <?php $ads_02_on ? _ads_loader($name='ads_post_default_02', $class='ads-post-default-02') : '' ?>
 
             <!-- 历史文章 -->
             <?php _module_loader('module_posts_today_in_history'); ?>
@@ -114,9 +115,9 @@ $ads_txt_link  = QGG_Options('ads_post_footer_text_link') ?: 'https://zibuyu.lif
             
             <!-- 文章底部相关文章 -->
             <?php 
-            if( QGG_Options('posts_related_on') ){
+            if( $related_on  ){
                 _module_loader('module_posts_related', false); 
-                module_posts_related(QGG_Options('posts_related_title'), QGG_Options('posts_related_num'), QGG_Options('posts_related_thumb_on'));
+                module_posts_related( $related_title, $related_num, $related_thumb_on );
             }
             ?>
             
@@ -124,8 +125,9 @@ $ads_txt_link  = QGG_Options('ads_post_footer_text_link') ?: 'https://zibuyu.lif
             <?php comments_template('', true); ?>
             </div>
         </div>
+        <!-- 侧栏 -->
+        <?php get_sidebar(); ?>
     </div>
-    <?php get_sidebar(); ?>
 </section>
 
 <?php get_footer();
