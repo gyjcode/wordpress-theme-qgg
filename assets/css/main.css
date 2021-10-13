@@ -147,9 +147,9 @@ li{
     font-size: 15px;
 }
 img{
-    object-fit: cover;
     display: block;
     max-width: 100%;
+    height: auto;
     margin: 0 auto;
 }
 table{
