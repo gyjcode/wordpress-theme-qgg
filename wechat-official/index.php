@@ -68,7 +68,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' && $isWechatToken ) {
 $isWechatRequest = isset($_GET['signature']) && isset($_GET['timestamp']) && isset($_GET['nonce']) && isset($_GET['openid']);
 if ( !($_SERVER['REQUEST_METHOD'] == 'POST' && $isWechatRequest) ) {
     echo '';
-    exit;
+    return;
 }
 // 回复功能
 include(WX_ROOT_DIR.'/reply/reply.php');
