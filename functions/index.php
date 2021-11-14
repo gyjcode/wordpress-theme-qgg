@@ -4,16 +4,26 @@ define( 'THEME_VER' , '2.0' );
 define( 'THEME_URI' , get_template_directory_uri() );
 define( 'THEME_DIR' , get_template_directory() );
 
-// 后台设置
+/**
+ * 后台设置
+ */
 require THEME_DIR.'/functions/func_settings.php';
 
-// 工具库
+/**
+ * 封装好的功能
+ */
+// 加载微信公众号验证码
+if (QGG_Options('wechat_official_on')){
+    require THEME_DIR.'/wechat-official/index.php';
+}
 // 创建 post meta
 require THEME_DIR.'/functions/utils/class_create_post_meta.php';
-// 文章模板 - 影响微信 Token 验证，待排查
+// 文章模板
 require THEME_DIR.'/functions/utils/func_post_template.php';
 // 上传头像
 require THEME_DIR.'/functions/utils/func_local_avatar.php';
+// 分集视频
+require THEME_DIR.'/functions/utils/class_video_player.php';
 // SMTP 发邮件
 if (QGG_Options('smtp_mailer_on')){
     if ( !function_exists('SMTP_Mailer')) {
@@ -30,10 +40,11 @@ if (QGG_Options('smtp_mailer_on')){
         );
     };
 }
-// 上传头像
-require THEME_DIR.'/functions/utils/class_video_player.php';
 
-// 自定义工具函数
+/**
+ * 主题开发
+ */
+// 公共工具库
 require THEME_DIR.'/functions/func_tool.php';
 // 后台修改
 require THEME_DIR.'/functions/func_admin.php';
@@ -45,11 +56,6 @@ require THEME_DIR.'/functions/func_post.php';
 require THEME_DIR.'/functions/func_category.php';
 // 评论相关
 require THEME_DIR.'/functions/func_comment.php';
-
-// 加载侧栏小工具 - 影响微信 Token 验证，待排查
+// 侧栏小工具
 require THEME_DIR.'/widgets/index.php';
-
-// 加载微信公众号验证码
-require THEME_DIR.'/wechat-official/index.php';
-
 

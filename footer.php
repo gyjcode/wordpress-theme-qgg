@@ -53,6 +53,19 @@
                             echo '<a href="https://www.beian.gov.cn/" target="_blank">'.QGG_Options('site_beian_gov') .'</a>';
                         }
                         ?>
+                        <!-- 网站地图 -->
+                        <?php
+                        $sitemap_link = _get_page_sitemap_html_link();
+                        if (QGG_Options('sitemap_html_page')) {
+                            echo '<a href="'.$sitemap_link.'" target="_blank">网站地图</a>';
+                        }
+                        ?>
+                        <!-- 网站技术支持 -->
+                        <?php
+                        if (QGG_Options('site_tech_support')) {
+                            echo '本站由<a href="https://zibuyu.life/"><i>子不语</i></a>提供技术支持';
+                        }
+                        ?>
                         <!-- 自定义链接 -->
                         <?php echo QGG_Options('footer_custom_link') ?>
                     </p>

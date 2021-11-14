@@ -122,7 +122,7 @@ function _site_keywords() {
             $keywords = $the;
         }
     } elseif (is_home()) {
-        $keywords = QGG_Options('home_keywords');
+        $keywords = QGG_Options('site_keywords');
     } elseif (is_tag()) {
         $keywords = single_tag_title('', false);
     } elseif (is_category()) {
@@ -174,7 +174,7 @@ function _site_description() {
         }
         
     } elseif (is_home()) {
-        $description = QGG_Options('home_description');
+        $description = QGG_Options('site_description');
     } elseif (is_tag()) {
         $description = trim(strip_tags(tag_description()));
     } elseif (is_category()) {
@@ -474,7 +474,7 @@ function _get_time_ago($post_time) {
     };
 }
 
-// 获取用户中心页面
+// 获取【用户中心】页面
 function _get_page_user_center_link(){
     
     $page_id = QGG_Options('user_center_page');
@@ -489,10 +489,25 @@ function _get_page_user_center_link(){
 
     return false;
 }
-// 获取用户密码重置页面
+
+// 获取【密码重置】页面
 function _get_page_user_reset_pwd_link(){
     
-    $page_id = QGG_Options('user_reset_passward');
+    $page_id = QGG_Options('user_reset_passward_page');
+    
+    if( !$page_id ){ 
+        return false; 
+    }elseif( get_permalink($page_id) ){ 
+        return get_permalink($page_id); 
+    }
+    
+    return false;
+}
+
+// 获取【网站地图】页面
+function _get_page_sitemap_html_link(){
+    
+    $page_id = QGG_Options('sitemap_html_page');
     
     if( !$page_id ){ 
         return false; 

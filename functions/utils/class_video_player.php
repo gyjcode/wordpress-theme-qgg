@@ -258,7 +258,7 @@
             <li class="'.($i == 0 ? 'active' : '').'">
                 <a href="javascript:void(0);" data-url="'.$jxAPI.$arrUrl[1].'" onclick="Player_'.$randID.'.Go('.$i.');">第'.($i+1).'集</a>
             </li>';
-
+            // 包含解析地址的完整视频列表
             $arrVideoList[] = array('id'=>($i+1), 'title'=>$arrUrl[0], 'url'=>html_entity_decode($arrUrl[1]));
         }
 
