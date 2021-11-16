@@ -67,24 +67,10 @@ jQuery(document).ready(function(){
     // 图片懒加载
     require(['lazyload'], function(){
         // 特色图像
-        $('.thumbnail').lazyload({
+        $('.lazyload').lazyload({
             effect: "fadeIn",
             data_attribute: 'src',
             placeholder: $GSM.uri + '/assets/img/thumbnail.png',
-            threshold: 400
-        });
-        // 用户头像
-        $('.avatar').lazyload({
-            effect: "fadeIn",
-            data_attribute: 'src',
-            placeholder: $GSM.uri + '/assets/img/avatar-default.png',
-            threshold: 400
-        });
-        // 小工具头像
-        $('.widget .avatar').lazyload({
-            effect: "fadeIn",
-            data_attribute: 'src',
-            placeholder: $GSM.uri + '/assets/img/avatar-default.png',
             threshold: 400
         });
     });
@@ -237,25 +223,6 @@ jQuery(document).ready(function(){
 
 
 
-/**================== 侧栏小工具 # 开始 ====================*/
-    // 聚合文章小工具 Tab 切换功能
-    $('.widget-posts-polymer .title').on('mousemove', 'h3', function(){
-        
-        taTitle   = $('.widget-posts-polymer .title h3');
-        taContent = $('.widget-posts-polymer .content-wrapper ul');
-        index     = $(this).index();
-        
-        taTitle.siblings().removeClass('actived');
-        $(this).addClass('actived');
-        taContent.siblings().removeClass('actived');
-        taContent.eq(index).addClass('actived')
-        
-    });
-
-/**================== 侧栏小工具 # 结束 ====================*/
-
-
-
 /**================== 文章页面功能 # 开始 ====================*/
     // 搜索页面过滤显示搜索结果
     if( $GSM.body.hasClass('search-results') ){
@@ -307,8 +274,6 @@ jQuery(document).ready(function(){
         })
     }
     
-
-
     // 文章页展开收缩按钮
     $('.collapse-title').click(
         function(){

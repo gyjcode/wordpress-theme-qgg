@@ -19,7 +19,7 @@ $setting = _get_tax_meta($cat_rid, 'style');
 $cat_styles = array(
     'default', 
     'video',
-    'product'
+    'product',
 );
 // 设置分类样式
 $cat_style = 'default';

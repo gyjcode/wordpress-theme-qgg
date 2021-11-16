@@ -81,48 +81,46 @@ class __Tax_Cat{
         $meta_description = isset($term_meta['description']) ? $term_meta['description'] : '';    // 自定义添加分类描述
         
         echo '
-            <tr class="form-field">
-                <th scope="row">
-                    <label for="term_meta[style]">展示样式</label>
-                    <td>
-                        <select name="term_meta[style]" id="term_meta[style]" class="postform">
-                            <option value="default" '. ('default'==$meta_style?'selected="selected"':'') .'>默认样式</option>
-                            <option value="video" '. ('video'==$meta_style?'selected="selected"':'') .'>视频展示</option>
-                            <option value="product" '. ('product'==$meta_style?'selected="selected"':'') .'>产品展示</option>
-                        </select>
-                        <p class="description">选择后前台展示样式将有所不同</p>
-                    </td>
-                </th>
-            </tr>
-            
-            <tr class="form-field">
-                <th scope="row">
-                    <label for="term_meta[title]">SEO 标题</label>
-                    <td>
-                        <input type="text" name="term_meta[title]" id="term_meta[title]" value="'. $meta_title .'" />
-                    </td>
-                </th>
-            </tr>
-            
-            <tr class="form-field">
-                <th scope="row">
-                    <label for="term_meta[keywords]">SEO 关键字（keywords）</label>
-                    <td>
-                        <input type="text" name="term_meta[keywords]" id="term_meta[keywords]" value="'. $meta_keywords .'" />
-                    </td>
-                </th>
-            </tr>
-            
-            <tr class="form-field">
-                <th scope="row">
-                    <label for="term_meta[description]">SEO 描述（description）</label>
-                    <td>
-                        <textarea name="term_meta[description]" id="term_meta[description]" rows="4">'. $meta_description .'</textarea>
-                    </td>
-                </th>
-            </tr>
-            
-        ';
+        <tr class="form-field">
+            <th scope="row">
+                <label for="term_meta[style]">展示样式</label>
+                <td>
+                    <select name="term_meta[style]" id="term_meta[style]" class="postform">
+                        <option value="default" '. ('default'==$meta_style ? 'selected="selected"' : '') .'>默认样式</option>
+                        <option value="video" '. ('video' == $meta_style ? 'selected="selected"' : '') .'>视频展示</option>
+                        <option value="product" '. ('product' == $meta_style ? 'selected="selected"' : '') .'>产品展示</option>
+                    </select>
+                    <p class="description">选择后前台展示样式将有所不同</p>
+                </td>
+            </th>
+        </tr>
+        
+        <tr class="form-field">
+            <th scope="row">
+                <label for="term_meta[title]">SEO 标题</label>
+                <td>
+                    <input type="text" name="term_meta[title]" id="term_meta[title]" value="'. $meta_title .'" />
+                </td>
+            </th>
+        </tr>
+        
+        <tr class="form-field">
+            <th scope="row">
+                <label for="term_meta[keywords]">SEO 关键字（keywords）</label>
+                <td>
+                    <input type="text" name="term_meta[keywords]" id="term_meta[keywords]" value="'. $meta_keywords .'" />
+                </td>
+            </th>
+        </tr>
+        
+        <tr class="form-field">
+            <th scope="row">
+                <label for="term_meta[description]">SEO 描述（description）</label>
+                <td>
+                    <textarea name="term_meta[description]" id="term_meta[description]" rows="4">'. $meta_description .'</textarea>
+                </td>
+            </th>
+        </tr>';
     }
     
     public function save_tax_meta( $term_id ){    // 保存自定义字段的数据

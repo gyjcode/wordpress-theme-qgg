@@ -36,9 +36,6 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
-.category .content-wrapper{
-    min-height: 500px;
-}
 
 
 /**==================== 产品分类样式 ====================*/

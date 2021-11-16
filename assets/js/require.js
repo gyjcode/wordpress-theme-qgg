@@ -26,7 +26,6 @@ require.config({
         'jsrender'      : 'libs/jsrender.min',
         'swiper'        : 'libs/swiper.min',
         'animate'       : 'libs/swiper.animate.min',
-        'videojs'       : 'libs/video.min',
         'router'        : 'libs/router.min',
         'layer'         : 'libs/layer.min',
         'user-center'   : 'tpl-user-center',

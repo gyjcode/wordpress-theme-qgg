@@ -1,6 +1,6 @@
 <?php 
 // 定义主题版本
-define( 'THEME_VER' , '2.0' );
+define( 'THEME_VER' , '2.1' );
 define( 'THEME_URI' , get_template_directory_uri() );
 define( 'THEME_DIR' , get_template_directory() );
 
@@ -23,10 +23,27 @@ require THEME_DIR.'/functions/utils/func_post_template.php';
 // 上传头像
 require THEME_DIR.'/functions/utils/func_local_avatar.php';
 // 分集视频
-require THEME_DIR.'/functions/utils/class_video_player.php';
+if ( !function_exists('_VideoPlayer') ) {
+    require THEME_DIR.'/functions/utils/class_video_player.php';
+    $height   = QGG_Options('video_player_height') ?: 500;
+    $height_m = QGG_Options('video_player_height_m') ?: 300;
+    $poster   = QGG_Options('video_player_poster') ?: get_template_directory_uri().'/assets/img/video-poster.png';
+    $sources  = array();
+    for ($i=1; $i <= 3; $i++) {
+        $type = QGG_Options('video_player_jx_type-'.$i) ?: null;
+        $id   = 'jxID'.$i;    // 视频解析的唯一ID 值，系统自动生成
+        $name = QGG_Options('video_player_jx_name-'.$i) ?: null;
+        $api  = QGG_Options('video_player_jx_api-'.$i) ?: null;
+
+        if ( isset($name) ) $sources[] = array( "id" => $id, "name" => $name, "type" => $type,  "api" => html_entity_decode($api));
+    };
+    // 实例化
+    $videoPlayer = new _VideoPlayer($sources, $poster, $height, $height_m);
+};
+
 // SMTP 发邮件
-if (QGG_Options('smtp_mailer_on')){
-    if ( !function_exists('SMTP_Mailer')) {
+if ( QGG_Options('smtp_mailer_on') ) {
+    if ( !function_exists('_SMTP_Mailer') ) {
         require THEME_DIR.'/functions/utils/class_smtp_mailer.php';
         new _SMTP_Mailer(
             $host       = QGG_Options('smtp_mailer_host') ?: '',         // SMTP服务器地址

@@ -8,9 +8,10 @@ function module_post_copyright(){
     // 获取配置
     $copyright_on = QGG_Options('post_copyright_on') ?: false;
     $copyright_title = QGG_Options('post_copyright_title') ?: '未经允许不得转载';
+    if (!$copyright_on) return false;
 
     $html ='
-    <div class="nodule post-copyright site-style-childA-color">
+    <div class="module post-copyright site-style-childA-color">
         <div class="content-wrapper">
             <div class="title"><span>'.$copyright_title.'</span></div>
             <div class="content site-style-border-radius">
@@ -22,5 +23,5 @@ function module_post_copyright(){
         </div>
     </div>';  
 
-    echo $copyright_on ? $html : ''; 
+    echo  $html; 
 }

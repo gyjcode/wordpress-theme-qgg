@@ -5,6 +5,7 @@
 /**==================== 公共样式 ====================*/
 .widget{
     cursor: default;
+    z-index: 999;
     position: relative;
     margin: 1.2rem auto 0;
     background-color: #fff;
@@ -884,25 +885,18 @@
     overflow: hidden;
 }
 .widget-posts-polymer ul{
+    list-style: none;
     display: none;
     position: relative;
-    width: 100%;
-    height: auto;
-    margin: 5px 0 10px;
-    border: 0;
-    padding: 0;
+    margin: 0.5rem auto;
 }
 .widget-posts-polymer ul.actived{
     display: block;
 }
-.widget-posts-polymer ul li{
+.widget-posts-polymer ul li.item{
     display: block;
-    position: relative;
-    width: 100%;
-    height: auto;
     margin: 0;
-    border: 0;
-    padding: 7px  15px;
+    padding: 0.5rem  1.2rem;
     overflow: hidden;
 }
 .widget-posts-polymer ul li a{
@@ -960,7 +954,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
-.widget-posts-polymer ul li .meta{
+.widget-posts-polymer ul li .metas{
     position: absolute;
     bottom: 5px;
     height: 15px;
@@ -969,7 +963,7 @@
     color: #999;
     overflow: hidden;
 }
-.widget-posts-polymer ul li .meta span{
+.widget-posts-polymer ul li .metas span{
     display: inline-block;
     margin-right: 5px;
 }

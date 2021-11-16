@@ -2,18 +2,24 @@
 /**
  * 视频分类页面模板
  */
+
+
 ?>
 <section class="container">
     <!-- 主体 -->
     <div class="content-wrapper">
         <?php
+        
+        _module_loader('module_category_filter', false);
+        $cat_ids = module_category_filter($cat_rid);
+
         if ( !have_posts() ){
             get_template_part( '404' );
             return;
         }
         // 查询相关文章
         $args = array(
-            'cat'                 => $cat_id,
+            'cat'                 => $cat_ids,
             'orderby'             => 'date',
             'showposts'           => 60,
             'order'               => 'desc',

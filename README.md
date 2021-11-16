@@ -1,6 +1,6 @@
 # wordpress-theme-qgg
 
-### <font color="red">【免责声明】</font>
+### $\color{red}{【免责声明】}$
 本主题为[子不语博客](http://zibuyu.life)自用主题，主要用于学习 WordPress 建站及 PHP 开发等。故对本主题做如下声明：
 
 - 主题采用 [MIT](https://choosealicense.com/licenses/mit/) 开源软件许可协议，请仔细阅读该协议

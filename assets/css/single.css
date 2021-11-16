@@ -1,4 +1,7 @@
 /**==================== 文章公共模块样式开始 ====================*/
+.single .ads{
+    margin-top: 1rem;
+}
 
 /* 历史上的今天 */
 .today-in-history{
@@ -348,7 +351,7 @@
     color: #999;
 }
 .single .post-content{
-    margin: 15px 0 0;
+    margin: 1rem 0 0;
     font-size: 14px;
     line-height: 20px;
     word-wrap: break-word;
@@ -370,6 +373,9 @@
     }
 }
 @media (max-width: 1024px) {
+    .single .content{
+        margin-top: 0.8rem;
+    }
     .single .post-header{
         padding: 0 0 10px;
     }
@@ -469,6 +475,10 @@
     height: 40px;
     line-height: 40px;
     font-size: 1.5rem;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .single .video-container .post-header .infos{
     height: 20px;
@@ -477,7 +487,13 @@
     color: #777;
 }
 .single .video-container .post-header .infos span{
+    display: inline-block;
     margin-right: 10px;
+    height: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
+    overflow: hidden;
 }
 .single .video-container .post-header .infos em{
     font-weight: bold;
@@ -507,6 +523,12 @@
 .single .video-container .post-header .details-wrapper p{
     margin: 5px auto;
     font-size: 0.8rem;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 .single .video-container .post-header .details-wrapper .poster{
     position: absolute;
@@ -526,463 +548,16 @@
     transform: scale(1.2);
     height: 120px;
 }
-
-
-/* ==================== 分集视频 ==================== */
-.single .video-lists-diversity{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
-    overflow-y: auto;
-}
-.video-lists-diversity::-webkit-scrollbar{
-    width: 5px;
-    height: 5px;
-}
-.video-lists-diversity::-webkit-scrollbar-thumb{
-    border-radius: 10px;
-    background: #000840;
-    -webkit-box-shadow: inset 0 0 3px #9eb3c3;
-}
-.video-lists-diversity::-webkit-scrollbar-track{
-    border-radius: 10px;
-    background: #fff;
-    -webkit-box-shadow: inset 0 0 3px #eee;
-}
-.video-lists-diversity li.item{
-    list-style: none;
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 60px;
-    margin: 5px auto;
-    border: 1px solid #eee;
-    padding: 0;
-    border-radius: 3px;
-    background: #fff;
-    overflow: hidden;
-}
-.video-lists-diversity .item a{
-    display: block;
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
-}
-.video-lists-diversity .item .cover{
-    float: left;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 90px;
-    height: 60px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.06);
-}
-.video-lists-diversity .item .cover i{
-    z-index: 999;
-    display: block;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    width: 90px;
-    height: 60px;
-    line-height: 60px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #eee;
-    opacity: 0.36;
-    filter: alpha(opacity=36);
-}
-.video-lists-diversity .item img{
-    display: block;
-    width: 90px;
-    height: 60px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
-.video-lists-diversity .item h4{
-    display: block;
-    position: absolute;
-    transform: translate(0,-50%);
-    top: 50%;
-    left: 100px;
-    height: 50px;
-    width: 170px;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    font-weight: normal;
-    color: #555;
-    background: none;
-    white-space: nowrap;
-    word-wrap: break-word;
-    word-break: break-word;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-.video-lists-diversity .item h4 div{
-    height: 20px;
-    font-size: 13px;
-    font-weight: bold;
-    line-height: 20px;
-    text-align: left;
-    color: #555;
-}
-.video-lists-diversity .item h4 div b{
-    font-size: 13px;
-    font-weight: bold;
-}
-.video-lists-diversity .item h4 div i{
-    margin: 0 3px 0 0;
-    font-size: 13px;
-    font-weight: bold;
-    font-style: italic;
-    color: #da1102;
-}
-.video-lists-diversity .item h4 span{
-    display: block;
-    width: 100%;
-    height: 30px;
-    margin: 0 auto;
-    font-size: 15px;
-    line-height: 30px;
-    text-align: left;
-    color: #777;
-    word-break: break-word;
-    word-wrap: break-word;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-@media (max-width: 1024px) {
-    .single .video-lists-diversity{
-        display: block;
-        width: 100%;
-        height: 60px;
-        margin: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        overflow-x: auto;
-    }
-    .video-lists-diversity li.item{
-        display: inline-block;
-        width: 160px;
-        height: 50px;
-        margin: 0 10px 0 0;
-    }
-    .video-lists-diversity .item .cover{
-        display: none;
-    }
-    .video-lists-diversity .item img{
-        display: none;
-    }
-    .video-lists-diversity .item h4{
-        left: 0;
-        width: 100%;
-        height: 50px;
-        padding: 5px 10px;
-    }
-    .video-lists-diversity .item h4 div{
-        height: 20px;
-        font-size: 12px;
-        font-weight: bold;
-        line-height: 20px;
-        text-align: left;
-        color: #555;
-    }
-    .video-lists-diversity .item h4 div b{
-        font-size: 12px;
-    }
-    .video-lists-diversity .item h4 div i{
-        font-size: 12px;
-    }
-    .video-lists-diversity .item h4 span{
-        height: 20px;
-        font-size: 14px;
-        line-height: 20px;
-    }
-}
-@media (max-width: 787px) {
-    .single .video-lists-diversity{
-        height: 50px;
-    }
-    .video-lists-diversity li.item{
-        width: 120px;
-        height: 40px;
-        margin: 0 5px 0 0;
-    }
-    .video-lists-diversity .item h4{
-        height: 40px;
-        padding: 3px 5px;
-    }
-    .video-lists-diversity .item h4 div{
-        height: 16px;
-        font-size: 10px;
-        font-weight: bold;
-        line-height: 16px;
-    }
-    .video-lists-diversity .item h4 div b{
-        font-size: 10px;
-    }
-    .video-lists-diversity .item h4 div i{
-        font-size: 10px;
-    }
-    .video-lists-diversity .item h4 span{
-        height: 18px;
-        font-size: 12px;
-        line-height: 18px;
-    }
-}
-@media (max-width: 480px) {
-    
-}
-
-
-/* ==================== 相关视频 ==================== */
-.single .video-lists-relates{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
-    overflow-y: auto;
-}
-.video-lists-relates::-webkit-scrollbar{
-    width: 5px;
-    height: 5px;
-}
-.video-lists-relates::-webkit-scrollbar-thumb{
-    border-radius: 10px;
-    background: #000840;
-    -webkit-box-shadow: inset 0 0 3px #9eb3c3;
-}
-.video-lists-relates::-webkit-scrollbar-track{
-    border-radius: 10px;
-    background: #fff;
-    -webkit-box-shadow: inset 0 0 3px #eee;
-}
-.video-lists-relates li.item{
-    list-style: none;
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 60px;
-    margin: 5px auto;
-    border: 1px solid #eee;
-    padding: 0;
-    border-radius: 3px;
-    background: #fff;
-    overflow: hidden;
-}
-.video-lists-relates .item a{
-    display: block;
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    overflow: hidden;
-}
-.video-lists-relates .item .cover{
-    float: left;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 90px;
-    height: 60px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.06);
-}
-.video-lists-relates .item .cover i{
-    z-index: 999;
-    display: block;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    width: 90px;
-    height: 60px;
-    line-height: 60px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #eee;
-    opacity: 0.36;
-    filter: alpha(opacity=36);
-}
-.video-lists-relates .item img{
-    display: block;
-    width: 90px;
-    height: 60px;
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
-.video-lists-relates .item h4{
-    display: block;
-    position: absolute;
-    transform: translate(0,-50%);
-    top: 50%;
-    left: 100px;
-    height: 50px;
-    width: 170px;
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    font-weight: normal;
-    color: #555;
-    background: none;
-    white-space: nowrap;
-    word-wrap: break-word;
-    word-break: break-word;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-.video-lists-relates .item h4 div{
-    height: 20px;
-    font-size: 13px;
-    font-weight: normal;
-    line-height: 20px;
-    text-align: left;
-    color: #555;
-}
-.video-lists-relates .item h4 div b{
-    font-size: 13px;
-    font-weight: normal;
-}
-.video-lists-relates .item h4 div i{
-    margin: 0 3px 0 0;
-    font-size: 13px;
-    font-weight: normal;
-    font-style: normal;
-}
-.video-lists-relates .item h4 span{
-    display: block;
-    width: 100%;
-    height: 30px;
-    margin: 0 auto;
-    font-size: 15px;
-    line-height: 30px;
-    text-align: left;
-    color: #777;
-    word-break: break-word;
-    word-wrap: break-word;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-@media (max-width: 1366px) {
-    
-}
-@media (max-width: 1024px) {
-    .single .video-lists-relates{
-        display: block;
-        width: 100%;
-        height: 60px;
-        margin: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        overflow-x: auto;
-    }
-    .video-lists-relates li.item{
-        display: inline-block;
-        width: 160px;
-        height: 50px;
-        margin: 0 10px 0 0;
-    }
-    .video-lists-relates .item .cover{
-        display: none;
-    }
-    .video-lists-relates .item img{
-        display: none;
-    }
-    .video-lists-relates .item h4{
-        left: 0;
-        width: 100%;
-        height: 50px;
-        padding: 5px 10px;
-    }
-    .video-lists-relates .item h4 div{
-        height: 20px;
-        font-size: 12px;
-        font-weight: bold;
-        line-height: 20px;
-        text-align: left;
-        color: #555;
-    }
-    .video-lists-relates .item h4 div b{
-        font-size: 12px;
-    }
-    .video-lists-relates .item h4 div i{
-        font-size: 12px;
-    }
-    .video-lists-relates .item h4 span{
-        height: 20px;
-        font-size: 14px;
-        line-height: 20px;
-    }
-}
-@media (max-width: 787px) {
-    .single .video-lists-relates{
-        height: 50px;
-    }
-    .video-lists-relates li.item{
-        width: 120px;
-        height: 40px;
-        margin: 0 5px 0 0;
-    }
-    .video-lists-relates .item h4{
-        height: 40px;
-        padding: 3px 5px;
-    }
-    .video-lists-relates .item h4 div{
-        height: 16px;
-        font-size: 10px;
-        font-weight: bold;
-        line-height: 16px;
-    }
-    .video-lists-relates .item h4 div b{
-        font-size: 10px;
-    }
-    .video-lists-relates .item h4 div i{
-        font-size: 10px;
-    }
-    .video-lists-relates .item h4 span{
-        height: 18px;
-        font-size: 12px;
-        line-height: 18px;
-    }
-}
-@media (max-width: 540px) {
-    .single .video-container .post-header .details-wrapper p.except{
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-    }
-    .single .video-container .post-header .left {
-        margin-right: 0;
+@media (max-width: 768px) {
+    .single .video-container .post-header .infos span{
+        max-width: 240px;
     }
     .single .video-container .post-header .metas {
         display: none;
+    }
+    .single .video-container .post-header .left {
+        width: 100%;
+        margin: 0;
     }
 }
 
@@ -990,9 +565,6 @@
 /**==================== 产品文章页面样式 ====================*/
 .single .product-container{
     position: relative;
-    width: 100%;
-    height: auto;
-    overflow: hidden;
 }
 /* 头部详情 */
 .single .product-info-wrapper{
@@ -1093,6 +665,13 @@
     margin: 1rem auto;
     font-size: 1rem;
     color: #999;
+    text-align: justify;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
 }
 .single .product-info-wrapper .tags{
     line-height: 1.2rem;
@@ -1170,7 +749,13 @@
     position: absolute;
     top: 0;
     width: 300px;
+    height: 100%;
     margin: 0 auto;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+.single .product-container .sidebar::-webkit-scrollbar{
+    display: none;
 }
 .single .product-content-wrapper>.content-wrapper >.content{
     margin-left: 320px;
@@ -1185,13 +770,14 @@
     line-height: 2.5rem;
     margin: 0 auto;
     padding: 0;
-    border-bottom: 1px solid #999;
+    border-bottom: 1px solid #ccc;
 }
 .single .product-content-wrapper .mobile{
     float: right;
     position: relative;
     height: 100%;
     padding: 0 1rem;
+    font-size: 0.8rem;
 }
 .single .product-content-wrapper .mobile i{
     margin: 0 5px;
@@ -1235,12 +821,58 @@
     padding: 1.2rem 2rem;
     padding-top: 0;
 }
-.single .product-content-wrapper .item{
+.single .product-content-wrapper .content .item{
     display: none;
 }
 .single .product-content-wrapper .item.active{
     display: block;
 }
 @media (max-width: 1024px) {
-
+    .single .product-info-wrapper {
+        padding: 1.5rem 1.5rem 1.5rem 340px;
+    }
+    .single .product-info-wrapper .gallery{
+        width: 300px;
+        margin: 0 0 0 -320px;
+    }
+    .single .product-info-wrapper .product-gallery-container {
+        width: 300px;
+        height: 260px;
+    }
+    .single .product-container .sidebar{
+        width: 260px;
+    }
+    .single .product-content-wrapper>.content-wrapper >.content{
+        margin-left: 280px;
+    }
+}
+@media (max-width: 768px) {
+    .single .product-info-wrapper {
+        padding: 1rem;
+    }
+    .single .product-info-wrapper .gallery{
+        float: none;
+        width: 100%;
+        margin: 0;
+    }
+    .single .product-info-wrapper .product-gallery-container {
+        width: 100%;
+        height: 360px;
+    }
+    .single .product-info-wrapper .info {
+        margin-top: 1rem;
+    }
+    .single .product-container .sidebar{
+        position: relative;
+        width: 100%;
+    }
+    .single .product-content-wrapper>.content-wrapper >.content{
+        margin-left: 0;
+    }
+}
+@media (max-width: 480px) {
+    .single .product-info-wrapper .product-gallery-container {
+        width: 100%;
+        height: 280px;
+    }
 }

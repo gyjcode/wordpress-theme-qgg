@@ -16,7 +16,7 @@ date_default_timezone_set('PRC');
 $post_time  = ( strtotime(date('Y-m-d G:i:s')) - strtotime(get_the_time('Y-m-d G:i:s')) )/86400;
 ?>
 <!-- 广告代码 -->
-<?php _ads_loader($adsname='ads_post_comt', $classname='module ads-post-comt') ?>
+<?php _ads_loader($adsname='ads_comment', $classname='module ads-comment') ?>
 <!-- 加载评论区域 -->
 <div class="module comments-wrapper site-style-childA-hover-color">
     

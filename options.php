@@ -152,7 +152,7 @@ function optionsframework_options() {
     );
     
     $options[] = array(
-        'name'     => __('整站样式调整', 'QGG'),
+        'name'     => __('整站样式', 'QGG'),
         'desc'     => __('开启，整站变灰', 'QGG'),
         'id'       => 'site_style_gray',
         'type'     => "checkbox",
@@ -183,8 +183,8 @@ function optionsframework_options() {
     $options[] = array(
         'desc'     => __("<b>皮肤颜色</b>：color、background-color、border-color 等属性", 'QGG'),
         'id'       => "site_style_skin",
-        'std'      => "45B6F7",
         'type'     => "colorradio",
+        'std'      => "45B6F7",
         'options'  => array(
             '45B6F7' => 1,
             'FF5E52' => 2,
@@ -200,6 +200,21 @@ function optionsframework_options() {
             '8AC78F' => 12,
             'C7C183' => 13,
             '555555' => 14
+        )
+    );
+
+    $options[] = array(
+        'desc'     => __('<b>代码高亮</b> # 选择一种代码高亮样式', 'QGG'),
+        'id'       => "code_highlight_style",
+        'type'     => "select",
+        'std'      => "monokai-sublime",
+        'options'  => array(
+            'monokai-sublime' => __('monokai-sublime', 'QGG'),
+            'github-dark'     => __('github-dark', 'QGG'),
+            'github'          => __('github', 'QGG'),
+            'mono-blue'       => __('mono-blue', 'QGG'),
+            'monokai'         => __('monokai', 'QGG'),
+            'railscasts'      => __('railscasts', 'QGG'),
         )
     );
     
@@ -234,7 +249,7 @@ function optionsframework_options() {
     $options[] = array(
         'name'     => __('整站缩略图', 'QGG'),
         'desc'     => __('开启，首图作为缩略图——文章未设置特色图像时使用首图作为缩略图', 'QGG'),
-        'id'       => 'thumb_postfirstimg_on',
+        'id'       => 'thumbnail_postfirstimg_on',
         'type'     => "checkbox",
         'std'      => true
     );
@@ -1280,12 +1295,12 @@ function optionsframework_options() {
     
     
     $options[] = array(
-        'name'     => __( '文章部件', 'QGG' ),
+        'name'     => __( '文章相关', 'QGG' ),
         'type'     => 'heading'
     );
     
     $options[] = array(
-        'name'     => __('文章页尾版权信息', 'QGG'),
+        'name'     => __('通用模块', 'QGG'),
         'desc'     => __('开启，文章末尾显示版权信息', 'QGG'),
         'id'       => 'post_copyright_on',
         'type'     => "checkbox",
@@ -1300,7 +1315,6 @@ function optionsframework_options() {
     );
     
     $options[] = array(
-        'name'     => __('文章底部作者信息', 'QGG'),
         'desc'     => __('开启，在文章底部显示作者信息', 'QGG'),
         'id'       => 'post_author_on',
         'type'     => "checkbox",
@@ -1308,8 +1322,7 @@ function optionsframework_options() {
     );
     
     $options[] = array(
-        'name'     => __('文章底部翻页导航', 'QGG'),
-        'desc'     => __('开启，在文章底部显示上一篇下一篇文章', 'QGG'),
+        'desc'     => __('开启，在文章底部显示上一篇下一篇导航', 'QGG'),
         'id'       => 'post_prevnext_on',
         'type'     => "checkbox",
         'std'      => true
@@ -1323,7 +1336,6 @@ function optionsframework_options() {
     );
     
     $options[] = array(
-        'name'     => __('文章底部相关文章', 'QGG'),
         'desc'     => __('开启，在文章底部显示相关文章', 'QGG'),
         'id'       => 'posts_related_on',
         'type'     => "checkbox",
@@ -1351,7 +1363,56 @@ function optionsframework_options() {
         'std'      => 8,
         'class'    => 'mini'
     );
+
+    // 视频播放器
+    $options[] = array(
+        'name'     => __('视频文章', 'QGG'),
+        'desc'     => __('<b>电脑端高度</b> # 视频播放器的高度，单位：px', 'QGG'),
+        'id'       => 'video_player_height',
+        'type'     => 'text',
+        'std'      => 500
+    );
+
+    $options[] = array(
+        'desc'     => __('<b>手机端高度</b> # 视频播放器的高度，单位：px', 'QGG'),
+        'id'       => 'video_player_height_m',
+        'type'     => 'text',
+        'std'      => 300
+    );
+
+    $options[] = array(
+        'desc'     => __('<b>视频封面</b> # 视频播放器上默认显示的图片', 'QGG'),
+        'id'       => 'video_player_poster',
+        'type'     => "upload",
+        'std'      => $img_uri.'video-poster.png'
+    );
     
+    for ($i=1; $i <= 3; $i++) {
+    $options[] = array(
+        'desc'     => __('<b>解析类型</b><i>'.$i.'</i> # 采用什么方式解析', 'QGG'),
+        'id'       => 'video_player_jx_type-'.$i,
+        'type'     => 'select',
+        'std'      => '',
+        'options'  => array(
+            'dplayer'  => __('DPlayer', 'QGG'),
+            'iframe'   => __('IFrame', 'QGG'),
+        )
+    );
+
+    $options[] = array(
+        'desc'     => __('<b>解析名称</b><i>'.$i.'</i> # 前端显示的名称，方便记忆', 'QGG'),
+        'id'       => 'video_player_jx_name-'.$i,
+        'type'     => 'text',
+        'std'      => ''
+    );
+
+    $options[] = array(
+        'desc'     => __('<b>解析API</b><i>'.$i.'</i> # 接口形式：http(s)://domain.com?url=', 'QGG'),
+        'id'       => 'video_player_jx_api-'.$i,
+        'type'     => 'text',
+        'std'      => ''
+    );
+    }
     
     
     
@@ -1642,13 +1703,13 @@ function optionsframework_options() {
     $options[] = array(
         'name'     => __('整站评论模块广告', 'QGG'),
         'desc'     => __('开启，整站评论模块上广告', 'QGG'),
-        'id'       => 'ads_post_comt_on',
+        'id'       => 'ads_comment_on',
         'type'     => 'checkbox',
         'std'      => true
     );
     $options[] = array(
         'desc'     => __('整站评论模块上——广告代码', 'QGG').' '.$ads_desc,
-        'id'       => 'ads_post_comt_code',
+        'id'       => 'ads_comment_code',
         'type'     => 'textarea',
         'std'      => $ads_01,
         'settings' => array(
@@ -1659,14 +1720,14 @@ function optionsframework_options() {
     // 默认文章页广告代码
     $options[] = array(
         'name'     => __('默认文章页广告', 'QGG'),
-        'desc'     => __('开启，默认文章正文上广告', 'QGG'),
+        'desc'     => __('开启，默认文章广告', 'QGG'),
         'id'       => 'ads_post_default_on',
         'type'     => 'checkbox',
         'std'      => true
     );
     
     $options[] = array(
-        'desc'     => __('默认文章正文上——广告代码：', 'QGG').' '.$ads_desc,
+        'desc'     => __('<b>默认文章广告代码</b>', 'QGG').$ads_desc,
         'id'       => 'ads_post_default_code',
         'type'     => 'textarea',
         'std'      => $ads_01,
@@ -1678,15 +1739,34 @@ function optionsframework_options() {
     // 视频文章页广告代码
     $options[] = array(
         'name'     => __('视频文章页广告', 'QGG'),
-        'desc'     => __('开启，视频文章分享模块右广告', 'QGG'),
+        'desc'     => __('开启，视频文章广告', 'QGG'),
         'id'       => 'ads_post_video_on',
         'type'     => 'checkbox',
         'std'      => true
     );
     
     $options[] = array(
-        'desc'     => __('视频文章分享模块右——广告代码：', 'QGG').' '.$ads_desc,
+        'desc'     => __('<b>视频文章广告代码</b>', 'QGG').$ads_desc,
         'id'       => 'ads_post_video_code',
+        'type'     => 'textarea',
+        'std'      => $ads_01,
+        'settings' => array(
+            'rows' => 3
+        )
+    );
+
+    // 产品文章页广告代码
+    $options[] = array(
+        'name'     => __('产品文章页广告', 'QGG'),
+        'desc'     => __('开启，产品文章广告', 'QGG'),
+        'id'       => 'ads_post_product_on',
+        'type'     => 'checkbox',
+        'std'      => true
+    );
+    
+    $options[] = array(
+        'desc'     => __('<b>产品文章广告代码</b>', 'QGG').$ads_desc,
+        'id'       => 'ads_post_product_code',
         'type'     => 'textarea',
         'std'      => $ads_01,
         'settings' => array(

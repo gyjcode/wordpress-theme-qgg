@@ -124,13 +124,16 @@ get_header();
                     <!-- 用户编辑内容 -->
                     <div data-index="details" class="item details active">
                         <!-- 广告代码 -->
-                        <?php  _ads_loader($adsname='ads_post_default', $classname='module ads-post-default'); ?>
+                        <?php  _ads_loader($adsname='ads_post_product', $classname='module ads-post-product'); ?>
+
                         <!-- 文章内容 -->
                         <div class="atricle-content">
                             <?php the_content(); ?>
                         </div>
+
                         <!-- 点赞分享 -->
                         <?php _module_loader('module_post_share_like_reward'); ?>
+
                         <!-- 文章底部分页按钮 -->
                         <?php wp_link_pages( array(
                             'before'            => '<div class="page-links">',
@@ -143,8 +146,10 @@ get_header();
                             'pagelink'          => '%',
                             ) );
                         ?>
+
                         <!-- 作者信息 -->
                         <?php _module_loader('module_post_author_panel'); ?>
+
                         <!-- 版权信息 -->
                         <?php _module_loader('module_post_copyright'); ?>
                     </div>
@@ -155,7 +160,7 @@ get_header();
                 </div>
                 <script type="text/javascript">
                 jQuery(document).ready(function(){
-                    $('.product-container').on("click", ".tab", function(){
+                    $('.product-container').on("click", ".product-content-wrapper .tab", function(){
                         const index = $(this).data("index");
                         // 切换 Tab 显示隐藏
                         $('.product-container .tab').each(function(){

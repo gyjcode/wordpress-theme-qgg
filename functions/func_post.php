@@ -30,36 +30,37 @@ function _get_the_post_excerpt($limit = 120, $after = '...') {
     }
 }
 // 文章缩略图
-function _get_the_post_thumbnail($size = 'thumbnail', $class = 'thumb') {
+function _get_the_post_thumbnail() {
     global $post;
-    $r_src = '';
-    
+    $img_src = '';
+
+    // 获取缩略图地址
     if (has_post_thumbnail()) {
         $domsxe = get_the_post_thumbnail();
         preg_match_all('/<img.*?(?: |\\t|\\r|\\n)?src=[\'"]?(.+?)[\'"]?(?:(?: |\\t|\\r|\\n)+.*?)?>/sim', $domsxe, $strResult, PREG_PATTERN_ORDER);  
         $images = $strResult[1];
         foreach($images as $src){
-            $r_src = $src;
+            $img_src = $src;
             break;
         }
-    }elseif( QGG_Options('thumb_postfirstimg_on') ){
+    } elseif ( QGG_Options('thumbnail_postfirstimg_on') ) {    // 首图作为缩略图
         $content = $post->post_content;  
         preg_match_all('/<img.*?(?: |\\t|\\r|\\n)?src=[\'"]?(.+?)[\'"]?(?:(?: |\\t|\\r|\\n)+.*?)?>/sim', $content, $strResult, PREG_PATTERN_ORDER);  
         $images = $strResult[1];
         foreach($images as $src){
-            $r_src = $src;
+            $img_src = $src;
             break;
         }
     } 
-
-    if( $r_src ){
+    // img 标签返回
+    if( $img_src ){
         if( QGG_Options('thumbnail_async_on') ){
-            return sprintf('<img data-src="%s" alt="%s" src="%s" class="thumbnail">', $r_src, $post->post_title .'-'. get_bloginfo('name'), get_template_directory_uri().'/assets/img/thumbnail.png');
+            return sprintf('<img data-src="%s" alt="%s" src="%s" class="thumbnail lazyload">', $img_src, $post->post_title .'-'. get_bloginfo('name'), get_template_directory_uri().'/assets/img/thumbnail.png');
         }else{
-            return sprintf('<img src="%s" alt="%s" class="thumbnail">', $r_src, $post->post_title .'-'. get_bloginfo('name'));
+            return sprintf('<img src="%s" alt="%s" class="thumbnail lazyload">', $img_src, $post->post_title .'-'. get_bloginfo('name'));
         }
     }else{
-        return sprintf('<img data-thumb="default" src="%s" class="thumbnail">', get_template_directory_uri().'/assets/img/thumbnail.png');
+        return sprintf('<img data-thumb="default" src="%s" class="thumbnail lazyload">', get_template_directory_uri().'/assets/img/thumbnail.png');
     }
 }
 
@@ -95,35 +96,46 @@ function _get_the_product_meta( $meta='', $before='', $after='' ){
     return $before.$product_meta.$after;
 }
 
-// 文章页添加展开收缩效果
-if (!function_exists('custom_collapse')){
-function custom_collapse($atts, $content = null){
-    extract(shortcode_atts(array("title"=>""), $atts));
-    return '
-    <div class="collapse-box">
-        <div class="collapse-title">
-            <span>'.$title.'</span><a href="javascript:;" class="collapse-btn">展开/收缩</a>
-            <div style="clear: both;"></div>
-        </div>
-        <div class="collapse-content" style="display: none;">'.$content.'</div>
-    </div>';
+// 展开收缩效果
+if (!function_exists('_add_shortcode_collapse')){
+    function _add_shortcode_collapse($atts, $content = null){
+        extract(shortcode_atts(array("title"=>""), $atts));
+        return '
+        <div class="collapse-box">
+            <div class="collapse-title">
+                <span>'.$title.'</span><a href="javascript:;" class="collapse-btn">展开/收缩</a>
+                <div style="clear: both;"></div>
+            </div>
+            <div class="collapse-content" style="display: none;">'.$content.'</div>
+        </div>';
+    }
+    add_shortcode('Collapse', '_add_shortcode_collapse');
 }
-add_shortcode('collapse', 'custom_collapse');
-}
-//添加展开/收缩快捷标签按钮
-if (!function_exists('appthemes_add_collapse')){
-function appthemes_add_collapse() {
+//添加 QTags 快捷按钮
+if (!function_exists('_add_qtags_button_collapse')){
+    function _add_qtags_button_collapse() {
     ?>
-    <script type="text/javascript">
-        if ( typeof QTags != 'undefined' ) {
-            QTags.addButton( 'collapse', '展开/收缩按钮', '[collapse title="说明文字"]','[/collapse]\n' );
-        }
-    </script>
+        <script type="text/javascript">
+            if ( typeof QTags != 'undefined' ) {
+                QTags.addButton( 'collapse', '展开/收缩按钮', '[Collapse title="说明文字"]','[/Collapse]\n' );
+            }
+        </script>
     <?php 
+    }
+    add_action('admin_print_footer_scripts', '_add_qtags_button_collapse' );
 }
-add_action('admin_print_footer_scripts', 'appthemes_add_collapse' );
+// 注册 tinyMCE 按钮
+function _register_tinymce_buttons_collapse( $buttons ){
+    array_push($buttons, "|", "_collapse");
+    return $buttons;
 }
-
+add_filter('mce_buttons', '_register_tinymce_buttons_collapse', 999);
+// 添加 tinyMCE 按钮
+function _add_tinymce_buttons_collapse( $plugin_array ){
+    $plugin_array['_collapse'] = get_template_directory_uri().'/assets/js/tinymce.editor.js';
+    return $plugin_array;
+}
+add_filter("mce_external_plugins", '_add_tinymce_buttons_collapse', 999);
 
 // 文章通用 Meta
 $common_conf = array(

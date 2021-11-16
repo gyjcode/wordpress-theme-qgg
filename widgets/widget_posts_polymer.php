@@ -1,7 +1,7 @@
 <?php
 /**
- * @name 关于站点
- * @description 在网站侧边栏添加一个关于站点的侧栏小工具(包含站点名称、站点副标题，站点描述、自定义链接、文章数、评论数、标签数等)
+ * @name 聚合文章
+ * @description 随机文章、最多阅读、热评文章、最多喜欢
  */
 ?>
 <?php
@@ -146,7 +146,7 @@ class widget_posts_polymer extends WP_Widget {
                 </p>
                 <p style="display: inline-block; width: 100%; margin: 5px 0;">
                     <label for="<?php echo $this->get_field_id('post_num'); ?>">
-                        <?php _e('显示数量限制：', 'QGG'); ?>
+                        <?php _e('每页数量限制：', 'QGG'); ?>
                         <input id="<?php echo $this->get_field_id('post_num'); ?>" name="<?php echo $this->get_field_name('post_num'); ?>" type="number" min="1" step="1" value="<?php echo $post_num; ?>" />
                     </label>
                 </p>
@@ -179,8 +179,8 @@ class widget_posts_polymer extends WP_Widget {
     
     //前端生成显示
     function widget( $args, $instance ) {
+        // 配置
         extract($args);
-        
         $orderby01      = isset($instance['orderby01']) ? $instance['orderby01'] : 'rand';
         $orderby01_name = isset($instance['orderby01_name']) ? $instance['orderby01_name'] : '随机推荐';
         $orderby02      = isset($instance['orderby02']) ? $instance['orderby02'] : 'views';
@@ -193,88 +193,155 @@ class widget_posts_polymer extends WP_Widget {
         $views_days     = isset($instance['comts_days']) ? $instance['comts_days'] : '30';
         $views_days     = isset($instance['likes_days']) ? $instance['likes_days'] : '30';
         $views_days     = isset($instance['cat_limits']) ? $instance['cat_limits'] : '';
-        $post_num  = isset($instance['post_num']) ? $instance['post_num'] : '6';
+        $post_num       = isset($instance['post_num']) ? $instance['post_num'] : '6';
         $show_thumb     = isset($instance['show_thumb']) ? $instance['show_thumb'] : '';
         !$show_thumb ? $class  = "nopic" : "";
-        
+
+        // HTML
         echo $before_widget; 
-        echo '<div class="title">
-                <h3 class="tab-01 actived">'.$orderby01_name.'</h3>
-                <h3 class="tab-02">'.$orderby02_name.'</h3>
-                <h3 class="tab-03">'.$orderby03_name.'</h3>
-                <h3 class="tab-04">'.$orderby04_name.'</h3>
-            </div>';
-        echo '<div class="content-wrapper '.$class .' site-style-childA-hover-color">';
-            echo '<ul class="tab-01 actived">';
-                get_tab_post_list_by_order( $orderby01, $post_num, $show_thumb );
-            echo '</ul>';
-            echo '<ul class="tab-02">';
-                get_tab_post_list_by_order( $orderby02, $post_num, $show_thumb );
-            echo '</ul>';
-            echo '<ul class="tab-03">';
-                get_tab_post_list_by_order( $orderby03, $post_num, $show_thumb );
-            echo '</ul>';
-            echo '<ul class="tab-04">';
-                get_tab_post_list_by_order( $orderby04, $post_num, $show_thumb );
-            echo '</ul>';
-        echo '</div>';
-        echo '<div class="clear"></div>';
-        echo $after_widget; 
+        echo '
+        <div class="title">
+            <h3 class="tab-01 actived">'.$orderby01_name.'</h3>
+            <h3 class="tab-02">'.$orderby02_name.'</h3>
+            <h3 class="tab-03">'.$orderby03_name.'</h3>
+            <h3 class="tab-04">'.$orderby04_name.'</h3>
+        </div>
+        <div class="content-wrapper '.$class .' site-style-childA-hover-color">
+            <ul class="tab-01 actived">
+                '._get_posts_by_order( $orderby01, $post_num, $show_thumb ).'
+            </ul>
+            <ul class="tab-02">
+                '._get_posts_by_order( $orderby02, $post_num, $show_thumb ).'
+            </ul>
+            <ul class="tab-03">
+                '._get_posts_by_order( $orderby03, $post_num, $show_thumb ).'
+            </ul>
+            <ul class="tab-04">
+                '._get_posts_by_order( $orderby04, $post_num, $show_thumb ).'
+            </ul>
+        </div>';
+        echo $after_widget;
+
+        // JS
+        echo '
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+        jQuery(function($) {
+            $(".widget-posts-polymer").on("mousemove", ".title h3", function(){
+        
+                taTitle   = $(".widget-posts-polymer .title h3");
+                taContent = $(".widget-posts-polymer .content-wrapper ul");
+                index     = $(this).index();
+                
+                taTitle.siblings().removeClass("actived");
+                $(this).addClass("actived");
+                taContent.siblings().removeClass("actived");
+                taContent.eq(index).addClass("actived")
+                
+            });
+        });
+        </script>';
     }
 }
 
-function get_tab_post_list_by_order( $orderby, $post_num, $show_thumb){
+// 查询文章
+function _get_posts_by_order( $orderby, $post_num, $show_thumb){
     
     if ( $orderby == "rand" ){
-        $orderby = "rand"; $metakey = ''; $meta = get_the_time('Y-m-d');
+        $orderby  = "rand";
+        $metakey  = '';
+        $metashow = get_the_time('Y-m-d');
     }elseif( $orderby == "views" ){
-        $orderby = 'meta_value_num'; $metakey = 'views'; $meta = '阅读 ('._get_the_post_views().')';
+        $orderby  = 'meta_value_num';
+        $metakey  = 'views';
+        $metashow = '阅读 ('._get_the_post_views().')';
     }elseif( $orderby=="comts" ){
-        $orderby = 'comment_count'; $metakey = ''; $meta = '评论('.get_comments_number('0', '1', '%').')';
+        $orderby  = 'comment_count';
+        $metakey  = '';
+        $metashow = '评论('.get_comments_number('0', '1', '%').')';
     }elseif( $orderby == "likes" ){
-        $orderby = 'meta_value_num'; $metakey = 'likes'; $meta = '喜欢 ('._get_the_post_likes().')';
+        $orderby  = 'meta_value_num';
+        $metakey  = 'likes';
+        $metashow = '喜欢 ('._get_the_post_likes().')';
     }elseif( $orderby == "recent" ){
-        $orderby = 'post_date'; $metakey = ''; $meta = get_the_time('Y-m-d');
+        $orderby  = 'post_date';
+        $metakey  = '';
+        $metashow = get_the_time('Y-m-d');
     }elseif( $orderby == "modified" ){
-        $orderby = 'modified'; $metakey = ''; $meta = get_the_modified_time('Y-m-d');
+        $orderby  = 'modified';
+        $metakey  = '';
+        $metashow = get_the_modified_time('Y-m-d');
     }else{
-        $orderby = ''; $metakey = ''; $meta = '';
+        $orderby  = '';
+        $metakey  = '';
+        $metashow = '';
     }
     
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     
-    $query_post = array(
-        'posts_per_page'      => $post_num,
-        'meta_key'            => $metakey,
-        'ignore_sticky_posts' => 1,
-        'post_status'         => 'publish',
-        'paged'               => $paged,
-        'post_type'           => 'post',
-        'orderby'             => $orderby,
+    $query = array(
+        'posts_per_page' => $post_num,
+        'meta_key'       => $metakey,
+        'post_status'    => 'publish',
+        'paged'          => $paged,
+        'post_type'      => 'post',
+        'orderby'        => $orderby,
     );
-    query_posts( $query_post );
+    query_posts( $query );
+
     $i = 0;
+    $html = "";
     while(have_posts()):the_post();
-    $i++;
-    ?>
-    <li>
-        <a <?php _post_target_blank(); ?> href="<?php the_permalink(); ?>">
-            <?php if( $show_thumb ){ ?>
-            <div class="thumb"><?php echo _get_the_post_thumbnail(); ?></div> 
-            <?php }else{ ?>
-            <span class="label label-<?php echo $i; ?>"><?php echo $i; ?></span>
-            <?php } ?>
-            <div class="desc">
-                <h4><?php the_title(); ?><?php _get_the_post_subtitle(); ?></h4>
-                <div class="meta">
-                    <span class="author"><?php echo get_the_author(); ?></span>
-                    <span class="meta"><?php echo $meta;?></span>
+        $i++;
+        $html .= '
+        <li class="item item-'.$i.'">
+            <a '. _post_target_blank().' href="'.get_the_permalink().'">
+                '.($show_thumb ? '<div class="thumb">'._get_the_post_thumbnail().'</div>' : '<span class="label label-'.$i.'">'.$i.'</span>').'
+                <div class="desc">
+                    <h4>'.get_the_title()._get_the_post_subtitle().'</h4>
+                    <div class="metas">
+                        <span class="meta author">'.get_the_author().'</span>
+                        <span class="meta '.$metakey.'">'.$metashow.'</span>
+                    </div>
                 </div>
-            </div>
-        </a>
-    </li>
-    <?php
+            </a>
+        </li>';
     endwhile;
-    
+
     wp_reset_query();
+    
+    // 相同标签不足相同分类补齐
+    if ( $i < $post_num ) {
+        
+        $args = array(
+            'posts_per_page' => $post_num - $i,
+            'meta_key'       => '',
+            'post_status'    => 'publish',
+            'paged'          => $paged,
+            'post_type'      => 'post',
+            'orderby'        => ''
+        );
+        query_posts($args);
+        
+        while(have_posts()):the_post();
+            $i++;
+            $html .= '
+            <li class="item item-'.$i.'">
+                <a '. _post_target_blank().' href="'.get_the_permalink().'">
+                    '.($show_thumb ? '<div class="thumb">'._get_the_post_thumbnail().'</div>' : '<span class="label label-'.$i.'">'.$i.'</span>').'
+                    <div class="desc">
+                        <h4>'.get_the_title()._get_the_post_subtitle().'</h4>
+                        <div class="metas">
+                            <span class="author">'.get_the_author().'</span>
+                            <span class="meta '.$metakey.'">'.$metashow.'</span>
+                        </div>
+                    </div>
+                </a>
+            </li>';
+        endwhile;
+        
+        wp_reset_query();
+    }
+    
+    return $html;
 }

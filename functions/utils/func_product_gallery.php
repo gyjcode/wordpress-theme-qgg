@@ -262,7 +262,7 @@ function _sav_meta_boxe_product_gallery( $post_id ){
     if ( !current_user_can( 'edit_posts', $post_id ))
         return;
     
-    $gallery_ids = isset( $_POST['product_gallery'] ) ? array_filter( explode( ',', wc_clean( $_POST['product_gallery'] ) ) ) : array();
+    $gallery_ids = isset( $_POST['product_gallery'] ) ? array_filter( explode( ',', sanitize_text_field( $_POST['product_gallery'] ) ) ) : array();
     $gallery_ids = wp_parse_id_list($gallery_ids);
     
     $gallery_ids_old = get_post_meta($post_id, 'product_gallery', true);
@@ -332,7 +332,7 @@ function _get_the_post_product_gallery($before = '', $after = '') {
         .product-gallery-container .content-wrapper{
             position: relative;
             width: 100%;
-            height: calc(100% - 60px);
+            height: calc(100% - 50px);
             overflow: hidden;
         }
         .product-gallery-container .content{
@@ -359,13 +359,13 @@ function _get_the_post_product_gallery($before = '', $after = '') {
         .product-gallery-container .navigator{
             position: relative;
             width: 100%;
-            height: 60px;
+            height: 50px;
             overflow: hidden;
         }
         .product-gallery-container .navigator .icon{
             cursor: pointer;
             position: absolute;
-            top: 25px;
+            top: 17px;
             width: 20px;
             height: 20px;
             margin: 0 10px;
@@ -388,7 +388,7 @@ function _get_the_post_product_gallery($before = '', $after = '') {
         }
         .product-gallery-container .tabs-wrapper{
             position: relative;
-            margin: 10px 35px;
+            margin: 5px 35px;
             overflow: hidden;
         }
         .product-gallery-container .tabs{
@@ -405,10 +405,10 @@ function _get_the_post_product_gallery($before = '', $after = '') {
         }
         .product-gallery-container .tabs li{
             display: inline-block;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             margin: 0 auto;
-            margin-right: 10px;
+            margin-right: 5px;
         }
         .product-gallery-container .tabs li:hover{
             border: 3px solid #d32f2f;
@@ -422,15 +422,16 @@ function _get_the_post_product_gallery($before = '', $after = '') {
 
     // JS
     $js = '
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
-    jQuery( function( $ ) {
+    jQuery(document).ready(function(){
         let content   = $(".product-gallery-container .content");
         let navigator = $(".product-gallery-container .navigator");
         let tabs      = $(".product-gallery-container .tabs");
         let tab       = $(".product-gallery-container .tab");
 
         let conWidth  = content.width();
-        let tabWidth  = tab.width() + 10;
+        let tabWidth  = tab.width() + 5;
         let length    = content.children(".pic").length;
         let curIndex  = navigator.data("cur_index");
 

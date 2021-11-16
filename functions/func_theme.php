@@ -19,7 +19,7 @@ function _ads_loader($adsname='', $classname=''){
     if( !QGG_Options($adsname.'_on') ){
         return;
     }else{
-        echo '<div class="adc '.$classname.'">'.QGG_Options($adsname.'_code').'</div>';
+        echo '<div class="ads '.$classname.'">'.QGG_Options($adsname.'_code').'</div>';
     }
 }
 // CSS 加载器
@@ -62,7 +62,7 @@ function _enqueue_scripts_loader() {
         'require' => 'require',
     ));
     
-    $hl_style = 'monokai-sublime';
+    $hl_style = QGG_Options('') ?: 'monokai-sublime';
     // 文章页面
     if (is_single()) {
         _css_loader(array(

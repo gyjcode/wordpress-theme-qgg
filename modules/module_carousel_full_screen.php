@@ -9,24 +9,24 @@
         <?php
         for ($i=1; $i <= 3; $i++) {
             if( QGG_options('carousel_full_screen_on-'.$i) ){
+                // 配置 # 显示方式
                 $bgImg     = QGG_options('carousel_full_screen_bgimg-'.$i) ?: '';
-
                 $floatImg  = QGG_options('carousel_full_screen_img-'.$i);
                 $noImg     = $floatImg ? '' : 'no-img';
                 $imgStyle  = QGG_options('carousel_full_screen_img_right-'.$i) ? 'order: 2;' : '';
-
+                // 配置 # 文案描述
                 $title     = QGG_options('carousel_full_screen_title-'.$i) ?: '';
                 $desc      = QGG_options('carousel_full_screen_desc-'.$i) ?: '';
                 $leftBtn   = QGG_options('carousel_full_screen_lbtn-'.$i) ?: '';
                 $leftHref  = QGG_options('carousel_full_screen_lbtn_href-'.$i) ?: '#';
                 $rightBtn  = QGG_options('carousel_full_screen_rbtn-'.$i) ?: '';
                 $rightHref = QGG_options('carousel_full_screen_rbtn_href-'.$i) ?: '#';
-
-                $imgEffect    = QGG_options('carousel_full_screen_img_animate_effect-'.$i) ?: 'bounceInLeft';
-                $imgDuration    = QGG_options('carousel_full_screen_img_animate_duration-'.$i) ?: '0.5';
+                // 配置 # 悬浮图片
+                $imgEffect   = QGG_options('carousel_full_screen_img_animate_effect-'.$i) ?: 'bounceInLeft';
+                $imgDuration = QGG_options('carousel_full_screen_img_animate_duration-'.$i) ?: '0.5';
                 $imgDelay    = QGG_options('carousel_full_screen_img_animate_delay-'.$i) ?: '0.3';
-                $txtEffect    = QGG_options('carousel_full_screen_txt_animate_effect-'.$i) ?: 'bounceInLeft';
-                $txtDuration    = QGG_options('carousel_full_screen_txt_animate_duration-'.$i) ?: '0.5';
+                $txtEffect   = QGG_options('carousel_full_screen_txt_animate_effect-'.$i) ?: 'bounceInLeft';
+                $txtDuration = QGG_options('carousel_full_screen_txt_animate_duration-'.$i) ?: '0.5';
                 $txtDelay    = QGG_options('carousel_full_screen_txt_animate_delay-'.$i) ?: '0.3';
                 
                 echo '

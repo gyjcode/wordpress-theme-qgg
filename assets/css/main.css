@@ -1326,20 +1326,19 @@ pre.highlight code.hljs {
     }
 }
 
-/* 广告 # Advertisement Center */
-.adc{
+/* 广告 # Advertisement*/
+.ads{
     width: 100%;
     height: auto;
     max-height: 100px;
-    /* background-color: #fafafa; */
     overflow: hidden;
 }
-.adc a{
+.ads a{
     display: block;
     width: 100%;
     height: 100%;
 }
-.adc img{
+.ads img{
     display: block;
     max-width: 100%;
     max-height: 100%;
@@ -2666,6 +2665,47 @@ body.sign-show{
     font-size: 0.9rem;
 }
 
+/* 多重分类筛选 */
+.category-filter{
+    cursor: default;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    background-color: #fff;
+}
+.category-filter ul{
+    list-style: none;
+    margin: 0;
+}
+.category-filter li{
+    margin: 0;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.category-filter strong{
+    margin: 0 10px;
+    font-weight: bold;
+}
+.category-filter i{
+    margin-right: 5px;
+}
+.category-filter a{
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1;
+    margin: 3px 5px;
+    padding: 3px 9px;
+    border: 1px solid transparent;
+    color: inherit;
+}
+.category-filter a.active{
+    border-radius: 5px;
+    border-color: #24a0f0;
+    color: #24a0f0;
+}
+
 /* 作者信息面板 */
 .post-author-pannel{
     height: 80px;
@@ -2726,7 +2766,7 @@ body.sign-show{
     overflow: hidden;
 }
 
-/* 文章页底部版权申明样式 */
+/* 版权申明 */
 .post-copyright{
     cursor: default;
     position: relative;
@@ -2734,12 +2774,12 @@ body.sign-show{
     overflow: hidden;
 }
 .post-copyright .content-wrapper{
-    margin-top: 15px;
+    margin-top: -1rem;
 }
 .post-copyright .title{
     z-index: 99;
     position: relative;
-    top: 15px;
+    top: 1rem;
     text-align: center;
 }
 .post-copyright .title span{
@@ -2748,8 +2788,8 @@ body.sign-show{
     padding: 0 20px;
     border-radius: 5px;
     background: #eaeaea;
-    font-size: 14px;
-    line-height: 24px;    
+    font-size: 1rem;
+    line-height: 1.5rem;    
 }
 .post-copyright .title span:hover{
     background: #001818;
@@ -2762,18 +2802,16 @@ body.sign-show{
     background: #f5f5f5;
 }
 .post-copyright .content a{
-    font-size: 0.8rem;
-    line-height: 16px;
     color: #24A0F0;
 }
 .post-copyright .content a:hover{
     opacity: 0.8;
 }
 .post-copyright .content p{
+    line-height: 1rem;
     margin-top: 7px;
     margin-bottom: 0;
-    line-height: 1rem;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -2781,6 +2819,16 @@ body.sign-show{
 .post-copyright .content p span{
     font-weight: bolder;
     color: #555;
+}
+@media (max-width: 1024px){
+    .post-copyright .content p{
+        margin-top: 5px;
+    }
+}
+@media (max-width: 768px){
+    .post-copyright .content p{
+        margin-top: 3px;
+    }
 }
 
 /* 分享点赞打赏 */
@@ -3229,12 +3277,6 @@ body.sign-show{
     flex-basis: 100px;
     color: #fff;
     background-color: #24b4f0;
-}
-@media (max-width: 1366px) {
-    
-}
-@media (max-width: 1024px) {
-    
 }
 @media (max-width: 768px) {
     #wechat-official-captcha{

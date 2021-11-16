@@ -21,9 +21,9 @@
         $this->jxSources = array_merge( array(
             array(
                 "id"   => "default",
-                "name" => "IFrame",
-                "type" => "iframe",
-                "api"  => "https://vip.parwix.com:4433/player/?url="
+                "name" => "默认不解析",
+                "type" => "dplayer",
+                "api"  => ""
             )
         ), $jxSources );
         $this->poster = isset($poster) ? $poster : get_template_directory_uri().'/assets/img/video-poster.png';
@@ -35,31 +35,30 @@
          * mce_external_plugins: https://developer.wordpress.org/reference/hooks/mce_external_plugins/
          * admin_action_{$action}: https://developer.wordpress.org/reference/hooks/admin_action_action/
          */
-        add_filter('mce_buttons', array($this, '_register_mce_buttons_videoplayer'), 999);
-        add_filter("mce_external_plugins", array($this, "_add_mce_buttons_videoplayer"), 999);
-        add_action('admin_action_videoplayer', array($this, '_mce_buttons_videoplayer_window'));
-
-
+        add_filter('mce_buttons', array($this, '_register_tinymce_buttons_videoplayer'), 999);
+        add_filter("mce_external_plugins", array($this, "_add_tinymce_buttons_videoplayer"), 999);
+        add_action('admin_action_videoplayer', array($this, '_tinymce_buttons_videoplayer_window'));
+        add_action('admin_print_footer_scripts',  array($this, '_add_qtags_button_videoplayer'));
 		add_shortcode('VideoPlayer', array($this, '_shortcode_video_player'));  //register shortcode
 	}
 
     /**
      * 文章编辑器添加按钮
      */
-    // 注册按钮
-    public function _register_mce_buttons_videoplayer( $buttons ){
+    // 注册 tinyMCE 按钮
+    public function _register_tinymce_buttons_videoplayer( $buttons ){
         array_push($buttons, "|", "_videoplayer");
 		return $buttons;
     }
 
-    // 添加按钮
-    public function _add_mce_buttons_videoplayer( $plugin_array ){
-        $plugin_array['_videoplayer'] = get_template_directory_uri().'/assets/js/videoplayer.editor.js';
+    // 添加 tinyMCE 按钮
+    public function _add_tinymce_buttons_videoplayer( $plugin_array ){
+        $plugin_array['_videoplayer'] = get_template_directory_uri().'/assets/js/tinymce.editor.js';
         return $plugin_array;
     }
 
-    // 按钮弹窗
-    public function _mce_buttons_videoplayer_window(){
+    // tinyMCE 按钮弹窗
+    public function _tinymce_buttons_videoplayer_window(){
         $sources = '';
 		if(is_array($this->jxSources)){
 			foreach($this->jxSources as $key=>$value){
@@ -162,6 +161,25 @@
         // JavaScript
         $script = '
         <script type="text/javascript">
+            // 获取已插入视频
+            function getEditedVideoUrl(){
+                var tinyMCEContent = tinyMCE.activeEditor.getContent();
+                
+                let oldUrls = "";
+                let urlsRegExp = new RegExp(\'vUrls="([^"]*)\');
+                // 使用正则获取链接
+                if( urlsRegExp.test(tinyMCEContent) ){
+                    oldUrls = urlsRegExp.exec(tinyMCEContent)[1]
+                } else {
+                    urlsRegExp = new RegExp(\'vUrls=&quot;([^&]*)\');
+                    oldUrls = urlsRegExp.test(tinyMCEContent) ? urlsRegExp.exec(tinyMCEContent)[1] : "";
+                }
+                // 填入弹窗
+                domUrls = document.getElementById("video-urls");
+                domUrls.value = oldUrls.replace(new RegExp(/(,)/g),\'\n\');
+            }
+            getEditedVideoUrl();  // 立即执行
+
             // 校正 URL
             function videoUrlCheck(){
                 let strUrls, arrUrls, newArrUrls;
@@ -187,12 +205,12 @@
 
             // 插入短代码
             function insertVideoPlayerShortcode() {
-                let valUrls = document.getElementById("video-urls").value;
-                let valSourceID = document.getElementById("video-sources").value;
-                if(valUrls.trim() == "") return;    // 未输入url 直接返回
+                let vUrls = document.getElementById("video-urls").value;
+                let jxID = document.getElementById("video-sources").value;
+                if(vUrls.trim() == "") return;    // 未输入url 直接返回
 
-                valUrls = valUrls.replace(/\r|\n/g, ",");
-                let shortcode = "[VideoPlayer sourceID=\""+valSourceID+"\" urls=\""+valUrls+"\"][/VideoPlayer]";
+                vUrls = vUrls.replace(/\r|\n/g, ",");
+                let shortcode = "[VideoPlayer jxID=\""+jxID+"\" vUrls=\""+vUrls+"\"][/VideoPlayer]";
                 
                 window.tinyMCE.activeEditor.insertContent(shortcode);
                 tinyMCEPopup.editor.execCommand("mceRepaint");
@@ -204,6 +222,17 @@
         
     }
 
+    // 添加 QTags 按钮
+    public function _add_qtags_button_videoplayer() {
+        ?>
+        <script type="text/javascript">
+            if ( typeof QTags != 'undefined' ) {
+                QTags.addButton( 'videoplayer', '分集视频', '[VideoPlayer jxID="解析来源数组的 ID，默认：default(不解析)" vUrls="视频链接地址，以英文逗号分割"]','[/VideoPlayer]\n' );
+            }
+        </script>
+        <?php 
+    }
+    
     /**
      * 前端显示短代码内容
      */
@@ -211,19 +240,19 @@
     public function _shortcode_video_player($atts, $content=null){
         
         // 默认值：shortcode_atts: https://developer.wordpress.org/reference/functions/shortcode_atts/
-        $atts = shortcode_atts(array('sourceid'=>'default', 'urls'=>''), $atts);
+        $atts = shortcode_atts(array('jxid'=>'default', 'vurls'=>''), $atts);
 
         // 文章编辑页 退出
         global $pagenow;
 		if($pagenow == 'post.php') return false;
         // 视频链接为空退出
-        if(!$atts['urls']) return '视频ID/URL不能为空';
+        if(!$atts['vurls']) return '视频ID/URL不能为空';
         
         // 随机数，避免多个视频列表冲突
         $randID = rand(1000, 99999);
 
-        // 短代码参数 # sourceid
-        $sourceID = $atts['sourceid'];    // 解析来源 ID，默认：default(不解析)
+        // 短代码参数 # jxID
+        $jxID = $atts['jxid'];    // 解析来源 ID，默认：default(不解析)
 
         // 解析参数
         $jxAPI = "";    // 默认不解析(访问视频真实地址)
@@ -232,7 +261,7 @@
         $jxSources = $this->jxSources;
         if( is_array($jxSources) ){
 			foreach($jxSources as $jxSource){
-				if($sourceID == $jxSource["id"]){
+				if($jxID == $jxSource["id"]){
 					$jxAPI  = $jxSource["api"];
 					$jxType = $jxSource["type"];
 					$jxName = $jxSource["name"];
@@ -240,24 +269,27 @@
 			}
 		}
         
-        // 短代码参数 # urls
-		$urls = $atts['urls'];    // 需要解析的 URLs
+        // 短代码参数 # vurls
+		$vurls = $atts['vurls'];    // 需要解析的 URLs
 
         // 解析视频链接
-        $arrUrls = explode(',', $urls);    // urls 字符串解析为数组，英文","分割的
-        $player_list= "";   // 存储视频列表
+        $arrUrls = explode(',', $vurls);    // urls 字符串解析为数组，英文","分割的
+        $player_list = "";   // 存储视频列表
         $arrVideoList = array();    // 存储解析后的视频数组
         for ($i=0; $i<count($arrUrls); $i++){
             // 显示集数
             $arrUrl = explode('$', $arrUrls[$i]);
-            if(!isset($arrUrl[1])){
-                $arrUrl[1]= $jxAPI.$arrUrl[0];
+            
+            if ( !isset($arrUrl[1]) ) {
+                $arrUrl[1]= $arrUrl[0];
                 $arrUrl[0]='第'.(intval($i)<10 ? '0' : '').($i+1).'集';
             }
+            $arrUrl[1] = $jxAPI.$arrUrl[1];
             $player_list .= '
             <li class="'.($i == 0 ? 'active' : '').'">
-                <a href="javascript:void(0);" data-url="'.$jxAPI.$arrUrl[1].'" onclick="Player_'.$randID.'.Go('.$i.');">第'.($i+1).'集</a>
+                <a href="javascript:void(0);" data-url="'.$arrUrl[1].'" onclick="Player_'.$randID.'.Go('.$i.');">第'.($i+1).'集</a>
             </li>';
+            //var_dump($arrUrl[1]);
             // 包含解析地址的完整视频列表
             $arrVideoList[] = array('id'=>($i+1), 'title'=>$arrUrl[0], 'url'=>html_entity_decode($arrUrl[1]));
         }
@@ -432,19 +464,4 @@
 
  }
 
-$sources = array(
-    array(
-        "id"   => "default",
-        "name" => "IFrame",
-        "type" => "iframe",
-        "api"  => "https://www.administratorw.com/video.php?url="
-    ),
-    array(
-        "id"   => "dplayer",
-        "name" => "MP4",
-        "type" => "dplayer",
-        "api"  => "" 
-    )
-);
-$poster = get_template_directory_uri().'/assets/img/video-poster.png';
- new _VideoPlayer($sources, $poster);
+
