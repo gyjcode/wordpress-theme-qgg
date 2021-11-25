@@ -28,7 +28,7 @@ class Wechat_Official_Reply {
         if ($errCode == 0) {
             $requestContent = $decryptMsg;
         } else {
-            error_log("解密失败：".$errCode, 3, WX_LOG_ERR);
+            _error_log("解密失败：".$errCode, 3, WX_LOG_ERR);
         }
         
         // 如果没有POST数据，则返回
@@ -92,7 +92,7 @@ class Wechat_Official_Reply {
                 // 输出消息内容
                 echo $replyContent;
             } else {
-                error_log("加密失败：".$errCode, 3, WX_LOG_ERR);
+                _error_log("加密失败：".$errCode, 3, WX_LOG_ERR);
             }
             
         }

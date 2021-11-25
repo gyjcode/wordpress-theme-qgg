@@ -26,7 +26,7 @@ function wechat_official_captcha_view() {
     if(!isset( $action ) || !isset( $post_id ) || !isset( $captcha ) ) exit('400');
     
     if($captcha == $wxcaptcha ) {
-        $captcha_content = get_post_meta($post_id, 'wechat_captcha_content')[0];
+        $captcha_content = get_post_meta($post_id, 'wxcaptcha_content')[0];
         exit($captcha_content);
     }else{
         exit('400');
@@ -40,10 +40,10 @@ add_action('wp_ajax_wechat_official_captcha_view', 'wechat_official_captcha_view
 function wechat_official_captcha_shortcode($atts, $content=null) {
     
     $post_id = get_the_ID();
-    add_post_meta($post_id, 'wechat_captcha_content', $content, true) or update_post_meta($post_id, 'wechat_captcha_content', $content);
+    add_post_meta($post_id, 'wxcaptcha_content', $content, true) or update_post_meta($post_id, 'wxcaptcha_content', $content);
     extract(shortcode_atts(array('captcha'=>null), $atts));
     
-    if ( current_user_can( 'administrator' ) ) { return $content; } 
+    // if ( current_user_can( 'administrator' ) ) { return $content; } 
     
     return '
     <div id="wechat-official-captcha">
@@ -140,18 +140,31 @@ function wechat_official_captcha_shortcode($atts, $content=null) {
         
     </script>';
 }
-add_shortcode('wxcaptcha', 'wechat_official_captcha_shortcode');
+add_shortcode('WXCaptcha', 'wechat_official_captcha_shortcode');
 
-// 文本编辑器添加简码按钮
-function appthemes_add_wxcaptcha() {
+// 添加 QTags 按钮
+function _add_qtags_button_wxcaptcha() {
     ?>
     <script type="text/javascript">
         if ( typeof QTags != 'undefined' ) {
-        QTags.addButton( 'wxcaptcha', '微信公众号验证码可见', '[wxcaptcha]', '[/wxcaptcha]\n' );
+            QTags.addButton( 'WXCaptcha', '微信验证码', '[WXCaptcha]微信验证码隐藏内容', '[/WXCaptcha]\n' );
         }
     </script>
     <?php
 }
-add_action('after_wp_tiny_mce', 'appthemes_add_wxcaptcha');
+add_action('admin_print_footer_scripts', '_add_qtags_button_wxcaptcha');
+
+// 注册 tinyMCE 按钮
+function _register_tinymce_buttons_wxcaptcha( $buttons ){
+    array_push($buttons, "|", "_wxcaptcha");
+    return $buttons;
+}
+// 添加 tinyMCE 按钮
+function _add_tinymce_buttons_wxcaptcha( $plugin_array ){
+    $plugin_array['_wxcaptcha'] = WX_ROOT_URL.'/assets/js/tinymce.editor.js';
+    return $plugin_array;
+}
+add_filter('mce_buttons', '_register_tinymce_buttons_wxcaptcha');
+add_filter('mce_external_plugins', '_add_tinymce_buttons_wxcaptcha');
 
 /***  WP端结束 ***/

@@ -27,11 +27,11 @@ $user_erphpdown_on = QGG_Options('user_erphpdown_on') ?: false;
                 <div class="user-menus">    
                     <ul class="user-menu">
                     <?php if( $user_publish_on ){ ?>
-                        <li class="user-menu-publish <?php echo $user_publish_on ? '' : 'm-menu'; ?>"><a href="#publish"><i class="fal fa-user-edit"></i><span>我要</span>投稿</a></li>
+                        <li class="user-menu-publish <?php echo $user_publish_on ? '' : 'm-menu'; ?>"><a href="#publish"><i class="fal fa-user-edit"></i><span>我要</span><b>投稿</b></a></li>
                     <?php } ?>
                         
                         <li class="user-menu-posts m-menu"><a href="#posts/all"><i class="fal fa-book-open"></i><span>我的</span><b>文章</b></a></li>
-                        <li class="user-menu-comments <?php echo $user_erphpdown_on ? '' : 'm-menu'; ?> "><a href="#comments"><i class="fal fa-comments"></i><span>我的</span>评论</a></li>
+                        <li class="user-menu-comments <?php echo $user_erphpdown_on ? '' : 'm-menu'; ?> "><a href="#comments"><i class="fal fa-comments"></i><span>我的</span><b>评论</b></a></li>
                         
                     <?php if( $user_erphpdown_on ){ ?>
                         <!-- Erphpdown # 菜单 -->        
@@ -43,7 +43,7 @@ $user_erphpdown_on = QGG_Options('user_erphpdown_on') ?: false;
                         
                         <li class="user-menu-userinfo m-menu"><a href="#userinfo"><i class="fal fa-user-cog"></i><span>修改</span><b>资料</b></a></li>
                         <li class="user-menu-password m-menu"><a href="#password"><i class="fal fa-user-lock"></i><span>修改</span><b>密码</b></a></li>
-                        <li class="user-menu-signout <?php echo $user_publish_on || $user_erphpdown_on ? '' : 'm-menu'; ?> "><a href="<?php echo wp_logout_url(home_url()) ?>"><i class="fal fa-reply"></i>退出</a></li>
+                        <li class="user-menu-signout <?php echo $user_publish_on || $user_erphpdown_on ? '' : 'm-menu'; ?> "><a href="<?php echo wp_logout_url(home_url()) ?>"><i class="fal fa-reply"></i><b>退出</b></a></li>
                     </ul>
                 </div>
             </div>

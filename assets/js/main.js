@@ -3,17 +3,17 @@ jQuery(document).ready(function(){
 
 /**================== 全局状态管理及工具 ====================*/
     // 常量定义
-    $GSM.body = $('body');
-    $GSM.is_signin = $GSM.body.hasClass('logged-in') ? true : false;
+    GSM.body = $('body');
+    GSM.is_signin = GSM.body.hasClass('logged-in') ? true : false;
 
     // 校验函数，校验用户输入的 名称 、 网址 、 QQ 、邮箱 是否正确
-    $GSM.is_name = function (str) { return /^[a-z\d_]{3,20}$/.test(str) };
-    $GSM.is_url  = function (str) { return /^((http|https)\:\/\/)([a-z0-9-]{1,}.)?[a-z0-9-]{2,}.([a-z0-9-]{1,}.)?[a-z0-9]{2,}$/.test(str) };
-    $GSM.is_qq   = function (str) { return /^[1-9]\d{4,13}$/.test(str) };
-    $GSM.is_mail = function (str) { return /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/.test(str) };    
+    GSM.is_name = function (str) { return /^[a-z\d_]{3,20}$/.test(str) };
+    GSM.is_url  = function (str) { return /^((http|https)\:\/\/)([a-z0-9-]{1,}.)?[a-z0-9-]{2,}.([a-z0-9-]{1,}.)?[a-z0-9]{2,}$/.test(str) };
+    GSM.is_qq   = function (str) { return /^[1-9]\d{4,13}$/.test(str) };
+    GSM.is_mail = function (str) { return /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/.test(str) };    
     
     // 滚动到指定位置
-    $GSM.scrollTo = function (dom, add, speed) {
+    GSM.scrollTo = function (dom, add, speed) {
         if (!speed) speed = 300
         if (!dom) {
             $('html,body').animate({
@@ -47,21 +47,22 @@ jQuery(document).ready(function(){
 
     // 监听滚动事件
     $(window).scroll(function() {
-        var window_width= $(window).width();
+        var winWidth= $(window).width();
+        // 更改浏览器大小重新计算宽度
         $(window).resize(function(event) {
-            window_width = $(window).width();
+            winWidth = $(window).width();
         });
-        var current_height = document.documentElement.scrollTop + document.body.scrollTop
+        var curHeight = document.documentElement.scrollTop + document.body.scrollTop;
         // 固定导航
-        var nav_fixed = $GSM.body.hasClass('nav_fixed') ? true : false;
-        if( nav_fixed && current_height > 0 && window_width > 768 ){
-            $GSM.body.addClass('nav-fixed')
+        var nav_fixed = GSM.body.hasClass('nav-fixed-on') ? true : false;
+        if( nav_fixed && curHeight > 0 && winWidth > 768 ){
+            GSM.body.addClass('nav-fixed')
         }else{
-            $GSM.body.removeClass('nav-fixed')
+            GSM.body.removeClass('nav-fixed')
         }
         // 回到顶部
         var scroller = $('.rollbar-kefu .top')
-        current_height > 100 ? scroller.fadeIn() : scroller.fadeOut();
+        curHeight > 100 ? scroller.fadeIn() : scroller.fadeOut();
     });
 
     // 图片懒加载
@@ -70,7 +71,7 @@ jQuery(document).ready(function(){
         $('.lazyload').lazyload({
             effect: "fadeIn",
             data_attribute: 'src',
-            placeholder: $GSM.uri + '/assets/img/thumbnail.png',
+            placeholder: GSM.uri + '/assets/img/thumbnail.png',
             threshold: 400
         });
     });
@@ -83,6 +84,7 @@ jQuery(document).ready(function(){
     // erphpdown 登录使用主题弹出登录框
     $('.erphp-login-must').each(function(){
         $(this).addClass('signin-loader')
+        $(this).attr('target', '_self');
     });
     
     // 滚动公告
@@ -128,7 +130,7 @@ jQuery(document).ready(function(){
 
     // 搜索框显示隐藏
     $('.site-nav').on('click', '.search-btn', function(){
-        $GSM.body.toggleClass('search-on')
+        GSM.body.toggleClass('search-on')
         $('#search-box').toggleClass('actived');
         if ($('#search-box').hasClass('actived')){
             $('.site-nav .search-btn').html('<i class="fa fa-search fa-times"></i>');
@@ -151,7 +153,7 @@ jQuery(document).ready(function(){
         site_runtime = $("#site_runtime");
         if (!site_runtime){return;}
         window.setTimeout("showSiteRuntime()", 1000); // 每秒运行一次函数
-        start=new Date($GSM.site_time); //在这里修改你的建站时间
+        start=new Date(GSM.site_time); //在这里修改你的建站时间
         //start=new Date("2017-04-01 00:00:00");
         now=new Date();
         T=(now.getTime() - start.getTime()); // 获取当前时间与指定时间之间的时间间隔（ms）    
@@ -170,7 +172,7 @@ jQuery(document).ready(function(){
     
     // 首页全屏轮播图加载 swiper.min.js
     require(['swiper', 'animate'], function(){
-        var mySwiper = new Swiper ('#carousel-full-screen',{
+        var mySwiper = new Swiper ('#carou1sel-full-screen',{
             
             //history: true,
             direction: 'horizontal', // 垂直切换选项
@@ -218,6 +220,42 @@ jQuery(document).ready(function(){
         })
         
     });
+
+    // 视频分类页面 # 加载更多
+    if( GSM.video_ias_num && $('.cat-video-content').length ) {
+        require(['ias'], function(){
+            const iasNum = GSM.video_ias_num || 3;
+            const iasTip = GSM.video_ias_tip || '点击加载更多' ;
+            let ias = new InfiniteAjaxScroll('.cat-video-content', {
+                item: '.video',
+                next: '.next a',
+                pagination: '.pagination',
+                trigger: {
+                    element: function() {
+                        let el = document.createElement('div');
+                        el.setAttribute('class', 'module loading-more')
+                        el.innerHTML = '<button>'+ iasTip +'</button>';
+                        document.querySelector('.cat-video-content').parentNode.appendChild(el);
+                        return el;
+                    },
+                    when: function(pageIndex) {
+                        if(iasNum <= 0){
+                            return true;
+                        } else {
+                            return (pageIndex+1) % iasNum === 0;
+                        }
+                    },
+                    show: function(element) {
+                        element.style.display = 'block'; 
+                    },
+                    hide: function(element) {
+                        element.style.display = 'none'; 
+                    },
+                },
+              });
+        });
+    }
+    
 /**================== 公共模块功能 # 结束 ====================*/
 
 
@@ -225,7 +263,7 @@ jQuery(document).ready(function(){
 
 /**================== 文章页面功能 # 开始 ====================*/
     // 搜索页面过滤显示搜索结果
-    if( $GSM.body.hasClass('search-results') ){
+    if( GSM.body.hasClass('search-results') ){
         var val = $('.site-search-form .search-input').val()
         var reg = eval('/'+val+'/i')
         $('.excerpt h2 a, .excerpt .note').each(function(){
@@ -234,21 +272,21 @@ jQuery(document).ready(function(){
     };
    
     // 判断用户登录状态加载 user-sign.js
-    if (!$GSM.body.hasClass('logged-in')){
+    if (!GSM.body.hasClass('logged-in')){
         require(['user-sign'], function(usersign) {
             usersign.init();
         });
     };
     
     // 判断用户中心开启加载 user-center.js
-    if ($GSM.body.hasClass('user-center-on')){
+    if (GSM.body.hasClass('user-center-on')){
         require(['user-center'], function(usercenter){
             usercenter.init();
         });
     };
     
     // 判断评论开启加载 comment-ajax.js
-    if ($GSM.body.hasClass('comment-on')){
+    if (GSM.body.hasClass('comment-on')){
         require(['comment'], function(comment){
             comment.init();
         });
@@ -351,7 +389,7 @@ jQuery(document).ready(function(){
                 
                 if ( !pid || !/^\d{1,}$/.test(pid) ) return;
     
-                if( !$GSM.is_signin ){
+                if( !GSM.is_signin ){
                     var lslike = lcs.get('likes') || ''
                     if( lslike.indexOf(','+pid+',')!==-1 ) return alert('Yahoo，你已经赞过了哦！')
     
@@ -372,7 +410,7 @@ jQuery(document).ready(function(){
                 }
     
                 $.ajax({
-                    url: $GSM.uri + '/action/post_like.php',
+                    url: GSM.uri + '/action/post_like.php',
                     type: 'POST',
                     dataType: 'json',
                     data: {
@@ -428,23 +466,23 @@ jQuery(document).ready(function(){
                 return image;
             }
             // 海报顶部特色图像
-            banner_link   = $GSM.att_img ? $GSM.att_img : document.images[0].src;
+            banner_link   = GSM.att_img ? GSM.att_img : document.images[0].src;
             // 海报顶部 logo 图标
-            poster_logo   = $GSM.poster_logo ? $GSM.poster_logo : $GSM.uri + '/assets/img/site-logo-pure.png';
+            poster_logo   = GSM.poster_logo ? GSM.poster_logo : GSM.uri + '/assets/img/site-logo-pure.png';
             // 海报中部文章标题
             poster_title  = document.title;
             // 海报中部文章摘要
-            poster_desc   = $GSM.excerpt ? $GSM.excerpt : '暂时没有描述信息！';
+            poster_desc   = GSM.excerpt ? GSM.excerpt : '暂时没有描述信息！';
             // 海报中部文章Meta
-            poster_meta   = '本文由『'+$GSM.author+'』于〔'+$GSM.update+'〕更新至《'+$GSM.cat_name+'》分类下'
+            poster_meta   = '本文由『'+GSM.author+'』于〔'+GSM.update+'〕更新至《'+GSM.cat_name+'》分类下'
             // 海报底部站点 favicon 图标
-            poster_icon   = $GSM.poster_icon ? $GSM.poster_icon : $GSM.uri + '/assets/img/favicon.ico';
+            poster_icon   = GSM.poster_icon ? GSM.poster_icon : GSM.uri + '/assets/img/favicon.ico';
             // 海报底部站点名称
-            poster_name   = $GSM.poster_name ? $GSM.poster_name : '子不语';
+            poster_name   = GSM.poster_name ? GSM.poster_name : '子不语';
             // 海报底部站点标语
-            poster_slogan = $GSM.poster_slogan ? $GSM.poster_slogan : '扫码查阅文章详情';
+            poster_slogan = GSM.poster_slogan ? GSM.poster_slogan : '扫码查阅文章详情';
             // 海报底部文章二维码
-            poster_qrcode   = qrcode_img['src'] ? qrcode_img['src'] : $GSM.uri + '/assets/img/qrcode.png';
+            poster_qrcode   = qrcode_img['src'] ? qrcode_img['src'] : GSM.uri + '/assets/img/qrcode.png';
             
             poster.init({
                 selector: '.poster-popover-box',

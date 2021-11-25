@@ -1,6 +1,7 @@
 <?php 
 /**
   * 多重分类筛选
+  * 根据分类别名(slug)升序排列
   */
 
 // 获取当前分类ID
@@ -18,6 +19,8 @@ function module_category_filter($cat_root_id) {
     $categories = get_categories( array(
         'hide_empty' => false,
         'child_of'   => $cat_root_id,
+        'order'      => 'ASC',
+        'orderby'    => 'slug',
     ) );
     
     // 按子分类生成多重筛选列表
@@ -69,7 +72,7 @@ function module_category_filter($cat_root_id) {
 
         if( $category->parent == $cat_root_id ) {
             if( $key ) $output.= '</li><li>';
-            $output.= '<strong><i class="fa fa-chevron-right"></i>'. $category->name .'</strong>';
+            $output.= '<strong>'. $category->name .'</strong>';
             $output.= '<a href="'. $link .'" '. ($on_search?'class="active"':'') .'>全部</a>';
         }else{
             $output.= '<a href="'. $link .'" '. ($on_search?'class="active"':'') .'>'. $category->name .'</a>';
@@ -78,9 +81,11 @@ function module_category_filter($cat_root_id) {
     }
     // 输出多重分类筛选
     echo '
-    <div class="module category-filter">
-        <ul><li>'.$output.'</li></ul>
-    </div>';
+    <section class="container">
+        <div class="module category-filter">
+            <ul><li>'.$output.'</li></ul>
+        </div>
+    </section>';
 
     // 返回用于查询的分类ID
     return $cur_search_ids ? implode(',', $cur_search_ids) : $cat_root_id;

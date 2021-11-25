@@ -43,14 +43,14 @@
                         <a href="<?php echo home_url() ?>" target="_blank"><?php echo get_bloginfo('name'); ?></a>
                         <!-- ICP 备案 -->
                         <?php
-                        if (QGG_Options('site_beian_icp')) {
-                            echo '<a href="https://beian.miit.gov.cn/" target="_blank">'.QGG_Options('site_beian_icp') ? QGG_Options('site_beian_icp') : get_option('zh_cn_l10n_icp_num').'</a>';
+                        if (QGG_Options('site_beian_icp') || get_option('zh_cn_l10n_icp_num')) {
+                            echo '<a href="https://beian.miit.gov.cn/" target="_blank">'.(QGG_Options('site_beian_icp') ?: get_option('zh_cn_l10n_icp_num')).'</a>';
                         }
                         ?>
                         <!-- 公网安备 -->
                         <?php
                         if (QGG_Options('site_beian_gov')) {
-                            echo '<a href="https://www.beian.gov.cn/" target="_blank">'.QGG_Options('site_beian_gov') .'</a>';
+                            echo '<a href="https://www.beian.gov.cn/" target="_blank"><img src="'.get_template_directory_uri().'/assets/img/beian-gov.png"/>'.QGG_Options('site_beian_gov') .'</a>';
                         }
                         ?>
                         <!-- 网站地图 -->

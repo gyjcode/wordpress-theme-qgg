@@ -196,6 +196,7 @@ function _site_description() {
     
     echo "<meta name=\"description\" content=\"$description\">\n";
 }
+
 // 记录文章阅读量
 function _post_views_record() {
     if (is_singular()) {
@@ -209,11 +210,11 @@ function _post_views_record() {
         }
     }
 }
+
 // 整站皮肤样式
 function _head_class() {
     
     $styles = '';
-
     // 整站变灰
     if (QGG_Options('site_style_gray')) {
         $styles .= "
@@ -299,8 +300,8 @@ function _body_class() {
         $class .= ' user-center-on';
     }
     
-    if( QGG_Options('nav_fixed') && !is_page_template('pages/page_user_reset_pwd.php') ){
-        $class .= ' nav_fixed';
+    if( QGG_Options('nav_fixed_on') && !is_page_template('pages/page_user_reset_pwd.php') ){
+        $class .= ' nav-fixed-on';
     }
     
     if( QGG_Options('topbar_off') ){
@@ -342,18 +343,15 @@ function _site_menu($location = 'site_nav') {
 }
 
 /* 用户头像*/
-function _get_avatar($user_id = '', $user_email = '', $src = false, $size = 50) {
+function _get_avatar($user_id = '', $user_email = '', $lazyload = false, $size = 50) {
     $diy_avatar = _get_diy_avatar($user_id);
-    if ($diy_avatar) {    // 有自定义头像则获取
-        $attr = 'data-src';
-        if ($src) {
-            $attr = 'src';
-        }
-
-        return '<img class="avatar avatar-' . $size . ' photo" width="' . $size . '" height="' . $size . '" ' . $attr . '="' . $diy_avatar . '">';
-    } else {    // 否则获取 Gravatar 头像
+    // 有自定义头像则获取，否则获取 Gravatar 头像
+    if ($diy_avatar) {
+        return '<img class="avatar avatar-' . $size . ' lazyload" width="' . $size . '" height="' . $size . '"  src="' . $diy_avatar . '">';
+    } else {
         $gravatar = get_avatar($user_email, $size, get_option('avatar_default'));    // 否则获取主题默认头像
-        if ($src) {
+        // 是否使用 lazyload.js 懒加载
+        if ( !$lazyload ) {
             return $gravatar;
         } else {
             return str_replace(' src=', ' data-src=', $gravatar);
@@ -378,7 +376,9 @@ function _get_avatar_url($url) {
     if( !$from ){
         $from = QGG_Options('gravatar_from', 'https://gravatar.wp-china-yes.net/avatar/');
     }
-    $url = preg_replace('/.*\/avatar\/(.*)\?s=([\d]+)&d=(.*).*/', $from.'$1?s=$2&d='.get_option('avatar_default'), $url);
+    $url = preg_replace('/.*\/avatar\/(.*)\?s=([\d]+)&d=(.*).*/', $from.'$1?s=$2&d='.get_option('avatar_default'), $url);    // HTTP
+    $url = preg_replace('/.*\/avatar\/(.*)\?s=([\d]+).*/', $from.'$1?s=$2', $url);  // HTTPS
+
     return $url;
 }
 
@@ -396,6 +396,39 @@ function _get_diy_avatar($user_id = '') {
 }
 
 /**==================== 更多功能函数 ====================*/
+
+// 禁用 WordPress 生成缩略图
+if( QGG_Options('disable_wp_thumbnail') ){
+
+    // 禁用自动生成的图片尺寸
+    function _disable_image_sizes($sizes) {
+        
+        unset($sizes['thumbnail']);    // disable thumbnail size
+        unset($sizes['medium']);       // disable medium size
+        unset($sizes['large']);        // disable large size
+        unset($sizes['medium_large']); // disable medium-large size
+        unset($sizes['1536x1536']);    // disable 2x medium-large size
+        unset($sizes['2048x2048']);    // disable 2x large size
+        
+        return $sizes;
+        
+    }
+    add_action('intermediate_image_sizes_advanced', '_disable_image_sizes');
+    
+    // 禁用缩放尺寸
+    add_filter('big_image_size_threshold', '__return_false');
+    
+    // 禁用其他图片尺寸
+    function _disable_other_image_sizes() {
+        
+        remove_image_size('post-thumbnail'); // disable images added via set_post_thumbnail_size() 
+        remove_image_size('another-size');   // disable any other added image sizes
+        
+    }
+    add_action('init', '_disable_other_image_sizes');
+}
+
+
 // 屏蔽默认表情
 function disable_emojis() {
     remove_action( 'wp_head', 'print_emoji_detection_script', 7 );

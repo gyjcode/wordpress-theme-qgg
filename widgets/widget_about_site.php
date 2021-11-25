@@ -17,7 +17,7 @@ class widget_about_site extends WP_Widget{
             'title'    => get_bloginfo('name'),  
             'subtitle' => get_bloginfo('description'), 
             'content'  => '分享网站建设中遇到的WordPress、Linux，Apache，Nginx，PHP，HTML，CSS等的问题及解决方案；分享Windows操作系统及其周边的一些经验知识；分享互联网使用过程中遇到的一些问题及其处理技巧；分享一些自己在读书过程中的心得体会；分享一些自己觉得有意义的音视频内容 ... ...', 
-            'link'     => 'https://blog.quietguoguo.com/contact-us'    
+            'link'     => 'https://zibuyu.life/contact-us'    
         );
         $instance = wp_parse_args( (array) $instance, $defaults );
         extract($instance);

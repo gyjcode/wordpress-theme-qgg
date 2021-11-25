@@ -6,6 +6,7 @@
 header('Content-type:text/html; Charset=utf-8');
 // 根目录
 $rootDir        = get_template_directory().'/wechat-official';
+$rootUrl        = get_template_directory_uri().'/wechat-official';
 // 配置 # 开发
 $appId          = QGG_options("wechat_official_appid") ?: '';
 $appSecret      = QGG_options("wechat_official_appsecret") ?: '';
@@ -20,8 +21,12 @@ $captchaTime    = QGG_options("wechat_official_captcha_time") ?: 10;
 
 <?php 
 /**==================== 正文开始 ====================*/
+// 调试模式
+define('DEBUG_MODE', false);    // 调试模式
+
 // 常量 # 基础
 define('WX_ROOT_DIR', $rootDir);        // 根目录
+define('WX_ROOT_URL', $rootUrl);        // 根目录
 define('WX_LOG_ERR', WX_ROOT_DIR.'/log_error.txt');    // 错误日志文件
 // 常量 # 开发
 define('WX_QRCODE', $qrcode);    // 公众号二维码
@@ -57,6 +62,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' && $isWechatToken ) {
     $wechatObj ->valid();
     return;
 };
+
 /**
  * 非微信请求自动返回
  * 
@@ -66,10 +72,16 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' && $isWechatToken ) {
  * https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Receiving_standard_messages.html
  */
 $isWechatRequest = isset($_GET['signature']) && isset($_GET['timestamp']) && isset($_GET['nonce']) && isset($_GET['openid']);
-if ( !($_SERVER['REQUEST_METHOD'] == 'POST' && $isWechatRequest) ) {
-    echo '';
-    return;
+if ( $isWechatRequest ) {
+    // 微信请求时修改查询参数
+    add_action('parse_query', function($query){	
+        $query->is_home 	= false;
+        $query->is_search 	= false;
+        $query->is_wechat 	= true;
+    });
 }
+
+
 // 回复功能
 include(WX_ROOT_DIR.'/reply/reply.php');
 

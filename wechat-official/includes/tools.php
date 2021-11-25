@@ -3,9 +3,12 @@
  * 工具函数
  */
 
-// 日志函数
+// 错误日志
 if ( !function_exists('_error_log') ) {
     function _error_log($conent) {
+        // 未开启 Debug 模式直接返回
+        if( !DEBUG_MODE ) return;
+
         // 微信公众号默认错误
         switch ($conent) {
             case -40001:

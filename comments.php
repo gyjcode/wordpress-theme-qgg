@@ -171,8 +171,12 @@ $post_time  = ( strtotime(date('Y-m-d G:i:s')) - strtotime(get_the_time('Y-m-d G
             );
             ?>
         </ol>
-        <div class="page-nav">
-            <?php paginate_comments_links('prev_next=0');?>
+        <!-- 评论分页 -->
+        <div class="comments-pagination">
+            <?php paginate_comments_links(array(    // 无法设置激活的样式
+                'prev_text' => '上一页',
+                'next_text' => '下一页',
+            ));?>
         </div>
         <?php } ?>
     </div>

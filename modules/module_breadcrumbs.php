@@ -4,12 +4,14 @@
  */
 
 function module_breadcrumbs(){
+    // 首页直接返回
+    if( is_home() ) return false;
     // 获取配置
     if( !QGG_Options('breadcrumbs_on') ) return false;
     $title_on = QGG_Options('breadcrumbs_title_on') ?: false;
     // 获取分类
     $categorys = get_the_category();
-    if( is_home() || !$categorys ) return false;
+    if( !$categorys ) return false;
     
     echo '<section class="container module breadcrumbs-wrapper">';
         $term_id = $categorys[0]->term_id;

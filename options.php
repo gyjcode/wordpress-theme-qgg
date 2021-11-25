@@ -150,6 +150,14 @@ function optionsframework_options() {
         'name'    => __( '基本配置', 'QGG' ),
         'type'    => 'heading'
     );
+
+    $options[] = array(
+        'name'     => __('初始化', 'QGG'),
+        'desc'     => __('开启，禁止 WordPress 生成缩略图 # 占空间且后期更改配置后可能造成很多图片 404 ，建议禁止', 'QGG'),
+        'id'       => 'disable_wp_thumbnail',
+        'type'     => "checkbox",
+        'std'      => true
+    );
     
     $options[] = array(
         'name'     => __('整站样式', 'QGG'),
@@ -161,7 +169,7 @@ function optionsframework_options() {
     
     $options[] = array(
         'desc'     => __('开启，导航固定：display: fixed;', 'QGG'),
-        'id'       => 'nav_fixed',
+        'id'       => 'nav_fixed_on',
         'type'     => "checkbox",
         'std'      => true
     );
@@ -248,14 +256,14 @@ function optionsframework_options() {
     
     $options[] = array(
         'name'     => __('整站缩略图', 'QGG'),
-        'desc'     => __('开启，首图作为缩略图——文章未设置特色图像时使用首图作为缩略图', 'QGG'),
+        'desc'     => __('开启，首图作为缩略图 # 文章未设置特色图像时使用首图作为缩略图', 'QGG'),
         'id'       => 'thumbnail_postfirstimg_on',
         'type'     => "checkbox",
         'std'      => true
     );
 
     $options[] = array(
-        'desc'     => __('开启，异步加载缩略图——使用 lazyload 实现突破懒加载，提升网页加载速度', 'QGG'),
+        'desc'     => __('开启，异步加载缩略图 # 使用 lazyload 实现懒加载，提升网页加载速度', 'QGG'),
         'id'       => 'thumbnail_async_on',
         'type'     => "checkbox",
         'std'      => true
@@ -1426,16 +1434,16 @@ function optionsframework_options() {
     );
     
     $options[] = array(
-        'name'     => __('友情链接页面', 'QGG'),
+        'name'     => __('友情链接', 'QGG'),
         'desc'     => __('<b>友情链接分类</b> # 需定义【链接分类】且有链接', 'QGG'),
         'id'       => 'page_friendly_link_cats',
-        'type'     => 'multicheck',
+        'type'     => 'select',
         'std'      => '',
         'options'  => $options_linkcats
     );
     
     $options[] = array(
-        'name'     => __('读者墙页面', 'QGG'),
+        'name'     => __('读者墙', 'QGG'),
         'desc'     => __('<b>限制时间</b> # 限制在多少月内评论的才显示出来', 'QGG'),
         'id'       => 'readers_wall_limit_time',
         'type'     => 'text',
@@ -1452,7 +1460,7 @@ function optionsframework_options() {
     );
     
     $options[] = array(
-        'name'     => __('产品分类页面', 'QGG'),
+        'name'     => __('产品分类', 'QGG'),
         'desc'     => __('开启，产品分类页面侧栏显示文章数量', 'QGG'),
         'id'       => 'cat_product_show_count',
         'type'     => "checkbox",
@@ -1471,6 +1479,42 @@ function optionsframework_options() {
         'id'       => 'cat_product_qrcode_title',
         'type'     => 'text',
         'std'      => __('手机扫码查看', 'QGG')
+    );
+
+    $options[] = array(
+        'name'     => __('视频分类', 'QGG'),
+        'desc'     => __('开启，多重分类筛选功能', 'QGG'),
+        'id'       => 'cat_video_filter',
+        'type'     => "checkbox",
+        'std'      => true
+    );
+
+    $options[] = array(
+        'desc'     => __('<b>每页视频数量</b> # 将替换【设置/阅读】下的博客页面至多显示数量，注意这个值要大于【设置/阅读】下的配置，否则会报错！', 'QGG'),
+        'id'       => 'cat_video_per_page',
+        'type'     => 'text',
+        'std'      => 60
+    );
+
+    $options[] = array(
+        'desc'     => __('开启，AJAX 分页无限加载 # 将取代分页导航', 'QGG'),
+        'id'       => 'video_ias_on',
+        'type'     => "checkbox",
+        'std'      => true
+    );
+    
+    $options[] = array(
+        'desc'     => __('<b>无限加载页数</b> # 多少页内无限加载，之后显示【加载更多】文本。<=0：无限加载', 'QGG'),
+        'id'       => 'video_ias_num',
+        'type'     => 'text',
+        'std'      => 3
+    );
+
+    $options[] = array(
+        'desc'     => __('<b>无限加载提示文本</b> # 点击加载更多', 'QGG'),
+        'id'       => 'video_ias_tip',
+        'type'     => 'text',
+        'std'      => '点击加载更多'
     );
     
     
@@ -1628,7 +1672,7 @@ function optionsframework_options() {
     );
     
     $options[] = array(
-        'desc'     => __('开启，禁止F12控制台 # JavaScript禁止鼠标点击', 'QGG'),
+        'desc'     => __('开启，禁止 F12 打开控制台 # 开启后也会禁止右键菜单', 'QGG'),
         'id'       => 'enhance_f12_forbidden_on',
         'type'     => 'checkbox',
         'std'      => false

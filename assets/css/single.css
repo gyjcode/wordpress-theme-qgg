@@ -1,4 +1,26 @@
 /**==================== 文章公共模块样式开始 ====================*/
+/* 公共样式 */
+article h3{
+    width: calc(100% + 4rem + 5px);
+    margin-left: calc(-2rem - 5px);
+    padding: 0.4rem 2rem;
+    border-left: 5px solid #24a0f0;
+    background-color: #fafafa;
+}
+article h4{
+    width: calc(100% + 4rem + 3px);
+    margin-left: calc(-2rem - 3px);
+    padding: 0.3rem 2rem;
+    border-left: 3px solid #24a0f0;
+    background-color: #fafafa;
+}
+article h5{
+    width: calc(100% + 4rem);
+    margin-left: calc(-2rem);
+    padding: 0.2rem 2rem;
+    background-color: #fafafa;
+}
+
 .single .ads{
     margin-top: 1rem;
 }
@@ -318,7 +340,7 @@
 /* 默认文章 */
 .single .content{
     margin-top: 1.2rem;
-    padding: 20px 30px;
+    padding: 1.5rem 2rem;
     background-color: #fff;
 }
 
@@ -352,14 +374,12 @@
 }
 .single .post-content{
     margin: 1rem 0 0;
-    font-size: 14px;
+    font-size: 1rem;
     line-height: 20px;
     word-wrap: break-word;
-    overflow: hidden;
 }
 .post-content .wp-caption{
     max-width: 100%;
-    margin: 0 0 20px;
     padding: 10px 10px 1px;
     background: #f6f6f6;
 }

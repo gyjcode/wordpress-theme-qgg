@@ -44,7 +44,7 @@ return {
 
                 // AJAX 提交评论
                 $.ajax({
-                    url     : $GSM.ajax_url,
+                    url     : GSM.ajax_url,
                     data    : $(this).serialize()+ "&action=comment",
                     type    : $(this).attr('method'),
                     error   : function (result) {

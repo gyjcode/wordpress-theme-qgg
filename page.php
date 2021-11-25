@@ -28,7 +28,7 @@ get_header();
                 ) );
             ?>
             <?php endwhile;  ?>
-            <p>&nbsp;</p>
+            <!-- 评论模板 -->
             <?php comments_template('', true); ?>
         </div>
     </div>

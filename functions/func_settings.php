@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Loads the Options Panel
  * If you're loading from a child theme use stylesheet_directory instead of template_directory

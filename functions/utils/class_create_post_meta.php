@@ -2,25 +2,25 @@
 /** 
   * @ name 文章新增相关 Meta
   * @description 创建 Meta 时请参照如下方式
-  *        $box_conf = array(
-  *            'box_id'    => "box_id",
-  *            'box_title' => "box_title",
-  *            'ipt_id'    => "ipt_id",
-  *            'ipt_name'  => "ipt_name",
-  *            'div_class' => "div_class",
-  *        );
-  *        $meta_conf = array(
-  *            array(
-*                  'type'   => 'text',
-  *                'name'   => "Meta_name",                             // 对应数据库中meta_key
-  *                'title'  => 'Meta_title：'
-  *                'value'  => "", 
-  *            ),
-  *        );
-  *        $new_post_meta = new _CreatePostMeta($box_conf,$meta_conf);
+  * $box_conf = array(
+  *     'box_id'    => "box_id",
+  *     'box_title' => "box_title",
+  *     'ipt_id'    => "ipt_id",
+  *     'ipt_name'  => "ipt_name",
+  *     'div_class' => "div_class",
+  * );
+  * $meta_conf = array(
+  *     array(
+  *         'type'   => 'text',
+  *         'name'   => "Meta_name",    // 对应数据库中meta_key
+  *         'title'  => 'Meta_title：'
+  *         'value'  => "", 
+  *     ),
+  * );
+  * $new_post_meta = new _CreatePostMeta($box_conf,$meta_conf);
   */
 
-class _CreatePostMeta{
+class _CreatePostMeta {
     
     var $box_conf, $meta_conf, $post_id;
     
@@ -77,7 +77,6 @@ class _CreatePostMeta{
     
     // 存储|更新 Meta Box 数据
     public function _save_post_meta_box( $post_id ){
-        
         $post_id = $_POST['post_ID'];
         
         if ( !wp_verify_nonce( isset($_POST[ $this -> box_conf['ipt_name'] ]) ? $_POST[ $this -> box_conf['ipt_name'] ] : '', plugin_basename(__FILE__) ))

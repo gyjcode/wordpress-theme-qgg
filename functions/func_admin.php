@@ -49,8 +49,8 @@ remove_action( 'wp_enqueue_scripts', 'wp_common_block_scripts_and_styles' );
 add_filter( 'gutenberg_use_widgets_block_editor', '__return_false' );
 add_filter( 'use_widgets_block_editor', '__return_false' );
 
-//拓展 WordPress 功能
-add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'status', 'video'));
+// 拓展 WordPress 功能
+// add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'status', 'video'));
 add_theme_support('post-thumbnails');
 add_theme_support('title-tag');
 
