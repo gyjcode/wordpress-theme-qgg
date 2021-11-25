@@ -20,11 +20,17 @@
     ){
         $this->jxSources = array_merge( array(
             array(
-                "id"   => "default",
-                "name" => "默认不解析",
+                "id"   => "iframe",
+                "name" => "不解析IFrame播放",
+                "type" => "iframe",
+                "api"  => ""
+            ),
+            array(
+                "id"   => "dplayer",
+                "name" => "不解析Dplayer播放",
                 "type" => "dplayer",
                 "api"  => ""
-            )
+            ),
         ), $jxSources );
         $this->poster = isset($poster) ? $poster : get_template_directory_uri().'/assets/img/video-poster.png';
         $this->height = wp_is_mobile() ? $height_m : $height;
@@ -240,7 +246,7 @@
     public function _shortcode_video_player($atts, $content=null){
         
         // 默认值：shortcode_atts: https://developer.wordpress.org/reference/functions/shortcode_atts/
-        $atts = shortcode_atts(array('jxid'=>'default', 'vurls'=>''), $atts);
+        $atts = shortcode_atts(array('jxid'=>'iframe', 'vurls'=>''), $atts);
 
         // 文章编辑页 退出
         global $pagenow;

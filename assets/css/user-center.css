@@ -316,8 +316,9 @@
     .page .user-center .sidebar .user-menu li a i{
         display: block;
         width: 100%;
-        margin: 0;
-        font-size: 16px;
+        height: 20px;
+        margin: 8px 0;
+        font-size: 18px;
     }
     .page .user-center .sidebar .user-menu li a span{
         display: none;

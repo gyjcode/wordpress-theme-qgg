@@ -417,4 +417,33 @@
     border-bottom: 0;
 }
 
+/* 评论列表翻页 */
+.comments-pagination{
+    position: relative;
+    width: 100%;
+    margin: 1.2rem auto;
+    text-align: center;
+}
+.comments-pagination .page-numbers{
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1;
+    margin: 0 3px;
+    padding: 5px 9px;
+    border-radius: 3px;
+    font-size: 1rem;
+    color: #555;
+    background-color: #f1f1f1;
+}
+.comments-pagination span.page-numbers{
+    color: #fff;
+    background-color: #24a0f0;
+}
+@media (max-width: 768px){
+    .comments-pagination .page-numbers{
+        margin: 0 2px;
+        padding: 4px 7px;
+    }
+}
+
 /**==================== 评论列表样式结束 ====================*/

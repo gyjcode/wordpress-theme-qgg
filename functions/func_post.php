@@ -35,7 +35,7 @@ function _get_the_post_thumbnail() {
     $img_src = '';
 
     // 获取缩略图地址
-    if (has_post_thumbnail()) {
+    if ( has_post_thumbnail() ) {
         $domsxe = get_the_post_thumbnail();
         preg_match_all('/<img.*?(?: |\\t|\\r|\\n)?src=[\'"]?(.+?)[\'"]?(?:(?: |\\t|\\r|\\n)+.*?)?>/sim', $domsxe, $strResult, PREG_PATTERN_ORDER);  
         $images = $strResult[1];

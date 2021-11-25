@@ -8,89 +8,97 @@
 .wp-caption p{margin-bottom: 10px;text-indent: 0;}
 .wp-caption.alignnone{text-align: center;}
 .wp-caption:hover .wp-caption-text{color: #45B6F7;}
+
+
+/* 常用标签样式 */
+html{
+    font-family: "微软雅黑", "苹果雅黑", Arial, sans-serif;
+    font-size: 15px;
+}
+@media (max-width: 1024px) {
+    html{
+        font-size: 14px;
+    }
+}
+@media (max-width: 768px) {
+    html{
+        font-size: 13px;
+    }
+}
+@media (max-width: 480px) {
+    html{
+        font-size: 12px;
+    }
+}
 body{
-    background: #fff;
-}
-body a{
-    text-decoration: blink;
     color: #333;
+    background: #eee;
+    overflow-x: hidden;
 }
-body a:hover{
-    text-decoration: blink;
-    color: #24A0F0;
-}
+/* 标题 */
 h1{
-    margin: 20px 0;
-    padding: 5px 12px;
-    border: 0;
     text-indent: 0;
-    font-size: 24px;
-    font-weight: bold; 
+    margin: 20px auto;
+    font-size: 22px;
+    font-weight: bold;
 }
 h2{
-    margin: 15px 0;
-    padding: 5px 10px;
-    border: 0;
-    border-left: 5px solid #24a0f0;
     text-indent: 0;
+    margin: 15px auto;
     font-size: 20px;
-    font-weight: bold; 
-    background: #fbfbfb;
+    font-weight: bold;
 }
 h3{
-    margin: 10px 0;
-    padding: 3px 10px;
-    border: 0;
-    border-left: 5px solid #24a0f0;
     text-indent: 0;
+    margin: 10px auto;
     font-size: 18px;
-    font-weight: bold; 
-    background: #fbfbfb;
+    font-weight: bold;
 }
 h4{
-    margin: 10px 0;
-    padding: 3px 10px;
-    border: 0;
     text-indent: 0;
+    margin: 10px auto;
     font-size: 16px;
-    font-weight: bold; 
-    background: #fbfbfb;
+    font-weight: bold;
 }
 h5{
-    margin: 10px 0;
-    padding: 3px 10px;
-    border: 0;
     text-indent: 0;
-    font-size: 14px;
+    margin: 10px auto;
+    font-size: 15px;
     font-weight: bold;
 }
 h6{
-    margin: 10px 0;
-    padding: 3px 10px;
-    border: 0;
     text-indent: 0;
-    font-size: 12px;
+    margin: 10px auto;
+    font-size: 14px;
     font-weight: bold;
 }
 p{
-    margin: 10px;
-    word-wrap: break-word;
+    margin: 1.2em auto;
+    line-height: 1.5em;
+    font-size: 1rem;
+    text-align: justify;
 }
-ul{
-    margin: 10px 0;
+a{
+    font-weight: normal;
+    color: #24a0f0;
+    text-decoration: none;
 }
-ul li{
-    float: none;
+ul, ol{
     list-style-position: inside;
     list-style-type: disc;
+    margin: 1.2em auto;
+    font-size: 1rem;
 }
 ol{
-    margin: 10px 0;
-}
-ol li{
-    float: none;
-    list-style-position: inside;
     list-style-type: decimal;
+}
+ol ol, ol ul, ul ol, ul ul {
+    margin: .6em auto;
+}
+li{
+    margin-left: 1.5em;
+    line-height: 1.5em;
+    font-size: 15px;
 }
 img{
     display: block;
@@ -98,91 +106,87 @@ img{
     height: auto;
     margin: 0 auto;
 }
+table{
+    max-width: 100%;
+    margin: 1.2em auto;
+    border: 1px solid #c9c9c9;
+}
+tr:nth-child(odd){
+    background:#fff; 
+}
+tr:nth-child(even){
+    background: #fbfbfb;
+}
+th{
+    padding: 3px 5px;
+    border: 1px solid #c9c9c9;
+    font-size: .9em;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+    background: #d2eeff; 
+    border-collapse: collapse;
+}
+td{
+    padding: 3px 5px;
+    border: 1px solid #c9c9c9 ;
+    font-size: .9em;
+    vertical-align: middle;
+}
 blockquote{
     position: relative;
-    margin: 20px;
-    border: 0;
-    padding: 20px;
-    border-radius: 9px;
-    font-size: 16px;
-    line-height: 24px;
+    margin: 1.2em auto;
+    padding: 20px 50px;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1em;
     color: #999;
     background: #fafafa;
 }
-blockquote:before{
+blockquote::before{
     content: "\f10d";
+    text-indent: 0;
+    font-weight: 900;
+    font-family: "Font Awesome 5 Pro";
     position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 15px;
-    font-style: normal;
-    font-family: FontAwesome;
-    text-align: justify;
-    color: #aaa;
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+    color: #888;
 }
-pre {
-    max-height: 360px;
-    border: 1px solid #eee;
-    padding: 15px;
-    border-radius: 5px;
-    font-size: 10px;
+blockquote::after{
+    content: "\f10e";
     text-indent: 0;
-    color: #ffa;
-    background: rgba(8, 16, 24, 1);
-    overflow: auto;
+    font-weight: 900;
+    font-family: "Font Awesome 5 Pro";
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 18px;
+    color: #888;
 }
-pre::-webkit-scrollbar{
-    width: 10px;
-    height: 10px;
+blockquote p:first-child, blockquote ol:first-child, blockquote ul:first-child {
+    margin-top: 5px;
 }
-pre::-webkit-scrollbar-thumb{
-    border-radius: 20px;
-    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.8);
-    background: rgba(60,120,180,0.36);
+blockquote p:last-child, blockquote ol:last-child, blockquote ul:last-child {
+    margin-bottom: 5px;
 }
-pre::-webkit-scrollbar-thumb:hover{
-    background: rgba(60, 160, 240, 1);
-}
-pre::-webkit-scrollbar-track{
-    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
-    border-radius: 20px;
-    background: rgba(2,3,6,0.1);
-}
-/** Table 表格样式 **/
-table{
-    position: relative;
-    width:100%;
-    height: auto;
-    margin: 10px 0;
-    padding: 0;
-    border:1px solid #c9c9c9;
+
+/* 代码高亮样式 */
+pre.highlight{
     text-indent: 0;
-    background: none;
-    border-collapse: collapse;
+    margin: 1.2em auto;
 }
-table th{
-    margin: 0;
-    padding: 3px 5px;
-    border: 1px solid #c9c9c9;
-    font-size: 14px;
-    font-weight: normal;
-    text-align: center;
-    background: #24a0f018 ; 
-    border-collapse: collapse;
+pre.highlight code {
+    display: block;
+    max-height: 30rem;
+    padding: 1rem;
+    font-family: Consolas, Monaco, monospace;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
-table td{
-    margin: 0;
-    padding: 1px 3px;
-    border: 1px solid #c9c9c9 ;
-    font-size: 12px;
-    font-weight: normal;
-    text-align: left;
-    word-break: break-all;
-    border-collapse: collapse;
-}
-table tr:nth-child(odd){
-    background:#fff; 
-}
-table tr:nth-child(even){
-    background: #fbfbfb;
+pre.highlight code.hljs {
+    display: block;
+    padding: 1rem;
+    overflow-x: auto;
 }

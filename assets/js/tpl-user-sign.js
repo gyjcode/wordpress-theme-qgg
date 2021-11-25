@@ -1,9 +1,9 @@
 /**
  * 用户登录弹窗
- * $GSM.body      ：获取 body 对象
- * $GSM.reset_pwd ：找回密码页面地址
- * $GSM.is_signin ：判断用户是否登录
- * $GSM.uri       ：统一资源定位地址
+ * GSM.body      ：获取 body 对象
+ * GSM.reset_pwd ：找回密码页面地址
+ * GSM.is_signin ：判断用户是否登录
+ * GSM.uri       ：统一资源定位地址
  * 
  */
 jsdefine('user-sign', function (){
@@ -33,7 +33,7 @@ return {
                                 <div class="remember">\
                                     <input type="checkbox" name="remember" checked="checked" id="remember" value="forever">记住我\
                                 </div>\
-                                '+( $GSM.reset_pwd ? '<div class="reset-pwd"><a href="'+ $GSM.reset_pwd +'">找回密码？</a></div>' : '' )+'\
+                                '+( GSM.reset_pwd ? '<div class="reset-pwd"><a href="'+ GSM.reset_pwd +'">找回密码？</a></div>' : '' )+'\
                                 <div class="submit-wrapper">\
                                     <input type="button" class="sign-submit site-style-background-color" name="submit" value="登录">  \
                                     <input type="hidden" name="action" value="signin">\
@@ -72,10 +72,10 @@ return {
 
 
             // 添加登陆窗体 HTML 代码
-            $GSM.body.append( signHtml );
+            GSM.body.append( signHtml );
             // 登陆弹窗 # 显示隐藏
             if( $('.is-sign-show').length ){
-                $GSM.body.addClass('sign-show')
+                GSM.body.addClass('sign-show')
                 setTimeout(function(){
                     $('#signin').show().find('input:first').focus()
                 }, 300);
@@ -83,15 +83,15 @@ return {
             }
             // 登录弹窗 # 按钮关闭
             $('.sign-close').on('click', function(){
-                $GSM.body.removeClass('sign-show')
+                GSM.body.removeClass('sign-show')
             });
             // 登录弹窗 # 遮罩关闭
             $('.sign-mask').on('click', function(){
-                $GSM.body.removeClass('sign-show')
+                GSM.body.removeClass('sign-show')
             });
             // 切换 # 登录 ：全局调佣类 .signin-loader
             $('.signin-loader').on('click', function(){
-                $GSM.body.addClass('sign-show')
+                GSM.body.addClass('sign-show')
                 setTimeout(function(){
                     $('#signin').show().find('input:first').focus()
                 }, 300);
@@ -99,7 +99,7 @@ return {
             });
             // 切换 # 注册 ：全局调用类 .sinup-loader
             $('.signup-loader').on('click', function(){
-                $GSM.body.addClass('sign-show')
+                GSM.body.addClass('sign-show')
                 $('#signup input[type="text"]').val("");
                 $('#signup input[type="email"]').val("");
                 $('#signup input[type="password"]').val("");
@@ -119,7 +119,7 @@ return {
             // 提交表单 # 按钮，AJAX 请求 user_sign.php 文件
             $('#user-sign .sign-submit').on('click', function(){
                 // 登录用户直接跳出
-                if( $GSM.is_signin ){ return; }
+                if( GSM.is_signin ){ return; }
                 // 用户未登录
                 var form = $(this).parent().parent();
                 var formData = form.serializeObject();
@@ -127,11 +127,11 @@ return {
                 if( !formData.action ){ return; }
                 
                 if( isreg ){
-                    if( !$GSM.is_name(formData.username) ){
+                    if( !GSM.is_name(formData.username) ){
                         tips('用户名需以字母开头，且为字母数字下划线组合的3-20位字符')
                         return;
                     }
-                    if( !$GSM.is_mail(formData.email) ){
+                    if( !GSM.is_mail(formData.email) ){
                         tips('邮箱格式错误：xxx@xxx.xxx')
                         return;
                     }
@@ -147,7 +147,7 @@ return {
                 
                 $.ajax({  
                     type: "POST",
-                    url:  $GSM.uri+'/action/user_sign.php',
+                    url:  GSM.uri+'/action/user_sign.php',
                     data: formData,
                     dataType: 'json',
                     success: function(data){

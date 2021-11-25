@@ -4,7 +4,7 @@ function get_qq_info(){
     if(qq_num){
         if( !isNaN(qq_num)){
             $.ajax({
-                url      : $GSM.uri+"/action/get_qq_info.php",
+                url      : GSM.uri+"/action/get_qq_info.php",
                 type     : "get",
                 data     : { qq:qq_num },
                 dataType : "json",

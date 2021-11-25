@@ -6,12 +6,12 @@
 ?>
 
 <?php
-function module_pagination() {
+function module_pagination($max_page = 0) {
     // 是否为页面或文章
     if ( is_singular() ){ return; }
     // 获取最大页码
     global $wp_query, $paged;
-    $max_page = $wp_query -> max_num_pages;
+    $max_page = $max_page ?: $wp_query -> max_num_pages;
     // 只有一页不显示
     if ( $max_page == 1 ){ return; }
     
@@ -20,7 +20,7 @@ function module_pagination() {
         <ul>';
         if ( empty( $paged ) ){ $paged = 1; }
         // 上一页
-        echo '<li class="prev-page">'.get_previous_posts_link("上一页").'</li>';
+        echo '<li class="prev">'.get_previous_posts_link("上一页").'</li>';
         
         if ( $paged > 3  ){ the_paging_link( 1, '<li>第一页</li>' ); }
         
@@ -34,7 +34,7 @@ function module_pagination() {
             }
         }
         // 下一页
-        echo '<li class="next-page">'.get_next_posts_link(__('下一页')).'</li>'; 
+        echo '<li class="next">'.get_next_posts_link(__('下一页')).'</li>'; 
         // 共 n 页
         echo '<li class="active"><span class="site-style-background-color">共 '.$max_page.' 页</span></li>';
         

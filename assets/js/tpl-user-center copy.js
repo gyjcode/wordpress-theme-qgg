@@ -205,6 +205,7 @@ jsdefine('user-center', ['router', 'jsrender'], function (){
                                 $('#tpl-posts').render( data.items )
                             ).after( paging(data.max, paged, '#posts/'+status+'/') )
                             
+                            thumb_lazyload()
                         }else{
                             loading(_main, _msg['1201'])
                         }
@@ -290,6 +291,16 @@ jsdefine('user-center', ['router', 'jsrender'], function (){
                     msg = '<i class="fa fa-spinner" style="position:relative;top:1px;margin-right:5px;"></i> 数据加载中'
                 }
                 el.html('<div class="user-loading">'+msg+'</div>')
+            }
+            // 图片加载异步加载 jquery.lazyload.min.js
+            function thumb_lazyload(){
+                require(['lazyload'], function(){
+                    $('.user-main .thumb').lazyload({
+                        data_attribute : 'src',
+                        placeholder    : GSM.uri + '/img/thumbnail.png',
+                        threshold      : 400
+                    });
+                });
             }
             // 页码函数
             function paging(max, current, plink, step){

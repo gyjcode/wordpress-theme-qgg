@@ -84,43 +84,43 @@ body{
 /* 标题 */
 h1{
     text-indent: 0;
-    margin: 20px auto;
-    font-size: 22px;
+    margin: 1.3rem auto;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 h2{
     text-indent: 0;
-    margin: 15px auto;
-    font-size: 20px;
+    margin: 1.1rem auto;
+    font-size: 1.3rem;
     font-weight: bold;
 }
 h3{
     text-indent: 0;
-    margin: 10px auto;
-    font-size: 18px;
+    margin: 1rem auto;
+    font-size: 1.2rem;
     font-weight: bold;
 }
 h4{
     text-indent: 0;
-    margin: 10px auto;
-    font-size: 16px;
+    margin: 0.8rem auto;
+    font-size: 1rem;
     font-weight: bold;
 }
 h5{
     text-indent: 0;
-    margin: 10px auto;
-    font-size: 15px;
+    margin: 0.8rem auto;
+    font-size: 0.9rem;
     font-weight: bold;
 }
 h6{
     text-indent: 0;
-    margin: 10px auto;
-    font-size: 14px;
+    margin: 0.8rem auto;
+    font-size: 0.8rem;
     font-weight: bold;
 }
 p{
-    margin: 1.2em auto;
-    line-height: 1.5em;
+    margin: 1rem auto;
+    line-height: 1.5rem;
     font-size: 1rem;
     text-align: justify;
 }
@@ -130,9 +130,10 @@ a{
     text-decoration: none;
 }
 ul, ol{
+    text-indent: 0;
     list-style-position: inside;
     list-style-type: disc;
-    margin: 1.2em auto;
+    margin: 1rem auto;
     font-size: 1rem;
 }
 ol{
@@ -153,9 +154,8 @@ img{
     margin: 0 auto;
 }
 table{
-    max-width: 100%;
+    width: 100%;
     margin: 1.2em auto;
-    border: 1px solid #c9c9c9;
 }
 tr:nth-child(odd){
     background:#fff; 
@@ -180,6 +180,7 @@ td{
     vertical-align: middle;
 }
 blockquote{
+    text-indent: 0;
     position: relative;
     margin: 1.2em auto;
     padding: 20px 50px;
@@ -276,7 +277,7 @@ pre.highlight code.hljs {
 }
 @media (max-width: 1366px) {
     .container{
-        width: calc(100% - 20px);
+        width: calc(100% - 1rem);
     }
     .content{
         margin-right: 340px;
@@ -290,6 +291,9 @@ pre.highlight code.hljs {
     }
 }
 @media (max-width: 1024px) {
+    .container{
+        width: calc(100% - 0.5rem);
+    }
     .content{
         margin-right: 0;
     }
@@ -498,7 +502,8 @@ pre.highlight code.hljs {
 }
 /* 导航列表 */
 .site-nav .nav-list{
-    float: right;
+    position: absolute;
+    right: 0;
     max-width: calc(100% - 300px);
     margin-left: 10px;
     margin-right: 40px;
@@ -1385,6 +1390,26 @@ pre.highlight code.hljs {
         padding: 0 7px;
     }
 }
+/* 加载更多 */
+.loading-more{
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+.loading-more button{
+    outline: none;
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    border: 0;
+    color: #777;
+    background-color: #fff;
+}
+.loading-more button:hover{
+    color: #24a0f0;
+}
+
 
 /* 浮动客服模块 */
 /* .page-template-page_user_center .rollbar-kefu{
@@ -2012,6 +2037,7 @@ body.sign-show{
         height: 140px;
     }
     .carousel-full-screen .item .container {
+        width: 100%;
         max-width: 100%;
         padding: 0;
     }
@@ -2670,7 +2696,7 @@ body.sign-show{
     cursor: default;
     width: 100%;
     height: auto;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     background-color: #fff;
 }
 .category-filter ul{
@@ -2679,31 +2705,42 @@ body.sign-show{
 }
 .category-filter li{
     margin: 0;
-    text-overflow: ellipsis;
-    word-break: break-all;
     white-space: nowrap;
-    overflow: hidden;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+.category-filter li::-webkit-scrollbar{
+    display: none;
 }
 .category-filter strong{
-    margin: 0 10px;
+    margin-right: 3px;
     font-weight: bold;
-}
-.category-filter i{
-    margin-right: 5px;
 }
 .category-filter a{
     text-decoration: none;
     display: inline-block;
+    width: 3.5rem;
     line-height: 1;
-    margin: 3px 5px;
-    padding: 3px 9px;
+    margin: 3px;
+    padding: 3px;
     border: 1px solid transparent;
+    font-size: 1rem;
+    text-align: center;
     color: inherit;
 }
 .category-filter a.active{
     border-radius: 5px;
     border-color: #24a0f0;
     color: #24a0f0;
+}
+@media (max-width: 768px){
+    .category-filter strong{
+        margin-right: 2px;
+    }
+    .category-filter a{
+        margin: 2px 0;
+        padding: 2px;
+    }
 }
 
 /* 作者信息面板 */

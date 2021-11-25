@@ -13,8 +13,8 @@ var requirejs,require,jsdefine;!function(global,setTimeout){var req,s,head,baseE
  */
 /**==================== require.js 文件配置代码 ====================**/
 require.config({
-    baseUrl: $GSM.uri + '/assets/js',
-    urlArgs: 'ver=' + $GSM.ver,
+    baseUrl: GSM.uri + '/assets/js',
+    urlArgs: 'ver=' + GSM.ver,
     waitSeconds: 0,
     paths: {
         'main'          : 'main',
@@ -22,12 +22,12 @@ require.config({
         'lazyload'      : 'libs/jquery.lazyload.min',
         'qrcode'        : 'libs/jquery.qrcode.min',
         'cookie'        : 'libs/jquery.cookie.min',
-        'highlight'     : 'libs/highlight.min',
-        'jsrender'      : 'libs/jsrender.min',
         'swiper'        : 'libs/swiper.min',
         'animate'       : 'libs/swiper.animate.min',
+        'ias'           : 'libs/ias.min',
+        'highlight'     : 'libs/highlight.min',
+        'jsrender'      : 'libs/jsrender.min',
         'router'        : 'libs/router.min',
-        'layer'         : 'libs/layer.min',
         'user-center'   : 'tpl-user-center',
         'user-sign'     : 'tpl-user-sign',
         'comment'       : 'comment-ajax',

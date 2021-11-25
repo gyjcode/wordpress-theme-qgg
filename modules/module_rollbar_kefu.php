@@ -87,7 +87,7 @@ if( $kefu_sort ){
             case '1':
                 $kefu_html .= '
                 <li class="item top site-style-border-color site-style-border-radius">
-                    <a href="javascript:($GSM.scrollTo());">
+                    <a href="javascript:(GSM.scrollTo());">
                         <div class="icon site-style-color">
                             <i class="fa fa-arrow-up"></i>
                             <span>'.$kefu_top_tip.'</span>
@@ -100,7 +100,7 @@ if( $kefu_sort ){
                 if( (is_single()||is_page()) && comments_open() ){
                     $kefu_html .= '
                     <li class="item comment site-style-border-color site-style-border-radius">
-                        <a href="javascript:($GSM.scrollTo(\'#comments-form\',-300));">
+                        <a href="javascript:(GSM.scrollTo(\'#comments-form\',-300));">
                             <div class="icon site-style-color">
                                 <i class="fa fa-comment"></i>
                                 <span>'.$kefu_comt_tip.'</span>

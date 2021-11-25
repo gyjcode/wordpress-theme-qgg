@@ -23,7 +23,7 @@ class widget_posts_categories extends WP_Widget {
             'show_views'  => 'on',
             'show_likes'  => 'on',
             'show_author' => 'on',
-            'link'        => 'https://blog.quietguoguo.com'
+            'link'        => 'https://zibuyu.life'
         );
         $instance = wp_parse_args( (array) $instance, $defaults );
         extract($instance);
