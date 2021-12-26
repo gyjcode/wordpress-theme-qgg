@@ -10,6 +10,17 @@
 .wp-caption:hover .wp-caption-text{color: #45B6F7;}
 
 
+
+/**==================== 主样式文件，整站调用 ====================*/
+/** 
+ * @max-width >= 1366px 模块间距20px
+ * @max-width <= 1366px 模块间距20px
+ * @max-width <= 1024px 模块间距15px
+ * @max-width <= 768px 模块间距10px
+ * @max-width <= 480px 模块间距5px
+ */
+
+/* ==================== 通用全局样式开始 ==================== */
 /* 常用标签样式 */
 html{
     font-family: "微软雅黑", "苹果雅黑", Arial, sans-serif;
@@ -32,51 +43,57 @@ html{
 }
 body{
     color: #333;
-    background: #eee;
+    /* background: #eee; */
     overflow-x: hidden;
 }
 /* 标题 */
 h1{
     text-indent: 0;
-    margin: 20px auto;
-    font-size: 22px;
+    margin: 1.5rem auto;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 h2{
     text-indent: 0;
-    margin: 15px auto;
-    font-size: 20px;
+    margin: 1.4rem auto;
+    font-size: 1.4rem;
     font-weight: bold;
 }
 h3{
     text-indent: 0;
-    margin: 10px auto;
-    font-size: 18px;
+    margin: 1.3rem auto;
+    font-size: 1.3rem;
     font-weight: bold;
 }
 h4{
     text-indent: 0;
-    margin: 10px auto;
-    font-size: 16px;
+    margin: 1.2rem auto;
+    font-size: 1.2rem;
     font-weight: bold;
 }
 h5{
     text-indent: 0;
-    margin: 10px auto;
-    font-size: 15px;
+    margin: 1.1rem auto;
+    font-size: 1.1rem;
     font-weight: bold;
 }
 h6{
     text-indent: 0;
-    margin: 10px auto;
-    font-size: 14px;
+    margin: 1rem auto;
+    font-size: 1rem;
     font-weight: bold;
 }
 p{
-    margin: 1.2em auto;
-    line-height: 1.5em;
+    margin: 1rem auto;
+    line-height: 1.5rem;
     font-size: 1rem;
     text-align: justify;
+}
+strong{
+    font-weight: bold;
+}
+em{
+    font-style: italic;
 }
 a{
     font-weight: normal;
@@ -84,9 +101,10 @@ a{
     text-decoration: none;
 }
 ul, ol{
+    text-indent: 0;
     list-style-position: inside;
     list-style-type: disc;
-    margin: 1.2em auto;
+    margin: 1rem auto;
     font-size: 1rem;
 }
 ol{
@@ -98,7 +116,7 @@ ol ol, ol ul, ul ol, ul ul {
 li{
     margin-left: 1.5em;
     line-height: 1.5em;
-    font-size: 15px;
+    font-size: 1rem;
 }
 img{
     display: block;
@@ -107,9 +125,8 @@ img{
     margin: 0 auto;
 }
 table{
-    max-width: 100%;
+    width: 100%;
     margin: 1.2em auto;
-    border: 1px solid #c9c9c9;
 }
 tr:nth-child(odd){
     background:#fff; 
@@ -130,16 +147,17 @@ th{
 td{
     padding: 3px 5px;
     border: 1px solid #c9c9c9 ;
-    font-size: .9em;
+    font-size: 1rem;
     vertical-align: middle;
 }
 blockquote{
+    text-indent: 0;
     position: relative;
     margin: 1.2em auto;
-    padding: 20px 50px;
+    padding: 1.5rem 3rem;
     border-radius: 5px;
-    font-size: 14px;
-    line-height: 1em;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
     color: #999;
     background: #fafafa;
 }
@@ -173,6 +191,15 @@ blockquote p:last-child, blockquote ol:last-child, blockquote ul:last-child {
 }
 
 /* 代码高亮样式 */
+pre{
+    text-indent: 0;
+    margin: 1.2em auto;
+    padding: 1rem;
+    border-radius: 5px;
+    color: #e6db74;
+    background-color: #23241f;
+}
+
 pre.highlight{
     text-indent: 0;
     margin: 1.2em auto;
@@ -180,7 +207,6 @@ pre.highlight{
 pre.highlight code {
     display: block;
     max-height: 30rem;
-    padding: 1rem;
     font-family: Consolas, Monaco, monospace;
     overflow-y: auto;
     overflow-x: hidden;
@@ -190,3 +216,159 @@ pre.highlight code.hljs {
     padding: 1rem;
     overflow-x: auto;
 }
+pre.highlight code.hljs::-webkit-scrollbar{ /* 整个滚动条 */
+    display: none;
+    width: 5px; /* 垂直滚动条高度 */
+    height: 5px; /* 水平滚动条宽度 */
+}
+pre.highlight code.hljs::-webkit-scrollbar-track{ /* 滚动条轨道 */
+    border: 1px solid #999;
+    border-radius: 10px;
+    background: royalblue;
+}
+pre.highlight code.hljs::-webkit-scrollbar-track-piece{ /* 滚动条没有滑块的轨道部分 */
+    background: #eee; /* 该颜色会覆盖 -webkit-scrollbar-track 中的背景色*/
+}
+pre.highlight code.hljs::-webkit-scrollbar-thumb{ /* 滚动条上的滚动滑块 */
+    border-radius: 10px;
+    background: #999;
+}
+pre.highlight code.hljs::-webkit-scrollbar-thumb:hover{
+    background: #aaa;
+}
+pre.highlight code.hljs::-webkit-scrollbar-corner{ /* 当同时有垂直滚动条和水平滚动条时交汇的部分 */
+    background-color: orange;
+}
+
+/* 主题通用类样式 */
+.container{
+    position: relative;
+    max-width: 1200px;
+    width: auto;
+    padding: 0;
+}
+.content-wrapper{
+    float: left;
+    width: 100%;
+}
+.content{
+    position: relative;
+    margin-right: 380px;
+}
+.sidebar{
+    float: right;
+    width: 360px;
+    margin: 0 0 0 -360px;
+    overflow: hidden;
+}
+.module{
+    position: relative;
+    margin-top: 1.2rem;
+}
+.thumbnail {
+    display: block;
+    padding: 0;
+    margin: 0 auto;
+    line-height: 1rem;
+    background-color: #fff;
+    border: 0;
+    border-radius: 0;
+    -webkit-transition: inherit;
+    -o-transition: inherit;
+    transition: inherit;
+}
+@media (max-width: 1366px) {
+    .container{
+        width: calc(100% - 1rem);
+    }
+    .content{
+        margin-right: 340px;
+    }
+    .sidebar{
+        width: 320px;
+        margin: 0 0 0 -320px;
+    }
+    .module{
+        margin-top: 1rem;
+    }
+}
+@media (max-width: 1024px) {
+    .container{
+        width: calc(100% - 0.5rem);
+    }
+    .content{
+        margin-right: 0;
+    }
+    .sidebar{
+        width: 100%;
+        margin: 0;
+    }
+    .module{
+        margin-top: 0.8rem;
+    }
+}
+/* 按钮样式 */
+.btn{
+    outline: none;
+    display: inline-block;
+    margin-right: 1rem;
+    padding: 5px 15px;
+    border: 0;
+    border-radius: 3px;
+    color: #333;
+    background-color: #ddd;
+}
+.btn:hover, .btn:active, .btn:active:hover, .btn:active:focus {
+    opacity: 0.8;
+}
+.btn-default, .btn-default:hover, .btn-default:active, .btn-default:active:hover, .btn-default:active:focus {
+    color: #fff;
+    background: #24a0f0;
+}
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:active:hover, .btn-primary:active:focus {
+    color: #fff;
+    background: #ff0000;
+}
+.btn-green, .btn-green:hover, .btn-green:active, .btn-green:active:hover, .btn-green:active:focus {
+    color: #fff;
+    background: #00b424;
+}
+/* 相册样式 */
+.gallery{
+    margin: 1.2rem auto;
+}
+.gallery .gallery-item{
+    position: relative;
+    margin: 0 !important;
+    padding: 3px;
+    overflow: hidden;
+}
+.gallery .gallery-icon{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 66%;
+    border: 5px solid #ccc;
+    overflow: hidden;
+}
+.gallery .gallery-item img{
+    object-fit: cover;
+    transition-duration: .5s;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-width: 0 !important;
+}
+.gallery .gallery-item:hover img{
+    transform: scale(1.1);
+}
+.gallery .gallery-caption{
+    margin-top: 5px;
+}
+.wp-video{
+    margin: 1.2rem auto;
+}
+/* ==================== 通用全局样式结束 ==================== */
+
+  

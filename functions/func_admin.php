@@ -12,15 +12,15 @@ function my_backstage_css() {
 }
 add_action('admin_init', 'my_backstage_css');
 
-// 后台编辑器 CSS 文件
-add_editor_style( THEME_URI.'/assets/css/editor-style.css' );
-
 // 后台加载 JS 文件
 function my_backstage_js() {
     wp_register_script( 'backstage_js', THEME_URI.'/assets/js/backstage.js' );  
     wp_enqueue_script( 'backstage_js' ); 
 }
 add_action( 'admin_enqueue_scripts', 'my_backstage_js' );
+
+// 后台编辑器 CSS 文件
+add_editor_style( THEME_URI.'/assets/css/editor-style.css' );
 
 // 添加链接管理
 add_filter( 'pre_option_link_manager_enabled', '__return_true' );

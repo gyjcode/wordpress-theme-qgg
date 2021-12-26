@@ -2,6 +2,8 @@
 /**
  * WordPress 链接微信公众号
  */
+// 取消错误显示
+ini_set('display_errors', 0);
 
 header('Content-type:text/html; Charset=utf-8');
 // 根目录
@@ -80,7 +82,6 @@ if ( $isWechatRequest ) {
         $query->is_wechat 	= true;
     });
 }
-
 
 // 回复功能
 include(WX_ROOT_DIR.'/reply/reply.php');

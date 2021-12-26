@@ -84,38 +84,38 @@ body{
 /* 标题 */
 h1{
     text-indent: 0;
-    margin: 1.3rem auto;
+    margin: 1.5rem auto;
     font-size: 1.5rem;
     font-weight: bold;
 }
 h2{
     text-indent: 0;
-    margin: 1.1rem auto;
-    font-size: 1.3rem;
+    margin: 1.4rem auto;
+    font-size: 1.4rem;
     font-weight: bold;
 }
 h3{
     text-indent: 0;
-    margin: 1rem auto;
-    font-size: 1.2rem;
+    margin: 1.3rem auto;
+    font-size: 1.3rem;
     font-weight: bold;
 }
 h4{
     text-indent: 0;
-    margin: 0.8rem auto;
-    font-size: 1rem;
+    margin: 1.2rem auto;
+    font-size: 1.2rem;
     font-weight: bold;
 }
 h5{
     text-indent: 0;
-    margin: 0.8rem auto;
-    font-size: 0.9rem;
+    margin: 1.1rem auto;
+    font-size: 1.1rem;
     font-weight: bold;
 }
 h6{
     text-indent: 0;
-    margin: 0.8rem auto;
-    font-size: 0.8rem;
+    margin: 1rem auto;
+    font-size: 1rem;
     font-weight: bold;
 }
 p{
@@ -123,6 +123,12 @@ p{
     line-height: 1.5rem;
     font-size: 1rem;
     text-align: justify;
+}
+strong{
+    font-weight: bold;
+}
+em{
+    font-style: italic;
 }
 a{
     font-weight: normal;
@@ -145,7 +151,7 @@ ol ol, ol ul, ul ol, ul ul {
 li{
     margin-left: 1.5em;
     line-height: 1.5em;
-    font-size: 15px;
+    font-size: 1rem;
 }
 img{
     display: block;
@@ -176,17 +182,17 @@ th{
 td{
     padding: 3px 5px;
     border: 1px solid #c9c9c9 ;
-    font-size: .9em;
+    font-size: 1rem;
     vertical-align: middle;
 }
 blockquote{
     text-indent: 0;
     position: relative;
     margin: 1.2em auto;
-    padding: 20px 50px;
+    padding: 1.5rem 3rem;
     border-radius: 5px;
-    font-size: 14px;
-    line-height: 1em;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
     color: #999;
     background: #fafafa;
 }
@@ -220,6 +226,15 @@ blockquote p:last-child, blockquote ol:last-child, blockquote ul:last-child {
 }
 
 /* 代码高亮样式 */
+pre{
+    text-indent: 0;
+    margin: 1.2em auto;
+    padding: 1rem;
+    border-radius: 5px;
+    color: #e6db74;
+    background-color: #23241f;
+}
+
 pre.highlight{
     text-indent: 0;
     margin: 1.2em auto;
@@ -227,7 +242,6 @@ pre.highlight{
 pre.highlight code {
     display: block;
     max-height: 30rem;
-    padding: 1rem;
     font-family: Consolas, Monaco, monospace;
     overflow-y: auto;
     overflow-x: hidden;
@@ -236,6 +250,29 @@ pre.highlight code.hljs {
     display: block;
     padding: 1rem;
     overflow-x: auto;
+}
+pre.highlight code.hljs::-webkit-scrollbar{ /* 整个滚动条 */
+    display: none;
+    width: 5px; /* 垂直滚动条高度 */
+    height: 5px; /* 水平滚动条宽度 */
+}
+pre.highlight code.hljs::-webkit-scrollbar-track{ /* 滚动条轨道 */
+    border: 1px solid #999;
+    border-radius: 10px;
+    background: royalblue;
+}
+pre.highlight code.hljs::-webkit-scrollbar-track-piece{ /* 滚动条没有滑块的轨道部分 */
+    background: #eee; /* 该颜色会覆盖 -webkit-scrollbar-track 中的背景色*/
+}
+pre.highlight code.hljs::-webkit-scrollbar-thumb{ /* 滚动条上的滚动滑块 */
+    border-radius: 10px;
+    background: #999;
+}
+pre.highlight code.hljs::-webkit-scrollbar-thumb:hover{
+    background: #aaa;
+}
+pre.highlight code.hljs::-webkit-scrollbar-corner{ /* 当同时有垂直滚动条和水平滚动条时交汇的部分 */
+    background-color: orange;
 }
 
 /* 主题通用类样式 */
@@ -305,57 +342,67 @@ pre.highlight code.hljs {
         margin-top: 0.8rem;
     }
 }
+/* 按钮样式 */
 .btn{
     outline: none;
     display: inline-block;
+    margin-right: 1rem;
     padding: 5px 15px;
     border: 0;
-    border-radius: 5px;
-    color: #fff;
+    border-radius: 3px;
+    color: #333;
+    background-color: #ddd;
 }
-.btn:active, .btn:focus, .btn:hover{
-    outline: none;
-    outline-offset: 0;
-    cursor: pointer;
-    color: #fff;
+.btn:hover, .btn:active, .btn:active:hover, .btn:active:focus {
     opacity: 0.8;
 }
-.btn-default{
+.btn-default, .btn-default:hover, .btn-default:active, .btn-default:active:hover, .btn-default:active:focus {
+    color: #fff;
     background: #24a0f0;
-    background: -webkit-gradient(linear,left top,right top,from(#24a0f0),to(#24b4ff)) no-repeat;
-    background: -webkit-linear-gradient(left,#24a0f0,#24b4ff) no-repeat;
-    background: linear-gradient(90deg,#24a0f0,#24b4ff) no-repeat;
-    -webkit-box-shadow: 0 3px 5px rgba(32,160,240,0.5);
-    box-shadow: 0 3px 5px rgba(32,160,240,0.5);
 }
-.btn-default:hover, .btn-default:active, .btn-default:active:hover, .btn-default:active:focus {
-    outline: none;
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:active:hover, .btn-primary:active:focus {
     color: #fff;
-    background-color: #24a0f0;
-    border-color: #24a0f0;
-    opacity: 0.8;
-}
-.btn-primary{
     background: #ff0000;
-    background: -webkit-gradient(linear,left top,right top,from(#ff0000),to(#ff7600)) no-repeat;
-    background: -webkit-linear-gradient(left, #ff0000, #ff7600) no-repeat;
-    background: linear-gradient(90deg,#ff0000,#ff7600) no-repeat;
-    -webkit-box-shadow: 0 3px 5px rgba(255,80,0,0.5);
-    box-shadow: 0 3px 5px rgba(255,80,0,0.5);
 }
-.btn-primary:hover{
+.btn-green, .btn-green:hover, .btn-green:active, .btn-green:active:hover, .btn-green:active:focus {
     color: #fff;
-}
-.btn-green{
     background: #00b424;
-    background: -webkit-gradient(linear,left top,right top,from(#00b424),to(#00f03c)) no-repeat;
-    background: -webkit-linear-gradient(left, #00b424, #00f03c) no-repeat;
-    background: linear-gradient(90deg,#00b424,#00f03c) no-repeat;
-    -webkit-box-shadow: 0 3px 5px rgba(0,180,36,0.5);
-    box-shadow: 0 3px 5px rgba(0,180,36,0.5);
 }
-.btn-green:hover{
-    color: #fff;
+/* 相册样式 */
+.gallery{
+    margin: 1.2rem auto;
+}
+.gallery .gallery-item{
+    position: relative;
+    margin: 0 !important;
+    padding: 3px;
+    overflow: hidden;
+}
+.gallery .gallery-icon{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 66%;
+    border: 5px solid #ccc;
+    overflow: hidden;
+}
+.gallery .gallery-item img{
+    object-fit: cover;
+    transition-duration: .5s;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-width: 0 !important;
+}
+.gallery .gallery-item:hover img{
+    transform: scale(1.1);
+}
+.gallery .gallery-caption{
+    margin-top: 5px;
+}
+.wp-video{
+    margin: 1.2rem auto;
 }
 /* ==================== 通用全局样式结束 ==================== */
 
@@ -3218,177 +3265,6 @@ body.sign-show{
     .rewards-popover-item img{
         width: 120px;
         height: 120px;
-    }
-}
-
-/* 网站添加公众号涨粉功能样式代码 */
-#wechat-official-captcha{
-    clear:both;
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 160px;
-    margin: 15px auto;
-    border: 1px dashed #24b4f0;
-    padding: 0;
-    border-radius: 5px;
-    background: #fff;
-    overflow: hidden;
-}
-#wechat-official-captcha .main{
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
-#wechat-official-captcha .qrcode{
-    display: block;
-    position: absolute;
-    transform: translate(0,-50%);
-    top: 50%;
-    left: 0;
-    width: 140px;
-    height: 140px;
-    margin: 0 10px;
-    border: 0;
-    padding: 0;
-}
-#wechat-official-captcha .qrcode img{
-    width: 100%;
-    height: 100%;
-}
-#wechat-official-captcha .text{
-    display: block;
-    position: absolute;
-    transform: translate(0,-50%);
-    top: 50%;
-    left: 0;
-    width: auto;
-    height: auto;
-    margin: 0 20px 0 160px;
-}
-#wechat-official-captcha .text .tips{
-    display: block;
-    width: 100%;
-    height: 80px;
-    margin: 0;
-    border: 0;
-    padding: 10px;
-    text-indent: 0;
-    font-size: 16px;
-    line-height: 20px;
-}
-#wechat-official-captcha .text .tips p{
-    display: inline-block;
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
-#wechat-official-captcha .text .tips p span{
-    font-weight: bold;
-    color: #f00;
-}
-#wechat-official-captcha .text .tips .prinmary{
-    color: #d65900;
-}
-#wechat-official-captcha .text .tips .prinmary b{
-    margin: 0 3px;
-    font-weight: bold;
-    color: #f00;
-}
-#wechat-official-captcha .ipt{
-    display: flex;
-    width: 100%;
-    height: 30px;
-    margin: 10px 0;
-    border: 0;
-    padding: 0;
-}
-#wechat-official-captcha input{
-    margin: 0 5px;
-    border: 1px solid #24b4f0;
-    padding: 0;
-}
-#wechat-official-captcha input[type=text]{
-    flex-grow: 1;
-    padding: 5px 15px;
-}
-#wechat-official-captcha input[type=button]{
-    flex-basis: 100px;
-    color: #fff;
-    background-color: #24b4f0;
-}
-@media (max-width: 768px) {
-    #wechat-official-captcha{
-        height: 140px;
-        margin: 10px auto;
-    }
-    #wechat-official-captcha .qrcode{
-        width: 120px;
-        height: 120px;
-        margin: 0 10px;
-    }
-    #wechat-official-captcha .text{
-        margin: 0 15px 0 140px;
-    }
-    #wechat-official-captcha .text .tips{
-        height: 80px;
-        padding: 5px;
-        text-indent: 0;
-        font-size: 14px;
-        line-height: 18px;
-    }
-    #wechat-official-captcha .text .tips p{
-        line-height: 1.2em;
-    }
-    #wechat-official-captcha .ipt{
-        height: 30px;
-        margin: 5px 0;
-    }
-}
-@media (max-width: 480px) {
-    #wechat-official-captcha{
-        height: 160px;
-        margin: 10px auto;
-        padding: 0 0 40px;
-    }
-    #wechat-official-captcha .qrcode{
-        width: 100px;
-        height: 100px;
-        margin: 0 10px;
-    }
-    #wechat-official-captcha .text{
-        margin: 0 10px 0 120px;
-    }
-    #wechat-official-captcha .text .tips{
-        height: 80px;
-        padding: 0;
-        text-indent: 0;
-        overflow: hidden;
-    }
-    #wechat-official-captcha .text .tips p{
-        line-height: 1.2em;
-        font-size: 13px;
-    }
-    #wechat-official-captcha .ipt{
-        position: absolute;
-        bottom: -45px;
-        left: 0;
-        right: 0;
-        width: auto;
-        height: 30px;
-        margin: 0 0 0 -110px;
-    }
-    #wechat-official-captcha input[type=button]{
-        width: 80px;
-        height: 100%;
-        margin: 0;
-        border: 0;
-        padding: 0;
-        line-height: 30px;
     }
 }
 
