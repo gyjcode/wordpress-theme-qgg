@@ -4,7 +4,8 @@
  */
 ?>
 
-<section id="carousel-full-screen" class="carousel-full-screen swiper-container">
+<section id="carousel-full-screen" class="carousel-full-screen">
+	<div class="carousel-full-screen-swiper">
     <div class="items swiper-wrapper">
         <?php
         for ($i=1; $i <= 3; $i++) {
@@ -30,8 +31,8 @@
                 $txtDelay    = QGG_options('carousel_full_screen_txt_animate_delay-'.$i) ?: '0.3';
                 
                 echo '
-                <div class="item swiper-slide" data-history="slide'.$i.'" style="background-image: url( '.$bgImg.' )">
-                    <div class="mask"></div>
+                <div class="item swiper-slide" data-history="slide'.$i.'">
+                    <img src="'.$bgImg.'" alt="" class="bgImg">
                     <div class="container '.$noImg .'">
                         <!-- 浮动图片 -->
                         <div style="'.$imgStyle.'" class="item-poster ani"
@@ -65,7 +66,8 @@
     <div class="navs swiper-pagination "></div>
 
     <!-- 导航按钮 -->
-    <div class="swiper-button-prev swiper-button-white">&laquo;</div>
-    <div class="swiper-button-next swiper-button-white">&raquo;</div>
+    <div class="swiper-button-prev swiper-button-white"></div>
+    <div class="swiper-button-next swiper-button-white"></div>
     
+    </div>
 </section>

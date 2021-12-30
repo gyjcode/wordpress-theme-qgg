@@ -9,8 +9,10 @@ $prevnext_img  = QGG_Options('post_prevnext_img') ?: '';
 if( $prevnext_on ){ 
     if( $prevnext_img ){
         $current_category = get_the_category();
-        $previmg = get_the_post_thumbnail( get_previous_post($current_category,'')->ID, '', '' );
-        $nextimg = get_the_post_thumbnail( get_next_post($current_category,'')->ID, '', '' );
+        $prevID = get_previous_post($current_category,'') ? get_previous_post($current_category,'')->ID : null;
+        $previmg = get_the_post_thumbnail( $prevID, '', '' );
+        $nextID = get_next_post($current_category,'') ? get_next_post($current_category,'')->ID : null;
+        $nextimg = get_the_post_thumbnail( $nextID, '', '' );
     }
     echo '
     <nav class="module post-nav-prevnext '.($prevnext_img ? "" : "no-img").'">

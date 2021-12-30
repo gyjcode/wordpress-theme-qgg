@@ -178,6 +178,7 @@
 .category .cat-product-content .product img{
     transition-duration: 0.5s;
     width: 100%;
+    height: 100%;
 }
 .category .cat-product-content .product .thumb:hover img{
     transform: scale(1.2);

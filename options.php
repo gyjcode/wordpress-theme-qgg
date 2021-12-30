@@ -314,7 +314,7 @@ function optionsframework_options() {
         'desc'     => __('<b>显示方式</b> # 是否显示图片', 'QGG'),
         'id'       => 'new_posts_excerpt_list_type',
         'type'     => "radio",
-        'std'      => "thumb",
+        'std'      => "thumbnail",
         'options'  => array(
             'thumbnail'        => __('图文模式（建议缩略图尺寸：220*150px）', 'QGG'),
             'text'             => __('文字模式 ', 'QGG'),

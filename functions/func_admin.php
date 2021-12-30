@@ -68,11 +68,9 @@ if ( !function_exists( '_register_the_nav_menu' ) ) {
  
     function _register_the_nav_menu(){
         register_nav_menus( array(
-            'top_nav'    => __('顶部菜单', 'qgg'),
             'site_nav'   => __('导航菜单', 'qgg'),
             'site_nav_m' => __('手机导航', 'qgg'),
-            'bottom_nav' => __('底部菜单', 'qgg'),
-            'page_nav'   => __('侧栏导航', 'qgg')
+            'page_nav'   => __('页面导航', 'qgg')
         ) );
     }
     add_action( 'after_setup_theme', '_register_the_nav_menu', 0 );

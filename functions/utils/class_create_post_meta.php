@@ -46,18 +46,18 @@ class _CreatePostMeta {
 
     // Meta Box 初始化
     public function _add_meta_box_init( $post_id ){
-        $post_id = $_GET['post'];
+        $post_id = isset($_GET['post']) ?? '';
         $class = $this -> box_conf['div_class'] ?: '';
         
         foreach($this->meta_conf as $meta_box){
-            $type              = $meta_box['type'] ?: 'text';
-            $name              = $meta_box['name'] ?: '';
-            $title             = $meta_box['title'] ?: '未定义';
-            $attr_placeholder  = $meta_box['placeholder'] ? 'placeholder="'.$meta_box['placeholder'].'"' : '';
-            $attr_pattern      = $meta_box['pattern'] ? 'pattern="'.$meta_box['pattern'].'"' : '';
-            $attr_step         = $meta_box['step'] ? 'step="'.$meta_box['step'].'"' : '';
-            $attr_max          = $meta_box['max'] ? 'max="'.$meta_box['max'].'"' : '';
-            $attr_min          = $meta_box['min'] ? 'min="'.$meta_box['min'].'"' : '';
+            $type              = isset($meta_box['type']) ? $meta_box['type'] : 'text';
+            $name              = isset($meta_box['name']) ? $meta_box['name'] : '';
+            $title             = isset($meta_box['title']) ? $meta_box['title'] : '';
+            $attr_placeholder  = isset($meta_box['placeholder']) ? 'placeholder="'.$meta_box['placeholder'].'"' : '';
+            $attr_pattern      = isset($meta_box['pattern']) ? 'pattern="'.$meta_box['pattern'].'"' : '';
+            $attr_step         = isset($meta_box['step']) ? 'step="'.$meta_box['step'].'"' : '';
+            $attr_max          = isset($meta_box['max']) ? 'max="'.$meta_box['max'].'"' : '';
+            $attr_min          = isset($meta_box['min']) ? 'min="'.$meta_box['min'].'"' : '';
 
 
             $value = get_post_meta($post_id, $meta_box['name'], true) ?: $meta_box['value'];
@@ -77,6 +77,7 @@ class _CreatePostMeta {
     
     // 存储|更新 Meta Box 数据
     public function _save_post_meta_box( $post_id ){
+		if(!isset($_POST['post_ID'])) return;
         $post_id = $_POST['post_ID'];
         
         if ( !wp_verify_nonce( isset($_POST[ $this -> box_conf['ipt_name'] ]) ? $_POST[ $this -> box_conf['ipt_name'] ] : '', plugin_basename(__FILE__) ))

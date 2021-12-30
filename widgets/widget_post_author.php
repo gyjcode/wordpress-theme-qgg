@@ -105,9 +105,8 @@ class widget_post_author extends WP_Widget {
     echo '<img class="banner" src="'.$img_link.'" alt="">';
     echo '<div class="author-info site-style-childA-hover-color">';
         // 用户头像
-        $current_user = wp_get_current_user();
         echo'<div class="avatar-wrapper">
-                <a href="'.get_author_posts_url( $author_id ).'">'._get_avatar( $author_id, $current_user->user_email, true, 80 ).'</a>
+                <a href="'.get_author_posts_url( $author_id ).'">'._get_avatar( $author_id, $author_email, true, 80 ).'</a>
             </div>';
         // 用户角色
         echo '<div class="role">';

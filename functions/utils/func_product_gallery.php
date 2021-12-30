@@ -11,7 +11,7 @@ function _register_meta_box_product_gallery(){
 
 // 输出 # 产品相册
 function _add_meta_box_product_gallery($post_id){
-    $post_id = $_GET['post'];
+    $post_id = $_GET['post'] ?? '';
 
     $gallery_ids         = get_post_meta($post_id, 'product_gallery', true) ?: array();
     $update_meta         = false;
@@ -256,7 +256,7 @@ add_action('admin_footer', function(){
 // 存储|更新 Meta Box 数据
 add_action('save_post', '_sav_meta_boxe_product_gallery');
 function _sav_meta_boxe_product_gallery( $post_id ){
-        
+    if(!isset($_POST['post_ID'])) return;
     $post_id = $_POST['post_ID'];
     
     if ( !current_user_can( 'edit_posts', $post_id ))

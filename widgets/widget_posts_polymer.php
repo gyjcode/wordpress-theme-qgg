@@ -250,31 +250,24 @@ function _get_posts_by_order( $orderby, $post_num, $show_thumb){
     if ( $orderby == "rand" ){
         $orderby  = "rand";
         $metakey  = '';
-        $metashow = get_the_time('Y-m-d');
     }elseif( $orderby == "views" ){
         $orderby  = 'meta_value_num';
         $metakey  = 'views';
-        $metashow = '阅读 ('._get_the_post_views().')';
     }elseif( $orderby=="comts" ){
         $orderby  = 'comment_count';
         $metakey  = '';
-        $metashow = '评论('.get_comments_number('0', '1', '%').')';
     }elseif( $orderby == "likes" ){
         $orderby  = 'meta_value_num';
         $metakey  = 'likes';
-        $metashow = '喜欢 ('._get_the_post_likes().')';
     }elseif( $orderby == "recent" ){
         $orderby  = 'post_date';
         $metakey  = '';
-        $metashow = get_the_time('Y-m-d');
     }elseif( $orderby == "modified" ){
         $orderby  = 'modified';
         $metakey  = '';
-        $metashow = get_the_modified_time('Y-m-d');
     }else{
         $orderby  = '';
         $metakey  = '';
-        $metashow = '';
     }
     
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -293,6 +286,24 @@ function _get_posts_by_order( $orderby, $post_num, $show_thumb){
     $html = "";
     while(have_posts()):the_post();
         $i++;
+
+        // 获取指定文章 Meta
+        if ( $orderby == "rand" ){
+            $metashow = get_the_time('Y-m-d');
+        }elseif( $orderby == "meta_value_num" ){
+            $metashow = '阅读 ('._get_the_post_views().')';
+        }elseif( $orderby=="comment_count" ){
+            $metashow = '评论('.get_comments_number('0', '1', '%').')';
+        }elseif( $orderby == "meta_value_num" ){
+            $metashow = '喜欢 ('._get_the_post_likes().')';
+        }elseif( $orderby == "recent" ){
+            $metashow = get_the_time('Y-m-d');
+        }elseif( $orderby == "modified" ){
+            $metashow = get_the_modified_time('Y-m-d');
+        }else{
+            $metashow = '';
+        }
+
         $html .= '
         <li class="item item-'.$i.'">
             <a '. _post_target_blank().' href="'.get_the_permalink().'">
@@ -325,6 +336,24 @@ function _get_posts_by_order( $orderby, $post_num, $show_thumb){
         
         while(have_posts()):the_post();
             $i++;
+
+            // 获取指定文章 Meta
+            if ( $orderby == "rand" ){
+                $metashow = get_the_time('Y-m-d');
+            }elseif( $orderby == "meta_value_num" ){
+                $metashow = '阅读 ('._get_the_post_views().')';
+            }elseif( $orderby=="comment_count" ){
+                $metashow = '评论('.get_comments_number('0', '1', '%').')';
+            }elseif( $orderby == "meta_value_num" ){
+                $metashow = '喜欢 ('._get_the_post_likes().')';
+            }elseif( $orderby == "recent" ){
+                $metashow = get_the_time('Y-m-d');
+            }elseif( $orderby == "modified" ){
+                $metashow = get_the_modified_time('Y-m-d');
+            }else{
+                $metashow = '';
+            }
+
             $html .= '
             <li class="item item-'.$i.'">
                 <a '. _post_target_blank().' href="'.get_the_permalink().'">

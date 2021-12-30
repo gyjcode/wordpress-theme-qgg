@@ -3,6 +3,20 @@
  * Template name: 找回密码
  * Description:   找回密码页面，用于帮助用户在密码丢失后重置密码，代码参考 wp-login.php 文件
  */
+$user_center_on    = QGG_Options('user_center_on') ?: false;
+if( !$user_center_on ) {
+    get_header();
+    echo '
+    <section class="container">    
+        <div class="content-wrapper">
+            <div class="module content page-reset-password">
+                <div class="module user-center-off">会员中心未开启！</div>
+            </div>
+         </div>
+    </section>';
+    get_footer();
+    exit;
+}
 ?>
 
 <?php
@@ -12,7 +26,7 @@
 // $_SERVER  — 服务器和执行环境信息
 $http_post = ('POST' == $_SERVER['REQUEST_METHOD']);
 // $_REQUEST — HTTP Request 变量
-$action = $_REQUEST['action'] ?: 'retrieve_password';
+$action = $_REQUEST['action'] ?? 'retrieve_password';
 $action = !empty($_REQUEST['key']) ? 'reset_password' : $action;
 
 if ( !in_array( $action, array('retrieve_password', 'reset_password', 'success'), true ) ){

@@ -363,24 +363,24 @@ function user_post_query( $poststatus ) {
 function user_post_data(){
     $items = array();
     while ( have_posts() ) : the_post(); 
-        $cat = '';
+        $category = '';
         if( !is_category() ) {
-            $category = get_the_category();
-            if($category[0]){
-                $cat = $category[0]->cat_name;
+            $categories = get_the_category();
+            if($categories[0]){
+                $category = $categories[0]->cat_name;
             }
         };
 
         $items[] = array(
-            'thumb'   => user_get_thumbnail_src(),
-            'link'    => get_permalink(),
-            'title'   => html_entity_decode(get_the_title()),
-            'desc'    => get_the_excerpt(),
-            'time'    => get_the_time('m-d'),
-            'cat'     => $cat,
-            'view'    => user_get_views(),
-            'comment' => (int)get_comments_number('0', '1', '%'),
-            'like'    => user_get_the_post_likes_number(),
+            'thumbnail' => user_get_thumbnail_src(),
+            'link'      => get_permalink(),
+            'title'     => html_entity_decode(get_the_title()),
+            'excerpt'   => get_the_excerpt(),
+            'time'      => get_the_time('m-d'),
+            'category'  => $category,
+            'view'      => user_get_views(),
+            'comment'   => (int)get_comments_number('0', '1', '%'),
+            'like'      => user_get_the_post_likes_number(),
         );
 
     endwhile; 

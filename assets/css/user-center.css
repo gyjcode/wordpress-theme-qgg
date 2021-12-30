@@ -427,33 +427,25 @@
 
 /** 我的文章-列表样式 */
 .page .user-center .user-posts{
+    list-style-type: none;
     display: block;
     width: 100%;
     height: auto;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    list-style-type: none;
 }
 .page .user-center .user-posts li{
     display: block;
-    margin: 0;
-    border: 0;
     border-bottom: 1px solid #f2f2f2;
     padding: 10px 0;
     list-style-type: none;
     overflow: hidden
 }
-.page .user-center .user-posts li .thumb{
+.page .user-center .user-posts li .thumbnail{
     float: left;
     width: 150px;
     height: 100px;
-    margin: 0;
-    border: 0;
-    padding: 0;
     border-radius: 5px;
 }
-.page .user-center .user-posts li div{
+.page .user-center .user-posts .desc{
     display: block;
     position: relative;
     width: auto;
@@ -463,7 +455,7 @@
     padding: 0 5px;
     overflow: hidden;
 }
-.page .user-center .user-posts li div h2{
+.page .user-center .user-posts .desc h2{
     display: inline-block;
     height: 20px;
     width: 100%;
@@ -478,10 +470,10 @@
     background: none;
     overflow: hidden;
 }
-.page .user-center .user-posts li div h2 a{
+.page .user-center .user-posts .desc h2 a{
     color: #555;
 }
-.page .user-center .user-posts li div .desc{
+.page .user-center .user-posts .desc .excerpt{
     height: 54px;
     overflow: hidden;
     margin: 6px 0 0;
@@ -495,13 +487,10 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
 }
-.page .user-center .user-posts li div .muted{
+.page .user-center .user-posts .desc .metas{
     display: block;
     width: 100%;
     height: 20px;
-    margin: 0;
-    border: 0;
-    padding: 0;
     font-size: 12px;
     line-height: 20px;
     color: #999;
@@ -776,7 +765,7 @@
         border-bottom: 1px solid #f2f2f2;
         padding: 10px 0;
     }
-    .page .user-center .user-posts li .thumb{
+    .page .user-center .user-posts li .thumbnail{
         width: 120px;
         height: 80px;
         border-radius: 3px;
@@ -786,12 +775,12 @@
         margin: 0 0 0 130px;
         padding: 5px;
     }
-    .page .user-center .user-posts li div h2{
+    .page .user-center .user-posts .desc h2{
         height: 20px;
         line-height: 20px;
         font-size: 16px;
     }
-    .page .user-center .user-posts li div .desc{
+    .page .user-center .user-posts .desc .excerpt{
         height: 32px;
         overflow: hidden;
         margin: 3px 0 0;
@@ -799,7 +788,7 @@
         line-height: 16px;
         -webkit-line-clamp: 2;
     }
-    .page .user-center .user-posts li div .muted{
+    .page .user-center .user-posts .desc .metas{
         height: 15px;
         font-size: 10px;
         line-height: 15px;
@@ -939,25 +928,25 @@
         border-bottom: 1px solid #f2f2f2;
         padding: 5px 0;
     }
-    .page .user-center .user-posts li .thumb{
+    .page .user-center .user-posts li .thumbnail{
         width: 90px;
         height: 60px;
         border-radius: 5px;
     }
-    .page .user-center .user-posts li div{
+    .page .user-center .user-posts .desc{
         height: 60px;
         margin: 0 0 0 100px;
         padding: 0 5px;
     }
-    .page .user-center .user-posts li div h2{
+    .page .user-center .user-posts .desc h2{
         height: 18px;
         line-height: 18px;
         font-size: 15px;
     }
-    .page .user-center .user-posts li div .desc{
+    .page .user-center .user-posts .desc .excerpt{
         display: none;
     }
-    .page .user-center .user-posts li div .muted{
+    .page .user-center .user-posts .desc .metas{
         position: absolute;
         bottom: 0;
         height: 20px;
@@ -1392,12 +1381,6 @@
 }
 .user-main>.wrap>.widefat tr:nth-child(even){
     background: #fafafa;
-}
-@media (max-width: 1366px) {
-    
-}
-@media (max-width: 1024px) {
-    
 }
 @media (max-width: 768px) {
     .user-main-property .wrap h2{

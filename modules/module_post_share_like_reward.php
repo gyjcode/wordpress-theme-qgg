@@ -6,17 +6,22 @@
 $img_root       = get_template_directory_uri().'/assets/img';
 
 // 获取配置
-$share_text     = QGG_Options('post_share_text') ? QGG_Options('post_share_text') : "分享到：";
-$like_text      = QGG_Options('post_like_text') ? QGG_Options('post_like_text') : "喜欢";
-$poster_text    = QGG_Options('post_poster_text') ? QGG_Options('post_poster_text') : "分享海报";
-$rewards_text   = QGG_Options('post_rewards_text') ? QGG_Options('post_rewards_text') : "赏个钱儿";
-$rewards_title  = QGG_Options('post_rewards_title') ? QGG_Options('post_rewards_title') : "觉得文章有用就打赏一下作者吧";
-$rewards_alipay = QGG_Options('post_rewards_alipay') ? QGG_Options('post_rewards_alipay') : $img_root.'/qrcode.png';
-$rewards_wechat = QGG_Options('post_rewards_wechat') ? QGG_Options('post_rewards_wechat') : $img_root.'/qrcode.png';
+$share_on       = QGG_Options('post_share_on') ?? false;
+$share_text     = QGG_Options('post_share_text') ?? "分享到：";
+$like_on        = QGG_Options('post_like_on') ?? false;
+$like_text      = QGG_Options('post_like_text') ?? "喜欢";
+$poster_on      = QGG_Options('post_poster_on') ?? false;
+$poster_text    = QGG_Options('post_poster_text') ?? "分享海报";
+$rewards_on     = QGG_Options('post_rewards_on') ?? false;
+$rewards_text   = QGG_Options('post_rewards_text') ?? "赏个钱儿";
+$rewards_title  = QGG_Options('post_rewards_title') ?? "觉得文章有用就打赏一下作者吧";
+$rewards_alipay = QGG_Options('post_rewards_alipay') ?? $img_root.'/qrcode.png';
+$rewards_wechat = QGG_Options('post_rewards_wechat') ?? $img_root.'/qrcode.png';
 ?>
 
 <section class="module share-like-reward">
     <!-- 分享 -->
+    <?php if($share_on){ ?>
     <div class="post-share action action-share">
         <!-- 显示 -->
         <span class="share-text"><?php echo $share_text ?></span>
@@ -28,17 +33,20 @@ $rewards_wechat = QGG_Options('post_rewards_wechat') ? QGG_Options('post_rewards
         <div class="post-qrcode-mask"></div>
         <div class="post-qrcode"></div>
     </div>
-
+    <?php } ?>
     <div class="like-reward-poster">
         <!-- 喜欢 -->
+        <?php if($like_on){ ?>
         <div class="post-like action action-like">
             <?php $class = _is_my_like() ? " activted" : ""; ?>
             <a href="javascript:;" data-event="post-like" class="<?php echo $class; ?>" data-post_id="<?php echo get_the_ID(); ?>">
                 <i class="fa fa-heart"></i>&nbsp;<?php echo $like_text ?>(<span><?php echo _get_the_post_likes();?></span>)
             </a>
         </div>
+        <?php } ?>
 
         <!-- 打赏 -->
+        <?php if($rewards_on){ ?>
         <div class="post-reward action action-reward">
             <!-- 显示 -->
             <a href="javascript:;" class="action action-rewards" data-event="rewards-popover">
@@ -63,8 +71,10 @@ $rewards_wechat = QGG_Options('post_rewards_wechat') ? QGG_Options('post_rewards
                 <span class="rewards-popover-close" data-event="rewards-close"><i class="fa fa-times"></i></span>
             </div>
         </div>
+        <?php } ?>
 
         <!-- 海报 -->
+        <?php if($poster_on){ ?>
         <div class="post-poster action action-poster">
             <!-- 显示 -->
             <a href="javascript:;" class="action action-poster" data-event="poster-popover">
@@ -79,5 +89,6 @@ $rewards_wechat = QGG_Options('post_rewards_wechat') ? QGG_Options('post_rewards
                 </a>
             </div>
         </div>
+        <?php } ?>
     </div>
 </section>

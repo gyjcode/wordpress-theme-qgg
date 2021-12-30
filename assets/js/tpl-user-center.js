@@ -6,7 +6,7 @@ jsdefine('user-center', ['router', 'jsrender'], function (){
             (function($){
             
             var _main = $('.user-main'),
-                _homepage = 'comments',
+                _homepage = 'posts/all',
                 cache_postmenu = null,
                 cache_userdata = null,
 
@@ -178,7 +178,7 @@ jsdefine('user-center', ['router', 'jsrender'], function (){
                     status: status,
                     paged: paged
                 }
-                console.log(cache_postmenu)
+                
                 if( !cache_postmenu ){ datas.first = true }
                 
                 $.ajax({
