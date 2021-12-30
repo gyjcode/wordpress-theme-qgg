@@ -74,7 +74,7 @@
         </div>
         <div class="content posts">
             <h3 class="post">单页面</h3>
-            <?php wp_page_menu( $args ); ?>
+            <?php wp_page_menu(); ?>
         </div>
 
         <div class="footer">

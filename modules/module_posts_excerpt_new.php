@@ -17,7 +17,7 @@ $meta_author_link = QGG_Options('post_meta_author_link_on') ?: '#';
 $meta_view_on     = QGG_Options('post_meta_view_on') ?: false;
 $meta_like_on     = QGG_Options('post_meta_like_on') ?: false;
 $meta_comment_on  = QGG_Options('post_meta_comment_on') ?: false;
-
+$ads_on           = QGG_Options('ads_post_list_on') ?: false;
 ?>
 <!-- 文章列表 -->
 <section class="module new-posts-excerpt site-style-childA-hover-color site-style-border-radius">
@@ -126,7 +126,7 @@ $meta_comment_on  = QGG_Options('post_meta_comment_on') ?: false;
             echo '</article>';
 
             // 每 10 篇文章，在第三篇位置处插入一个广告
-            if ( $i == 3 ) {
+            if ($i == 3 && $ads_on) {
                 echo '<article class="excerpt-ads">';
                     _ads_loader($adsname='ads_post_list', $classname='ads-post-list site-style-border-radius');
                 echo '</article>';

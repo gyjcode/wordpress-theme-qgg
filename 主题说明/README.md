@@ -32,4 +32,70 @@
 - [jsrender.js](https://www.jsviews.com/#jsrender)：JS 模板渲染引擎，主要用于会员中心页面渲染。
 - [router.js](#)：JS 路由插件，主要用于会员中心路由跳转（年久失修，考虑更换）。
 
-> 更多内容请看主题说明
+### 主题功能
+
+目前已集成基础博客、会员中心、客服系统、视频列表、商品发布、微信公众号对接等功能，且方便高级用户后期自主拓展分类页面模板、静态页面模板、文章页面模板、侧栏小工具等功能。
+
+#### 后台设置页面
+
+![后台设置](./images/settings.png)
+
+#### 前端页面展示
+##### 网站首页
+
+> ***如何增加公共模块？***
+> _module_loader() 函数加载模板文件即可。
+
+![网站首页](./images/homepage.png)
+
+**会员中心**
+
+![会员中心](./images/page-user-center.png)
+
+**文章页模板**
+
+> ***如何增加文章页模板？***
+> _module_loader() 函数加载模板文件即可。
+
+默认文章
+
+![默认文章](./images/post-default.png)
+
+视频文章
+
+![视频文章](./images/post-video.png)
+
+产品文章
+
+![产品文章](./images/post-product.png)
+
+
+**静态页模板**
+
+> ***如何增加静态页模板？***
+> _module_loader() 函数加载模板文件即可。
+> 
+页面太多了就不一一展示了，目前主要包括：
+- 友情链接：https://www.zibuyu.life/friendly-links
+- 文章归档：https://www.zibuyu.life/timeline
+- 读者墙：https://www.zibuyu.life/readers
+- 站点地图：https://www.zibuyu.life/sitemap-html
+- 用户中心：https://www.zibuyu.life/user-center#posts/all
+- 找回密码：https://www.zibuyu.life/reset-password
+
+**分类页模板**
+
+> ***如何增加分类页模板？***
+> _module_loader() 函数加载模板文件即可。
+> 
+页面太多了就不一一展示了，目前主要包括：
+默认分类：https://www.zibuyu.life/category/wordpress
+视频分类：https://www.zibuyu.life/category/video
+产品分类：https://www.zibuyu.life/category/shop
+
+**侧栏小工具**
+
+> ***如何增加侧栏小工具？***
+> _module_loader() 函数加载模板文件即可。
+
+![小工具](./images/widgets.png)

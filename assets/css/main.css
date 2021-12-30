@@ -229,10 +229,10 @@ blockquote p:last-child, blockquote ol:last-child, blockquote ul:last-child {
 pre{
     text-indent: 0;
     margin: 1.2em auto;
-    padding: 1rem;
+    /* padding: 1rem; */
     border-radius: 5px;
-    color: #e6db74;
-    background-color: #23241f;
+    /* color: #e6db74;
+    background-color: #23241f; */
 }
 
 pre.highlight{
@@ -401,8 +401,56 @@ pre.highlight code.hljs::-webkit-scrollbar-corner{ /* 当同时有垂直滚动�
 .gallery .gallery-caption{
     margin-top: 5px;
 }
+/* 视频样式 */
 .wp-video{
     margin: 1.2rem auto;
+}
+/* 视频列表样式 */
+.wp-playlist{
+    margin: 1.2rem auto !important;
+    border-width: 0 !important;
+    padding: 0 !important;
+}
+.wp-playlist-tracks{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative !important;
+    margin-top: 1.2rem !important;
+}
+.wp-playlist-tracks .wp-playlist-item{
+    border-bottom-width: 0;
+    margin: 5px 5px 0;
+    padding: 0 10px;
+    border: 1px solid #eee;
+    overflow:hidden;
+}
+.wp-playlist-tracks .wp-playlist-item:last-child {
+    border-bottom: 1px solid #eee;
+}
+.wp-playlist-light .wp-playlist-playing{
+    background-color: #eee !important;
+}
+.wp-playlist-tracks .wp-playlist-caption{
+    text-indent: 0;
+    display: block;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.wp-playlist-tracks .wp-playlist-item-title{
+    font-weight: normal;
+}
+.wp-playlist-tracks .wp-playlist-item-length{
+    right: 13px;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 1rem;
+}
+@media (max-width: 480px) {
+    .wp-playlist-tracks{
+        grid-template-columns: 1fr;
+    }
 }
 /* ==================== 通用全局样式结束 ==================== */
 
@@ -417,7 +465,6 @@ pre.highlight code.hljs::-webkit-scrollbar-corner{ /* 当同时有垂直滚动�
     margin: 0;
     border: 0;
     padding: 0;
-    box-shadow: 0px 0px 9px #999;
     background: #fff;
 }
 .nav-fixed #header{
@@ -488,7 +535,6 @@ pre.highlight code.hljs::-webkit-scrollbar-corner{ /* 当同时有垂直滚动�
 /* 站点导航 */
 .site-nav{
     height: 72px;
-    border-bottom: 1px solid #eee;
     color: #333;
     background: #fff;
 }
@@ -510,8 +556,16 @@ pre.highlight code.hljs::-webkit-scrollbar-corner{ /* 当同时有垂直滚动�
 /* Logo 品牌 */
 .site-nav .logo{
     float: left;
+	position: relative;
     margin: 0 auto;
     padding: 20px 0;
+	font-size: 18px;
+	font-weight: bold;
+}
+.site-nav .logo a{
+    max-width: 140px;
+    max-height: 32px;
+    overflow: hidden;
 }
 .site-nav .logo img {
     max-width: 140px;
@@ -1165,6 +1219,7 @@ pre.highlight code.hljs::-webkit-scrollbar-corner{ /* 当同时有垂直滚动�
     overflow: hidden;
 }
 .new-posts-excerpt .thumbnail-wrapper img{
+    object-fit: cover;
     transition: inherit;
     transition-duration: 0.5s;
     width: 100%;
@@ -1863,19 +1918,17 @@ body.sign-show{
 .carousel-full-screen{
     position: relative;
     width: 100%;
-    height: 420px;
+    background-color: #fff;
     overflow: hidden;
 }
-.carousel-full-screen .mask{
-    float: left;
-    position: absolute;
+.carousel-full-screen .bgImg{
+    object-fit: cover;
+    position: relative;
     width: 100%;
     height: 100%;
-    background: #000;
-    opacity: 0.16;
-    filter: alpha(opacity=16);
 }
 .carousel-full-screen .item{
+    position: relative;
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
@@ -1884,8 +1937,14 @@ body.sign-show{
     overflow: hidden;
 }
 .carousel-full-screen .item .container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
+    width: 1366px;
     height: 100%;
+    margin: 0 auto;
     padding: 20px;
 }
 .carousel-full-screen .item .item-poster{
@@ -1906,7 +1965,7 @@ body.sign-show{
 }
 .carousel-full-screen .item .item-desc{
     flex-grow: 1;
-    width: 100%;
+    width: 40%;
     height: 100%;
     overflow: hidden;
 }
@@ -2258,32 +2317,29 @@ body.sign-show{
 
 /* 图像盒子 */
 .img-box-posts{
-    height: 240px;
     background: #fff;
     overflow: hidden;
 }
-.img-box-posts a{
-    float: left;
-    display: block;
-    position: relative;
-    width: 24%;
-    height: calc(50% - 5px);
-    margin-left: 1%;
-    text-align: center;
-    overflow: hidden;
-}
-.img-box-posts a:first-child{
+.img-box-posts .item:first-child{
     width: 50%;
+    padding-bottom: 28%;
+}
+.img-box-posts .item{
+    float: left;
+    position: relative;
+    width: 25%;
+    height: 0;
+    padding-bottom: 14%;
+}
+.img-box-posts .item a{
+    position: absolute;
+    width: 100%;
     height: 100%;
-    margin: 0;
-}
-.img-box-posts a:nth-child(2), .img-box-posts a:nth-child(3){
-    margin-bottom: 5px;
-}
-.img-box-posts a:nth-child(4), .img-box-posts a:nth-child(5){
-    margin-top: 5px;
+    overflow: hidden;
+    border: 5px solid #fff;
 }
 .img-box-posts a img{
+    object-fit: cover;
     transition-duration:0.5s;
     width: 100%;
     height: 100%;

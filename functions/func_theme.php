@@ -62,7 +62,7 @@ function _enqueue_scripts_loader() {
         'require' => 'require',
     ));
     
-    $hl_style = QGG_Options('') ?: 'monokai-sublime';
+    $hl_style = QGG_Options('code_highlight_style') ?: 'monokai-sublime';
     // 文章页面
     if (is_single()) {
         _css_loader(array(
@@ -328,12 +328,12 @@ function _site_logo() {
     $tag = is_home() ? 'h1' : 'div';
     $title_default =  get_bloginfo('name').(get_bloginfo('description') ? '-'.get_bloginfo('description') : '');
     $title = QGG_Options('site_title') ?: $title_default;
-
+	
     echo '
     <'.$tag.' class="logo">
-        <a href=" '.get_bloginfo('url').' " title=" '.$title.' ">
-            <img src=" '.QGG_Options('site_logo_src').' " alt=" '.$title.' ">
-        </a>
+        <a href=" '.get_bloginfo('url').' " title=" '.$title.' ">';
+            echo QGG_Options('site_logo_src') ? '<img src=" '.QGG_Options('site_logo_src').' " alt=" '.$title.' ">' : get_bloginfo('name');
+    echo '</a>
     </'.$tag.'>';
 }
 

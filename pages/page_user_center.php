@@ -85,7 +85,7 @@ $user_erphpdown_on = QGG_Options('user_erphpdown_on') ?: false;
                                             'quicktags'     => false,
                                             'editor_css'    => '',
                                             'tinymce'       => array(
-                                            'content_css'   => get_template_directory_uri() . '/css/editor-style.css'
+                                            'content_css'   => get_template_directory_uri() . '/assets/css/editor-style.css'
                                             ),
                                             'teeny' => true,
                                         );
@@ -127,11 +127,17 @@ $user_erphpdown_on = QGG_Options('user_erphpdown_on') ?: false;
 <!-- 文章列表 -->
 <script id="tpl-posts" type="text/x-jsrender">
     <li>
-        <img data-src="{{>thumb}}" class="thumb">
-        <div>
+        <img class="thumbnail lazyload" src="{{>thumbnail}}">
+        <div class="desc">
             <h2><a target="_blank" href="{{>link}}">{{>title}}</a></h2>
-            <p class="desc">{{>desc}}</p>
-            <p class="muted">{{>time}} &nbsp;&nbsp; 分类：{{>cat}} &nbsp;&nbsp; 阅读({{>view}}) &nbsp;&nbsp; 评论({{>comment}}) &nbsp;&nbsp; 喜欢({{>like}})</p>
+            <p class="excerpt">{{>excerpt}}</p>
+            <p class="metas">
+                <span class="meta">{{>time}}</span>
+                <span class="meta">分类：{{>category}}</span>
+                <span class="meta">阅读({{>view}})</span>
+                <span class="meta">评论({{>comment}})</span>
+                <span class="meta">喜欢({{>like}})</span>
+            </p>
         </div>
     </li>
 </script>

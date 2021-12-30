@@ -72,7 +72,7 @@ jQuery(document).ready(function(){
             effect: "fadeIn",
             data_attribute: 'src',
             placeholder: GSM.uri + '/assets/img/thumbnail.png',
-            threshold: 400
+            threshold: 200
         });
     });
 
@@ -172,7 +172,7 @@ jQuery(document).ready(function(){
     
     // 首页全屏轮播图加载 swiper.min.js
     require(['swiper', 'animate'], function(){
-        var mySwiper = new Swiper ('#carou1sel-full-screen',{
+        var mySwiper = new Swiper ('.carousel-full-screen-swiper',{
             
             //history: true,
             direction: 'horizontal', // 垂直切换选项
@@ -181,6 +181,7 @@ jQuery(document).ready(function(){
             effect : 'coverflow',
             slidesPerView: 1, // Slider 容器同时显示的滑块数量
             centeredSlides: true, // 激活的滑块居中
+			autoHeight: true,   // 自动高度
             coverflowEffect: {
                 rotate: 0,
                 stretch: 0,

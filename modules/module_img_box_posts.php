@@ -20,17 +20,17 @@
     query_posts($query_post);
 
     while(have_posts()):the_post();
-        echo '<a target="_blank" href="'.get_permalink().'" title="">';
+        echo '<div class="item">
+        <a target="_blank" href="'.get_permalink().'" title="">';
             echo _get_the_post_thumbnail();
-
             if( $titleShow ){
                 echo '<div class="mask"></div>';
                 echo '<div class="info">';
                     echo '<h4><b>'.get_the_title().'</b></h4>';
                 echo '</div>';
             }
-            
-        echo '</a>';
+        echo '</a>
+        </div>';
     endwhile;
 
     wp_reset_query();
